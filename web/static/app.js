@@ -282,7 +282,7 @@ function renderDecision() {
     </div>`;
   }
   if (o.longitudinal) html += priorCard(o.longitudinal);
-  html += `<div class="card flat impression"><div class="kicker"><span>Draft impression</span><span class="actions"><button type="button" id="copy">Copy</button><button type="button" id="download">Download</button></span></div>
+  html += `<div class="card flat impression"><div class="kicker"><span>Draft impression</span><span class="actions"><button type="button" id="copy">Copy</button><button type="button" id="download">Download</button><button type="button" id="fhir">Export FHIR</button></span></div>
     <pre>${esc(a.impression)}</pre>
     ${a.consistency.consistent ? `<div class="verified">${ICON.ok}Matches the rule-based category</div>` : ""}</div>`;
   $("decision").innerHTML = html;
@@ -290,12 +290,25 @@ function renderDecision() {
 $("decision").addEventListener("click", async (e) => {
   if (e.target.id === "copy") { try { await navigator.clipboard.writeText(S.a.impression); toast("Impression copied"); } catch (err) { toast("Copy is not available here"); } return; }
   if (e.target.id === "download") { downloadReport(); return; }
+  if (e.target.id === "fhir") { exportFhir(); return; }
   const b = e.target.closest(".ask button"); if (!b) return;
   const o = S.a.observations[S.obs];
   if (b.dataset.exact) { $("tol").value = 0; $("tolVal").textContent = "±0 mm"; S.a.observations.forEach((x) => (x.spread = 0)); }
   else o.features[b.dataset.k] = b.dataset.v;
   o.edited = true; recompute();
 });
+function saveFile(name, text, type) {
+  const blob = new Blob([text], { type });
+  const url = URL.createObjectURL(blob), link = document.createElement("a");
+  link.href = url; link.download = name; link.click(); URL.revokeObjectURL(url);
+}
+async function exportFhir() {
+  try {
+    const bundle = await api("/api/export/fhir", S.a);
+    saveFile("lirads-report.fhir.json", JSON.stringify(bundle, null, 2), "application/fhir+json");
+    toast("FHIR bundle downloaded");
+  } catch (e) { toast(e.message); }
+}
 function downloadReport() {
   const lines = [S.a.impression, "", "FINDINGS USED", ...S.a.observations.flatMap((o) => [
     `${o.label}: size ${o.size_mm ?? "not stated"} mm`, ...FEATURES.map(([k, l]) => `  ${l}: ${STATE_LABEL[o.features[k]]}`)]),

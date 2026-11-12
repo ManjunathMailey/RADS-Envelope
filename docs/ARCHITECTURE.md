@@ -28,6 +28,7 @@ Bhayana et al. 2025 for O-RADS) address the first problem. RADS-Envelope address
 | Certainty Envelope, witnesses, decisive questions | `engine/envelope.py` | yes |
 | Exam summary | `engine/exam.py` | yes |
 | Rule-consistent impression and verification | `generation/impression.py` | yes |
+| FHIR R4 export | `export/fhir.py` | yes |
 
 The language model only fills a JSON schema. It never produces a category or the impression.
 
@@ -85,6 +86,7 @@ ambiguity and of the extractor's own instability. Each feature records which sou
 | Incomplete rule files are rejected at load time | `test_incomplete_ruleset_is_rejected`, `test_missing_or_invalid_growth_section_is_rejected` |
 | Growth rule boundaries: exactly 50 %, 183 days and 730 days; ultrasound priors refused | `tests/test_longitudinal.py` |
 | An explicit growth statement in the report is never overridden by the prior comparison | `test_explicit_report_statement_is_kept_and_conflict_flagged` |
+| FHIR export: every reference resolves, the category equals the engine's for every sample, no standard codes are invented | `tests/test_fhir.py` |
 
 ## 7. Evaluation protocol
 
@@ -130,3 +132,21 @@ warning is shown instead of silently overriding the radiologist. Ancillary flags
 the extracted ones. Each observation carries a `longitudinal` block (sizes, percent change,
 interval, rule, explanation, matching method, conflict), and the impression gains one line per
 compared observation. The line states no category, so the consistency check is unchanged.
+
+## 10. FHIR export
+
+`export/fhir.py` maps an analysis to an HL7 FHIR R4 Bundle of type `collection`: one
+`DiagnosticReport` (status `preliminary`, conclusion = generated impression, `result` referencing
+each observation) and one `Observation` per liver observation. The Observation carries the ACR
+category (or the status when no category is assigned) as `valueCodeableConcept`, the segment as
+`bodySite`, and components for size (UCUM `mm`), each feature state, the certainty envelope,
+decision-critical and, when present, the longitudinal comparison (UCUM `%` and `d`). A
+decision-support disclaimer is attached as a note. Resource ids are `urn:uuid` values derived
+deterministically from the report, so the same analysis always produces the same bundle.
+
+`POST /api/export/fhir` re-runs the engine on the posted features before exporting, so the bundle
+states the rule-based category even if the client sends a stale or edited one.
+
+Concepts are identified by `code.text` and local codes in `urn:radsenvelope:code`; only the HL7
+category codes `RAD` and `imaging` are used. Mapping to LOINC, SNOMED CT and RadLex is future work
+and is not approximated with invented codes.

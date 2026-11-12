@@ -16,7 +16,7 @@ from datetime import date
 from pathlib import Path
 from typing import Literal, Optional
 
-from fastapi import FastAPI, HTTPException
+from fastapi import Body, FastAPI, HTTPException
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field, field_validator
@@ -24,6 +24,7 @@ from pydantic import BaseModel, Field, field_validator
 from radsenvelope import __version__
 from radsenvelope.engine.longitudinal import normalise_modality
 from radsenvelope.engine.ruleset import FEATURE_LABELS, FEATURES, get_ruleset
+from radsenvelope.export.fhir import to_fhir_bundle
 from radsenvelope.extraction import llm
 from radsenvelope.pipeline import Settings, analyse_report, finalize, run_observation
 
@@ -197,6 +198,32 @@ def audit(req: AuditRequest):
                         "decision_critical": sum(r["critical"] for r in rows),
                         "needs_review": sum(r["status"] != "assigned" for r in rows)},
             "rows": rows, "extractor": req.extractor}
+
+
+@app.post("/api/export/fhir")
+def export_fhir(analysis: dict = Body(...)):
+    """FHIR R4 Bundle for an analysis from /api/analyse (after any edits). Categories and the
+    impression are re-derived from the posted features by the engine, so the bundle always
+    states the rule-based category, never a stale or hand-edited one."""
+    observations = analysis.get("observations")
+    if not isinstance(observations, list) or not observations:
+        raise HTTPException(422, "Send the analysis returned by /api/analyse: 'observations' must be a non-empty list.")
+    high_risk = bool((analysis.get("settings") or {}).get("high_risk", True))
+    obs = []
+    for i, o in enumerate(observations):
+        if not isinstance(o, dict) or not isinstance(o.get("features"), dict) or not o.get("label"):
+            raise HTTPException(422, f"Observation {i + 1} needs a 'label' and a 'features' object.")
+        prev = o.get("result") or {}
+        tol = prev.get("size_tolerance_mm", o.get("size_tolerance_mm", 2.0))
+        result = run_observation(o["label"], o["features"], o.get("size_mm"), tol, high_risk,
+                                 o.get("defer_reasons") or [])
+        item = {"label": o["label"], "size_mm": o.get("size_mm"), "features": o["features"], "result": result}
+        if o.get("longitudinal"):
+            item["longitudinal"] = o["longitudinal"]
+        obs.append(item)
+    out = finalize(obs)
+    return to_fhir_bundle({"report": analysis.get("report", ""), "rules": get_ruleset().label,
+                           "observations": obs, "impression": out["impression"]})
 
 
 @app.post("/api/extract-text")

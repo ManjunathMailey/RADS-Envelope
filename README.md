@@ -22,6 +22,7 @@ Guide: Mr. Karthik D U
 - Management-aware alerting and a single decisive question
 - Rule-consistent impression generation with automatic verification
 - Longitudinal reasoning: threshold growth, subthreshold growth and size stability computed by the rules from a prior CT or MRI, with measurement-aware uncertainty
+- HL7 FHIR R4 export: a DiagnosticReport with one Observation per liver observation, ready for hospital integration
 - Paste a report or upload a .txt / .docx file; batch mode checks many reports at once
 - Audit: stated impression vs computed category
 - Evaluation on real radiologist-written cases and a controlled-ambiguity stress test
@@ -58,6 +59,7 @@ radsenvelope/
   extraction/                      segmentation, LLM, lexicon, consensus, grounding, scope
   generation/impression.py         rule-consistent impression + verification
   evaluation/                      real cases, stress-test generator, metrics, benchmark
+  export/fhir.py                   HL7 FHIR R4 Bundle export
   api/app.py                       FastAPI service
   pipeline.py                      end-to-end pipeline shared by API, CLI and evaluation
 web/                               browser client
