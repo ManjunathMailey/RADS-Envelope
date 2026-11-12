@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RADS-Envelope</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+<header class="nav">
+  <div class="nav-in">
+    <a class="logo" href="#analyse" aria-label="RADS-Envelope home">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="3.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="2.4" fill="currentColor"/></svg>
+      RADS-Envelope
+    </a>
+    <nav>
+      <a href="#analyse" data-view="analyse">Analyse</a>
+      <a href="#batch" data-view="batch">Batch</a>
+    </nav>
+    <div class="status" id="status"><span class="dot"></span><span>Starting</span></div>
+  </div>
+</header>
+
+<main>
+  <!-- ANALYSE -->
+  <section id="view-analyse" class="view">
+    <!-- start state -->
+    <div class="start" id="start">
+      <h1>Every LI-RADS category,<br>checked before you sign.</h1>
+      <p class="lede">Paste a liver CT or MRI report. You get the ACR category, every category it could still be, and the one question that settles it.</p>
+
+      <div class="composer" id="composer">
+        <textarea id="report" rows="7" spellcheck="false" placeholder="Paste the findings here, or drop a .txt or .docx file"></textarea>
+        <div class="composer-bar">
+          <label class="file-btn" for="file">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M12 16V4m0 0-4 4m4-4 4 4M5 15v3a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Upload file
+            <input id="file" type="file" accept=".txt,.md,.docx" hidden>
+          </label>
+          <button class="opt-btn" id="optBtn" type="button" aria-expanded="false" aria-controls="options">Options</button>
+          <button class="go" id="go" type="button">Analyse</button>
+        </div>
+        <div class="options" id="options" hidden>
+          <div class="opt">
+            <span>Analysis</span>
+            <div class="seg" id="depth" role="group" aria-label="Analysis depth">
+              <button type="button" data-n="1" aria-pressed="true">Standard</button>
+              <button type="button" data-n="3" aria-pressed="false">Thorough</button>
+            </div>
+            <small>Thorough reads the report three times and treats disagreement as uncertainty.</small>
+          </div>
+          <div class="opt">
+            <span>Size tolerance <b id="tolVal">±2 mm</b></span>
+            <input id="tol" type="range" min="0" max="4" step="0.5" value="2" aria-label="Size tolerance in millimetres">
+            <small>Measurement variability considered around each reported size.</small>
+          </div>
+          <label class="opt check" for="risk">
+            <input id="risk" type="checkbox" checked>
+            <span>Patient is at high risk for HCC<small>Required for LI-RADS to apply (e.g. cirrhosis).</small></span>
+          </label>
+        </div>
+        <div class="drop-hint" aria-hidden="true">Drop to load the report</div>
+      </div>
+
+      <div class="examples">
+        <span>Try an example</span>
+        <div id="examples"></div>
+      </div>
+    </div>
+
+    <!-- result state -->
+    <div class="result" id="result" hidden>
+      <div class="result-top">
+        <button class="back" id="back" type="button">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          New report
+        </button>
+        <div class="obs-switch" id="obsSwitch"></div>
+      </div>
+      <div class="split">
+        <div class="left">
+          <article class="panel">
+            <h2>Report</h2>
+            <div class="report-view" id="reportView"></div>
+          </article>
+          <article class="panel">
+            <div class="panel-head"><h2>Findings</h2><span class="muted" id="findingsNote"></span></div>
+            <ul class="findings" id="findings"></ul>
+          </article>
+        </div>
+        <aside class="right" id="decision"></aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- BATCH -->
+  <section id="view-batch" class="view" hidden>
+    <div class="start narrow">
+      <h1>Check a batch of reports.</h1>
+      <p class="lede">Drop several files or paste reports separated by a line with <code>---</code>. Each report is compared with the category written in its own impression.</p>
+      <div class="composer" id="batchComposer">
+        <textarea id="batchText" rows="8" spellcheck="false" placeholder="Paste reports separated by ---, or drop .txt / .docx files"></textarea>
+        <div class="composer-bar">
+          <label class="file-btn" for="batchFiles">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M12 16V4m0 0-4 4m4-4 4 4M5 15v3a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Upload files
+            <input id="batchFiles" type="file" accept=".txt,.md,.docx" multiple hidden>
+          </label>
+          <button class="opt-btn" id="batchExamples" type="button">Load examples</button>
+          <button class="go" id="batchGo" type="button">Check reports</button>
+        </div>
+        <div class="drop-hint" aria-hidden="true">Drop files to add them</div>
+      </div>
+    </div>
+    <div class="batch-out" id="batchOut"></div>
+  </section>
+</main>
+
+<footer class="foot">Runs on this computer. No report leaves the device. For decision support only; a radiologist confirms every category.</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="/static/app.js"></script>
+</body>
+</html>

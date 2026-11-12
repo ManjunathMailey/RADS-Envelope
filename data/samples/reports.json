@@ -1,0 +1,56 @@
+[
+  {
+    "id": "S1",
+    "title": "Hedged washout",
+    "note": "ACR tie-break hides a possible LR-5",
+    "report": "Segment VI: 18 mm observation with nonrim arterial phase hyperenhancement. Possible subtle washout on the portal venous phase. No enhancing capsule. No prior imaging available for comparison."
+  },
+  {
+    "id": "S2",
+    "title": "Contradictory impression",
+    "note": "Audit mode: findings say LR-5, impression says LR-3",
+    "report": "Segment VII: 2.5 cm observation with arterial phase hyperenhancement, non-peripheral washout and an enhancing capsule. Stable compared with the prior study.\nImpression: LI-RADS 3."
+  },
+  {
+    "id": "S3",
+    "title": "19 mm near the cut-off",
+    "note": "Measurement tolerance crosses 20 mm",
+    "report": "Segment VIII: 19 mm observation with nonrim arterial phase hyperenhancement. No washout. No capsule. Unchanged from the prior study 4 months ago.\nImpression: LR-3."
+  },
+  {
+    "id": "S4",
+    "title": "Unsure but harmless",
+    "note": "Uncertain capsule cannot change management",
+    "report": "Segment V: 24 mm observation with arterial phase hyperenhancement and nonperipheral washout. Questionable thin capsule. No interval growth.\nImpression: LR-5."
+  },
+  {
+    "id": "S5",
+    "title": "Small, no APHE",
+    "note": "Stable intermediate risk",
+    "report": "Segment II: 8 mm observation without arterial phase hyperenhancement. No washout. No capsule. Stable compared with prior imaging.\nImpression: LR-3."
+  },
+  {
+    "id": "S6",
+    "title": "Rim enhancement",
+    "note": "Out of scope: deferred to radiologist (possible LR-M)",
+    "report": "Segment IV: 32 mm mass with rim arterial phase hyperenhancement and peripheral washout. Targetoid restricted diffusion.\nImpression: LR-M."
+  },
+  {
+    "id": "S7",
+    "title": "Growth on follow-up",
+    "note": "Threshold growth makes a 14 mm lesion LR-5",
+    "report": "Segment III: 14 mm observation with nonrim arterial phase hyperenhancement, previously 8 mm five months ago, consistent with threshold growth. No washout. No capsule.\nImpression: LR-4."
+  },
+  {
+    "id": "S8",
+    "title": "Missing size",
+    "note": "Not assignable: size not documented",
+    "report": "Segment VI: small observation with arterial phase hyperenhancement and washout. No capsule."
+  },
+  {
+    "id": "S9",
+    "title": "Two observations",
+    "note": "Multi-lesion report: one decision-critical, one contradicted",
+    "report": "Observation 1: Segment VI, 18 mm observation with nonrim arterial phase hyperenhancement. Possible subtle washout on the portal venous phase. No enhancing capsule. No prior imaging available for comparison.\nObservation 2: Segment II, 26 mm observation with arterial phase hyperenhancement, nonperipheral washout and an enhancing capsule. Stable compared with the prior study.\nImpression: 1. LI-RADS 3. 2. LI-RADS 4."
+  }
+]

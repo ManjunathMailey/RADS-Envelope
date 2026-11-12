@@ -1,0 +1,60 @@
+# LI-RADS CT/MRI v2018 — core diagnostic table, as machine-readable data.
+# Source: ACR LI-RADS v2018 CT/MRI Core, Chapter 8 (diagnostic table) and Chapter 11 (management).
+# Research prototype. Verify against the official ACR chart before any use.
+system: LI-RADS
+modality: CT/MRI
+version: "2018"
+
+# Observation size buckets (mm). A size equal to a cut-off falls in the upper bucket.
+size_cutoffs_mm: [10, 20]
+size_buckets: ["<10", "10-19", ">=20"]
+
+# Major features other than APHE that are counted in the table.
+additional_major_features: [washout, capsule, growth]
+
+# Category by APHE, size bucket and number of additional major features (index 0, 1, 2+).
+# A dict entry is used for the one special cell: 10-19 mm with nonrim APHE and exactly one feature.
+core_table:
+  nonrim_aphe:
+    "<10":   ["LR-3", "LR-4", "LR-4"]
+    "10-19": ["LR-3", {capsule_only: "LR-4", otherwise: "LR-5"}, "LR-5"]
+    ">=20":  ["LR-4", "LR-5", "LR-5"]
+  no_aphe:
+    "<10":   ["LR-3", "LR-3", "LR-4"]
+    "10-19": ["LR-3", "LR-3", "LR-4"]
+    ">=20":  ["LR-3", "LR-4", "LR-4"]
+
+# Ancillary features: optional, adjust by one category.
+ancillary:
+  upgrade_ceiling: "LR-4"     # ancillary features favouring malignancy cannot upgrade to LR-5
+  downgrade_floor: "LR-2"
+  conflicting: no_change      # both kinds present -> no adjustment
+
+# ACR tie-break for the official point category: an uncertain major feature is treated as absent.
+tie_break:
+  uncertain_feature: absent
+
+# Condensed management classes (Chapter 11).
+management:
+  "LR-2": "Return to routine surveillance in about 6 months"
+  "LR-3": "Repeat or alternative diagnostic imaging in 3-6 months"
+  "LR-4": "Multidisciplinary discussion; individualised work-up (may include biopsy)"
+  "LR-5": "Multidisciplinary discussion; treatment without biopsy for diagnosis"
+
+# Plain-language meaning used in generated impressions.
+category_meaning:
+  "LR-2": "probably benign"
+  "LR-3": "intermediate probability of malignancy"
+  "LR-4": "probably HCC"
+  "LR-5": "definitely HCC"
+
+# Report findings that put the observation outside this prototype's scope.
+defer_keywords:
+  "rim arterial phase hyperenhancement": "Rim APHE suggests LR-M (non-HCC malignancy)"
+  "rim aphe": "Rim APHE suggests LR-M (non-HCC malignancy)"
+  "targetoid": "Targetoid appearance suggests LR-M"
+  "tumor in vein": "Tumour in vein (LR-TIV)"
+  "tumour in vein": "Tumour in vein (LR-TIV)"
+  "post-treatment": "Treated observation needs the LR-TR algorithm"
+  "ablation zone": "Treated observation needs the LR-TR algorithm"
+  "tace": "Treated observation needs the LR-TR algorithm"
