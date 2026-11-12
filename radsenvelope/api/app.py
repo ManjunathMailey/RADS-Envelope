@@ -12,15 +12,17 @@ import re
 import threading
 import zipfile
 from contextlib import asynccontextmanager
+from datetime import date
 from pathlib import Path
 from typing import Literal, Optional
 
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 from radsenvelope import __version__
+from radsenvelope.engine.longitudinal import normalise_modality
 from radsenvelope.engine.ruleset import FEATURE_LABELS, FEATURES, get_ruleset
 from radsenvelope.extraction import llm
 from radsenvelope.pipeline import Settings, analyse_report, finalize, run_observation
@@ -51,12 +53,45 @@ async def lifespan(_app):
 app = FastAPI(title="RADS-Envelope", version=__version__, lifespan=lifespan)
 
 
+_ISO_DATE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+
+
+class PriorIn(BaseModel):
+    """A prior study for longitudinal comparison. Only its sizes are used."""
+    report: str = Field(min_length=5)
+    prior_date: str
+    current_date: Optional[str] = None
+    modality: str
+
+    @field_validator("prior_date", "current_date")
+    @classmethod
+    def _iso_date(cls, v, info):
+        if v is None:
+            return v
+        try:
+            if not _ISO_DATE.match(v):
+                raise ValueError
+            date.fromisoformat(v)
+        except ValueError:
+            raise ValueError(f"{info.field_name} must be a valid ISO date (yyyy-mm-dd), got {v!r}") from None
+        return v
+
+    @field_validator("modality")
+    @classmethod
+    def _modality(cls, v):
+        m = normalise_modality(v)
+        if m not in ("CT", "MRI", "Ultrasound"):
+            raise ValueError(f"modality must be CT, MRI or Ultrasound, got {v!r}")
+        return m
+
+
 class AnalyseRequest(BaseModel):
     report: str = Field(min_length=10)
     extractor: Literal["auto", "llm", "lexicon"] = "auto"
     samples: int = Field(1, ge=1, le=7)
     size_tolerance_mm: float = Field(2.0, ge=0, le=10)
     high_risk: bool = True
+    prior: Optional[PriorIn] = None
 
 
 class ObservationIn(BaseModel):
@@ -65,6 +100,7 @@ class ObservationIn(BaseModel):
     size_mm: Optional[float]
     size_tolerance_mm: float = 2.0
     defer_reasons: list[str] = []
+    longitudinal: Optional[dict] = None
 
 
 class RecomputeRequest(BaseModel):
@@ -105,6 +141,11 @@ def samples():
     return json.loads((ROOT / "data" / "samples" / "reports.json").read_text(encoding="utf-8"))
 
 
+@app.get("/api/samples/longitudinal")
+def samples_longitudinal():
+    return json.loads((ROOT / "data" / "samples" / "longitudinal.json").read_text(encoding="utf-8"))
+
+
 @app.get("/api/rules")
 def rules():
     rs = get_ruleset()
@@ -117,19 +158,25 @@ def rules():
 @app.post("/api/analyse")
 def analyse(req: AnalyseRequest):
     try:
-        return analyse_report(req.report, Settings(req.extractor, req.samples, req.size_tolerance_mm, req.high_risk))
+        return analyse_report(req.report, Settings(req.extractor, req.samples, req.size_tolerance_mm, req.high_risk),
+                              prior=req.prior.model_dump() if req.prior else None)
     except RuntimeError as e:
         raise HTTPException(503, str(e))
 
 
 @app.post("/api/recompute")
 def recompute(req: RecomputeRequest):
-    """Engine only: the radiologist corrected a feature or answered a decisive question."""
+    """Engine only: the radiologist corrected a feature or answered a decisive question.
+    A longitudinal block computed by /api/analyse is passed through unchanged."""
     obs = []
     for o in req.observations:
         result = run_observation(o.label, o.features, o.size_mm, o.size_tolerance_mm, req.high_risk, o.defer_reasons)
-        obs.append({"label": o.label, "size_mm": o.size_mm, "features": o.features, "result": result})
-    return {"observations": [{"label": o["label"], "result": o["result"]} for o in obs], **finalize(obs)}
+        item = {"label": o.label, "size_mm": o.size_mm, "features": o.features, "result": result}
+        if o.longitudinal is not None:
+            item["longitudinal"] = o.longitudinal
+        obs.append(item)
+    return {"observations": [{k: v for k, v in o.items() if k in ("label", "result", "longitudinal")} for o in obs],
+            **finalize(obs)}
 
 
 @app.post("/api/audit")

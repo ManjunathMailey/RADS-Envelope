@@ -64,6 +64,24 @@
         <div class="drop-hint" aria-hidden="true">Drop to load the report</div>
       </div>
 
+      <button class="back prior-link" id="priorBtn" type="button" aria-expanded="false" aria-controls="prior">Add prior study</button>
+      <div class="composer prior" id="prior" hidden>
+        <textarea id="priorReport" rows="3" spellcheck="false" placeholder="Paste the prior report. Only its sizes are used." aria-label="Prior report"></textarea>
+        <div class="options">
+          <label class="opt" for="priorDate"><span>Prior exam date</span><input id="priorDate" type="date"></label>
+          <label class="opt" for="curDate"><span>Current exam date</span><input id="curDate" type="date"></label>
+          <div class="opt wide">
+            <span>Prior modality</span>
+            <div class="seg" id="priorMod" role="group" aria-label="Prior modality">
+              <button type="button" data-m="CT" aria-pressed="false">CT</button>
+              <button type="button" data-m="MRI" aria-pressed="true">MRI</button>
+              <button type="button" data-m="Ultrasound" aria-pressed="false">Ultrasound</button>
+            </div>
+            <small>Threshold growth needs a prior CT or MRI. Growth is computed by the rules, never by the AI.</small>
+          </div>
+        </div>
+      </div>
+
       <div class="examples">
         <span>Try an example</span>
         <div id="examples"></div>

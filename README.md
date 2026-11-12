@@ -21,6 +21,7 @@ Guide: Mr. Karthik D U
 - Certainty Envelope with a witness for every reachable category
 - Management-aware alerting and a single decisive question
 - Rule-consistent impression generation with automatic verification
+- Longitudinal reasoning: threshold growth, subthreshold growth and size stability computed by the rules from a prior CT or MRI, with measurement-aware uncertainty
 - Paste a report or upload a .txt / .docx file; batch mode checks many reports at once
 - Audit: stated impression vs computed category
 - Evaluation on real radiologist-written cases and a controlled-ambiguity stress test
@@ -52,8 +53,8 @@ Results appear in the Evaluation view.
 
 ```
 radsenvelope/
-  rules/lirads_ct_mri_v2018.yaml   versioned diagnostic table, management, scope
-  engine/                          ruleset (category + trace), envelope, exam summary
+  rules/lirads_ct_mri_v2018.yaml   versioned diagnostic table, growth rules, management, scope
+  engine/                          ruleset (category + trace), envelope, longitudinal growth, exam summary
   extraction/                      segmentation, LLM, lexicon, consensus, grounding, scope
   generation/impression.py         rule-consistent impression + verification
   evaluation/                      real cases, stress-test generator, metrics, benchmark

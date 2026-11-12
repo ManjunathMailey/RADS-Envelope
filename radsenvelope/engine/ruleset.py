@@ -55,9 +55,10 @@ class RuleSet:
     def validate(self) -> None:
         r = self.raw
         for key in ("system", "version", "size_cutoffs_mm", "size_buckets", "core_table",
-                    "ancillary", "management", "category_meaning"):
+                    "ancillary", "management", "category_meaning", "growth"):
             if key not in r:
                 raise RuleSetError(f"missing key: {key}")
+        self._validate_growth(r["growth"])
         if len(r["size_buckets"]) != len(r["size_cutoffs_mm"]) + 1:
             raise RuleSetError("size_buckets must have one more entry than size_cutoffs_mm")
         reachable = set()
@@ -78,6 +79,22 @@ class RuleSet:
                 raise RuleSetError(f"no management entry for {c}")
             if c not in r["category_meaning"]:
                 raise RuleSetError(f"no category_meaning entry for {c}")
+
+    @staticmethod
+    def _validate_growth(g) -> None:
+        if not isinstance(g, dict):
+            raise RuleSetError("growth must be a mapping")
+        for key in ("threshold_percent", "threshold_max_days", "stability_min_days"):
+            v = g.get(key)
+            if isinstance(v, bool) or not isinstance(v, (int, float)) or v <= 0:
+                raise RuleSetError(f"growth.{key} must be a positive number")
+        if g["stability_min_days"] <= g["threshold_max_days"]:
+            raise RuleSetError("growth.stability_min_days must exceed growth.threshold_max_days")
+        mods = g.get("valid_prior_modalities")
+        if not mods or not isinstance(mods, list) or not all(isinstance(m, str) and m for m in mods):
+            raise RuleSetError("growth.valid_prior_modalities must be a non-empty list of names")
+        if g.get("unequivocal_change") != "size_tolerance":
+            raise RuleSetError("growth.unequivocal_change must be 'size_tolerance'")
 
     # ---------- metadata ----------
     @property
@@ -100,6 +117,10 @@ class RuleSet:
 
     def defer_keywords(self) -> dict:
         return self.raw.get("defer_keywords", {})
+
+    @property
+    def growth(self) -> dict:
+        return self.raw["growth"]
 
     # ---------- decision ----------
     def bucket(self, size_mm: float) -> str:

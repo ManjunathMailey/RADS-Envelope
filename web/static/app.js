@@ -21,7 +21,16 @@ const ICON = {
   info: '<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 11v6m0-9v.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
 };
 
-const S = { examples: [], a: null, obs: 0, samples: 1 };
+const S = { examples: [], a: null, obs: 0, samples: 1, mod: "MRI" };
+const FROM_PRIOR = "From prior study";
+const GROWTH_OUTCOME = {
+  threshold_growth: "Threshold growth",
+  threshold_growth_uncertain: "Threshold growth depends on the measurement",
+  subthreshold_growth: "Subthreshold growth",
+  size_stability: "Size stable for 2 years or more",
+  no_threshold_growth: "No threshold growth",
+};
+const today = () => new Date().toLocaleDateString("en-CA");
 
 async function api(path, body) {
   const r = await fetch(path, body ? { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) } : {});
@@ -68,13 +77,37 @@ function dropZone(el, onFiles) {
 
 /* ---------------- start screen ---------------- */
 async function loadExamples() {
-  S.examples = await api("/api/samples");
+  const longitudinal = await api("/api/samples/longitudinal").catch(() => []);
+  S.examples = (await api("/api/samples")).concat(longitudinal);
   $("examples").innerHTML = S.examples.map((x, i) => `<button type="button" data-i="${i}" title="${esc(x.note)}">${esc(x.title)}</button>`).join("");
 }
 $("examples").addEventListener("click", (e) => {
   const b = e.target.closest("button"); if (!b) return;
-  $("report").value = S.examples[+b.dataset.i].report; $("report").focus();
+  const x = S.examples[+b.dataset.i];
+  $("report").value = x.report;
+  if (x.prior) {
+    $("priorReport").value = x.prior.report; $("priorDate").value = x.prior.prior_date;
+    $("curDate").value = x.prior.current_date || today(); setModality(x.prior.modality); showPrior(true);
+  } else showPrior(false);
+  $("report").focus();
 });
+
+/* ---------------- prior study ---------------- */
+function showPrior(open) {
+  $("prior").hidden = !open; $("priorBtn").setAttribute("aria-expanded", open);
+  $("priorBtn").textContent = open ? "Hide prior study" : "Add prior study";
+}
+function setModality(m) {
+  S.mod = m; [...$("priorMod").children].forEach((x) => x.setAttribute("aria-pressed", x.dataset.m === m));
+}
+$("priorBtn").addEventListener("click", () => { const open = $("prior").hidden; showPrior(open); if (open) $("priorReport").focus(); });
+$("priorMod").addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) setModality(b.dataset.m); });
+$("curDate").value = today();
+function priorInput() {
+  if ($("prior").hidden || !$("priorReport").value.trim()) return null;
+  if (!$("priorDate").value) throw new Error("Add the prior exam date");
+  return { report: $("priorReport").value.trim(), prior_date: $("priorDate").value, current_date: $("curDate").value || today(), modality: S.mod };
+}
 $("optBtn").addEventListener("click", () => {
   const open = $("options").hidden; $("options").hidden = !open; $("optBtn").setAttribute("aria-expanded", open);
 });
@@ -95,10 +128,12 @@ $("back").addEventListener("click", () => { $("result").hidden = true; $("start"
 async function analyse() {
   const report = $("report").value.trim();
   if (report.length < 10) { toast("Paste a report first"); $("report").focus(); return; }
+  let prior;
+  try { prior = priorInput(); } catch (e) { toast(e.message); $("priorDate").focus(); return; }
   const btn = $("go"); btn.disabled = true;
   btn.innerHTML = `<span class="spin"></span>${S.samples > 1 ? "Reading 3×" : "Reading"}`;
   try {
-    S.a = await api("/api/analyse", { report, extractor: "auto", samples: S.samples, size_tolerance_mm: +$("tol").value, high_risk: $("risk").checked });
+    S.a = await api("/api/analyse", { report, extractor: "auto", samples: S.samples, size_tolerance_mm: +$("tol").value, high_risk: $("risk").checked, prior });
     S.a.observations.forEach((o) => { o.spread = o.confidence.size.spread_mm || 0; });
     S.obs = 0;
     $("start").hidden = true; $("result").hidden = false; window.scrollTo({ top: 0 });
@@ -143,9 +178,10 @@ function renderFindings() {
   const rows = FEATURES.map(([k, label]) => {
     const st = o.features[k], ev = o.extraction[k].evidence, c = o.confidence[k] || {};
     const unsure = c.source === "extractor" ? `<span class="fu">The AI read this differently across runs (${Math.round(c.agreement * 100)}% agreement), so it is treated as possible.</span>` : "";
+    const evText = ev === FROM_PRIOR ? FROM_PRIOR : ev ? "“" + esc(ev) + "”" : "Not mentioned in the report";
     return `<li><span class="fn">${label}</span>
       <select data-k="${k}" class="${st}" aria-label="${label}">${Object.entries(STATE_LABEL).map(([v, t]) => `<option value="${v}" ${v === st ? "selected" : ""}>${t}</option>`).join("")}</select>
-      <span class="fe" title="${esc(ev)}">${ev ? "“" + esc(ev) + "”" : "Not mentioned in the report"}</span>${unsure}</li>`;
+      <span class="fe" title="${esc(ev)}">${evText}</span>${unsure}</li>`;
   }).join("");
   const tol = (+$("tol").value + o.spread / 2);
   $("findings").innerHTML = rows + `<li class="size-line"><span>Size</span><input id="sizeIn" type="number" min="0" step="0.5" value="${o.size_mm ?? ""}" aria-label="Size in millimetres"><span>mm · considered ±${tol.toFixed(1)} mm</span></li>`;
@@ -160,11 +196,12 @@ $("findings").addEventListener("change", (e) => {
 
 async function recompute() {
   const base = +$("tol").value, obs = S.a.observations;
-  const body = { high_risk: $("risk").checked, observations: obs.map((o) => ({ label: o.label, features: o.features, size_mm: o.size_mm, size_tolerance_mm: base + o.spread / 2, defer_reasons: o.defer_reasons })) };
+  const body = { high_risk: $("risk").checked, observations: obs.map((o) => ({ label: o.label, features: o.features, size_mm: o.size_mm, size_tolerance_mm: base + o.spread / 2, defer_reasons: o.defer_reasons, longitudinal: o.longitudinal || null })) };
   try {
     const r = await api("/api/recompute", body);
     r.observations.forEach((x, i) => {
       obs[i].result = x.result;
+      if (x.longitudinal) obs[i].longitudinal = x.longitudinal;
       if (obs[i].audit && x.result.status === "assigned") { obs[i].audit.computed = x.result.acr_category; obs[i].audit.contradiction = obs[i].audit.stated !== x.result.acr_category; }
     });
     Object.assign(S.a, { exam: r.exam, impression: r.impression, consistency: r.consistency });
@@ -173,6 +210,27 @@ async function recompute() {
 }
 
 function stateBlock(cls, icon, title, body) { return `<div class="state ${cls}">${ICON[icon]}<div><b>${title}</b>${body}</div></div>`; }
+
+function priorCard(lg) {
+  const sub = [lg.prior_modality, lg.prior_date].filter(Boolean).map(esc).join(" · ");
+  let body;
+  if (lg.matching === "none") {
+    body = stateBlock("review", "info", "Not compared", esc(lg.explanation));
+  } else if (lg.rule === "prior_modality_invalid") {
+    body = stateBlock("review", "info", "Ultrasound priors cannot be used for LI-RADS growth", "Add a prior CT or MRI to assess growth.");
+  } else if (lg.percent_change == null) {
+    body = stateBlock("review", "info", "Growth not assessed", esc(lg.explanation));
+  } else {
+    const months = (lg.interval_days / 30.44).toFixed(1);
+    const pct = `${lg.percent_change > 0 ? "+" : ""}${Math.round(lg.percent_change)}%`;
+    body = `<div class="meaning">${lg.prior_mm} → ${lg.current_mm} mm</div>
+      <div class="note">${pct} in ${lg.interval_days} days (${months} months) · matched by ${lg.matching === "segment" ? "segment" : "order"}</div>
+      ${lg.measurement_dependent ? stateBlock("critical", "warn", "Depends on the measurement", `Within ±${lg.tolerance_mm} mm the change ranges from ${Math.round(lg.percent_range[0])}% to ${lg.percent_range[1] == null ? "more" : Math.round(lg.percent_range[1]) + "%"}.`) : ""}
+      <div class="rec"><div class="kicker">${esc(GROWTH_OUTCOME[lg.rule] || "Rule outcome")}</div><p>${esc(lg.explanation)}</p></div>`;
+  }
+  const conflict = lg.prior_conflict ? stateBlock("conflict", "warn", "The prior study disagrees with the report", esc(lg.prior_conflict)) : "";
+  return `<div class="card flat compare"><div class="kicker">Compared with prior${sub ? " · " + sub : ""}</div>${body}${conflict}</div>`;
+}
 
 function renderDecision() {
   const a = S.a, o = a.observations[S.obs], r = o.result;
@@ -223,6 +281,7 @@ function renderDecision() {
       </details>
     </div>`;
   }
+  if (o.longitudinal) html += priorCard(o.longitudinal);
   html += `<div class="card flat impression"><div class="kicker"><span>Draft impression</span><span class="actions"><button type="button" id="copy">Copy</button><button type="button" id="download">Download</button></span></div>
     <pre>${esc(a.impression)}</pre>
     ${a.consistency.consistent ? `<div class="verified">${ICON.ok}Matches the rule-based category</div>` : ""}</div>`;
@@ -248,7 +307,7 @@ function downloadReport() {
 
 /* ---------------- batch ---------------- */
 const batchFiles = [];
-$("batchExamples").addEventListener("click", () => { $("batchText").value = S.examples.map((x) => x.report).join("\n---\n"); });
+$("batchExamples").addEventListener("click", () => { $("batchText").value = S.examples.filter((x) => !x.prior).map((x) => x.report).join("\n---\n"); });
 $("batchFiles").addEventListener("change", async (e) => { await addBatchFiles([...e.target.files]); e.target.value = ""; });
 dropZone($("batchComposer"), addBatchFiles);
 async function addBatchFiles(files) {

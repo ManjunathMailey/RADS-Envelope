@@ -34,6 +34,18 @@ ancillary:
 tie_break:
   uncertain_feature: absent
 
+# Longitudinal comparison with a prior study (v2018 definitions).
+#   threshold growth (major):       size increase >= threshold_percent in <= threshold_max_days
+#   subthreshold growth (AF, malignancy): unequivocal increase that does not meet threshold growth
+#   size stability (AF, benignity):  no unequivocal change over >= stability_min_days
+# An unequivocal change is one larger than the observation's size tolerance.
+growth:
+  threshold_percent: 50
+  threshold_max_days: 183
+  stability_min_days: 730
+  valid_prior_modalities: [CT, MRI]     # ultrasound priors cannot be used
+  unequivocal_change: size_tolerance
+
 # Condensed management classes (Chapter 11).
 management:
   "LR-2": "Return to routine surveillance in about 6 months"

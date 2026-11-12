@@ -81,6 +81,16 @@ main{flex:1;width:100%;max-width:var(--w);margin:0 auto;padding:0 var(--s4)}
 #examples button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:var(--s1) var(--s3);font-size:var(--t-xs);color:var(--ink-2);cursor:pointer;transition:border-color .2s}
 #examples button:hover{border-color:var(--faint)}
 
+/* prior study */
+.prior-link{margin-top:var(--s3)}
+.composer.prior{margin-top:var(--s3)}
+.composer.prior textarea{min-height:89px}
+.composer.prior .options{border-top:1px solid var(--line)}
+.opt.wide{grid-column:1/-1}
+.opt input[type=date]{border:0;background:var(--fill);border-radius:999px;padding:var(--s1) var(--s3);font-size:var(--t-xs);font-variant-numeric:tabular-nums;align-self:flex-start}
+.compare .meaning{margin-top:var(--s2);font-variant-numeric:tabular-nums}
+.compare .rec p{font-size:var(--t-xs);color:var(--ink-2)}
+
 /* result */
 .result{padding:var(--s5) 0 var(--s6);animation:rise .45s cubic-bezier(.2,.7,.2,1)}
 @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}

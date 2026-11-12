@@ -1,0 +1,14 @@
+[
+  {
+    "id": "S10",
+    "title": "Growth from prior",
+    "note": "Growth is not mentioned; the prior MRI shows threshold growth",
+    "report": "Segment VI: 21 mm observation with nonrim arterial phase hyperenhancement. No washout. No enhancing capsule.",
+    "prior": {
+      "report": "Segment VI: 10 mm observation with nonrim arterial phase hyperenhancement.",
+      "prior_date": "2026-07-13",
+      "current_date": "2026-11-13",
+      "modality": "MRI"
+    }
+  }
+]

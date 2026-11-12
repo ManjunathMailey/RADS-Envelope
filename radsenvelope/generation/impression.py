@@ -56,11 +56,38 @@ def observation_lines(index: int, label: str, size_mm, features: dict, result: d
     return lines
 
 
+_GROWTH_OUTCOME = {
+    "threshold_growth": "threshold growth",
+    "threshold_growth_uncertain": "threshold growth uncertain within measurement tolerance",
+    "subthreshold_growth": "subthreshold growth (ancillary feature favouring malignancy)",
+    "size_stability": "size stability (ancillary feature favouring benignity)",
+    "no_threshold_growth": "no threshold growth",
+}
+
+
+def longitudinal_line(block: dict | None) -> str | None:
+    """One line describing the comparison with a prior study; never states a category."""
+    if not block or block.get("matching") in (None, "none"):
+        return None
+    head = f"   Compared with prior {block.get('prior_modality') or 'study'} ({block.get('prior_date') or 'undated'})"
+    outcome = _GROWTH_OUTCOME.get(block.get("rule"))
+    if outcome is None:
+        return f"{head}: growth not assessed ({block.get('explanation', '').rstrip('.')})."
+    line = (f"{head}: {block['prior_mm']:g} -> {block['current_mm']:g} mm "
+            f"({block['percent_change']:+.0f}% in {block['interval_days']} days), {outcome}.")
+    if block.get("prior_conflict"):
+        line += " The report states otherwise; the report's statement is used."
+    return line
+
+
 def generate(observations: list[dict]) -> str:
-    """observations: [{label, size_mm, features, result}] in report order."""
+    """observations: [{label, size_mm, features, result, longitudinal?}] in report order."""
     lines = ["IMPRESSION:"]
     for i, o in enumerate(observations, 1):
         lines += observation_lines(i, o["label"], o.get("size_mm"), o["features"], o["result"])
+        extra = longitudinal_line(o.get("longitudinal"))
+        if extra:
+            lines.append(extra)
     return "\n".join(lines)
 
 

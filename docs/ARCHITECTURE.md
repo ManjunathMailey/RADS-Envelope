@@ -23,6 +23,7 @@ Bhayana et al. 2025 for O-RADS) address the first problem. RADS-Envelope address
 | Extract four-state features with verbatim evidence | `extraction/llm.py`, `extraction/lexicon.py` | LLM: no |
 | Self-consistency consensus | `extraction/consensus.py` | yes, given samples |
 | Grounding and scope guard | `extraction/schema.py`, `extraction/scope.py` | yes |
+| Comparison with a prior study (optional) | `engine/longitudinal.py`, `pipeline.py` | yes, given sizes |
 | Category and decision trace | `engine/ruleset.py` | yes |
 | Certainty Envelope, witnesses, decisive questions | `engine/envelope.py` | yes |
 | Exam summary | `engine/exam.py` | yes |
@@ -81,7 +82,9 @@ ambiguity and of the extractor's own instability. Each feature records which sou
 | The point category is in the envelope and has a zero-assumption witness | `test_point_category_and_witnesses` |
 | Answering a decisive question never widens the envelope | `test_decisive_answer_never_widens_envelope` |
 | Generated impression states exactly the engine's category, for every state combination | `test_impression_consistent_for_all_state_combinations` |
-| Incomplete rule files are rejected at load time | `test_incomplete_ruleset_is_rejected` |
+| Incomplete rule files are rejected at load time | `test_incomplete_ruleset_is_rejected`, `test_missing_or_invalid_growth_section_is_rejected` |
+| Growth rule boundaries: exactly 50 %, 183 days and 730 days; ultrasound priors refused | `tests/test_longitudinal.py` |
+| An explicit growth statement in the report is never overridden by the prior comparison | `test_explicit_report_statement_is_kept_and_conflict_flagged` |
 
 ## 7. Evaluation protocol
 
@@ -101,3 +104,29 @@ ambiguity and of the extractor's own instability. Each feature records which sou
 In scope: untreated observations, LI-RADS CT/MRI v2018 core diagnostic table, one-step ancillary
 adjustment. Deferred to the radiologist: LR-1 (definitely benign), LR-M, LR-TIV, treated
 observations (LR-TR), ultrasound and CEUS LI-RADS.
+
+## 9. Longitudinal reasoning
+
+Threshold growth is the major feature most often left undocumented, yet it follows from two
+measurements and two dates. When a prior report is supplied, the pipeline segments and extracts it
+with the same extractor, keeps only its sizes, and pairs observations by segment label, falling back
+to report order only when one side has no segment label. `engine/longitudinal.py` then applies the
+v2018 definitions, whose numbers live in the `growth` section of the rule file:
+
+* **Threshold growth** (major): increase of at least 50 % in at most 183 days, against a prior CT
+  or MRI. Ultrasound priors are refused.
+* **Subthreshold growth** (ancillary, favours malignancy): an unequivocal increase that does not
+  meet threshold growth.
+* **Size stability** (ancillary, favours benignity): no unequivocal change over at least 730 days.
+
+A change is unequivocal when it exceeds the observation's size tolerance. As in the envelope, the
+percent change is evaluated at both ends of the tolerance interval: the threshold met at every end
+gives `present`, at some ends `uncertain` (source: measurement), at none `absent`. An uncertain
+result enters the envelope like any other unresolved feature.
+
+**Merge policy.** The computed state fills in growth that the report leaves undocumented or hedged.
+An explicit statement in the report is kept; if the computation disagrees, a `prior_conflict`
+warning is shown instead of silently overriding the radiologist. Ancillary flags are OR-ed with
+the extracted ones. Each observation carries a `longitudinal` block (sizes, percent change,
+interval, rule, explanation, matching method, conflict), and the impression gains one line per
+compared observation. The line states no category, so the consistency check is unchanged.
