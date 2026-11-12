@@ -7,6 +7,7 @@ used in consensus.py.
 """
 from __future__ import annotations
 
+import hashlib
 import os
 import time
 
@@ -37,6 +38,12 @@ Definitions:
 - evidence must be copied word for word from the report as one continuous piece of text.
 - When a feature is not_documented, its evidence must be the empty string "".
 Never assign a LI-RADS category."""
+
+
+def prompt_hash(system: str | None = None, model: str | None = None) -> str:
+    """sha256 of the system prompt and model name; stored with every result so a run can be
+    tied to the exact extractor configuration that produced it."""
+    return hashlib.sha256(f"{system if system is not None else SYSTEM}\n{model or MODEL}".encode("utf-8")).hexdigest()
 
 
 def _error_text(e: Exception) -> str:

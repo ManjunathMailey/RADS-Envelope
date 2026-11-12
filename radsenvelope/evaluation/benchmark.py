@@ -1,5 +1,9 @@
 r"""
-Stress-test benchmark on controlled-ambiguity reports.
+Robustness test (rule-generated gold) on controlled-ambiguity reports.
+
+The gold category of each generated report comes from the engine's own rule table applied to the
+known feature vector, so agreement here is not clinical accuracy: it measures how robustly a
+system recovers the features under varied phrasing, hedges, omissions and near-cut-off sizes.
 
     python -m radsenvelope.evaluation.benchmark --n 200 --extractor lexicon
     python -m radsenvelope.evaluation.benchmark --n 200 --extractor llm
@@ -23,6 +27,9 @@ from .generator import generate
 from .metrics import category_scores, feature_scores
 
 OUT_DIR = Path(__file__).resolve().parents[2] / "data" / "benchmark"
+# the gold labels are produced by the same rule table the systems use: this measures robustness of
+# extraction to phrasing, hedges, omissions and near-cut-off sizes, not clinical accuracy
+ROBUSTNESS_LABEL = "robustness test (rule-generated gold)"
 
 
 def run(n: int, extractor: str, samples: int = 1, seed: int = 7) -> dict:
@@ -45,7 +52,8 @@ def run(n: int, extractor: str, samples: int = 1, seed: int = 7) -> dict:
     summary = category_scores(rows)
     summary["size_accuracy"] = round(size_ok / n, 3)
     summary["seconds_per_report"] = round((time.time() - t0) / n, 3)
-    return {"generated_at": datetime.now().isoformat(timespec="seconds"), "extractor": extractor,
+    from .provenance import run_meta
+    return {**run_meta(), "label": ROBUSTNESS_LABEL, "extractor": extractor,
             "samples": samples, "seed": seed, "summary": summary,
             "features": feature_scores(pairs, ("aphe", "washout", "capsule", "growth")),
             "errors": [r for r in rows if r["pred_category"] != r["gold_category"]][:25]}
@@ -56,7 +64,8 @@ def compare(n: int, seed: int = 7, samples: int = 1) -> dict:
     from .compare import run
     cases = [{"id": c["id"], "text": c["report"], "gold": c["gold_category"], "gold_features": c["gold_features"],
               "gold_size_mm": c["gold_size_mm"]} for c in generate(n, seed)]
-    return {"generated_at": datetime.now().isoformat(timespec="seconds"), "n": n, "seed": seed,
+    from .provenance import run_meta
+    return {**run_meta(), "label": ROBUSTNESS_LABEL, "n": n, "seed": seed,
             "samples": samples, "systems": run(cases, samples=samples)}
 
 

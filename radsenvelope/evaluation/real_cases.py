@@ -4,6 +4,11 @@ Evaluation on real, radiologist-written cases.
     python -m radsenvelope.evaluation.real_cases                  # LLM, lexicon fallback
     python -m radsenvelope.evaluation.real_cases --extractor lexicon
     python -m radsenvelope.evaluation.real_cases --compare        # B1 / B2 / B3 / Ours side by side
+    python -m radsenvelope.evaluation.real_cases --compare --split dev   # default; test needs RADS_RUN_TEST=1
+
+Dev/test protocol: data/real/split.csv (data_tools/split_real.py) fixes which cases are held out.
+--split test is refused unless RADS_RUN_TEST=1, and every test run is appended to
+data/real/test_runs.log (time, git commit, prompt hash). Results are written per split.
 
 Input:  data/real/radiopaedia_cases.csv
         columns: id,url,author,license,modality,findings_text,radiologist_category,collected_by,collected_on,notes
@@ -18,6 +23,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import os
 import re
 from datetime import datetime
 from pathlib import Path
@@ -88,8 +94,8 @@ def evaluate(rows: list[dict], extractor: str = "auto", samples: int = 1) -> dic
         "not_assignable": sum(x["status"] == "not_assignable" for x in out_rows),
         "mean_seconds": round(sum(secs) / len(secs), 2) if secs else None,
     }
-    return {"generated_at": datetime.now().isoformat(timespec="seconds"), "extractor": extractor,
-            "summary": summary, "rows": out_rows}
+    from .provenance import run_meta
+    return {**run_meta(), "extractor": extractor, "summary": summary, "rows": out_rows}
 
 
 GOLD_FEATURES = ("aphe", "washout", "capsule", "growth")
@@ -119,28 +125,79 @@ def compare_cases(rows: list[dict]) -> list[dict]:
              "gold_features": gold_features(r), "gold_size_mm": gold_size(r)} for r in rows]
 
 
+SPLIT = ROOT / "data" / "real" / "split.csv"
+TEST_LOG = ROOT / "data" / "real" / "test_runs.log"
+
+
+def read_split(path: Path = SPLIT) -> dict[str, str] | None:
+    """{id: "dev" | "test"} from split.csv, or None before the split has been made."""
+    if not path.exists():
+        return None
+    with open(path, encoding="utf-8", newline="") as fh:
+        return {r["id"]: r["split"] for r in csv.DictReader(fh)}
+
+
+def select_split(rows: list[dict], which: str, split: dict[str, str] | None) -> list[dict]:
+    """Before the split exists every case is a development case (all were inspected)."""
+    if which == "all":
+        return rows
+    if split is None:
+        return rows if which == "dev" else []
+    return [r for r in rows if split.get(r.get("id")) == which]
+
+
+def check_test_allowed(which: str, split: dict[str, str] | None, env: dict) -> None:
+    """Held-out cases may only be scored deliberately: --split test (or all, once a test set
+    exists) needs RADS_RUN_TEST=1. Raises SystemExit otherwise."""
+    touches_test = which == "test" or (which == "all" and split is not None and "test" in split.values())
+    if not touches_test:
+        return
+    if split is None:
+        raise SystemExit("No test split exists yet (data/real/split.csv is created at the evaluation freeze).")
+    if env.get("RADS_RUN_TEST") != "1":
+        raise SystemExit("Refusing to score held-out test cases. Set RADS_RUN_TEST=1 to run the final test.")
+
+
+def log_test_run(which: str, args: dict, path: Path = TEST_LOG) -> dict:
+    from .provenance import run_meta
+    entry = {**run_meta(), "split": which, "args": args}
+    with open(path, "a", encoding="utf-8") as fh:
+        fh.write(json.dumps(entry) + "\n")
+    return entry
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--extractor", choices=["auto", "llm", "lexicon"], default="auto")
     ap.add_argument("--samples", type=int, default=1)
     ap.add_argument("--compare", action="store_true", help="run B1, B2, B3 and Ours side by side")
+    ap.add_argument("--split", choices=["dev", "test", "all"], default="dev")
     a = ap.parse_args()
-    rows = load()
+    split = read_split()
+    check_test_allowed(a.split, split, dict(os.environ))
+    rows = select_split(load(), a.split, split)
     if not rows:
-        print(f"No cases found in {CASES} (TODO rows are skipped).")
+        print(f"No {a.split} cases found in {CASES} (TODO rows are skipped).")
         return
+    if a.split in ("test", "all") and split is not None:
+        log_test_run(a.split, vars(a))
     if a.compare:
         from .compare import run, table
+        from .provenance import run_meta
         res = run(compare_cases(rows), samples=a.samples)
-        OUT_COMPARE.write_text(json.dumps({"generated_at": datetime.now().isoformat(timespec="seconds"),
-                                           "cases": len(rows), "systems": res}, indent=1), encoding="utf-8")
+        out = ROOT / "data" / "real" / f"results.comparison.{a.split}.json"
+        out.write_text(json.dumps({**run_meta(), "split": a.split, "split_file": str(SPLIT.name) if split else None,
+                                   "cases": len(rows), "case_ids": [r.get("id") for r in rows], "systems": res},
+                                  indent=1), encoding="utf-8")
         for t in table(res):
             print(json.dumps(t, ensure_ascii=False))
-        print(f"Saved {OUT_COMPARE}")
+        print(f"Saved {out}")
         return
     res = evaluate(rows, a.extractor, a.samples)
-    OUT_JSON.write_text(json.dumps(res, indent=1), encoding="utf-8")
-    with open(OUT_CSV, "w", encoding="utf-8", newline="") as fh:
+    res["split"] = a.split
+    out_json = ROOT / "data" / "real" / f"results.{a.split}.json"
+    out_json.write_text(json.dumps(res, indent=1), encoding="utf-8")
+    with open(out_json.with_suffix(".csv"), "w", encoding="utf-8", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=list(res["rows"][0]))
         w.writeheader()
         for r in res["rows"]:
