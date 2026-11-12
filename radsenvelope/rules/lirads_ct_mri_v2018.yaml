@@ -64,6 +64,9 @@ category_meaning:
 defer_keywords:
   "rim arterial phase hyperenhancement": "Rim APHE suggests LR-M (non-HCC malignancy)"
   "rim aphe": "Rim APHE suggests LR-M (non-HCC malignancy)"
+  "rim enhancement": "Rim APHE suggests LR-M (non-HCC malignancy)"
+  "ring enhancement": "Rim APHE suggests LR-M (non-HCC malignancy)"
+  "peripheral rim": "Rim APHE suggests LR-M (non-HCC malignancy)"
   "targetoid": "Targetoid appearance suggests LR-M"
   "tumor in vein": "Tumour in vein (LR-TIV)"
   "tumour in vein": "Tumour in vein (LR-TIV)"

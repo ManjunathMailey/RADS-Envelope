@@ -84,3 +84,13 @@ def test_scope_guard():
     assert defer_reasons("32 mm mass with rim arterial phase hyperenhancement")
     assert not defer_reasons("18 mm observation with nonrim arterial phase hyperenhancement")
     assert not defer_reasons("No tumor in vein. 20 mm observation.")
+
+
+def test_scope_guard_rim_synonyms():
+    lrm = "Rim APHE suggests LR-M (non-HCC malignancy)"
+    assert defer_reasons("The observation in segment 8 shows ring enhancement on arterial phase.") == [lrm]
+    assert defer_reasons("30 mm mass with rim enhancement and progressive fill-in.") == [lrm]
+    assert defer_reasons("Peripheral rim of enhancement around a 25 mm mass.") == [lrm]
+    assert not defer_reasons("18 mm observation with nonrim enhancement and washout.")
+    assert not defer_reasons("18 mm observation with non-rim enhancement and washout.")
+    assert not defer_reasons("22 mm observation with nonperipheral washout and an enhancing capsule.")
