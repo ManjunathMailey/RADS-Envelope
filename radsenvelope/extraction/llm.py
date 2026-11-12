@@ -31,6 +31,7 @@ Definitions:
 - af_malignant = ancillary features favouring malignancy (e.g. restricted diffusion, mild-moderate T2 hyperintensity, fat in mass).
 - af_benign = ancillary features favouring benignity (e.g. size stability over 2 years, marked T2 hyperintensity).
 - size_mm = largest diameter in millimetres (convert cm to mm). Use only a number written in the report.
+  size_mm must be the exact number written, with its decimal point (e.g. "9.5 mm" -> 9.5, "2.5 cm" -> 25).
   If no numeric size is written (e.g. only "small"), size_mm must be null. Never estimate a size.
 - size_evidence = the exact size words from the report (e.g. "18 mm"), or "" if none.
 - evidence must be copied word for word from the report as one continuous piece of text.

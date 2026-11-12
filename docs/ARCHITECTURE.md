@@ -40,6 +40,13 @@ applied. Size is an interval: the reported value plus or minus a tolerance (defa
 reported inter-reader measurement variability), widened further when repeated extractions disagree
 on the size.
 
+**Size integrity guard.** The table is keyed on size, and a language model can drop a decimal point
+(9.5 mm read as 95). `extraction/sizes.py` parses every size the report writes with a unit
+("9.5 mm", "2,5 cm", "1.2 x 0.9 cm"; largest dimension; cm converted). Each extraction draw is
+checked before consensus: a size the observation text does not state is replaced by the written
+size from its evidence, else the largest written size, else null, and the original value is kept
+as `corrected_from`. The same guard applies to prior-report sizes.
+
 ## 4. Certainty Envelope
 
 Let `U` be the set of unresolved features and `I` the size interval. The envelope is
@@ -85,6 +92,7 @@ ambiguity and of the extractor's own instability. Each feature records which sou
 | Generated impression states exactly the engine's category, for every state combination | `test_impression_consistent_for_all_state_combinations` |
 | Incomplete rule files are rejected at load time | `test_incomplete_ruleset_is_rejected`, `test_missing_or_invalid_growth_section_is_rejected` |
 | Growth rule boundaries: exactly 50 %, 183 days and 730 days; ultrasound priors refused | `tests/test_longitudinal.py` |
+| The size used is always a size written in the report (a misread 95 for "9.5 mm" is corrected) | `tests/test_sizes.py` |
 | An explicit growth statement in the report is never overridden by the prior comparison | `test_explicit_report_statement_is_kept_and_conflict_flagged` |
 | FHIR export: every reference resolves, the category equals the engine's for every sample, no standard codes are invented | `tests/test_fhir.py` |
 

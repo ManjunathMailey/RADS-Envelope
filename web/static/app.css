@@ -124,6 +124,7 @@ mark.dim{opacity:.35}
 .findings li.size-line{display:flex;align-items:center;gap:var(--s3);padding-top:var(--s3);border-top:1px solid var(--line);font-weight:500}
 .size-line input{width:89px;border:0;background:var(--fill);border-radius:999px;padding:var(--s1) var(--s3);font-variant-numeric:tabular-nums;text-align:center}
 .size-line span{font-size:var(--t-xs);color:var(--muted);font-weight:400}
+.findings li.size-fix{display:block;border-top:0;padding-top:0}
 
 /* decision card */
 .card{background:var(--surface);border-radius:var(--r);padding:var(--s5);box-shadow:var(--shadow)}

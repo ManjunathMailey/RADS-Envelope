@@ -184,12 +184,15 @@ function renderFindings() {
       <span class="fe" title="${esc(ev)}">${evText}</span>${unsure}</li>`;
   }).join("");
   const tol = (+$("tol").value + o.spread / 2);
-  $("findings").innerHTML = rows + `<li class="size-line"><span>Size</span><input id="sizeIn" type="number" min="0" step="0.5" value="${o.size_mm ?? ""}" aria-label="Size in millimetres"><span>mm · considered ±${tol.toFixed(1)} mm</span></li>`;
+  const sz = o.confidence.size || {};
+  const fix = "corrected_from" in sz && !o.sizeEdited
+    ? `<li class="size-fix"><span class="muted">Size taken from the report text (${sz.corrected_from == null ? "the AI found no size" : `the AI read ${esc(sz.corrected_from)} mm`})</span></li>` : "";
+  $("findings").innerHTML = rows + `<li class="size-line"><span>Size</span><input id="sizeIn" type="number" min="0" step="0.5" value="${o.size_mm ?? ""}" aria-label="Size in millimetres"><span>mm · considered ±${tol.toFixed(1)} mm</span></li>` + fix;
 }
 $("findings").addEventListener("change", (e) => {
   const o = S.a.observations[S.obs];
   if (e.target.matches("select[data-k]")) o.features[e.target.dataset.k] = e.target.value;
-  else if (e.target.id === "sizeIn") { const v = parseFloat(e.target.value); o.size_mm = isNaN(v) ? null : v; }
+  else if (e.target.id === "sizeIn") { const v = parseFloat(e.target.value); o.size_mm = isNaN(v) ? null : v; o.sizeEdited = true; }
   else return;
   o.edited = true; recompute();
 });

@@ -19,6 +19,7 @@ from radsenvelope.extraction import consensus, lexicon, llm
 from radsenvelope.extraction.schema import Extraction, grounding_errors
 from radsenvelope.extraction.scope import defer_reasons
 from radsenvelope.extraction.segment import split_observations, split_sections, stated_categories
+from radsenvelope.extraction.sizes import reconcile_size
 from radsenvelope.generation import impression
 
 
@@ -30,6 +31,24 @@ class Settings:
     high_risk: bool = True
 
 
+def _guarded_merge(draws: list[Extraction], text: str) -> tuple[Extraction, dict]:
+    """Size integrity guard, then consensus. Each draw's size must be a size written in the
+    report; a corrected draw keeps its original value in confidence["size"]["corrected_from"].
+    Guarding before the merge keeps one misread draw from widening the size spread."""
+    fixed, originals = [], []
+    for d in draws:
+        size, evidence, corrected = reconcile_size(d.size_mm, d.size_evidence, text)
+        if corrected:
+            originals.append(d.size_mm)
+            d = d.model_copy(update={"size_mm": size, "size_evidence": evidence})
+        fixed.append(d)
+    ex, conf = consensus.merge(fixed)
+    if originals:
+        conf["size"]["corrected_from"] = originals[0]
+        conf["size"]["corrected_values"] = originals
+    return ex, conf
+
+
 def _extract(text: str, s: Settings) -> tuple[Extraction, dict, dict]:
     info: dict = {"requested": s.extractor}
     if s.extractor in ("auto", "llm"):
@@ -38,11 +57,11 @@ def _extract(text: str, s: Settings) -> tuple[Extraction, dict, dict]:
             try:
                 if s.samples > 1:
                     draws, secs = llm.sample(text, s.samples)
-                    ex, conf = consensus.merge(draws)
+                    ex, conf = _guarded_merge(draws, text)
                     info.update(used=f"LLM ({llm.MODEL}) x{s.samples} self-consistency", seconds=round(secs, 2))
                 else:
                     ex, secs = llm.extract(text)
-                    ex, conf = consensus.merge([ex])
+                    ex, conf = _guarded_merge([ex], text)
                     info.update(used=f"LLM ({llm.MODEL})", seconds=round(secs, 2))
                 return ex, conf, info
             except Exception as e:
@@ -51,7 +70,7 @@ def _extract(text: str, s: Settings) -> tuple[Extraction, dict, dict]:
             raise RuntimeError(msg)
         info["fallback_reason"] = msg
     t = time.time()
-    ex, conf = consensus.merge([lexicon.extract(text)])
+    ex, conf = _guarded_merge([lexicon.extract(text)], text)
     info.update(used="Lexicon (deterministic)", seconds=round(time.time() - t, 3))
     return ex, conf, info
 
@@ -98,16 +117,20 @@ def match_prior(labels: list[str], prior_labels: list[str]) -> list[tuple[int | 
     return out
 
 
-def _prior_observations(prior: dict, s: Settings) -> list[tuple[str, float | None]]:
-    """Segment and extract the prior report with the same extractor; only sizes are used."""
+PRIOR_FEATURES = ("growth", "af_malignant", "af_benign")
+
+
+def _prior_observations(prior: dict, s: Settings) -> list[tuple[str, float | None, float | None]]:
+    """Segment and extract the prior report with the same extractor and the same size guard;
+    only sizes are used. Returns (label, size_mm, size the extractor read if it was corrected)."""
     findings, _ = split_sections(prior.get("report") or "")
     if not findings.strip():
         return []
     single = replace(s, samples=1)
     out = []
     for seg in split_observations(findings):
-        ex, _, _ = _extract(seg.text, single)
-        out.append((seg.label, ex.size_mm))
+        ex, conf, _ = _extract(seg.text, single)
+        out.append((seg.label, ex.size_mm, conf["size"].get("corrected_from")))
     return out
 
 
@@ -130,6 +153,16 @@ def apply_prior(states: dict, comparison: dict) -> tuple[dict, dict]:
         merged[k] = PRESENT
     return merged, {"applied": applied, "reported_growth": reported, "prior_conflict": conflict,
                     "ancillary_added": added}
+
+
+def compare_with_prior(states: dict, size_mm, tolerance: float, prior_mm, prior_date, current_date,
+                       modality, matching: str, prior_label=None) -> tuple[dict, dict]:
+    """Compare, merge, and build the longitudinal block."""
+    cmp = longitudinal.compare(size_mm, current_date, prior_mm, prior_date, modality, tolerance)
+    merged, merge = apply_prior(states, cmp)
+    block = {"matching": matching, "prior_label": prior_label, "prior_date": prior_date,
+             "current_date": current_date, **cmp, **merge}
+    return merged, block
 
 
 def analyse_report(report: str, settings: Settings | None = None, prior: dict | None = None) -> dict:
@@ -160,13 +193,14 @@ def analyse_report(report: str, settings: Settings | None = None, prior: dict | 
                              current_mm=ex.size_mm, prior_mm=None,
                              explanation="No matching observation was found in the prior report.")
             else:
-                cmp = longitudinal.compare(ex.size_mm, current_date, prior_obs[j][1], prior.get("prior_date"),
-                                           prior.get("modality"), tolerance)
-                states, merge = apply_prior(states, cmp)
-                block.update(prior_label=prior_obs[j][0], **cmp, **merge)
-                for k in (["growth"] if merge["applied"] else []) + merge["ancillary_added"]:
+                states, block = compare_with_prior(states, ex.size_mm, tolerance, prior_obs[j][1],
+                                                   prior.get("prior_date"), current_date, prior.get("modality"),
+                                                   method, prior_obs[j][0])
+                if prior_obs[j][2] is not None:
+                    block["prior_size_corrected_from"] = prior_obs[j][2]
+                for k in (["growth"] if block["applied"] else []) + block["ancillary_added"]:
                     extraction[k] = {"state": states[k], "evidence": FROM_PRIOR}
-                    conf[k] = {**conf.get(k, {}), "source": cmp["source"] if k == "growth" else "prior"}
+                    conf[k] = {**conf.get(k, {}), "source": block["source"] if k == "growth" else "prior"}
         result = run_observation(seg.label, states, ex.size_mm, tolerance, s.high_risk, defer)
         own = stated[i] if len(stated) == len(segments) else (stated[0] if len(segments) == 1 and stated else None)
         audit = None
