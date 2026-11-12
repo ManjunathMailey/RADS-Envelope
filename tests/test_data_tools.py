@@ -29,8 +29,9 @@ An enhancing capsule was seen (Figure 2B). The observation was categorized as LI
 
 
 def test_license_filter():
-    assert harvest.license_allowed("cc by") and harvest.license_allowed("CC BY-NC") and harvest.license_allowed("cc0")
-    for bad in ("cc by-sa", "cc by-nc-nd", "cc by-nc-sa", "", None):
+    for ok in ("cc by", "CC BY-NC", "cc0", "cc by-sa", "cc by-nc-sa"):
+        assert harvest.license_allowed(ok)
+    for bad in ("cc by-nd", "cc by-nc-nd", "", None, "other"):        # no-derivatives or unknown: excluded
         assert not harvest.license_allowed(bad)
 
 
@@ -42,6 +43,48 @@ def test_category_sentences_skip_ultrasound():
     assert extract.category_sentences("Liver Imaging Reporting and Data System (LI-RADS) score was 4.")[0][1] == ["LR-4"]
     assert extract.category_sentences("Two major features according to LI-RADS v2018 [30].") == []
     assert extract.category_sentences("Evaluated with the CT/MRI LI-RADS (Version 2018) criteria.") == []
+
+
+def test_group_statistics_are_not_case_labels():
+    assert extract.category_sentences("Of the 120 observations, 45 were LR-5.") == []
+    assert extract.category_sentences("LR-5 had a sensitivity of 72% for HCC.") == []
+    assert extract.category_sentences("The 23 mm nodule was categorized as LR-4.")[0][1] == ["LR-4"]
+
+
+TABLE_JATS = """<article><body><sec><title>Results</title>
+<p>Of the 3 patients, 2 were LR-5 (67%).</p>
+<table-wrap><label>Table 2</label><caption><p>Per-lesion MRI features</p></caption><table>
+<thead><tr><th>Patient</th><th>Size (mm)</th><th>APHE</th><th>Washout</th><th>Capsule</th><th>LI-RADS</th></tr></thead>
+<tbody><tr><td>1</td><td>24</td><td>Yes</td><td>Yes</td><td>No</td><td>LR-5</td></tr>
+<tr><td>2</td><td>12</td><td>Yes</td><td>No</td><td>No</td><td>3</td></tr>
+<tr><td>3</td><td>18</td><td>No</td><td>No</td><td>No</td><td>n/a</td></tr></tbody></table></table-wrap>
+<table-wrap><label>Table 3</label><caption><p>Counts</p></caption><table>
+<thead><tr><th>Feature</th><th>LR-3</th><th>LR-4</th><th>LR-5</th></tr></thead>
+<tbody><tr><td>APHE</td><td>4</td><td>9</td><td>20</td></tr></tbody></table></table-wrap>
+</sec></body></article>"""
+
+
+def test_per_lesion_table_rows_become_candidates():
+    art = {"pmcid": "PMC3", "authors": "Lee K.", "journal": "J", "year": "2023", "license": "cc by-sa"}
+    rows = extract.candidates_for(art, ET.fromstring(TABLE_JATS))
+    assert [r["radiologist_category"] for r in rows] == ["LR-5", "LR-3"]   # results prose, n/a row and counts table skipped
+    assert rows[0]["findings_text"] == "Patient: 1; Size (mm): 24; APHE: Yes; Washout: Yes; Capsule: No"
+    assert "Table 2" in rows[0]["notes"] and "row 1" in rows[0]["notes"] and rows[1]["category_sentence"] == "LI-RADS: 3"
+    assert rows[0]["license"] == "CC BY-SA" and rows[0]["modality"] == "MRI"
+
+
+def test_cohort_articles_give_prose_only_from_case_sections():
+    jats = """<article><body>
+    <sec><title>Image analysis</title><p>On CT, a 25 mm liver observation showed arterial phase hyperenhancement and
+    washout. It was categorized as LR-5 by two readers.</p></sec>
+    <sec><title>Case 1</title><p>MRI showed a 22 mm liver mass in segment 6 with arterial phase hyperenhancement and
+    washout. It was categorized as LR-5.</p></sec></body></article>"""
+    cohort = {"pmcid": "PMC4", "authors": "A B.", "journal": "J", "year": "2024", "license": "cc by",
+              "queries": ["q3_features"]}
+    rows = extract.candidates_for(cohort, ET.fromstring(jats))
+    assert [r["notes"].split("section: ")[1] for r in rows] == ["Case 1"]
+    case = dict(cohort, queries=["q1_case_reports", "q3_features"])
+    assert len(extract.candidates_for(case, ET.fromstring(jats))) == 2
 
 
 def test_category_sentence_mentioning_ultrasound_is_removed_but_not_used_as_label():

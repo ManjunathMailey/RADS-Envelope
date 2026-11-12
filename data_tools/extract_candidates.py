@@ -41,7 +41,21 @@ MODALITY_MR = re.compile(r"\b(MRI|MR imaging|MR|magnetic resonance|gadoxetic|hep
 FEATURE = re.compile(r"(arterial|wash-?\s?out|capsul|hyperenhanc|enhancement|hypervascular|portal venous|"
                      r"delayed phase|hepatobiliary|T2|diffusion)", re.I)
 SKIP_SECTIONS = re.compile(r"(discussion|introduction|background|conclusion|review|literature|abstract|"
-                           r"acknowledg|reference|funding|consent|ethic|author|conflict|declaration)", re.I)
+                           r"acknowledg|reference|funding|consent|ethic|author|conflict|declaration|"
+                           r"method|material|statistic|results|study population|limitation)", re.I)
+# a category sentence that reports group statistics is not a radiologist's call on one case
+AGGREGATE = re.compile(r"%|\b\d+\s*(?:of|/)\s*\d+\b|\b\d+\s+(?:patients|lesions|observations|nodules|cases|tumou?rs)\b|"
+                       r"sensitivity|specificity|accuracy|kappa|\bAUC\b|odds ratio|\bp\s*[<=>]|confidence interval", re.I)
+# articles not found as case reports (cohort studies, reviews): prose only from case-like sections
+CASE_SECTION = re.compile(r"\b(case|patient|presentation|clinical (history|summary|course)|history)\b", re.I)
+TABLE_CAT = re.compile(r"LI-?RADS|\bLR\b|categor", re.I)
+TABLE_SIZE = re.compile(r"size|diameter|\bmm\b|\bcm\b", re.I)
+TABLE_FEAT = re.compile(r"APHE|arterial|wash-?\s?out|capsul|enhanc|growth", re.I)
+CELL_CAT = re.compile(r"^\s*(?:LI-?RADS|LR)?[\s-]*(?P<c>[1-5]|M|TIV|TR|NC)\s*$", re.I)
+NOT_CASE_TABLE = re.compile(r"criteri|definition|algorithm|lexicon|diagnostic table|classification system|"
+                            r"recommend|guideline|comparison of (systems|guidelines)", re.I)
+SIZE_CELL = re.compile(r"^\s*[<>≤≥~]?\s*\d+(?:[.,]\d+)?(?:\s*[x×]\s*\d+(?:[.,]\d+)?)*\s*(?:mm|cm)?\s*$", re.I)
+MAX_TABLE_ROWS = 100
 FIGURE_TEXT = re.compile(r"\s*\((?:see\s+)?(?:Fig(?:ure)?s?\.?|Supplementary\s+Fig\w*\.?|Table)\s*[\w\s,.–\-−&and]*\)", re.I)
 EMPTY_PARENS = re.compile(r"\(\s*(?:[,;–\-]|and|\s)*\)")
 _ABBREV = re.compile(r"(?:\b(?:Fig|Figs|e\.g|i\.e|vs|approx|Dr|No|al|ca|resp|cf)\.|\b[A-Z]\.)$")
@@ -92,9 +106,70 @@ def stated_sentences(text: str) -> list[tuple[str, list[str], bool]]:
 
 
 def category_sentences(text: str) -> list[tuple[str, list[str]]]:
-    """(sentence, categories) for sentences stating a CT/MRI category usable as the gold label;
-    sentences mentioning ultrasound or CEUS are not used for the label (but are still removed)."""
-    return [(s, cats) for s, cats, us in stated_sentences(text) if not us]
+    """(sentence, categories) for sentences stating a CT/MRI category usable as the gold label.
+    Sentences mentioning ultrasound/CEUS or reporting group statistics are not used for the label
+    (but are still removed from the findings)."""
+    return [(s, cats) for s, cats, us in stated_sentences(text) if not us and not AGGREGATE.search(s)]
+
+
+def _cells(tr) -> list[str]:
+    out = []
+    for c in tr:
+        if c.tag.split("}")[-1] in ("td", "th"):
+            out += [clean(_text(c))] * max(1, int(c.get("colspan") or 1))
+    return out
+
+
+def table_candidates(article: dict, root) -> list[dict]:
+    """One row per lesion from tables that list, per lesion, a size, at least one imaging feature
+    and a LI-RADS category. Findings are the row's verbatim cells ("header: value"), without the
+    category cell."""
+    rows = []
+    for tw in (e for e in root.iter() if e.tag.split("}")[-1] == "table-wrap"):
+        label = next((clean(_text(c)) for c in tw if c.tag.split("}")[-1] == "label"), "Table")
+        caption = next((clean(_text(c)) for c in tw if c.tag.split("}")[-1] == "caption"), "")
+        trs = [e for e in tw.iter() if e.tag.split("}")[-1] == "tr"]
+        head_trs = [e for e in tw.iter() if e.tag.split("}")[-1] == "thead"]
+        header_tr = [e for e in head_trs[0].iter() if e.tag.split("}")[-1] == "tr"][-1] if head_trs else (trs[0] if trs else None)
+        if header_tr is None:
+            continue
+        header = _cells(header_tr)
+        body = [_cells(tr) for tr in trs if tr is not header_tr and not (head_trs and tr in list(head_trs[0].iter()))]
+        body = [b for b in body if len(b) == len(header)]
+        if not body or len(body) > MAX_TABLE_ROWS:
+            continue
+        cat_col = next((i for i, h in enumerate(header) if TABLE_CAT.search(h)
+                        and sum(bool(CELL_CAT.match(b[i])) for b in body) >= max(1, len(body) // 2)), None)
+        if cat_col is None:
+            continue
+        if NOT_CASE_TABLE.search(caption):
+            continue
+        size_cols = [i for i, h in enumerate(header) if i != cat_col and TABLE_SIZE.search(h)
+                     and sum(bool(SIZE_CELL.match(b[i])) for b in body) >= max(1, len(body) // 2)]
+        feat_cols = [i for i, h in enumerate(header) if i != cat_col and TABLE_FEAT.search(h)]
+        if not size_cols or not feat_cols:
+            continue
+        mod = modality(caption + " " + " ".join(header)) or "CT/MRI (see article)"
+        for k, b in enumerate(body, 1):
+            m = CELL_CAT.match(b[cat_col])
+            if not m:
+                continue
+            findings = "; ".join(f"{h}: {v}" for i, (h, v) in enumerate(zip(header, b)) if i != cat_col and v)
+            rows.append({
+                "url": f"https://europepmc.org/article/PMC/{article['pmcid']}", "author": _author(article),
+                "license": article["license"].upper(), "modality": mod, "findings_text": findings,
+                "radiologist_category": f"LR-{m.group('c').upper()}",
+                "collected_by": "data_tools/extract_candidates.py", "collected_on": date.today().isoformat(),
+                "notes": f"{article['pmcid']}; from {label} ({caption[:100]}), row {k}; table cells, not prose",
+                "review_status": "", "source_paragraph": f"{label}. {caption}\nColumns: {' | '.join(header)}",
+                "category_sentence": f"{header[cat_col]}: {b[cat_col]}",
+            })
+    return rows
+
+
+def _author(article: dict) -> str:
+    first_author = (article["authors"].split(",")[0] or "Unknown").strip().rstrip(".")
+    return f"{first_author} et al. ({article['journal']} {article['year']})".replace(" )", ")")
 
 
 def is_imaging_paragraph(text: str) -> bool:
@@ -135,9 +210,11 @@ def strip_sentences(text: str, remove: list[str]) -> str:
 
 def candidates_for(article: dict, root) -> list[dict]:
     rows = []
-    first_author = (article["authors"].split(",")[0] or "Unknown").strip().rstrip(".")
-    author = f"{first_author} et al. ({article['journal']} {article['year']})".replace(" )", ")")
+    author = _author(article)
+    case_report = "q1_case_reports" in (article.get("queries") or ["q1_case_reports"])
     for title, paras in case_paragraphs(root):
+        if not case_report and not CASE_SECTION.search(title or ""):
+            continue
         for i, p in enumerate(paras):
             cats = category_sentences(p)
             if not cats:
@@ -168,12 +245,12 @@ def candidates_for(article: dict, root) -> list[dict]:
                 "notes": note, "review_status": "", "source_paragraph": source,
                 "category_sentence": " | ".join(removed),
             })
-    return rows
+    return rows + table_candidates(article, root)
 
 
 def main() -> None:
     articles = json.loads((CACHE / "articles.json").read_text(encoding="utf-8"))
-    rows, used = [], 0
+    rows, used, per_article, by_query = [], 0, {}, {}
     for a in articles:
         if not (a.get("license_ok") and a.get("fulltext")):
             continue
@@ -182,6 +259,15 @@ def main() -> None:
         except (ET.ParseError, OSError):
             continue
         found = candidates_for(a, root)
+        for r in found:
+            if a.get("queries"):
+                r["notes"] += f"; found by {', '.join(a['queries'])}"
+        per_article[a["pmcid"]] = len(found)
+        per_query_rows = a.get("queries") or ["q1_case_reports"]
+        for q in per_query_rows:
+            by_query.setdefault(q, {"articles_with_candidates": 0, "candidate_rows": 0})
+            by_query[q]["articles_with_candidates"] += bool(found)
+            by_query[q]["candidate_rows"] += len(found)
         used += bool(found)
         rows += found
     for n, r in enumerate(rows, 1):
@@ -191,8 +277,11 @@ def main() -> None:
         w = csv.DictWriter(fh, fieldnames=COLUMNS)
         w.writeheader()
         w.writerows(rows)
+    (CACHE / "candidates_per_article.json").write_text(json.dumps(per_article, indent=1), encoding="utf-8")
     print(json.dumps({"articles_with_fulltext": sum(bool(a.get("fulltext")) for a in articles),
-                      "articles_with_candidates": used, "candidate_rows": len(rows), "output": str(OUT)}, indent=1))
+                      "articles_with_candidates": used, "candidate_rows": len(rows),
+                      "from_tables": sum("table cells" in r["notes"] for r in rows),
+                      "by_query": by_query, "output": str(OUT)}, indent=1))
 
 
 if __name__ == "__main__":
