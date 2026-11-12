@@ -1,0 +1,67 @@
+{
+ "cases": 5,
+ "disagreements": 2,
+ "by_class": {
+  "extraction_error": 2
+ },
+ "errors": [
+  {
+   "id": "RP001",
+   "reference": "LR-3",
+   "ours": "LR-4",
+   "envelope": [
+    "LR-4",
+    "LR-5"
+   ],
+   "class": "extraction_error",
+   "features": [
+    {
+     "feature": "aphe",
+     "extracted": "present",
+     "needed": "absent",
+     "evidence": "nodular hypervascular lesions are present in the right hepatic lobe on the arterial phase"
+    },
+    {
+     "feature": "washout",
+     "extracted": "present",
+     "needed": "absent",
+     "evidence": "on the portal venous phase, these lesions fade to background liver enhancement"
+    },
+    {
+     "feature": "af_benign",
+     "extracted": "not_documented",
+     "needed": "present",
+     "evidence": ""
+    }
+   ],
+   "detail": "aphe: present -> absent; washout: present -> absent; af_benign: not_documented -> present"
+  },
+  {
+   "id": "PMC002",
+   "reference": "LR-3",
+   "ours": "LR-4",
+   "envelope": [
+    "LR-4",
+    "LR-5"
+   ],
+   "class": "extraction_error",
+   "features": [
+    {
+     "feature": "growth",
+     "extracted": "present",
+     "needed": "absent",
+     "evidence": "In June 2021 the abdominal ultrasound revealed the growth of the nodule to a diameter of 29 mm."
+    },
+    {
+     "feature": "af_benign",
+     "extracted": "not_documented",
+     "needed": "present",
+     "evidence": ""
+    }
+   ],
+   "detail": "growth: present -> absent; af_benign: not_documented -> present"
+  }
+ ],
+ "prompt_hash": "7e69f08f6618d62e892b7522a57da7ee4cb05463b83f9b8fc3999267bd041111",
+ "generated_from": "2026-11-13T04:47:25"
+}

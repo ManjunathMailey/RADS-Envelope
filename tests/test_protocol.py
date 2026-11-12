@@ -78,6 +78,32 @@ def test_prompt_hash_tracks_prompt_and_model():
     assert llm.prompt_hash(llm.SYSTEM + " ") != h and llm.prompt_hash(model="other-model") != h
 
 
+ea_spec = importlib.util.spec_from_file_location("error_analysis", TOOLS / "error_analysis.py")
+error_analysis = importlib.util.module_from_spec(ea_spec)
+ea_spec.loader.exec_module(error_analysis)
+
+
+def _row(gold, pred, size=29.0, **feats):
+    base = {"aphe": "absent", "washout": "absent", "capsule": "absent", "growth": "absent",
+            "af_malignant": "not_documented", "af_benign": "not_documented"}
+    return {"id": "X", "gold": gold, "pred": pred, "size_mm": size, "features": {**base, **feats},
+            "envelope": [pred], "evidence": {"growth": "ultrasound showed growth"}}
+
+
+def test_error_analysis_classes():
+    e = error_analysis.classify(_row("LR-3", "LR-4", growth="present"), "29 mm nodule")
+    assert e["class"] == "extraction_error" and any(f["feature"] == "growth" and f["needed"] == "absent"
+                                                    for f in e["features"])
+    assert error_analysis.classify(_row("LR-M", "LR-4"), "")["class"] == "scope_error"
+    assert error_analysis.classify(_row("LR-4", "defer"), "")["class"] == "scope_error"
+    assert error_analysis.classify(_row("LR-3", "not_assignable", size=None), "small nodule")["class"] == "out_of_scope"
+    assert error_analysis.classify(_row("LR-3", "not_assignable", size=None), "a 12 mm nodule")["class"] == "size_error"
+    assert error_analysis.classify(_row("LR-4", "LR-3", size=19.5, aphe="present"), "19.5 mm")["class"] in (
+        "size_error", "extraction_error")
+    with pytest.raises(SystemExit, match="development split only"):
+        error_analysis.analyse({"split": "test", "systems": {"Ours": {"rows": []}}}, {})
+
+
 def test_results_carry_prompt_hash():
     rows = [{"id": "R1", "findings_text": "25 mm observation with arterial phase hyperenhancement and washout.",
              "radiologist_category": "LR-5"}]

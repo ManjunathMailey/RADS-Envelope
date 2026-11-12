@@ -1,0 +1,85 @@
+{
+ "cases": 5,
+ "disagreements": 3,
+ "by_class": {
+  "extraction_error": 3
+ },
+ "errors": [
+  {
+   "id": "RP001",
+   "reference": "LR-3",
+   "ours": "LR-4",
+   "envelope": [
+    "LR-4",
+    "LR-5"
+   ],
+   "class": "extraction_error",
+   "features": [
+    {
+     "feature": "aphe",
+     "extracted": "present",
+     "needed": "absent",
+     "evidence": "Multiple new small (8 mm) nodular hypervascular lesions are present in the right hepatic lobe on the arterial phase."
+    },
+    {
+     "feature": "washout",
+     "extracted": "present",
+     "needed": "absent",
+     "evidence": "On the portal venous phase, these lesions fade to background liver enhancement."
+    },
+    {
+     "feature": "af_benign",
+     "extracted": "not_documented",
+     "needed": "present",
+     "evidence": ""
+    }
+   ],
+   "detail": "aphe: present -> absent; washout: present -> absent; af_benign: not_documented -> present"
+  },
+  {
+   "id": "PMC001",
+   "reference": "LR-5",
+   "ours": "LR-4",
+   "envelope": [
+    "LR-4"
+   ],
+   "class": "extraction_error",
+   "features": [
+    {
+     "feature": "aphe",
+     "extracted": "absent",
+     "needed": "present",
+     "evidence": "the round-shaped hepatic mass showed arterial enhancement and delayed washout"
+    }
+   ],
+   "detail": "aphe: absent -> present"
+  },
+  {
+   "id": "PMC002",
+   "reference": "LR-3",
+   "ours": "LR-4",
+   "envelope": [
+    "LR-4",
+    "LR-5"
+   ],
+   "class": "extraction_error",
+   "features": [
+    {
+     "feature": "growth",
+     "extracted": "present",
+     "needed": "absent",
+     "evidence": "growth of the nodule to a diameter of 29 mm"
+    },
+    {
+     "feature": "af_benign",
+     "extracted": "not_documented",
+     "needed": "present",
+     "evidence": ""
+    }
+   ],
+   "detail": "growth: present -> absent; af_benign: not_documented -> present"
+  }
+ ],
+ "prompt_hash": "0f7f213bf1ddc90e31e6fc3c526c16896499a00e6c77bfcc7dd081b5797634e7",
+ "generated_from": "2026-11-13T04:43:53"
+}

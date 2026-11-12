@@ -1,0 +1,1128 @@
+{
+ "generated_at": "2026-11-13T04:47:25",
+ "git": {
+  "commit": "654e7e7e42fb51ecc221f9cc6a9336127eebb114",
+  "dirty": true
+ },
+ "model": "qwen2.5:7b-instruct",
+ "prompt_hash": "7e69f08f6618d62e892b7522a57da7ee4cb05463b83f9b8fc3999267bd041111",
+ "b1_prompt_hash": "df9d166b2218575c589d84ab0249cdb296216d3afe8c9d69acfa35d6017ec076",
+ "split": "dev",
+ "split_file": null,
+ "cases": 5,
+ "case_ids": [
+  "RP001",
+  "RP002",
+  "RP003",
+  "PMC001",
+  "PMC002"
+ ],
+ "systems": {
+  "B1": {
+   "summary": {
+    "cases": 5,
+    "graded": 4,
+    "accuracy": {
+     "k": 1,
+     "n": 4,
+     "value": 0.25,
+     "ci95": [
+      0.0456,
+      0.6994
+     ]
+    },
+    "weighted_kappa": 0.4,
+    "confusion": {
+     "labels": [
+      "LR-2",
+      "LR-3",
+      "LR-4",
+      "LR-5",
+      "other"
+     ],
+     "matrix": [
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       2,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       1,
+       1,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     ]
+    },
+    "lr5_sensitivity": {
+     "k": 1,
+     "n": 2,
+     "value": 0.5,
+     "ci95": [
+      0.0945,
+      0.9055
+     ]
+    },
+    "lr5_specificity": {
+     "k": 2,
+     "n": 2,
+     "value": 1.0,
+     "ci95": [
+      0.3424,
+      1.0
+     ]
+    },
+    "pm1_band_coverage": {
+     "k": 4,
+     "n": 4,
+     "value": 1.0,
+     "ci95": [
+      0.5101,
+      1.0
+     ]
+    },
+    "mean_pm1_band_size": 2.75,
+    "contradiction_rate": {
+     "k": 1,
+     "n": 4,
+     "value": 0.25,
+     "ci95": [
+      0.0456,
+      0.6994
+     ]
+    },
+    "consistency_verified": null,
+    "correct_deferrals": {
+     "k": 0,
+     "n": 1,
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.7935
+     ]
+    },
+    "mean_seconds": 4.41,
+    "unparsed": 0
+   },
+   "rows": [
+    {
+     "id": "RP001",
+     "gold": "LR-3",
+     "pred": "LR-4",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": false,
+     "seconds": 4.591,
+     "size_mm": 8.0,
+     "engine_category": "LR-4",
+     "error": null,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     }
+    },
+    {
+     "id": "RP002",
+     "gold": "LR-5",
+     "pred": "LR-4",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": true,
+     "seconds": 4.837,
+     "size_mm": 26.0,
+     "engine_category": "LR-5",
+     "error": null,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "not_documented",
+      "af_malignant": "absent",
+      "af_benign": "absent"
+     }
+    },
+    {
+     "id": "RP003",
+     "gold": "LR-M",
+     "pred": "not_assignable",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": null,
+     "seconds": 4.054,
+     "size_mm": null,
+     "engine_category": null,
+     "error": null,
+     "features": {
+      "aphe": "absent",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     }
+    },
+    {
+     "id": "PMC001",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": false,
+     "seconds": 5.199,
+     "size_mm": 43.0,
+     "engine_category": "LR-5",
+     "error": null,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "present",
+      "af_malignant": "present",
+      "af_benign": "absent"
+     }
+    },
+    {
+     "id": "PMC002",
+     "gold": "LR-3",
+     "pred": "LR-4",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": false,
+     "seconds": 3.369,
+     "size_mm": 29.0,
+     "engine_category": "LR-4",
+     "error": null,
+     "features": {
+      "aphe": "not_documented",
+      "washout": "not_documented",
+      "capsule": "not_documented",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     }
+    }
+   ]
+  },
+  "B2": {
+   "summary": {
+    "cases": 5,
+    "graded": 4,
+    "accuracy": {
+     "k": 3,
+     "n": 4,
+     "value": 0.75,
+     "ci95": [
+      0.3006,
+      0.9544
+     ]
+    },
+    "weighted_kappa": 0.5,
+    "confusion": {
+     "labels": [
+      "LR-2",
+      "LR-3",
+      "LR-4",
+      "LR-5",
+      "other"
+     ],
+     "matrix": [
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       2,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       1,
+       0,
+       1,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     ]
+    },
+    "lr5_sensitivity": {
+     "k": 1,
+     "n": 2,
+     "value": 0.5,
+     "ci95": [
+      0.0945,
+      0.9055
+     ]
+    },
+    "lr5_specificity": {
+     "k": 2,
+     "n": 2,
+     "value": 1.0,
+     "ci95": [
+      0.3424,
+      1.0
+     ]
+    },
+    "pm1_band_coverage": {
+     "k": 3,
+     "n": 4,
+     "value": 0.75,
+     "ci95": [
+      0.3006,
+      0.9544
+     ]
+    },
+    "mean_pm1_band_size": 2.75,
+    "contradiction_rate": {
+     "k": 0,
+     "n": 5,
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.4345
+     ]
+    },
+    "consistency_verified": {
+     "k": 5,
+     "n": 5,
+     "value": 1.0,
+     "ci95": [
+      0.5655,
+      1.0
+     ]
+    },
+    "correct_deferrals": {
+     "k": 1,
+     "n": 1,
+     "value": 1.0,
+     "ci95": [
+      0.2065,
+      1.0
+     ]
+    },
+    "mean_seconds": 0.007
+   },
+   "rows": [
+    {
+     "id": "RP001",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 0.015,
+     "size_mm": 8.0,
+     "features": {
+      "aphe": "not_documented",
+      "washout": "not_documented",
+      "capsule": "absent",
+      "growth": "not_documented",
+      "af_malignant": "absent",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "",
+      "washout": "",
+      "capsule": "There is no capsule around any lesion",
+      "growth": "",
+      "af_malignant": "There is no restricted diffusion",
+      "af_benign": ""
+     },
+     "size_evidence": "8 mm"
+    },
+    {
+     "id": "RP002",
+     "gold": "LR-5",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 0.008,
+     "size_mm": 26.0,
+     "features": {
+      "aphe": "not_documented",
+      "washout": "not_documented",
+      "capsule": "uncertain",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "",
+      "washout": "",
+      "capsule": "a faint capsule remaining",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "2.6 cm"
+    },
+    {
+     "id": "RP003",
+     "gold": "LR-M",
+     "pred": "defer",
+     "envelope": null,
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 0.004,
+     "size_mm": null,
+     "features": {
+      "aphe": "not_documented",
+      "washout": "absent",
+      "capsule": "not_documented",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [
+      "Rim APHE suggests LR-M (non-HCC malignancy)"
+     ],
+     "evidence": {
+      "aphe": "",
+      "washout": "without washout on delayed phase",
+      "capsule": "",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": ""
+    },
+    {
+     "id": "PMC001",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 0.005,
+     "size_mm": 43.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "not_documented",
+      "growth": "present",
+      "af_malignant": "present",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "the round-shaped hepatic mass showed arterial enhancement",
+      "washout": "delayed washout",
+      "capsule": "",
+      "growth": "A 44-year-old male with alcoholic liver cirrhosis was found to have a hepatic lesion in segment 8, which gradually increased in size from 15 mm to 43 mm over 47 months",
+      "af_malignant": "A nodule-in-nodule appearance was observed",
+      "af_benign": ""
+     },
+     "size_evidence": "43 mm"
+    },
+    {
+     "id": "PMC002",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 0.005,
+     "size_mm": 29.0,
+     "features": {
+      "aphe": "not_documented",
+      "washout": "not_documented",
+      "capsule": "not_documented",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "",
+      "washout": "",
+      "capsule": "",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "29 mm"
+    }
+   ]
+  },
+  "B3": {
+   "summary": {
+    "cases": 5,
+    "graded": 4,
+    "accuracy": {
+     "k": 2,
+     "n": 4,
+     "value": 0.5,
+     "ci95": [
+      0.15,
+      0.85
+     ]
+    },
+    "weighted_kappa": 0.6667,
+    "confusion": {
+     "labels": [
+      "LR-2",
+      "LR-3",
+      "LR-4",
+      "LR-5",
+      "other"
+     ],
+     "matrix": [
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       2,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       2,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     ]
+    },
+    "lr5_sensitivity": {
+     "k": 2,
+     "n": 2,
+     "value": 1.0,
+     "ci95": [
+      0.3424,
+      1.0
+     ]
+    },
+    "lr5_specificity": {
+     "k": 2,
+     "n": 2,
+     "value": 1.0,
+     "ci95": [
+      0.3424,
+      1.0
+     ]
+    },
+    "pm1_band_coverage": {
+     "k": 4,
+     "n": 4,
+     "value": 1.0,
+     "ci95": [
+      0.5101,
+      1.0
+     ]
+    },
+    "mean_pm1_band_size": 2.5,
+    "contradiction_rate": {
+     "k": 0,
+     "n": 5,
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.4345
+     ]
+    },
+    "consistency_verified": {
+     "k": 5,
+     "n": 5,
+     "value": 1.0,
+     "ci95": [
+      0.5655,
+      1.0
+     ]
+    },
+    "correct_deferrals": {
+     "k": 1,
+     "n": 1,
+     "value": 1.0,
+     "ci95": [
+      0.2065,
+      1.0
+     ]
+    },
+    "mean_seconds": 5.298
+   },
+   "rows": [
+    {
+     "id": "RP001",
+     "gold": "LR-3",
+     "pred": "LR-4",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 5.864,
+     "size_mm": 8.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "nodular hypervascular lesions are present in the right hepatic lobe on the arterial phase",
+      "washout": "on the portal venous phase, these lesions fade to background liver enhancement",
+      "capsule": "no capsule around any lesion",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "8 mm"
+    },
+    {
+     "id": "RP002",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 5.853,
+     "size_mm": 26.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "intense enhancement of the 2.6 cm lesion (late arterial phase)",
+      "washout": "decreased enhancement of the lesion on the portal venous phase with a faint capsule remaining; the lesion now appears to be isointense to background liver",
+      "capsule": "faint capsule remaining",
+      "growth": "mild hypointensity of a peripheral ovoid lesion in the right hepatic lobe ... decreased enhancement of the lesion on the portal venous phase",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "2.6 cm"
+    },
+    {
+     "id": "RP003",
+     "gold": "LR-M",
+     "pred": "defer",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.388,
+     "size_mm": null,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [
+      "Rim APHE suggests LR-M (non-HCC malignancy)"
+     ],
+     "evidence": {
+      "aphe": "ring enhancement on arterial phase",
+      "washout": "progressive fill and without washout on delayed phase",
+      "capsule": "",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": ""
+    },
+    {
+     "id": "PMC001",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 6.353,
+     "size_mm": 43.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "not_documented",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "gradually increased in size from 15 mm to 43 mm over 47 months. On contrast-enhanced abdominal CT, the round-shaped hepatic mass showed arterial enhancement and delayed washout.",
+      "washout": "gradually increased in size from 15 mm to 43 mm over 47 months. On contrast-enhanced abdominal CT, the round-shaped hepatic mass showed arterial enhancement and delayed washout.",
+      "capsule": "",
+      "growth": "gradually increased in size from 15 mm to 43 mm over 47 months",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "43 mm"
+    },
+    {
+     "id": "PMC002",
+     "gold": "LR-3",
+     "pred": "LR-4",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.033,
+     "size_mm": 29.0,
+     "features": {
+      "aphe": "not_documented",
+      "washout": "not_documented",
+      "capsule": "not_documented",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "",
+      "washout": "",
+      "capsule": "",
+      "growth": "In June 2021 the abdominal ultrasound revealed the growth of the nodule to a diameter of 29 mm.",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "29 mm"
+    }
+   ]
+  },
+  "Ours": {
+   "summary": {
+    "cases": 5,
+    "graded": 4,
+    "accuracy": {
+     "k": 2,
+     "n": 4,
+     "value": 0.5,
+     "ci95": [
+      0.15,
+      0.85
+     ]
+    },
+    "weighted_kappa": 0.6667,
+    "confusion": {
+     "labels": [
+      "LR-2",
+      "LR-3",
+      "LR-4",
+      "LR-5",
+      "other"
+     ],
+     "matrix": [
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       2,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       2,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     ]
+    },
+    "lr5_sensitivity": {
+     "k": 2,
+     "n": 2,
+     "value": 1.0,
+     "ci95": [
+      0.3424,
+      1.0
+     ]
+    },
+    "lr5_specificity": {
+     "k": 2,
+     "n": 2,
+     "value": 1.0,
+     "ci95": [
+      0.3424,
+      1.0
+     ]
+    },
+    "pm1_band_coverage": {
+     "k": 4,
+     "n": 4,
+     "value": 1.0,
+     "ci95": [
+      0.5101,
+      1.0
+     ]
+    },
+    "mean_pm1_band_size": 2.5,
+    "contradiction_rate": {
+     "k": 0,
+     "n": 5,
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.4345
+     ]
+    },
+    "consistency_verified": {
+     "k": 5,
+     "n": 5,
+     "value": 1.0,
+     "ci95": [
+      0.5655,
+      1.0
+     ]
+    },
+    "correct_deferrals": {
+     "k": 1,
+     "n": 1,
+     "value": 1.0,
+     "ci95": [
+      0.2065,
+      1.0
+     ]
+    },
+    "mean_seconds": 5.298,
+    "envelope_coverage": {
+     "k": 2,
+     "n": 4,
+     "value": 0.5,
+     "ci95": [
+      0.15,
+      0.85
+     ]
+    },
+    "mean_envelope_size": 1.5,
+    "alert_rate": {
+     "k": 2,
+     "n": 5,
+     "value": 0.4,
+     "ci95": [
+      0.1176,
+      0.7693
+     ]
+    },
+    "any_uncertainty_rate": {
+     "k": 3,
+     "n": 5,
+     "value": 0.6,
+     "ci95": [
+      0.2307,
+      0.8824
+     ]
+    }
+   },
+   "rows": [
+    {
+     "id": "RP001",
+     "gold": "LR-3",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 5.864,
+     "size_mm": 8.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "nodular hypervascular lesions are present in the right hepatic lobe on the arterial phase",
+      "washout": "on the portal venous phase, these lesions fade to background liver enhancement",
+      "capsule": "no capsule around any lesion",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "8 mm"
+    },
+    {
+     "id": "RP002",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 5.853,
+     "size_mm": 26.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "intense enhancement of the 2.6 cm lesion (late arterial phase)",
+      "washout": "decreased enhancement of the lesion on the portal venous phase with a faint capsule remaining; the lesion now appears to be isointense to background liver",
+      "capsule": "faint capsule remaining",
+      "growth": "mild hypointensity of a peripheral ovoid lesion in the right hepatic lobe ... decreased enhancement of the lesion on the portal venous phase",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "2.6 cm"
+    },
+    {
+     "id": "RP003",
+     "gold": "LR-M",
+     "pred": "defer",
+     "envelope": null,
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.388,
+     "size_mm": null,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [
+      "Rim APHE suggests LR-M (non-HCC malignancy)"
+     ],
+     "evidence": {
+      "aphe": "ring enhancement on arterial phase",
+      "washout": "progressive fill and without washout on delayed phase",
+      "capsule": "",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": ""
+    },
+    {
+     "id": "PMC001",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 6.353,
+     "size_mm": 43.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "not_documented",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "gradually increased in size from 15 mm to 43 mm over 47 months. On contrast-enhanced abdominal CT, the round-shaped hepatic mass showed arterial enhancement and delayed washout.",
+      "washout": "gradually increased in size from 15 mm to 43 mm over 47 months. On contrast-enhanced abdominal CT, the round-shaped hepatic mass showed arterial enhancement and delayed washout.",
+      "capsule": "",
+      "growth": "gradually increased in size from 15 mm to 43 mm over 47 months",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "43 mm"
+    },
+    {
+     "id": "PMC002",
+     "gold": "LR-3",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.033,
+     "size_mm": 29.0,
+     "features": {
+      "aphe": "not_documented",
+      "washout": "not_documented",
+      "capsule": "not_documented",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "",
+      "washout": "",
+      "capsule": "",
+      "growth": "In June 2021 the abdominal ultrasound revealed the growth of the nodule to a diameter of 29 mm.",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "29 mm"
+    }
+   ]
+  }
+ }
+}

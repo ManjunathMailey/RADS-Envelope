@@ -37,7 +37,11 @@ def _pipeline_row(case: dict, settings: Settings) -> tuple[dict, dict]:
     row = {"id": case["id"], "gold": case["gold"], "pred": _pred(r), "envelope": r.get("envelope"),
            "critical": bool(r.get("decision_critical")), "any_unresolved": bool(r.get("unresolved_features")),
            "consistent": out["consistency"]["consistent"], "contradiction": False,
-           "seconds": round(time.time() - t, 3), "size_mm": o["size_mm"]}
+           "seconds": round(time.time() - t, 3), "size_mm": o["size_mm"],
+           # kept so tolerance sensitivity and error analysis can be recomputed by the engine alone
+           "features": o["features"], "size_tolerance_mm": o["size_tolerance_mm"], "defer_reasons": o["defer_reasons"],
+           "evidence": {k: v.get("evidence", "") for k, v in o["extraction"].items() if isinstance(v, dict)},
+           "size_evidence": o["extraction"].get("size_evidence", "")}
     return row, o["features"]
 
 
@@ -65,7 +69,8 @@ def run(cases: list[dict], systems: tuple[str, ...] = SYSTEMS, samples: int = 1)
             rows["B1"].append({"id": c["id"], "gold": c["gold"], "pred": d["category"], "envelope": None,
                                "critical": None, "any_unresolved": None, "consistent": None,
                                "contradiction": d["contradiction"], "seconds": d.get("seconds"),
-                               "size_mm": d["size_mm"], "engine_category": d["engine_category"], "error": d["error"]})
+                               "size_mm": d["size_mm"], "engine_category": d["engine_category"], "error": d["error"],
+                               "features": d["features"]})
             feats["B1"].append(d["features"] or {})
     result = {}
     for s in systems:

@@ -47,7 +47,9 @@ def _chat(text: str, model: str) -> str:
     import ollama
     kwargs = dict(model=model, messages=[{"role": "system", "content": SYSTEM_DIRECT},
                                          {"role": "user", "content": text}],
-                  format=DirectAnswer.model_json_schema(), options={"temperature": 0.0}, keep_alive=llm.KEEP_ALIVE)
+                  format=DirectAnswer.model_json_schema(),
+                  options={"temperature": 0.0, "seed": llm.SAMPLE_SEED, "num_ctx": llm.NUM_CTX},  # same settings as ours
+                  keep_alive=llm.KEEP_ALIVE)
     if model.lower().startswith(llm.THINKING_PREFIXES):
         kwargs["think"] = False
     resp = ollama.chat(**kwargs)

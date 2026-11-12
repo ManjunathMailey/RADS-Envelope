@@ -17,6 +17,31 @@ MODEL = os.environ.get("RADS_MODEL", "qwen2.5:7b-instruct")
 KEEP_ALIVE = "60m"
 THINKING_PREFIXES = ("qwen3", "deepseek-r1", "gpt-oss")
 SAMPLE_TEMPERATURE = 0.7
+SAMPLE_SEED = 42                 # deterministic call: temperature 0 plus a fixed seed
+NUM_CTX = 4096                   # fixed context window, so results do not depend on server defaults
+
+# Prompt changes are allowed only in response to a development-set error and must cite the LI-RADS
+# v2018 definition they implement (docs/error_analysis_dev_before.md lists the errors behind these).
+_APHE = (
+    # LI-RADS v2018 CT/MRI lexicon, nonrim APHE: "nonrim-like enhancement in arterial phase unequivocally
+    # greater in whole or in part than liver"; rim APHE is an LR-M feature, not APHE. (dev error: PMC001)
+    "- aphe = NONRIM arterial phase hyperenhancement. It includes \"hyperenhancement on late arterial phase images\" "
+    "and \"hypervascular on the arterial phase\". Rim arterial phase hyperenhancement, rim enhancement or ring "
+    "enhancement is NOT aphe: state absent.\n")
+_WASHOUT = (
+    # LI-RADS v2018 CT/MRI lexicon, nonperipheral washout: "visually assessed temporal reduction in enhancement
+    # in whole or in part relative to composite liver tissue from earlier to later phase resulting in
+    # hypoenhancement in the extracellular phase". Iso-enhancement is not washout. (dev error: RP001)
+    "- washout = nonperipheral washout: a reduction in enhancement relative to the surrounding liver from an earlier "
+    "to a later phase, so that the lesion becomes HYPOenhancing to liver. Fading to iso-enhancement (\"fades to "
+    "background\", \"isointense to liver\", \"isoenhancing\") is NOT washout: state absent, unless hypoenhancement is "
+    "described. Peripheral washout is NOT washout: state absent.\n")
+_GROWTH = (
+    # LI-RADS v2018 CT/MRI core, threshold growth: size increase of a mass >= 50 % in <= 6 months, assessed on
+    # CT or MRI; ultrasound examinations are not used to assess growth. (dev error: PMC002)
+    "- growth = threshold growth versus a prior CT or MRI. Growth seen only on ultrasound, or a size change without "
+    "a prior CT or MRI comparison, is not_documented. \"No prior imaging\" means not_documented. \"Stable\" or "
+    "\"unchanged\" means absent.\n")
 
 SYSTEM = """You extract LI-RADS imaging features for ONE liver observation from a radiology report.
 For each feature return a state and the exact supporting words.
@@ -25,10 +50,7 @@ For each feature return a state and the exact supporting words.
 - uncertain: hedged language ("possible", "probable", "questionable", "subtle", "equivocal", "cannot be excluded").
 - not_documented: the feature is not mentioned at all.
 Definitions:
-- aphe = NONRIM arterial phase hyperenhancement. Rim arterial phase hyperenhancement or rim enhancement is NOT aphe: state absent.
-- washout = nonperipheral washout. Peripheral washout is NOT washout: state absent.
-- capsule = enhancing capsule.
-- growth = threshold growth versus prior imaging. "No prior imaging" means not_documented. "Stable" or "unchanged" means absent.
+""" + _APHE + _WASHOUT + "- capsule = enhancing capsule.\n" + _GROWTH + """\
 - af_malignant = ancillary features favouring malignancy (e.g. restricted diffusion, mild-moderate T2 hyperintensity, fat in mass).
 - af_benign = ancillary features favouring benignity (e.g. size stability over 2 years, marked T2 hyperintensity).
 - size_mm = largest diameter in millimetres (convert cm to mm). Use only a number written in the report.
@@ -67,9 +89,8 @@ def available(model: str = MODEL) -> tuple[bool, str]:
 
 def _chat(text: str, temperature: float, seed: int | None, model: str) -> Extraction:
     import ollama
-    options = {"temperature": temperature}
-    if seed is not None:
-        options["seed"] = seed
+    options = {"temperature": temperature, "num_ctx": NUM_CTX,
+               "seed": SAMPLE_SEED if seed is None else seed}
     kwargs = dict(model=model,
                   messages=[{"role": "system", "content": SYSTEM}, {"role": "user", "content": text}],
                   format=Extraction.model_json_schema(), options=options, keep_alive=KEEP_ALIVE)
