@@ -1,0 +1,8 @@
+# Data acquisition tools only (installed in .venv-data, separate from the app's .venv).
+idc-index
+openpyxl
+pydicom
+nibabel
+numpy
+matplotlib
+pytest

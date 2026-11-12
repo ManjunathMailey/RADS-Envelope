@@ -59,6 +59,11 @@ candidates; downloads stay in the git-ignored `data/raw/`:
 .\.venv\Scripts\python.exe data_tools\extract_candidates.py     # -> data/real/candidates_europepmc.csv
 .\.venv\Scripts\python.exe data_tools\merge_reviewed.py         # append rows marked review_status=accept
 ```
+
+Open CT datasets (WAW-TACE, HCC-TACE-Seg, TCGA-LIHC metadata) are fetched with the tools in
+`data_tools/` from a separate environment (`.venv-data`, `data_tools/requirements-data.txt`);
+`data/manifest.csv` records provenance and `data_tools/verify_manifest.py` re-checks every file.
+See [docs/DATA_SOURCES.md](docs/DATA_SOURCES.md).
 Results appear in the Evaluation view.
 
 ## Layout
