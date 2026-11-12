@@ -1,0 +1,6 @@
+id,url,author,license,modality,radiologist_category,status,category,envelope,decision_critical,exact,within_one,in_envelope,correct_deferral,seconds,extractor
+RP001,https://radiopaedia.org/cases/33880,Matt A. Morgan,CC BY-NC-SA 3.0,MRI,LR-3,assigned,LR-4,LR-4 LR-5,True,False,True,False,False,3.69,LLM (qwen2.5:7b-instruct)
+RP002,https://radiopaedia.org/cases/32877,Matt A. Morgan,CC BY-NC-SA 3.0,MRI,LR-5,assigned,LR-5,LR-5,False,True,True,True,False,4.21,LLM (qwen2.5:7b-instruct)
+RP003,https://radiopaedia.org/cases/92401,Luu Hanh,CC BY-NC-SA 3.0,MRI,LR-M,not_assignable,,,False,False,False,False,False,2.86,LLM (qwen2.5:7b-instruct)
+PMC001,https://pmc.ncbi.nlm.nih.gov/articles/PMC13584082/,Jang W et al. (Curr Med Imaging 2026),CC BY 4.0,CT+MRI,LR-5,assigned,LR-5,LR-5,False,True,True,True,False,4.41,LLM (qwen2.5:7b-instruct)
+PMC002,https://pmc.ncbi.nlm.nih.gov/articles/PMC10367410/,Surdea-Blaga T et al. (J Med Case Rep 2023),CC BY 4.0,MRI,LR-3,assigned,LR-4,LR-4 LR-5,True,False,True,False,False,3.05,LLM (qwen2.5:7b-instruct)

@@ -3,6 +3,6 @@
 __pycache__/
 .pytest_cache/
 *.pyc
+# raw downloads are never committed; derived results and manifests are
 data/raw/
-data/real/results.*
 data/real/candidates_*.csv

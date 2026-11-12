@@ -30,9 +30,8 @@ STATUS_ROWS = [
     {"source": "Ramaiah hospital reports", "url_or_doi": "via project guide",
      "license": "institutional (ethics approval required)", "notes": "requested / pending: through the project guide"},
     {"source": "PLC-CECT", "url_or_doi": "https://doi.org/10.57760/sciencedb.12207", "license": "CC BY 4.0",
-     "size_bytes": 42051498834, "n_records": "", "notes": "not downloaded: DataCite lists 2 files, 42.05 GB in total; "
-     "the Science Data Bank file API answered 'permission no access', so file listing needs the website; "
-     "needs go before any download"},
+     "size_bytes": 42051498834, "n_records": "", "notes": "skipped: requires login (Science Data Bank file API "
+     "answered 'permission no access'); DataCite lists 2 files, 42.05 GB in total"},
 ]
 
 

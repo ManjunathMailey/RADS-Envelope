@@ -1,0 +1,117 @@
+{
+ "generated_at": "2026-11-13T02:43:43",
+ "extractor": "llm",
+ "summary": {
+  "cases": 5,
+  "compared": 4,
+  "exact_agreement": 0.5,
+  "within_one": 1.0,
+  "radiologist_in_envelope": 0.5,
+  "decision_critical": 2,
+  "correct_deferrals": "0/1",
+  "not_assignable": 1,
+  "mean_seconds": 3.64
+ },
+ "rows": [
+  {
+   "id": "RP001",
+   "url": "https://radiopaedia.org/cases/33880",
+   "author": "Matt A. Morgan",
+   "license": "CC BY-NC-SA 3.0",
+   "modality": "MRI",
+   "radiologist_category": "LR-3",
+   "status": "assigned",
+   "category": "LR-4",
+   "envelope": [
+    "LR-4",
+    "LR-5"
+   ],
+   "decision_critical": true,
+   "exact": false,
+   "within_one": true,
+   "in_envelope": false,
+   "correct_deferral": false,
+   "seconds": 3.69,
+   "extractor": "LLM (qwen2.5:7b-instruct)"
+  },
+  {
+   "id": "RP002",
+   "url": "https://radiopaedia.org/cases/32877",
+   "author": "Matt A. Morgan",
+   "license": "CC BY-NC-SA 3.0",
+   "modality": "MRI",
+   "radiologist_category": "LR-5",
+   "status": "assigned",
+   "category": "LR-5",
+   "envelope": [
+    "LR-5"
+   ],
+   "decision_critical": false,
+   "exact": true,
+   "within_one": true,
+   "in_envelope": true,
+   "correct_deferral": false,
+   "seconds": 4.21,
+   "extractor": "LLM (qwen2.5:7b-instruct)"
+  },
+  {
+   "id": "RP003",
+   "url": "https://radiopaedia.org/cases/92401",
+   "author": "Luu Hanh",
+   "license": "CC BY-NC-SA 3.0",
+   "modality": "MRI",
+   "radiologist_category": "LR-M",
+   "status": "not_assignable",
+   "category": null,
+   "envelope": null,
+   "decision_critical": false,
+   "exact": false,
+   "within_one": false,
+   "in_envelope": false,
+   "correct_deferral": false,
+   "seconds": 2.86,
+   "extractor": "LLM (qwen2.5:7b-instruct)"
+  },
+  {
+   "id": "PMC001",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13584082/",
+   "author": "Jang W et al. (Curr Med Imaging 2026)",
+   "license": "CC BY 4.0",
+   "modality": "CT+MRI",
+   "radiologist_category": "LR-5",
+   "status": "assigned",
+   "category": "LR-5",
+   "envelope": [
+    "LR-5"
+   ],
+   "decision_critical": false,
+   "exact": true,
+   "within_one": true,
+   "in_envelope": true,
+   "correct_deferral": false,
+   "seconds": 4.41,
+   "extractor": "LLM (qwen2.5:7b-instruct)"
+  },
+  {
+   "id": "PMC002",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10367410/",
+   "author": "Surdea-Blaga T et al. (J Med Case Rep 2023)",
+   "license": "CC BY 4.0",
+   "modality": "MRI",
+   "radiologist_category": "LR-3",
+   "status": "assigned",
+   "category": "LR-4",
+   "envelope": [
+    "LR-4",
+    "LR-5"
+   ],
+   "decision_critical": true,
+   "exact": false,
+   "within_one": true,
+   "in_envelope": false,
+   "correct_deferral": false,
+   "seconds": 3.05,
+   "extractor": "LLM (qwen2.5:7b-instruct)"
+  }
+ ]
+}

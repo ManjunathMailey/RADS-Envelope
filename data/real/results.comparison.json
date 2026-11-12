@@ -1,0 +1,781 @@
+{
+ "generated_at": "2026-11-13T03:47:23",
+ "cases": 5,
+ "systems": {
+  "B1": {
+   "summary": {
+    "cases": 5,
+    "graded": 4,
+    "accuracy": {
+     "k": 2,
+     "n": 4,
+     "value": 0.5,
+     "ci95": [
+      0.15,
+      0.85
+     ]
+    },
+    "weighted_kappa": 0.6667,
+    "confusion": {
+     "labels": [
+      "LR-2",
+      "LR-3",
+      "LR-4",
+      "LR-5",
+      "other"
+     ],
+     "matrix": [
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       1,
+       1,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       1,
+       1,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     ]
+    },
+    "lr5_sensitivity": {
+     "k": 1,
+     "n": 2,
+     "value": 0.5,
+     "ci95": [
+      0.0945,
+      0.9055
+     ]
+    },
+    "lr5_specificity": {
+     "k": 2,
+     "n": 2,
+     "value": 1.0,
+     "ci95": [
+      0.3424,
+      1.0
+     ]
+    },
+    "pm1_band_coverage": {
+     "k": 4,
+     "n": 4,
+     "value": 1.0,
+     "ci95": [
+      0.5101,
+      1.0
+     ]
+    },
+    "mean_pm1_band_size": 2.75,
+    "contradiction_rate": {
+     "k": 1,
+     "n": 4,
+     "value": 0.25,
+     "ci95": [
+      0.0456,
+      0.6994
+     ]
+    },
+    "consistency_verified": null,
+    "correct_deferrals": {
+     "k": 0,
+     "n": 1,
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.7935
+     ]
+    },
+    "mean_seconds": 4.19,
+    "unparsed": 0
+   },
+   "rows": [
+    {
+     "id": "RP001",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": false,
+     "seconds": 4.281,
+     "size_mm": 8.0,
+     "engine_category": "LR-3",
+     "error": null
+    },
+    {
+     "id": "RP002",
+     "gold": "LR-5",
+     "pred": "LR-4",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": false,
+     "seconds": 4.829,
+     "size_mm": 26.0,
+     "engine_category": "LR-4",
+     "error": null
+    },
+    {
+     "id": "RP003",
+     "gold": "LR-M",
+     "pred": "not_assignable",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": null,
+     "seconds": 3.627,
+     "size_mm": null,
+     "engine_category": null,
+     "error": null
+    },
+    {
+     "id": "PMC001",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": true,
+     "seconds": 5.035,
+     "size_mm": 43.0,
+     "engine_category": "LR-4",
+     "error": null
+    },
+    {
+     "id": "PMC002",
+     "gold": "LR-3",
+     "pred": "LR-4",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": false,
+     "seconds": 3.18,
+     "size_mm": 29.0,
+     "engine_category": "LR-4",
+     "error": null
+    }
+   ]
+  },
+  "B2": {
+   "summary": {
+    "cases": 5,
+    "graded": 4,
+    "accuracy": {
+     "k": 3,
+     "n": 4,
+     "value": 0.75,
+     "ci95": [
+      0.3006,
+      0.9544
+     ]
+    },
+    "weighted_kappa": 0.5,
+    "confusion": {
+     "labels": [
+      "LR-2",
+      "LR-3",
+      "LR-4",
+      "LR-5",
+      "other"
+     ],
+     "matrix": [
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       2,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       1,
+       0,
+       1,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     ]
+    },
+    "lr5_sensitivity": {
+     "k": 1,
+     "n": 2,
+     "value": 0.5,
+     "ci95": [
+      0.0945,
+      0.9055
+     ]
+    },
+    "lr5_specificity": {
+     "k": 2,
+     "n": 2,
+     "value": 1.0,
+     "ci95": [
+      0.3424,
+      1.0
+     ]
+    },
+    "pm1_band_coverage": {
+     "k": 3,
+     "n": 4,
+     "value": 0.75,
+     "ci95": [
+      0.3006,
+      0.9544
+     ]
+    },
+    "mean_pm1_band_size": 2.75,
+    "contradiction_rate": {
+     "k": 0,
+     "n": 5,
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.4345
+     ]
+    },
+    "consistency_verified": {
+     "k": 5,
+     "n": 5,
+     "value": 1.0,
+     "ci95": [
+      0.5655,
+      1.0
+     ]
+    },
+    "correct_deferrals": {
+     "k": 1,
+     "n": 1,
+     "value": 1.0,
+     "ci95": [
+      0.2065,
+      1.0
+     ]
+    },
+    "mean_seconds": 0.003
+   },
+   "rows": [
+    {
+     "id": "RP001",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 0.01,
+     "size_mm": 8.0
+    },
+    {
+     "id": "RP002",
+     "gold": "LR-5",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 0.001,
+     "size_mm": 26.0
+    },
+    {
+     "id": "RP003",
+     "gold": "LR-M",
+     "pred": "defer",
+     "envelope": null,
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 0.0,
+     "size_mm": null
+    },
+    {
+     "id": "PMC001",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 0.001,
+     "size_mm": 43.0
+    },
+    {
+     "id": "PMC002",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 0.001,
+     "size_mm": 29.0
+    }
+   ]
+  },
+  "B3": {
+   "summary": {
+    "cases": 5,
+    "graded": 4,
+    "accuracy": {
+     "k": 1,
+     "n": 4,
+     "value": 0.25,
+     "ci95": [
+      0.0456,
+      0.6994
+     ]
+    },
+    "weighted_kappa": 0.4,
+    "confusion": {
+     "labels": [
+      "LR-2",
+      "LR-3",
+      "LR-4",
+      "LR-5",
+      "other"
+     ],
+     "matrix": [
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       2,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       1,
+       1,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     ]
+    },
+    "lr5_sensitivity": {
+     "k": 1,
+     "n": 2,
+     "value": 0.5,
+     "ci95": [
+      0.0945,
+      0.9055
+     ]
+    },
+    "lr5_specificity": {
+     "k": 2,
+     "n": 2,
+     "value": 1.0,
+     "ci95": [
+      0.3424,
+      1.0
+     ]
+    },
+    "pm1_band_coverage": {
+     "k": 4,
+     "n": 4,
+     "value": 1.0,
+     "ci95": [
+      0.5101,
+      1.0
+     ]
+    },
+    "mean_pm1_band_size": 2.75,
+    "contradiction_rate": {
+     "k": 0,
+     "n": 5,
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.4345
+     ]
+    },
+    "consistency_verified": {
+     "k": 5,
+     "n": 5,
+     "value": 1.0,
+     "ci95": [
+      0.5655,
+      1.0
+     ]
+    },
+    "correct_deferrals": {
+     "k": 1,
+     "n": 1,
+     "value": 1.0,
+     "ci95": [
+      0.2065,
+      1.0
+     ]
+    },
+    "mean_seconds": 4.507
+   },
+   "rows": [
+    {
+     "id": "RP001",
+     "gold": "LR-3",
+     "pred": "LR-4",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 5.74,
+     "size_mm": 8.0
+    },
+    {
+     "id": "RP002",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.6,
+     "size_mm": 26.0
+    },
+    {
+     "id": "RP003",
+     "gold": "LR-M",
+     "pred": "defer",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.855,
+     "size_mm": null
+    },
+    {
+     "id": "PMC001",
+     "gold": "LR-5",
+     "pred": "LR-4",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.889,
+     "size_mm": 43.0
+    },
+    {
+     "id": "PMC002",
+     "gold": "LR-3",
+     "pred": "LR-4",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.449,
+     "size_mm": 29.0
+    }
+   ]
+  },
+  "Ours": {
+   "summary": {
+    "cases": 5,
+    "graded": 4,
+    "accuracy": {
+     "k": 1,
+     "n": 4,
+     "value": 0.25,
+     "ci95": [
+      0.0456,
+      0.6994
+     ]
+    },
+    "weighted_kappa": 0.4,
+    "confusion": {
+     "labels": [
+      "LR-2",
+      "LR-3",
+      "LR-4",
+      "LR-5",
+      "other"
+     ],
+     "matrix": [
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       2,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       1,
+       1,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     ]
+    },
+    "lr5_sensitivity": {
+     "k": 1,
+     "n": 2,
+     "value": 0.5,
+     "ci95": [
+      0.0945,
+      0.9055
+     ]
+    },
+    "lr5_specificity": {
+     "k": 2,
+     "n": 2,
+     "value": 1.0,
+     "ci95": [
+      0.3424,
+      1.0
+     ]
+    },
+    "pm1_band_coverage": {
+     "k": 4,
+     "n": 4,
+     "value": 1.0,
+     "ci95": [
+      0.5101,
+      1.0
+     ]
+    },
+    "mean_pm1_band_size": 2.75,
+    "contradiction_rate": {
+     "k": 0,
+     "n": 5,
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.4345
+     ]
+    },
+    "consistency_verified": {
+     "k": 5,
+     "n": 5,
+     "value": 1.0,
+     "ci95": [
+      0.5655,
+      1.0
+     ]
+    },
+    "correct_deferrals": {
+     "k": 1,
+     "n": 1,
+     "value": 1.0,
+     "ci95": [
+      0.2065,
+      1.0
+     ]
+    },
+    "mean_seconds": 4.507,
+    "envelope_coverage": {
+     "k": 1,
+     "n": 4,
+     "value": 0.25,
+     "ci95": [
+      0.0456,
+      0.6994
+     ]
+    },
+    "mean_envelope_size": 1.5,
+    "alert_rate": {
+     "k": 2,
+     "n": 5,
+     "value": 0.4,
+     "ci95": [
+      0.1176,
+      0.7693
+     ]
+    },
+    "any_uncertainty_rate": {
+     "k": 4,
+     "n": 5,
+     "value": 0.8,
+     "ci95": [
+      0.3755,
+      0.9638
+     ]
+    }
+   },
+   "rows": [
+    {
+     "id": "RP001",
+     "gold": "LR-3",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 5.74,
+     "size_mm": 8.0
+    },
+    {
+     "id": "RP002",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.6,
+     "size_mm": 26.0
+    },
+    {
+     "id": "RP003",
+     "gold": "LR-M",
+     "pred": "defer",
+     "envelope": null,
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.855,
+     "size_mm": null
+    },
+    {
+     "id": "PMC001",
+     "gold": "LR-5",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.889,
+     "size_mm": 43.0
+    },
+    {
+     "id": "PMC002",
+     "gold": "LR-3",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.449,
+     "size_mm": 29.0
+    }
+   ]
+  }
+ }
+}
