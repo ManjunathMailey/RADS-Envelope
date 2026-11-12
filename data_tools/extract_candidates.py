@@ -29,8 +29,10 @@ BASE_COLUMNS = ["id", "url", "author", "license", "modality", "findings_text", "
                 "collected_by", "collected_on", "notes"]
 COLUMNS = BASE_COLUMNS + ["review_status", "source_paragraph", "category_sentence"]
 
-CATEGORY = re.compile(r"\b(?:LI-?RADS|LR)(?:\s*(?:v(?:ersion)?\s*)?20\d\d)?[\s:-]*(?:category\s*|cat\.?\s*)?"
-                      r"(?P<c>[1-5]|M|TIV|TR|NC)\b(?!\.\d|\d)", re.I)
+CATEGORY = re.compile(r"\b(?:LI-?RADS|LR|Liver Imaging Reporting and Data System)\)?"
+                      r"(?:\s*(?:v(?:ersion)?\s*)?20\d\d)?[\s:-]*"
+                      r"(?:(?:category|cat\.?|score|classification|grade)\s*(?:was|of|is|=)?[\s:-]*)?"
+                      r"(?:LR-?)?(?P<c>[1-5]|M|TIV|TR|NC)\b(?!\.\d|\d)", re.I)
 ULTRASOUND = re.compile(r"\b(ultrasound|ultrasonograph\w*|sonograph\w*|CEUS|contrast-enhanced US)\b", re.I)
 US_ABBR = re.compile(r"\bUS\b")
 LIVER = re.compile(r"\b(liver|hepatic|segment|lobe|hepatocellular|HCC|nodule|lesion|observation|mass)\b", re.I)
@@ -79,14 +81,20 @@ def sentences(text: str) -> list[str]:
     return [s for s in out if s.strip()]
 
 
-def category_sentences(text: str) -> list[tuple[str, list[str]]]:
-    """(sentence, categories) for sentences stating a CT/MRI LI-RADS category."""
+def stated_sentences(text: str) -> list[tuple[str, list[str], bool]]:
+    """(sentence, categories, mentions_ultrasound) for every sentence that states a LI-RADS category."""
     out = []
     for s in sentences(text):
         cats = [f"LR-{m.group('c').upper()}" for m in CATEGORY.finditer(s)]
-        if cats and not ULTRASOUND.search(s) and not US_ABBR.search(s):
-            out.append((s, cats))
+        if cats:
+            out.append((s, cats, bool(ULTRASOUND.search(s) or US_ABBR.search(s))))
     return out
+
+
+def category_sentences(text: str) -> list[tuple[str, list[str]]]:
+    """(sentence, categories) for sentences stating a CT/MRI category usable as the gold label;
+    sentences mentioning ultrasound or CEUS are not used for the label (but are still removed)."""
+    return [(s, cats) for s, cats, us in stated_sentences(text) if not us]
 
 
 def is_imaging_paragraph(text: str) -> bool:
@@ -134,11 +142,11 @@ def candidates_for(article: dict, root) -> list[dict]:
             cats = category_sentences(p)
             if not cats:
                 continue
-            removed = [s for s, _ in cats]
+            removed = [s for s, _, _ in stated_sentences(p)]          # every category statement goes
             findings, source = strip_sentences(p, removed), p
             if not is_imaging_paragraph(findings) and i > 0 and is_imaging_paragraph(paras[i - 1]):
-                prev_cats = [s for s, _ in category_sentences(paras[i - 1])]
-                findings = strip_sentences(paras[i - 1], prev_cats)
+                prev_stated = [s for s, _, _ in stated_sentences(paras[i - 1])]
+                findings = strip_sentences(paras[i - 1], prev_stated)
                 source = paras[i - 1] + "\n\n" + p
             if len(findings) < 60 or not is_imaging_paragraph(findings):
                 continue
@@ -147,6 +155,11 @@ def candidates_for(article: dict, root) -> list[dict]:
             note = f"{article['pmcid']}; section: {title or '(untitled)'}"
             if len(distinct) > 1:
                 note += f"; several categories stated ({', '.join(distinct)}): check which applies"
+            dup = next((r for r in rows if r["findings_text"] == findings), None)
+            if dup is not None:                                   # two statements about the same findings
+                dup["category_sentence"] += " | " + " | ".join(s for s in removed if s not in dup["category_sentence"])
+                dup["notes"] += f"; also stated: {', '.join(distinct)}"
+                continue
             rows.append({
                 "url": f"https://europepmc.org/article/PMC/{article['pmcid']}", "author": author,
                 "license": article["license"].upper(),

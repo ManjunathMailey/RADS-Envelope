@@ -39,6 +39,20 @@ def test_category_sentences_skip_ultrasound():
     assert extract.category_sentences("CEUS LR-5 was assigned.") == []
     assert extract.category_sentences("US LI-RADS 3 nodule.") == []
     assert extract.category_sentences("Per LI-RADS v2018 category 5 criteria.")[0][1] == ["LR-5"]
+    assert extract.category_sentences("Liver Imaging Reporting and Data System (LI-RADS) score was 4.")[0][1] == ["LR-4"]
+    assert extract.category_sentences("Two major features according to LI-RADS v2018 [30].") == []
+    assert extract.category_sentences("Evaluated with the CT/MRI LI-RADS (Version 2018) criteria.") == []
+
+
+def test_category_sentence_mentioning_ultrasound_is_removed_but_not_used_as_label():
+    jats = """<article><body><sec><title>Case</title>
+    <p>CT showed a 22 mm liver mass in segment 6 with arterial phase hyperenhancement and washout.
+    Knowing where the lesion was on CEUS, it was deemed a LI-RADS 4 lesion on CT. It was finally called LR-5 on MRI.</p>
+    </sec></body></article>"""
+    art = {"pmcid": "PMC2", "authors": "Doe J.", "journal": "J", "year": "2024", "license": "cc by"}
+    r = extract.candidates_for(art, ET.fromstring(jats))[0]
+    assert r["radiologist_category"] == "LR-5" and "LI-RADS" not in r["findings_text"] and "CEUS" not in r["findings_text"]
+    assert r["findings_text"].startswith("CT showed a 22 mm liver mass")
 
 
 def test_candidate_is_verbatim_without_figures_or_category():
