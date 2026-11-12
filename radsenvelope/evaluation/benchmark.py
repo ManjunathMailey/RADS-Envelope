@@ -3,8 +3,10 @@ Stress-test benchmark on controlled-ambiguity reports.
 
     python -m radsenvelope.evaluation.benchmark --n 200 --extractor lexicon
     python -m radsenvelope.evaluation.benchmark --n 200 --extractor llm
+    python -m radsenvelope.evaluation.benchmark --n 200 --compare     # B1 / B2 / B3 / Ours
 
-Writes data/benchmark/results_<extractor>.json (served to the Evaluation view).
+Writes data/benchmark/results_<extractor>.json (served to the Evaluation view);
+--compare writes data/benchmark/results_comparison.json.
 """
 from __future__ import annotations
 
@@ -49,13 +51,33 @@ def run(n: int, extractor: str, samples: int = 1, seed: int = 7) -> dict:
             "errors": [r for r in rows if r["pred_category"] != r["gold_category"]][:25]}
 
 
+def compare(n: int, seed: int = 7, samples: int = 1) -> dict:
+    """B1 / B2 / B3 / Ours on the same generated cases (gold category = ACR point category)."""
+    from .compare import run
+    cases = [{"id": c["id"], "text": c["report"], "gold": c["gold_category"], "gold_features": c["gold_features"],
+              "gold_size_mm": c["gold_size_mm"]} for c in generate(n, seed)]
+    return {"generated_at": datetime.now().isoformat(timespec="seconds"), "n": n, "seed": seed,
+            "samples": samples, "systems": run(cases, samples=samples)}
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--n", type=int, default=200)
     ap.add_argument("--extractor", choices=["lexicon", "llm", "auto"], default="lexicon")
     ap.add_argument("--samples", type=int, default=1)
     ap.add_argument("--seed", type=int, default=7)
+    ap.add_argument("--compare", action="store_true", help="run B1, B2, B3 and Ours side by side")
     a = ap.parse_args()
+    if a.compare:
+        from .compare import table
+        res = compare(a.n, a.seed, a.samples)
+        OUT_DIR.mkdir(parents=True, exist_ok=True)
+        path = OUT_DIR / "results_comparison.json"
+        path.write_text(json.dumps(res, indent=1), encoding="utf-8")
+        for t in table(res["systems"]):
+            print(json.dumps(t, ensure_ascii=False))
+        print(f"Saved {path}")
+        return
     res = run(a.n, a.extractor, a.samples, a.seed)
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     path = OUT_DIR / f"results_{a.extractor}.json"

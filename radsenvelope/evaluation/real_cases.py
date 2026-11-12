@@ -3,10 +3,14 @@ Evaluation on real, radiologist-written cases.
 
     python -m radsenvelope.evaluation.real_cases                  # LLM, lexicon fallback
     python -m radsenvelope.evaluation.real_cases --extractor lexicon
+    python -m radsenvelope.evaluation.real_cases --compare        # B1 / B2 / B3 / Ours side by side
 
 Input:  data/real/radiopaedia_cases.csv
         columns: id,url,author,license,modality,findings_text,radiologist_category,collected_by,collected_on,notes
-Output: data/real/results.json (served to the Evaluation view) and data/real/results.csv
+        optional feature-level gold: gold_aphe,gold_washout,gold_capsule,gold_growth (present / absent /
+        uncertain / not_documented) and gold_size_mm; per-feature F1 is reported where they are filled in.
+Output: data/real/results.json (served to the Evaluation view) and data/real/results.csv;
+        --compare writes data/real/results.comparison.json.
 Rows whose id, findings_text or radiologist_category starts with "TODO" are skipped.
 """
 from __future__ import annotations
@@ -88,14 +92,51 @@ def evaluate(rows: list[dict], extractor: str = "auto", samples: int = 1) -> dic
             "summary": summary, "rows": out_rows}
 
 
+GOLD_FEATURES = ("aphe", "washout", "capsule", "growth")
+OUT_COMPARE = ROOT / "data" / "real" / "results.comparison.json"
+_STATES = {"present", "absent", "uncertain", "not_documented"}
+
+
+def gold_features(row: dict) -> dict:
+    """Feature-level gold from the optional gold_* columns (blank = not annotated)."""
+    out = {}
+    for k in GOLD_FEATURES:
+        v = (row.get(f"gold_{k}") or "").strip().lower().replace(" ", "_")
+        if v in _STATES:
+            out[k] = v
+    return out
+
+
+def gold_size(row: dict) -> float | None:
+    try:
+        return float((row.get("gold_size_mm") or "").strip())
+    except ValueError:
+        return None
+
+
+def compare_cases(rows: list[dict]) -> list[dict]:
+    return [{"id": r.get("id"), "text": r["findings_text"], "gold": normalise(r.get("radiologist_category", "")),
+             "gold_features": gold_features(r), "gold_size_mm": gold_size(r)} for r in rows]
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--extractor", choices=["auto", "llm", "lexicon"], default="auto")
     ap.add_argument("--samples", type=int, default=1)
+    ap.add_argument("--compare", action="store_true", help="run B1, B2, B3 and Ours side by side")
     a = ap.parse_args()
     rows = load()
     if not rows:
         print(f"No cases found in {CASES} (TODO rows are skipped).")
+        return
+    if a.compare:
+        from .compare import run, table
+        res = run(compare_cases(rows), samples=a.samples)
+        OUT_COMPARE.write_text(json.dumps({"generated_at": datetime.now().isoformat(timespec="seconds"),
+                                           "cases": len(rows), "systems": res}, indent=1), encoding="utf-8")
+        for t in table(res):
+            print(json.dumps(t, ensure_ascii=False))
+        print(f"Saved {OUT_COMPARE}")
         return
     res = evaluate(rows, a.extractor, a.samples)
     OUT_JSON.write_text(json.dumps(res, indent=1), encoding="utf-8")

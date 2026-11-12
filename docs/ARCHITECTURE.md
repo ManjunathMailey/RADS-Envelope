@@ -106,7 +106,18 @@ ambiguity and of the extractor's own instability. Each feature records which sou
    envelope is known. Metrics: per-feature macro-F1, category accuracy, envelope exact match,
    decision-critical precision and recall, and alert burden (management-aware alerts vs flagging
    every uncertainty). Run for the lexicon baseline and the LLM extractor.
-3. **Planned.** MIMIC-IV-Note radiology reports (credentialed access; local inference only, as the
+3. **Baselines: "why not just ask the LLM?"** Every case is run through four systems:
+   B1 *LLM-direct* (the same local model returns features and a category in one schema-constrained
+   call with a compact v2018 summary; `evaluation/baselines.py`), B2 lexicon + rules, B3 LLM + rules
+   (point category only) and Ours (LLM + rules + envelope). Reported per system: accuracy, LR-5
+   sensitivity and specificity, ±1-band coverage and envelope coverage, all with 95 % Wilson
+   intervals; quadratic-weighted Cohen's kappa over LR-2..LR-5; a confusion matrix; mean envelope
+   size; alert rate. B1's *internal contradiction rate* compares its category with the engine
+   applied to its own features; for the rule-based systems it is zero by construction, and the
+   impression consistency check is reported as evidence. Optional feature-level gold columns
+   (`gold_aphe`, ..., `gold_size_mm`) give per-feature F1 on real cases;
+   `data_tools/annotator_kappa.py` measures inter-annotator agreement on them.
+4. **Planned.** MIMIC-IV-Note radiology reports (credentialed access; local inference only, as the
    data use agreement requires) and de-identified hospital reports under ethics approval.
 
 ## 8. Scope

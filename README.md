@@ -44,6 +44,8 @@ Requires Python 3.10+ and [Ollama](https://ollama.com). Default model: `qwen2.5:
 .\.venv\Scripts\python.exe -m radsenvelope.evaluation.real_cases                  # real cases
 .\.venv\Scripts\python.exe -m radsenvelope.evaluation.benchmark --extractor llm     # stress test, LLM
 .\.venv\Scripts\python.exe -m radsenvelope.evaluation.benchmark --extractor lexicon # stress test, baseline
+.\.venv\Scripts\python.exe -m radsenvelope.evaluation.real_cases --compare        # B1 LLM-direct / B2 / B3 / Ours
+.\.venv\Scripts\python.exe -m radsenvelope.evaluation.benchmark --compare         # same, on the stress test
 .\.venv\Scripts\python.exe -m pytest                                               # tests
 ```
 
