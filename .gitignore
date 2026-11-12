@@ -4,3 +4,4 @@ __pycache__/
 *.pyc
 data/raw/
 data/real/results.*
+data/real/candidates_*.csv

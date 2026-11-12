@@ -48,6 +48,15 @@ Requires Python 3.10+ and [Ollama](https://ollama.com). Default model: `qwen2.5:
 ```
 
 Real cases go in `data/real/radiopaedia_cases.csv` (one row per case, with source URL and author).
+
+Open-access case reports from Europe PMC (CC BY, CC BY-NC, CC0 only) can be harvested as review
+candidates; downloads stay in the git-ignored `data/raw/`:
+
+```powershell
+.\.venv\Scripts\python.exe data_tools\harvest_europepmc.py      # search + full text, cached, <= 3 req/s
+.\.venv\Scripts\python.exe data_tools\extract_candidates.py     # -> data/real/candidates_europepmc.csv
+.\.venv\Scripts\python.exe data_tools\merge_reviewed.py         # append rows marked review_status=accept
+```
 Results appear in the Evaluation view.
 
 ## Layout
