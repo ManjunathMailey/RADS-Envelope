@@ -176,7 +176,11 @@ function renderFindings() {
   const x = S.a.extractor;
   $("findingsNote").textContent = o.edited ? "Edited · updates instantly" : (x.used || "").startsWith("Lexicon") ? "Basic reading mode" : "Change any finding to update the result";
   const rows = FEATURES.map(([k, label]) => {
-    const st = o.features[k], ev = o.extraction[k].evidence, c = o.confidence[k] || {};
+    const st = o.features[k], c = o.confidence[k] || {}, lg = o.longitudinal;
+    let ev = o.extraction[k].evidence;
+    if (lg && lg.reported_evidence && k in lg.reported_evidence) {
+      ev = (k === "growth" && lg.applied) || (lg.ancillary_added || []).includes(k) ? FROM_PRIOR : lg.reported_evidence[k];
+    }
     const unsure = c.source === "extractor" ? `<span class="fu">The AI read this differently across runs (${Math.round(c.agreement * 100)}% agreement), so it is treated as possible.</span>` : "";
     const evText = ev === FROM_PRIOR ? FROM_PRIOR : ev ? "“" + esc(ev) + "”" : "Not mentioned in the report";
     return `<li><span class="fn">${label}</span>
@@ -205,6 +209,7 @@ async function recompute() {
     r.observations.forEach((x, i) => {
       obs[i].result = x.result;
       if (x.longitudinal) obs[i].longitudinal = x.longitudinal;
+      if (x.features) obs[i].features = x.features;          // the prior comparison may change growth
       if (obs[i].audit && x.result.status === "assigned") { obs[i].audit.computed = x.result.acr_category; obs[i].audit.contradiction = obs[i].audit.stated !== x.result.acr_category; }
     });
     Object.assign(S.a, { exam: r.exam, impression: r.impression, consistency: r.consistency });

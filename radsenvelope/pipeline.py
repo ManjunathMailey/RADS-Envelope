@@ -156,13 +156,40 @@ def apply_prior(states: dict, comparison: dict) -> tuple[dict, dict]:
 
 
 def compare_with_prior(states: dict, size_mm, tolerance: float, prior_mm, prior_date, current_date,
-                       modality, matching: str, prior_label=None) -> tuple[dict, dict]:
-    """Compare, merge, and build the longitudinal block."""
+                       modality, matching: str, prior_label=None, evidence: dict | None = None) -> tuple[dict, dict]:
+    """Compare, merge, and build the longitudinal block. The block stores everything
+    `recompare` needs: the prior measurement, dates, modality, the states the report gave
+    (before the merge) and the states the merge produced."""
     cmp = longitudinal.compare(size_mm, current_date, prior_mm, prior_date, modality, tolerance)
     merged, merge = apply_prior(states, cmp)
     block = {"matching": matching, "prior_label": prior_label, "prior_date": prior_date,
-             "current_date": current_date, **cmp, **merge}
+             "current_date": current_date, **cmp, **merge,
+             "reported_states": {k: states.get(k, NOT_DOCUMENTED) for k in PRIOR_FEATURES},
+             "applied_states": {k: merged.get(k, NOT_DOCUMENTED) for k in PRIOR_FEATURES},
+             "reported_evidence": dict(evidence or {})}
     return merged, block
+
+
+def recompare(features: dict, size_mm, tolerance: float, block: dict | None) -> tuple[dict, dict | None]:
+    """Redo the comparison after the radiologist edits the size or the tolerance changes.
+
+    A prior-derived feature still holding the value the merge gave it is reset to the report's
+    own value before re-merging; a feature the radiologist changed by hand is treated as an
+    explicit statement, so the merge policy keeps it and flags any disagreement."""
+    if not block or block.get("matching") in (None, "none") or block.get("prior_mm") is None:
+        return features, block
+    applied, reported = block.get("applied_states") or {}, block.get("reported_states") or {}
+    base = dict(features)
+    for k in PRIOR_FEATURES:
+        if k in applied and features.get(k) == applied[k]:
+            base[k] = reported.get(k, features.get(k))
+    merged, new = compare_with_prior(base, size_mm, tolerance, block["prior_mm"], block.get("prior_date"),
+                                     block.get("current_date"), block.get("prior_modality"), block["matching"],
+                                     block.get("prior_label"), block.get("reported_evidence"))
+    for k in ("prior_size_corrected_from",):
+        if k in block:
+            new[k] = block[k]
+    return merged, new
 
 
 def analyse_report(report: str, settings: Settings | None = None, prior: dict | None = None) -> dict:
@@ -193,9 +220,10 @@ def analyse_report(report: str, settings: Settings | None = None, prior: dict | 
                              current_mm=ex.size_mm, prior_mm=None,
                              explanation="No matching observation was found in the prior report.")
             else:
+                evidence = {k: extraction[k]["evidence"] for k in PRIOR_FEATURES}
                 states, block = compare_with_prior(states, ex.size_mm, tolerance, prior_obs[j][1],
                                                    prior.get("prior_date"), current_date, prior.get("modality"),
-                                                   method, prior_obs[j][0])
+                                                   method, prior_obs[j][0], evidence)
                 if prior_obs[j][2] is not None:
                     block["prior_size_corrected_from"] = prior_obs[j][2]
                 for k in (["growth"] if block["applied"] else []) + block["ancillary_added"]:

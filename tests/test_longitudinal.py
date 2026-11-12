@@ -237,6 +237,65 @@ def test_api_recompute_preserves_longitudinal():
     assert "Compared with prior MRI" in out["impression"] and out["consistency"]["consistent"]
 
 
+def _recompute(o, size=None, tol=2.0, **features):
+    body = {"observations": [{"label": o["label"], "features": dict(o["features"], **features),
+                              "size_mm": o["size_mm"] if size is None else size, "size_tolerance_mm": tol,
+                              "longitudinal": o["longitudinal"]}]}
+    return client.post("/api/recompute", json=body).json()
+
+
+def _s10(prior=None):
+    body = {"report": S10["report"], "extractor": "lexicon", "prior": prior or S10["prior"]}
+    return client.post("/api/analyse", json=body).json()["observations"][0]
+
+
+def test_recompute_redoes_comparison_when_size_is_edited():
+    o = _s10()
+    assert o["result"]["acr_category"] == "LR-5"
+    out = _recompute(o, size=12)                       # 10 -> 12 mm: +20%, only uncertain within +/-2 mm
+    ob = out["observations"][0]
+    assert ob["features"]["growth"] != "present" and ob["features"]["growth"] == "uncertain"
+    assert ob["longitudinal"]["current_mm"] == 12 and ob["longitudinal"]["rule"] == "threshold_growth_uncertain"
+    assert ob["result"]["acr_category"] == "LR-3"
+    assert "10 -> 12 mm (+20% in 123 days), threshold growth uncertain" in out["impression"]
+    assert "10 -> 21 mm" not in out["impression"] and out["consistency"]["consistent"]
+    back = _recompute({**o, "features": ob["features"], "longitudinal": ob["longitudinal"]}, size=21)
+    assert back["observations"][0]["features"]["growth"] == "present"         # edit undone: growth comes back
+    assert back["observations"][0]["result"]["acr_category"] == "LR-5"
+
+
+def test_recompute_redoes_comparison_when_tolerance_changes():
+    o = _s10(dict(S10["prior"], report="Segment VI: 13 mm observation.", prior_date="2026-07-14"))
+    assert o["features"]["growth"] == "uncertain"
+    ob = _recompute(o, tol=0.0)["observations"][0]     # measurement taken as exact: +62% in 122 days
+    assert ob["features"]["growth"] == "present" and ob["result"]["acr_category"] == "LR-5"
+
+
+def test_recompute_keeps_a_radiologist_edit_and_flags_conflict():
+    o = _s10()
+    ob = _recompute(o, growth="absent")["observations"][0]
+    assert ob["features"]["growth"] == "absent" and ob["result"]["acr_category"] == "LR-4"
+    assert ob["longitudinal"]["prior_conflict"] and not ob["longitudinal"]["applied"]
+
+
+def test_recompute_reverts_ancillary_flag_the_comparison_no_longer_supports():
+    report = "Segment II: 14 mm observation without arterial phase hyperenhancement. No washout. No capsule."
+    prior = {"report": "Segment II: 10 mm observation.", "prior_date": "2026-01-01", "current_date": "2026-11-13",
+             "modality": "CT"}
+    o = client.post("/api/analyse", json={"report": report, "extractor": "lexicon", "prior": prior}).json()["observations"][0]
+    assert o["features"]["af_malignant"] == "present"
+    ob = _recompute(o, size=11)["observations"][0]     # +1 mm: within tolerance, no longer subthreshold growth
+    assert ob["features"]["af_malignant"] == "not_documented" and ob["result"]["acr_category"] == "LR-3"
+
+
+def test_recompute_without_prior_is_unchanged():
+    body = {"observations": [{"label": "Segment VI", "size_mm": 18, "size_tolerance_mm": 2,
+                              "features": {"aphe": "present", "washout": "present", "capsule": "absent",
+                                           "growth": "not_documented"}}]}
+    ob = client.post("/api/recompute", json=body).json()["observations"][0]
+    assert set(ob) == {"label", "result"}
+
+
 def test_api_samples_unchanged_and_longitudinal_sample_served():
     assert len(client.get("/api/samples").json()) == 9
     assert [s["id"] for s in client.get("/api/samples/longitudinal").json()] == ["S10"]

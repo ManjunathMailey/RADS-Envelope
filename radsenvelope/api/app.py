@@ -26,7 +26,7 @@ from radsenvelope.engine.longitudinal import normalise_modality
 from radsenvelope.engine.ruleset import FEATURE_LABELS, FEATURES, get_ruleset
 from radsenvelope.export.fhir import to_fhir_bundle
 from radsenvelope.extraction import llm
-from radsenvelope.pipeline import Settings, analyse_report, finalize, run_observation
+from radsenvelope.pipeline import Settings, analyse_report, finalize, recompare, run_observation
 
 ROOT = Path(__file__).resolve().parents[2]
 WEB = ROOT / "web"
@@ -168,16 +168,26 @@ def analyse(req: AnalyseRequest):
 @app.post("/api/recompute")
 def recompute(req: RecomputeRequest):
     """Engine only: the radiologist corrected a feature or answered a decisive question.
-    A longitudinal block computed by /api/analyse is passed through unchanged."""
+    When an observation carries a longitudinal block, the comparison with the prior is redone
+    for the posted size and tolerance and the merge policy re-applied; the updated features are
+    returned with it."""
     obs = []
     for o in req.observations:
-        result = run_observation(o.label, o.features, o.size_mm, o.size_tolerance_mm, req.high_risk, o.defer_reasons)
-        item = {"label": o.label, "size_mm": o.size_mm, "features": o.features, "result": result}
-        if o.longitudinal is not None:
-            item["longitudinal"] = o.longitudinal
+        features, block = o.features, o.longitudinal
+        if block is not None:
+            features, block = recompare(o.features, o.size_mm, o.size_tolerance_mm, block)
+        result = run_observation(o.label, features, o.size_mm, o.size_tolerance_mm, req.high_risk, o.defer_reasons)
+        item = {"label": o.label, "size_mm": o.size_mm, "features": features, "result": result}
+        if block is not None:
+            item["longitudinal"] = block
         obs.append(item)
-    return {"observations": [{k: v for k, v in o.items() if k in ("label", "result", "longitudinal")} for o in obs],
-            **finalize(obs)}
+    out = []
+    for o in obs:
+        row = {"label": o["label"], "result": o["result"]}
+        if "longitudinal" in o:
+            row.update(longitudinal=o["longitudinal"], features=o["features"])
+        out.append(row)
+    return {"observations": out, **finalize(obs)}
 
 
 @app.post("/api/audit")

@@ -141,6 +141,12 @@ the extracted ones. Each observation carries a `longitudinal` block (sizes, perc
 interval, rule, explanation, matching method, conflict), and the impression gains one line per
 compared observation. The line states no category, so the consistency check is unchanged.
 
+**Re-computation.** The block also stores the prior measurement, dates, modality, the report's own
+states and the states the merge produced. When the radiologist edits the size or the tolerance
+changes, `/api/recompute` repeats the comparison and the merge: features that still hold their
+merged value restart from the report's value, while a feature edited by hand counts as an explicit
+statement and is kept, with a conflict warning if the prior disagrees.
+
 ## 10. FHIR export
 
 `export/fhir.py` maps an analysis to an HL7 FHIR R4 Bundle of type `collection`: one
