@@ -1,29 +1,29 @@
 {
- "generated_at": "2026-11-13T01:54:31",
+ "generated_at": "2026-11-13T02:55:41",
  "extractor": "llm",
  "samples": 1,
  "seed": 7,
  "summary": {
   "n": 200,
-  "category_accuracy": 0.915,
+  "category_accuracy": 0.98,
   "within_one": 1.0,
-  "envelope_exact": 0.8,
-  "gold_in_envelope": 0.92,
+  "envelope_exact": 0.87,
+  "gold_in_envelope": 0.985,
   "critical_precision": 1.0,
-  "critical_recall": 0.743,
-  "alert_rate": 0.405,
-  "any_uncertainty_rate": 0.635,
-  "size_accuracy": 0.875,
-  "seconds_per_report": 3.569
+  "critical_recall": 0.826,
+  "alert_rate": 0.45,
+  "any_uncertainty_rate": 0.65,
+  "size_accuracy": 1.0,
+  "seconds_per_report": 3.562
  },
  "features": {
   "aphe": {
-   "accuracy": 0.895,
-   "macro_f1": 0.812
+   "accuracy": 0.88,
+   "macro_f1": 0.741
   },
   "washout": {
    "accuracy": 0.94,
-   "macro_f1": 0.844
+   "macro_f1": 0.812
   },
   "capsule": {
    "accuracy": 1.0,
@@ -36,8 +36,8 @@
  },
  "errors": [
   {
-   "id": "B0011",
-   "report": "Segment VI: 14 mm observation with hyperenhancement on late arterial phase images, nonperipheral washout and an enhancing capsule on the delayed phase. Increased from 8 mm five months ago, threshold growth.",
+   "id": "B0035",
+   "report": "Segment VII: 24 mm observation with non-rim arterial phase hyperenhancement, washout on the delayed phase and an enhancing capsule on the delayed phase. Consistent with threshold growth.",
    "gold_category": "LR-5",
    "pred_category": "LR-4",
    "gold_envelope": [
@@ -49,114 +49,6 @@
    "gold_critical": false,
    "pred_critical": false,
    "pred_any_unresolved": false,
-   "extractor": "LLM (qwen2.5:7b-instruct)"
-  },
-  {
-   "id": "B0031",
-   "report": "Segment II: 10.5 mm observation with nonrim arterial phase hyperenhancement and an enhancing capsule on the delayed phase. No washout appearance. No prior imaging is available for comparison.",
-   "gold_category": "LR-4",
-   "pred_category": "LR-5",
-   "gold_envelope": [
-    "LR-4",
-    "LR-5"
-   ],
-   "pred_envelope": [
-    "LR-5"
-   ],
-   "gold_critical": true,
-   "pred_critical": false,
-   "pred_any_unresolved": true,
-   "extractor": "LLM (qwen2.5:7b-instruct)"
-  },
-  {
-   "id": "B0049",
-   "report": "Segment III: 9.5 mm observation with avid nonrim arterial enhancement and contrast that washes out by the portal venous phase. No capsule. Stable compared with the prior study.",
-   "gold_category": "LR-4",
-   "pred_category": "LR-5",
-   "gold_envelope": [
-    "LR-4",
-    "LR-5"
-   ],
-   "pred_envelope": [
-    "LR-5"
-   ],
-   "gold_critical": true,
-   "pred_critical": false,
-   "pred_any_unresolved": false,
-   "extractor": "LLM (qwen2.5:7b-instruct)"
-  },
-  {
-   "id": "B0063",
-   "report": "Segment III: 19.5 mm observation with non-peripheral washout on the portal venous phase. Questionable arterial phase hyperenhancement. No enhancing capsule. No prior imaging is available for comparison.",
-   "gold_category": "LR-3",
-   "pred_category": "LR-4",
-   "gold_envelope": [
-    "LR-3",
-    "LR-4",
-    "LR-5"
-   ],
-   "pred_envelope": [
-    "LR-4",
-    "LR-5"
-   ],
-   "gold_critical": true,
-   "pred_critical": true,
-   "pred_any_unresolved": true,
-   "extractor": "LLM (qwen2.5:7b-instruct)"
-  },
-  {
-   "id": "B0075",
-   "report": "Segment VI: 19.5 mm observation. Possible arterial phase hyperenhancement. Questionable washout on the delayed phase. No enhancing capsule. Increased from 11 mm five months ago, threshold growth.",
-   "gold_category": "LR-3",
-   "pred_category": "LR-4",
-   "gold_envelope": [
-    "LR-3",
-    "LR-4",
-    "LR-5"
-   ],
-   "pred_envelope": [
-    "LR-4",
-    "LR-5"
-   ],
-   "gold_critical": true,
-   "pred_critical": true,
-   "pred_any_unresolved": true,
-   "extractor": "LLM (qwen2.5:7b-instruct)"
-  },
-  {
-   "id": "B0079",
-   "report": "Segment II: 9.5 mm observation with nonrim arterial phase hyperenhancement and nonperipheral washout. Unchanged from the prior examination.",
-   "gold_category": "LR-4",
-   "pred_category": "LR-5",
-   "gold_envelope": [
-    "LR-4",
-    "LR-5"
-   ],
-   "pred_envelope": [
-    "LR-5"
-   ],
-   "gold_critical": true,
-   "pred_critical": false,
-   "pred_any_unresolved": true,
-   "extractor": "LLM (qwen2.5:7b-instruct)"
-  },
-  {
-   "id": "B0086",
-   "report": "Segment III: 19.5 mm observation with non-rim arterial phase hyperenhancement. No washout appearance. No capsule. No prior imaging is available for comparison.",
-   "gold_category": "LR-3",
-   "pred_category": "LR-4",
-   "gold_envelope": [
-    "LR-3",
-    "LR-4",
-    "LR-5"
-   ],
-   "pred_envelope": [
-    "LR-4",
-    "LR-5"
-   ],
-   "gold_critical": true,
-   "pred_critical": true,
-   "pred_any_unresolved": true,
    "extractor": "LLM (qwen2.5:7b-instruct)"
   },
   {
@@ -171,61 +63,6 @@
     "LR-4"
    ],
    "gold_critical": false,
-   "pred_critical": false,
-   "pred_any_unresolved": true,
-   "extractor": "LLM (qwen2.5:7b-instruct)"
-  },
-  {
-   "id": "B0139",
-   "report": "Segment VII: 10.5 mm observation with washout on the delayed phase. Possible arterial phase hyperenhancement. No enhancing capsule. Possible interval growth.",
-   "gold_category": "LR-3",
-   "pred_category": "LR-4",
-   "gold_envelope": [
-    "LR-3",
-    "LR-4",
-    "LR-5"
-   ],
-   "pred_envelope": [
-    "LR-4",
-    "LR-5"
-   ],
-   "gold_critical": true,
-   "pred_critical": true,
-   "pred_any_unresolved": true,
-   "extractor": "LLM (qwen2.5:7b-instruct)"
-  },
-  {
-   "id": "B0140",
-   "report": "Segment VI: 19.5 mm observation with nonrim arterial phase hyperenhancement. Equivocal washout. No capsule. No prior imaging is available for comparison.",
-   "gold_category": "LR-3",
-   "pred_category": "LR-4",
-   "gold_envelope": [
-    "LR-3",
-    "LR-4",
-    "LR-5"
-   ],
-   "pred_envelope": [
-    "LR-4",
-    "LR-5"
-   ],
-   "gold_critical": true,
-   "pred_critical": true,
-   "pred_any_unresolved": true,
-   "extractor": "LLM (qwen2.5:7b-instruct)"
-  },
-  {
-   "id": "B0141",
-   "report": "Segment VIII: 10.5 mm observation with washout on the delayed phase. No arterial phase hyperenhancement. Possible interval growth.",
-   "gold_category": "LR-3",
-   "pred_category": "LR-4",
-   "gold_envelope": [
-    "LR-3",
-    "LR-4"
-   ],
-   "pred_envelope": [
-    "LR-4"
-   ],
-   "gold_critical": true,
    "pred_critical": false,
    "pred_any_unresolved": true,
    "extractor": "LLM (qwen2.5:7b-instruct)"
@@ -249,23 +86,6 @@
    "extractor": "LLM (qwen2.5:7b-instruct)"
   },
   {
-   "id": "B0150",
-   "report": "Segment VII: 19.5 mm observation with contrast that washes out by the portal venous phase. Without arterial phase hyperenhancement. A questionable thin capsule. Stable compared with the prior study.",
-   "gold_category": "LR-3",
-   "pred_category": "LR-4",
-   "gold_envelope": [
-    "LR-3",
-    "LR-4"
-   ],
-   "pred_envelope": [
-    "LR-4"
-   ],
-   "gold_critical": true,
-   "pred_critical": false,
-   "pred_any_unresolved": true,
-   "extractor": "LLM (qwen2.5:7b-instruct)"
-  },
-  {
    "id": "B0178",
    "report": "Segment VIII: 1.05 cm observation with hyperenhancement on late arterial phase images and contrast that washes out by the portal venous phase. A questionable thin capsule. Increased from 6 mm five months ago, threshold growth.",
    "gold_category": "LR-5",
@@ -279,58 +99,6 @@
    ],
    "gold_critical": true,
    "pred_critical": false,
-   "pred_any_unresolved": true,
-   "extractor": "LLM (qwen2.5:7b-instruct)"
-  },
-  {
-   "id": "B0181",
-   "report": "Segment VIII: 19.5 mm observation with hyperenhancement on late arterial phase images. Possible enhancing capsule. Increased from 11 mm five months ago, threshold growth.",
-   "gold_category": "LR-5",
-   "pred_category": "LR-4",
-   "gold_envelope": [
-    "LR-5"
-   ],
-   "pred_envelope": [
-    "LR-4"
-   ],
-   "gold_critical": false,
-   "pred_critical": false,
-   "pred_any_unresolved": true,
-   "extractor": "LLM (qwen2.5:7b-instruct)"
-  },
-  {
-   "id": "B0189",
-   "report": "Segment IVa: 9.5 mm observation with avid nonrim arterial enhancement and an enhancing capsule. Possible interval growth.",
-   "gold_category": "LR-4",
-   "pred_category": "LR-5",
-   "gold_envelope": [
-    "LR-4",
-    "LR-5"
-   ],
-   "pred_envelope": [
-    "LR-5"
-   ],
-   "gold_critical": true,
-   "pred_critical": false,
-   "pred_any_unresolved": true,
-   "extractor": "LLM (qwen2.5:7b-instruct)"
-  },
-  {
-   "id": "B0197",
-   "report": "Segment V: 10.5 mm observation with avid nonrim arterial enhancement. No washout appearance. No capsule.",
-   "gold_category": "LR-3",
-   "pred_category": "LR-4",
-   "gold_envelope": [
-    "LR-3",
-    "LR-4",
-    "LR-5"
-   ],
-   "pred_envelope": [
-    "LR-4",
-    "LR-5"
-   ],
-   "gold_critical": true,
-   "pred_critical": true,
    "pred_any_unresolved": true,
    "extractor": "LLM (qwen2.5:7b-instruct)"
   }
