@@ -9,7 +9,7 @@ features, size tolerance and extractor disagreement, and raises an alert only wh
 lead to different patient management. The impression is generated from the rule output, so it
 cannot contradict the findings.
 
-Group 72 · Department of Computer Science and Engineering, M.S. Ramaiah University of Applied Sciences
+Batch No. 72 · Department of Computer Science and Engineering, M.S. Ramaiah University of Applied Sciences
 Guide: Mr. Karthik D U
 
 ## Features
