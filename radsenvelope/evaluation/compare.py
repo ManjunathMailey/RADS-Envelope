@@ -202,9 +202,6 @@ def main() -> None:
             print(path.name, json.dumps(t, ensure_ascii=False))
 
 
-if __name__ == "__main__":
-    main()
-
 
 def table(result: dict) -> list[dict]:
     """One flat row per system for printing."""
@@ -228,3 +225,7 @@ def table(result: dict) -> list[dict]:
             "alert rate": fmt(m.get("alert_rate")),
         })
     return out
+
+
+if __name__ == "__main__":
+    main()
