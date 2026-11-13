@@ -4,6 +4,9 @@
 system: LI-RADS
 modality: CT/MRI
 version: "2018"
+# Revision of this file's scope rules (the diagnostic table, ancillary rules and tie-break are unchanged).
+# scope.2: tumour thrombus (LR-TIV), more treatment terms (LR-TR), ultrasound-only assessments.
+revision: "scope.2"
 
 # Observation size buckets (mm). A size equal to a cut-off falls in the upper bucket.
 size_cutoffs_mm: [10, 20]
@@ -73,3 +76,28 @@ defer_keywords:
   "post-treatment": "Treated observation needs the LR-TR algorithm"
   "ablation zone": "Treated observation needs the LR-TR algorithm"
   "tace": "Treated observation needs the LR-TR algorithm"
+
+# Regular expressions (case-insensitive) for findings that put an observation outside the core table.
+defer_patterns:
+  # LI-RADS v2018 LR-TIV: "unequivocal enhancing soft tissue in vein, regardless of visualization of a
+  # parenchymal mass" (tumour in vein). Tumour thrombus is the same finding. (dev case EPMC008)
+  - pattern: '\btumou?r\s+thrombus\b'
+    reason: "Tumour in vein (LR-TIV)"
+  - pattern: '\benhancing\s+soft[\s-]+tissue\s+in\s+(?:the\s+)?(?:\w+\s+){0,2}veins?\b'
+    reason: "Tumour in vein (LR-TIV)"
+  - pattern: '\bthrombus\b[^.;]{0,60}\benhanc\w*|\benhancing\s+thrombus\b'
+    reason: "Tumour in vein (LR-TIV)"
+  # LI-RADS v2018 treatment response (LR-TR) applies to treated observations; the core table does not.
+  # Word boundaries keep "untreated" from matching.
+  - pattern: '\b(?:radio-?frequency\s+ablation|rfa|microwave\s+ablation|mwa|tare|y-?90|radio-?emboli[sz]ation|sbrt|post-?ablation)\b'
+    reason: "Treated observation needs the LR-TR algorithm"
+  - pattern: '\btreated\s+(?:lesion|observation|nodule|tumou?r)s?\b'
+    reason: "Treated observation needs the LR-TR algorithm"
+
+# Conditional rules: defer when "require_any" matches and "forbid_any" does not (case-insensitive).
+defer_conditions:
+  # LI-RADS CT/MRI applies to CT and MRI; ultrasound and CEUS have their own algorithms (US / CEUS LI-RADS).
+  # A CT/MRI report that merely mentions ultrasound is not deferred.
+  - reason: "Ultrasound-only assessment: LI-RADS CT/MRI does not apply (use US or CEUS LI-RADS)"
+    require_any: '\b(?:ultrasound|ultrasonograph\w*|sonograph\w*|ceus)\b'
+    forbid_any: '\b(?:arterial|portal\s+venous|portal\s+phase|delayed|hepatobiliary|t1\w*|t2\w*|ct|mri?|computed\s+tomography|magnetic\s+resonance)\b'

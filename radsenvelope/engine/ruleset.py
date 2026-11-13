@@ -118,6 +118,16 @@ class RuleSet:
     def defer_keywords(self) -> dict:
         return self.raw.get("defer_keywords", {})
 
+    def defer_patterns(self) -> list:
+        return self.raw.get("defer_patterns", [])
+
+    def defer_conditions(self) -> list:
+        return self.raw.get("defer_conditions", [])
+
+    @property
+    def revision(self) -> str:
+        return str(self.raw.get("revision", ""))
+
     @property
     def growth(self) -> dict:
         return self.raw["growth"]
