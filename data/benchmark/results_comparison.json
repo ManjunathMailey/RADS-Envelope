@@ -29472,6 +29472,7105 @@
      "size_evidence": "31 mm"
     }
    ]
+  },
+  "OursC": {
+   "summary": {
+    "cases": 200,
+    "graded": 200,
+    "accuracy": {
+     "k": 200,
+     "n": 200,
+     "value": 1.0,
+     "ci95": [
+      0.9812,
+      1.0
+     ]
+    },
+    "weighted_kappa": 1.0,
+    "confusion": {
+     "labels": [
+      "LR-2",
+      "LR-3",
+      "LR-4",
+      "LR-5",
+      "other"
+     ],
+     "matrix": [
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       49,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       93,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       58,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     ]
+    },
+    "lr5_sensitivity": {
+     "k": 58,
+     "n": 58,
+     "value": 1.0,
+     "ci95": [
+      0.9379,
+      1.0
+     ]
+    },
+    "lr5_specificity": {
+     "k": 142,
+     "n": 142,
+     "value": 1.0,
+     "ci95": [
+      0.9737,
+      1.0
+     ]
+    },
+    "pm1_band_coverage": {
+     "k": 200,
+     "n": 200,
+     "value": 1.0,
+     "ci95": [
+      0.9812,
+      1.0
+     ]
+    },
+    "mean_pm1_band_size": 2.71,
+    "contradiction_rate": {
+     "k": 0,
+     "n": 200,
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.0188
+     ]
+    },
+    "consistency_verified": {
+     "k": 200,
+     "n": 200,
+     "value": 1.0,
+     "ci95": [
+      0.9812,
+      1.0
+     ]
+    },
+    "correct_deferrals": {
+     "k": 0,
+     "n": 0,
+     "value": null,
+     "ci95": null
+    },
+    "deferral_precision": {
+     "k": 0,
+     "n": 0,
+     "value": null,
+     "ci95": null
+    },
+    "deferral_recall": {
+     "k": 0,
+     "n": 0,
+     "value": null,
+     "ci95": null
+    },
+    "mean_seconds": 3.79,
+    "envelope_coverage": {
+     "k": 200,
+     "n": 200,
+     "value": 1.0,
+     "ci95": [
+      0.9812,
+      1.0
+     ]
+    },
+    "mean_envelope_size": 1.625,
+    "alert_rate": {
+     "k": 101,
+     "n": 200,
+     "value": 0.505,
+     "ci95": [
+      0.4363,
+      0.5735
+     ]
+    },
+    "any_uncertainty_rate": {
+     "k": 136,
+     "n": 200,
+     "value": 0.68,
+     "ci95": [
+      0.6125,
+      0.7407
+     ]
+    },
+    "disagreement_cases": 2
+   },
+   "rows": [
+    {
+     "id": "B0001",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 5.359999999999999,
+     "size_mm": 29.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "non-rim arterial phase hyperenhancement",
+      "washout": "nonperipheral washout",
+      "capsule": "No enhancing capsule.",
+      "growth": "Increased from 17 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "29 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0002",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.031,
+     "size_mm": 20.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "nonrim arterial phase hyperenhancement",
+      "washout": "contrast that washes out by the portal venous phase",
+      "capsule": "No enhancing capsule",
+      "growth": "consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "20 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0003",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.046,
+     "size_mm": 19.0,
+     "features": {
+      "aphe": "present",
+      "washout": "uncertain",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "non-rim arterial phase hyperenhancement",
+      "washout": "possible subtle washout",
+      "capsule": "an enhancing capsule",
+      "growth": "Increased from 11 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "19 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0004",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.962,
+     "size_mm": 40.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "avid nonrim arterial enhancement",
+      "washout": "No washout appearance",
+      "capsule": "No capsule",
+      "growth": "Unchanged from the prior examination",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "40 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0005",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.386,
+     "size_mm": 21.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "uncertain",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "avid nonrim arterial enhancement",
+      "washout": "washout on the delayed phase",
+      "capsule": "questionable thin capsule",
+      "growth": "consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "21 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0006",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.924,
+     "size_mm": 10.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "Without arterial phase hyperenhancement.",
+      "washout": "washout on the delayed phase",
+      "capsule": "enhancing capsule on the delayed phase",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "10 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0007",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.244,
+     "size_mm": 10.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "uncertain",
+      "capsule": "uncertain",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "Without arterial phase hyperenhancement",
+      "washout": "No washout appearance",
+      "capsule": "Possible enhancing capsule",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "1 cm",
+     "disagreements": [
+      "washout"
+     ]
+    },
+    {
+     "id": "B0008",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.09,
+     "size_mm": 37.0,
+     "features": {
+      "aphe": "uncertain",
+      "washout": "present",
+      "capsule": "not_documented",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "questionable arterial phase hyperenhancement",
+      "washout": "non-peripheral washout on the portal venous phase",
+      "capsule": "",
+      "growth": "consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "3.7 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0009",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.976,
+     "size_mm": 23.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "avid nonrim arterial enhancement",
+      "washout": "",
+      "capsule": "No capsule",
+      "growth": "Increased from 13 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "23 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0010",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.876,
+     "size_mm": 10.0,
+     "features": {
+      "aphe": "not_documented",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "",
+      "washout": "No washout",
+      "capsule": "enhancing capsule on the delayed phase",
+      "growth": "consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "1 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0011",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.581,
+     "size_mm": 14.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "hyperenhancement on late arterial phase images",
+      "washout": "nonperipheral washout",
+      "capsule": "enhancing capsule on the delayed phase",
+      "growth": "Increased from 8 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "14 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0012",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.396,
+     "size_mm": 10.5,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "arterial phase hyperenhancement",
+      "washout": "nonperipheral washout",
+      "capsule": "No enhancing capsule",
+      "growth": "consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "10.5 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0013",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.033,
+     "size_mm": 10.5,
+     "features": {
+      "aphe": "absent",
+      "washout": "absent",
+      "capsule": "not_documented",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "Without arterial phase hyperenhancement",
+      "washout": "No washout appearance",
+      "capsule": "",
+      "growth": "Unchanged from the prior examination",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "10.5 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0014",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.94,
+     "size_mm": 25.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "without arterial phase hyperenhancement",
+      "washout": "washout on the delayed phase",
+      "capsule": "No capsule",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "2.5 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0015",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.989,
+     "size_mm": 9.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "not_documented",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "nonrim arterial phase hyperenhancement",
+      "washout": "washout on the delayed phase",
+      "capsule": "",
+      "growth": "Unchanged from the prior examination",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "9 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0016",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.417,
+     "size_mm": 20.0,
+     "features": {
+      "aphe": "not_documented",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "",
+      "washout": "non-peripheral washout on the portal venous phase",
+      "capsule": "enhancing capsule",
+      "growth": "Unchanged from the prior examination",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "20 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0017",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.19,
+     "size_mm": 9.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "Without arterial phase hyperenhancement",
+      "washout": "non-peripheral washout on the portal venous phase",
+      "capsule": "No capsule",
+      "growth": "Increased from 5 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "9 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0018",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.189,
+     "size_mm": 9.5,
+     "features": {
+      "aphe": "uncertain",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "questionable arterial phase hyperenhancement",
+      "washout": "No washout",
+      "capsule": "enhancing capsule on the delayed phase",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "0.95 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0019",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.849,
+     "size_mm": 11.0,
+     "features": {
+      "aphe": "not_documented",
+      "washout": "uncertain",
+      "capsule": "absent",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "",
+      "washout": "equivocal washout",
+      "capsule": "No enhancing capsule",
+      "growth": "Unchanged from the prior examination",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "11 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0020",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.097,
+     "size_mm": 31.0,
+     "features": {
+      "aphe": "uncertain",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "Possible arterial phase hyperenhancement",
+      "washout": "non-peripheral washout on the portal venous phase",
+      "capsule": "No enhancing capsule",
+      "growth": "Consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "31 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0021",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.993,
+     "size_mm": 44.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "with arterial phase hyperenhancement",
+      "washout": "No washout",
+      "capsule": "No enhancing capsule",
+      "growth": "Stable compared with the prior study",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "44 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0022",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.904,
+     "size_mm": 33.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "non-rim arterial phase hyperenhancement",
+      "washout": "",
+      "capsule": "No enhancing capsule.",
+      "growth": "Unchanged from the prior examination.",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "33 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0023",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.539,
+     "size_mm": 14.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "uncertain",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "1.4 cm observation with arterial phase hyperenhancement",
+      "washout": "No washout appearance",
+      "capsule": "Possible enhancing capsule",
+      "growth": "Consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "1.4 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0024",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.9859999999999998,
+     "size_mm": 9.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "No arterial phase hyperenhancement.",
+      "washout": "No washout.",
+      "capsule": "enhancing capsule on the delayed phase",
+      "growth": "consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "9 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0025",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.128,
+     "size_mm": 12.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "No arterial phase hyperenhancement.",
+      "washout": "non-peripheral washout on the portal venous phase",
+      "capsule": "No capsule.",
+      "growth": "Stable compared with the prior study.",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "12 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0026",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.351,
+     "size_mm": 34.0,
+     "features": {
+      "aphe": "uncertain",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "uncertain",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "Possible arterial phase hyperenhancement",
+      "washout": "No washout appearance",
+      "capsule": "No capsule",
+      "growth": "Possible interval growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "34 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0027",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.1080000000000005,
+     "size_mm": 41.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "uncertain",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "Without arterial phase hyperenhancement",
+      "washout": "non-peripheral washout on the portal venous phase",
+      "capsule": "No capsule",
+      "growth": "Possible interval growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "41 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0028",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.182,
+     "size_mm": 19.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "non-rim arterial phase hyperenhancement",
+      "washout": "washout on the delayed phase",
+      "capsule": "No enhancing capsule.",
+      "growth": "Increased from 11 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "19 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0029",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.259,
+     "size_mm": 37.0,
+     "features": {
+      "aphe": "uncertain",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "possible arterial phase hyperenhancement",
+      "washout": "",
+      "capsule": "enhancing capsule",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "3.7 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0030",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.096,
+     "size_mm": 19.5,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "",
+      "washout": "washes out by the portal venous phase",
+      "capsule": "enhancing capsule on the delayed phase",
+      "growth": "consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "1.95 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0031",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.495,
+     "size_mm": 10.5,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "nonrim arterial phase hyperenhancement",
+      "washout": "No washout appearance",
+      "capsule": "an enhancing capsule on the delayed phase",
+      "growth": "No prior imaging is available for comparison",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "10.5 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0032",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.161,
+     "size_mm": 22.0,
+     "features": {
+      "aphe": "uncertain",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "questionable arterial phase hyperenhancement",
+      "washout": "washout on the delayed phase",
+      "capsule": "enhancing capsule",
+      "growth": "Increased from 13 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "22 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0033",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.088,
+     "size_mm": 11.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "hyperenhancement on late arterial phase images",
+      "washout": "No washout",
+      "capsule": "an enhancing capsule",
+      "growth": "Increased from 6 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "11 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0034",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.399,
+     "size_mm": 23.0,
+     "features": {
+      "aphe": "uncertain",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "possible arterial phase hyperenhancement",
+      "washout": "No washout",
+      "capsule": "enhancing capsule",
+      "growth": "Unchanged from the prior examination",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "23 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0035",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.4939999999999998,
+     "size_mm": 24.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "non-rim arterial phase hyperenhancement",
+      "washout": "washout on the delayed phase",
+      "capsule": "enhancing capsule on the delayed phase",
+      "growth": "consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "24 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0036",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.2729999999999997,
+     "size_mm": 38.0,
+     "features": {
+      "aphe": "not_documented",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "",
+      "washout": "nonperipheral washout",
+      "capsule": "enhancing capsule",
+      "growth": "unchanged from the prior examination",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "38 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0037",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.161,
+     "size_mm": 10.5,
+     "features": {
+      "aphe": "absent",
+      "washout": "uncertain",
+      "capsule": "not_documented",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "No arterial phase hyperenhancement.",
+      "washout": "Equivocal washout.",
+      "capsule": "",
+      "growth": "Increased from 6 mm five months ago, threshold growth.",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "10.5 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0038",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.053999999999999,
+     "size_mm": 33.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "uncertain",
+      "capsule": "present",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "",
+      "washout": "questionable washout on the delayed phase",
+      "capsule": "enhancing capsule on the delayed phase",
+      "growth": "Unchanged from the prior examination",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "3.3 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0039",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.102,
+     "size_mm": 9.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "without arterial phase hyperenhancement",
+      "washout": "No washout",
+      "capsule": "enhancing capsule",
+      "growth": "Increased from 5 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "0.9 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0040",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.4899999999999998,
+     "size_mm": 10.5,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "nonrim arterial phase hyperenhancement",
+      "washout": "nonperipheral washout",
+      "capsule": "enhancing capsule on the delayed phase",
+      "growth": "consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "1.05 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0041",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.58,
+     "size_mm": 11.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "non-rim arterial phase hyperenhancement",
+      "washout": "No washout appearance",
+      "capsule": "enhancing capsule on the delayed phase",
+      "growth": "Increased from 6 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "11 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0042",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.9659999999999997,
+     "size_mm": 38.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "with hyperenhancement on late arterial phase images",
+      "washout": "No washout",
+      "capsule": "No enhancing capsule",
+      "growth": "Consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "38 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0043",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.9939999999999998,
+     "size_mm": 34.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "nonrim arterial phase hyperenhancement",
+      "washout": "non-peripheral washout on the portal venous phase",
+      "capsule": "No capsule",
+      "growth": "No prior imaging is available for comparison",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "34 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0044",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.944,
+     "size_mm": 9.5,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "not_documented",
+      "growth": "uncertain",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "without arterial phase hyperenhancement",
+      "washout": "nonperipheral washout",
+      "capsule": "",
+      "growth": "possible interval growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "9.5 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0045",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.007000000000001,
+     "size_mm": 30.0,
+     "features": {
+      "aphe": "present",
+      "washout": "uncertain",
+      "capsule": "present",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "with arterial phase hyperenhancement",
+      "washout": "possible subtle washout",
+      "capsule": "an enhancing capsule",
+      "growth": "Stable compared with the prior study",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "3 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0046",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.095000000000001,
+     "size_mm": 14.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "Without arterial phase hyperenhancement",
+      "washout": "washout on the delayed phase",
+      "capsule": "No enhancing capsule",
+      "growth": "Stable compared with the prior study",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "1.4 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0047",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.025,
+     "size_mm": 13.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "No arterial phase hyperenhancement.",
+      "washout": "washout on the delayed phase",
+      "capsule": "No enhancing capsule.",
+      "growth": "Unchanged from the prior examination.",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "13 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0048",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.9229999999999996,
+     "size_mm": 23.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "uncertain",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "nonrim arterial phase hyperenhancement",
+      "washout": "No washout",
+      "capsule": "questionable thin capsule",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "23 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0049",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.519,
+     "size_mm": 9.5,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "avid nonrim arterial enhancement",
+      "washout": "contrast that washes out by the portal venous phase",
+      "capsule": "No capsule",
+      "growth": "Stable compared with the prior study",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "9.5 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0050",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.823,
+     "size_mm": 32.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "nonrim arterial phase hyperenhancement",
+      "washout": "",
+      "capsule": "No capsule",
+      "growth": "consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "32 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0051",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.306,
+     "size_mm": 9.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "with arterial phase hyperenhancement",
+      "washout": "washout on the delayed phase",
+      "capsule": "an enhancing capsule",
+      "growth": "No prior imaging is available for comparison",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "9 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0052",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.842,
+     "size_mm": 9.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "",
+      "washout": "No washout appearance",
+      "capsule": "enhancing capsule",
+      "growth": "consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "0.9 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0053",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.9019999999999997,
+     "size_mm": 33.0,
+     "features": {
+      "aphe": "not_documented",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "uncertain",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "",
+      "washout": "washes out by the portal venous phase",
+      "capsule": "an enhancing capsule",
+      "growth": "possible interval growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "33 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0054",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.931,
+     "size_mm": 24.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "uncertain",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "non-rim arterial phase hyperenhancement",
+      "washout": "No washout",
+      "capsule": "No capsule",
+      "growth": "Possible interval growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "24 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0055",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.074,
+     "size_mm": 10.5,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "avid nonrim arterial enhancement",
+      "washout": "nonperipheral washout",
+      "capsule": "No enhancing capsule",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "",
+     "disagreements": []
+    },
+    {
+     "id": "B0056",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.963,
+     "size_mm": 27.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "uncertain",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "avid nonrim arterial enhancement",
+      "washout": "No washout",
+      "capsule": "questionable thin capsule",
+      "growth": "Stable compared with the prior study",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "27 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0057",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.608,
+     "size_mm": 10.5,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "avid nonrim arterial enhancement",
+      "washout": "contrast that washes out by the portal venous phase",
+      "capsule": "enhancing capsule on the delayed phase",
+      "growth": "consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "10.5 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0058",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.451,
+     "size_mm": 14.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "non-rim arterial phase hyperenhancement",
+      "washout": "nonperipheral washout",
+      "capsule": "enhancing capsule on the delayed phase",
+      "growth": "consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "14 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0059",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.296,
+     "size_mm": 7.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "avid nonrim arterial enhancement",
+      "washout": "No washout appearance",
+      "capsule": "an enhancing capsule",
+      "growth": "consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "0.7 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0060",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-3",
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.924,
+     "size_mm": 21.0,
+     "features": {
+      "aphe": "present",
+      "washout": "not_documented",
+      "capsule": "uncertain",
+      "growth": "uncertain",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "non-rim arterial phase hyperenhancement",
+      "washout": "",
+      "capsule": "questionable thin capsule",
+      "growth": "possible interval growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "21 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0061",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.8,
+     "size_mm": 41.0,
+     "features": {
+      "aphe": "not_documented",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "uncertain",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "",
+      "washout": "No washout",
+      "capsule": "No enhancing capsule",
+      "growth": "Possible interval growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "41 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0062",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.875,
+     "size_mm": 13.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "No arterial phase hyperenhancement",
+      "washout": "washes out by the portal venous phase",
+      "capsule": "enhancing capsule on the delayed phase",
+      "growth": "consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "",
+     "disagreements": []
+    },
+    {
+     "id": "B0063",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.099,
+     "size_mm": 19.5,
+     "features": {
+      "aphe": "uncertain",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "questionable arterial phase hyperenhancement",
+      "washout": "non-peripheral washout on the portal venous phase",
+      "capsule": "No enhancing capsule",
+      "growth": "No prior imaging is available for comparison",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "19.5 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0064",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.5309999999999997,
+     "size_mm": 32.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "avid nonrim arterial enhancement",
+      "washout": "No washout appearance",
+      "capsule": "an enhancing capsule",
+      "growth": "Increased from 19 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "3.2 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0065",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.6289999999999996,
+     "size_mm": 19.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "nonrim arterial phase hyperenhancement",
+      "washout": "non-peripheral washout on the portal venous phase",
+      "capsule": "an enhancing capsule on the delayed phase",
+      "growth": "Stable compared with the prior study",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "19 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0066",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.035,
+     "size_mm": 24.0,
+     "features": {
+      "aphe": "present",
+      "washout": "uncertain",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "avid nonrim arterial enhancement",
+      "washout": "questionable washout on the delayed phase",
+      "capsule": "an enhancing capsule",
+      "growth": "consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "2.4 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0067",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.042,
+     "size_mm": 9.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "No arterial phase hyperenhancement.",
+      "washout": "",
+      "capsule": "enhancing capsule on the delayed phase",
+      "growth": "Stable compared with the prior study.",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "0.9 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0068",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.216,
+     "size_mm": 9.5,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "Without arterial phase hyperenhancement",
+      "washout": "non-peripheral washout on the portal venous phase",
+      "capsule": "enhancing capsule",
+      "growth": "Unchanged from the prior examination",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "9.5 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0069",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.173,
+     "size_mm": 10.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "arterial phase hyperenhancement",
+      "washout": "No washout",
+      "capsule": "enhancing capsule on the delayed phase",
+      "growth": "Increased from 6 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "1 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0070",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.788,
+     "size_mm": 25.0,
+     "features": {
+      "aphe": "not_documented",
+      "washout": "present",
+      "capsule": "not_documented",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "",
+      "washout": "nonperipheral washout",
+      "capsule": "",
+      "growth": "consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "25 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0071",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.243,
+     "size_mm": 21.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "No arterial phase hyperenhancement.",
+      "washout": "washes out by the portal venous phase",
+      "capsule": "No enhancing capsule.",
+      "growth": "Increased from 12 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "2.1 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0072",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.5,
+     "size_mm": 44.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "not_documented",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "with arterial phase hyperenhancement",
+      "washout": "nonperipheral washout",
+      "capsule": "",
+      "growth": "increased from 26 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "44 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0073",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.881,
+     "size_mm": 44.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "absent",
+      "capsule": "not_documented",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "No arterial phase hyperenhancement.",
+      "washout": "No washout.",
+      "capsule": "",
+      "growth": "Consistent with threshold growth.",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "44 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0074",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.895,
+     "size_mm": 33.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "uncertain",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "avid nonrim arterial enhancement",
+      "washout": "No washout",
+      "capsule": "No enhancing capsule",
+      "growth": "Possible interval growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "33 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0075",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.665,
+     "size_mm": 19.5,
+     "features": {
+      "aphe": "uncertain",
+      "washout": "uncertain",
+      "capsule": "absent",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "Possible arterial phase hyperenhancement",
+      "washout": "Questionable washout on the delayed phase",
+      "capsule": "No enhancing capsule",
+      "growth": "Increased from 11 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "19.5 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0076",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.233,
+     "size_mm": 26.0,
+     "features": {
+      "aphe": "uncertain",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "Possible arterial phase hyperenhancement.",
+      "washout": "nonperipheral washout and an enhancing capsule on the delayed phase",
+      "capsule": "an enhancing capsule on the delayed phase",
+      "growth": "Consistent with threshold growth.",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "2.6 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0077",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.895,
+     "size_mm": 10.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "not_documented",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "non-rim arterial phase hyperenhancement",
+      "washout": "nonperipheral washout",
+      "capsule": "",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "10 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0078",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.6109999999999998,
+     "size_mm": 21.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "non-rim arterial phase hyperenhancement",
+      "washout": "non-peripheral washout on the portal venous phase",
+      "capsule": "an enhancing capsule on the delayed phase",
+      "growth": "consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "2.1 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0079",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.467,
+     "size_mm": 9.5,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "not_documented",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "nonrim arterial phase hyperenhancement",
+      "washout": "nonperipheral washout",
+      "capsule": "",
+      "growth": "unchanged from the prior examination",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "9.5 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0080",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.944,
+     "size_mm": 20.0,
+     "features": {
+      "aphe": "uncertain",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "possible arterial phase hyperenhancement",
+      "washout": "nonperipheral washout",
+      "capsule": "enhancing capsule",
+      "growth": "consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "2 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0081",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.492,
+     "size_mm": 19.5,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "uncertain",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "arterial phase hyperenhancement",
+      "washout": "non-peripheral washout on the portal venous phase",
+      "capsule": "questionable thin capsule",
+      "growth": "No prior imaging is available for comparison",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "1.95 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0082",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.484,
+     "size_mm": 19.5,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "non-rim arterial phase hyperenhancement",
+      "washout": "No washout appearance",
+      "capsule": "No enhancing capsule",
+      "growth": "consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "19.5 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0083",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.581,
+     "size_mm": 41.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "nonrim arterial phase hyperenhancement",
+      "washout": "No washout",
+      "capsule": "No capsule",
+      "growth": "Increased from 24 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "4.1 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0084",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.302,
+     "size_mm": 19.5,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "arterial phase hyperenhancement",
+      "washout": "non-peripheral washout on the portal venous phase",
+      "capsule": "an enhancing capsule on the delayed phase",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "",
+     "disagreements": []
+    },
+    {
+     "id": "B0085",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.982,
+     "size_mm": 31.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "not_documented",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "avid nonrim arterial enhancement",
+      "washout": "non-peripheral washout on the portal venous phase",
+      "capsule": "",
+      "growth": "consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "31 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0086",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.4299999999999997,
+     "size_mm": 19.5,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "non-rim arterial phase hyperenhancement",
+      "washout": "No washout appearance",
+      "capsule": "No capsule",
+      "growth": "No prior imaging is available for comparison",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "19.5 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0087",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.5559999999999996,
+     "size_mm": 18.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "uncertain",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "nonrim arterial phase hyperenhancement",
+      "washout": "contrast that washes out by the portal venous phase",
+      "capsule": "an enhancing capsule on the delayed phase",
+      "growth": "Possible interval growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "18 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0088",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.995,
+     "size_mm": 16.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "No arterial phase hyperenhancement.",
+      "washout": "No washout appearance.",
+      "capsule": "enhancing capsule",
+      "growth": "Unchanged from the prior examination.",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "16 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0089",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.452,
+     "size_mm": 13.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "non-rim arterial phase hyperenhancement",
+      "washout": "nonperipheral washout",
+      "capsule": "enhancing capsule",
+      "growth": "Unchanged from the prior examination",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "1.3 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0090",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-3",
+      "LR-4"
+     ],
+     "critical": true,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.961,
+     "size_mm": 20.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "avid nonrim arterial enhancement",
+      "washout": "No washout appearance",
+      "capsule": "No capsule",
+      "growth": "Unchanged from the prior examination",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "20 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0091",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.521,
+     "size_mm": 34.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "Without arterial phase hyperenhancement.",
+      "washout": "non-peripheral washout on the portal venous phase",
+      "capsule": "an enhancing capsule on the delayed phase",
+      "growth": "No prior imaging is available for comparison",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "34 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0092",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.394,
+     "size_mm": 8.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "uncertain",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "nonrim arterial phase hyperenhancement",
+      "washout": "washout on the delayed phase",
+      "capsule": "enhancing capsule",
+      "growth": "possible interval growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "0.8 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0093",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.428,
+     "size_mm": 9.5,
+     "features": {
+      "aphe": "uncertain",
+      "washout": "uncertain",
+      "capsule": "absent",
+      "growth": "uncertain",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "Possible arterial phase hyperenhancement",
+      "washout": "Possible subtle washout",
+      "capsule": "No enhancing capsule",
+      "growth": "Possible interval growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "9.5 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0094",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-3",
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.046,
+     "size_mm": 20.0,
+     "features": {
+      "aphe": "present",
+      "washout": "uncertain",
+      "capsule": "uncertain",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "hyperenhancement on late arterial phase images",
+      "washout": "equivocal washout",
+      "capsule": "questionable thin capsule",
+      "growth": "Unchanged from the prior examination",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "2 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0095",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.015,
+     "size_mm": 36.0,
+     "features": {
+      "aphe": "uncertain",
+      "washout": "present",
+      "capsule": "uncertain",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "possible arterial phase hyperenhancement",
+      "washout": "washout on the delayed phase",
+      "capsule": "possible enhancing capsule",
+      "growth": "consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "3.6 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0096",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.527,
+     "size_mm": 20.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "with arterial phase hyperenhancement",
+      "washout": "nonperipheral washout",
+      "capsule": "No enhancing capsule",
+      "growth": "Increased from 12 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "2 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0097",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.295,
+     "size_mm": 22.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "",
+      "washout": "No washout appearance",
+      "capsule": "No capsule",
+      "growth": "Unchanged from the prior examination",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "22 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0098",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.6959999999999997,
+     "size_mm": 10.5,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "nonrim arterial phase hyperenhancement",
+      "washout": "washout on the delayed phase",
+      "capsule": "an enhancing capsule on the delayed phase",
+      "growth": "Increased from 6 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "1.05 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0099",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.8569999999999998,
+     "size_mm": 9.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "No arterial phase hyperenhancement.",
+      "washout": "",
+      "capsule": "No capsule.",
+      "growth": "Unchanged from the prior examination.",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "9 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0100",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.613,
+     "size_mm": 8.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "hyperenhancement on late arterial phase images",
+      "washout": "washout on the delayed phase",
+      "capsule": "an enhancing capsule on the delayed phase",
+      "growth": "Stable compared with the prior study",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "0.8 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0101",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.439,
+     "size_mm": 19.5,
+     "features": {
+      "aphe": "absent",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "No arterial phase hyperenhancement",
+      "washout": "No washout",
+      "capsule": "enhancing capsule",
+      "growth": "consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "19.5 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0102",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.165,
+     "size_mm": 23.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "No arterial phase hyperenhancement.",
+      "washout": "No washout.",
+      "capsule": "enhancing capsule on the delayed phase",
+      "growth": "Increased from 13 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "23 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0103",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.384,
+     "size_mm": 9.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "No arterial phase hyperenhancement",
+      "washout": "No washout",
+      "capsule": "No enhancing capsule",
+      "growth": "Consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "9 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0104",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-3",
+      "LR-4"
+     ],
+     "critical": true,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.9659999999999997,
+     "size_mm": 20.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "",
+      "washout": "washes out by the portal venous phase",
+      "capsule": "No enhancing capsule",
+      "growth": "Unchanged from the prior examination",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "2 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0105",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.931,
+     "size_mm": 40.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "not_documented",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "avid nonrim arterial enhancement",
+      "washout": "No washout appearance",
+      "capsule": "",
+      "growth": "Stable compared with the prior study",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "4 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0106",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.179,
+     "size_mm": 9.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "Without arterial phase hyperenhancement",
+      "washout": "No washout",
+      "capsule": "enhancing capsule on the delayed phase",
+      "growth": "Increased from 5 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "0.9 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0107",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.8619999999999997,
+     "size_mm": 19.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "absent",
+      "capsule": "not_documented",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "No arterial phase hyperenhancement.",
+      "washout": "",
+      "capsule": "",
+      "growth": "Consistent with threshold growth.",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "1.9 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0108",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.465,
+     "size_mm": 26.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "arterial phase hyperenhancement",
+      "washout": "non-peripheral washout on the portal venous phase",
+      "capsule": "No capsule",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "2.6 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0109",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.913,
+     "size_mm": 39.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "No arterial phase hyperenhancement.",
+      "washout": "No washout appearance.",
+      "capsule": "No enhancing capsule.",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "39 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0110",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.536,
+     "size_mm": 15.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "nonrim arterial phase hyperenhancement",
+      "washout": "non-peripheral washout on the portal venous phase",
+      "capsule": "No capsule",
+      "growth": "consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "1.5 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0111",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.176,
+     "size_mm": 9.5,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "Without arterial phase hyperenhancement.",
+      "washout": "non-peripheral washout on the portal venous phase",
+      "capsule": "enhancing capsule",
+      "growth": "Unchanged from the prior examination.",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "9.5 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0112",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.445,
+     "size_mm": 11.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "with arterial phase hyperenhancement",
+      "washout": "contrast that washes out by the portal venous phase",
+      "capsule": "an enhancing capsule",
+      "growth": "consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "11 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0113",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.2509999999999994,
+     "size_mm": 7.0,
+     "features": {
+      "aphe": "present",
+      "washout": "uncertain",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "nonrim arterial phase hyperenhancement",
+      "washout": "questionable washout on the delayed phase",
+      "capsule": "an enhancing capsule on the delayed phase",
+      "growth": "Increased from 5 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "7 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0114",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.431,
+     "size_mm": 32.0,
+     "features": {
+      "aphe": "uncertain",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "Possible arterial phase hyperenhancement",
+      "washout": "No washout appearance",
+      "capsule": "No capsule",
+      "growth": "Consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "3.2 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0115",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.02,
+     "size_mm": 16.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "uncertain",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "No arterial phase hyperenhancement",
+      "washout": "washout on the delayed phase",
+      "capsule": "questionable thin capsule",
+      "growth": "consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "16 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0116",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.0120000000000005,
+     "size_mm": 43.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "uncertain",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "hyperenhancement on late arterial phase images",
+      "washout": "washout on the delayed phase",
+      "capsule": "No enhancing capsule",
+      "growth": "Possible interval growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "43 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0117",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.090000000000001,
+     "size_mm": 11.0,
+     "features": {
+      "aphe": "uncertain",
+      "washout": "not_documented",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "possible arterial phase hyperenhancement",
+      "washout": "",
+      "capsule": "enhancing capsule on the delayed phase",
+      "growth": "Increased from 6 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "11 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0118",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.8899999999999997,
+     "size_mm": 7.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "uncertain",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "arterial phase hyperenhancement",
+      "washout": "",
+      "capsule": "possible enhancing capsule",
+      "growth": "Stable compared with the prior study",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "7 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0119",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.015000000000001,
+     "size_mm": 44.0,
+     "features": {
+      "aphe": "present",
+      "washout": "uncertain",
+      "capsule": "present",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "hyperenhancement on late arterial phase images",
+      "washout": "equivocal washout",
+      "capsule": "an enhancing capsule",
+      "growth": "Unchanged from the prior examination",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "44 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0120",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.133,
+     "size_mm": 43.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "without arterial phase hyperenhancement",
+      "washout": "No washout",
+      "capsule": "enhancing capsule",
+      "growth": "Increased from 25 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "4.3 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0121",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.498,
+     "size_mm": 10.5,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "uncertain",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "hyperenhancement on late arterial phase images",
+      "washout": "No washout appearance",
+      "capsule": "questionable thin capsule",
+      "growth": "consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "10.5 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0122",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.094,
+     "size_mm": 9.5,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "not_documented",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "non-rim arterial phase hyperenhancement",
+      "washout": "washout on the delayed phase",
+      "capsule": "",
+      "growth": "Unchanged from the prior examination",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "0.95 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0123",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.216,
+     "size_mm": 20.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "avid nonrim arterial enhancement",
+      "washout": "contrast that washes out by the portal venous phase",
+      "capsule": "No enhancing capsule.",
+      "growth": "Increased from 12 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "20 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0124",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.041,
+     "size_mm": 33.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "Without arterial phase hyperenhancement",
+      "washout": "non-peripheral washout on the portal venous phase",
+      "capsule": "No enhancing capsule",
+      "growth": "consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "33 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0125",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-3",
+      "LR-4"
+     ],
+     "critical": true,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.5069999999999997,
+     "size_mm": 20.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "No arterial phase hyperenhancement",
+      "washout": "No washout appearance",
+      "capsule": "enhancing capsule on the delayed phase",
+      "growth": "Unchanged from the prior examination",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "2 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0126",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.101,
+     "size_mm": 17.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "No arterial phase hyperenhancement.",
+      "washout": "No washout appearance.",
+      "capsule": "enhancing capsule on the delayed phase",
+      "growth": "Stable compared with the prior study.",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "17 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0127",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.381,
+     "size_mm": 39.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "uncertain",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "hyperenhancement on late arterial phase images",
+      "washout": "No washout appearance",
+      "capsule": "an enhancing capsule",
+      "growth": "Possible interval growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "39 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0128",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.067,
+     "size_mm": 35.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "absent",
+      "capsule": "uncertain",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "No arterial phase hyperenhancement.",
+      "washout": "No washout appearance.",
+      "capsule": "A questionable thin capsule.",
+      "growth": "Unchanged from the prior examination.",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "3.5 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0129",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.9539999999999997,
+     "size_mm": 20.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "Without arterial phase hyperenhancement.",
+      "washout": "washout on the delayed phase",
+      "capsule": "an enhancing capsule",
+      "growth": "consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "20 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0130",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.8569999999999998,
+     "size_mm": 31.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "not_documented",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "non-rim arterial phase hyperenhancement",
+      "washout": "nonperipheral washout",
+      "capsule": "",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "31 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0131",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.943,
+     "size_mm": 28.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "Without arterial phase hyperenhancement",
+      "washout": "No washout appearance",
+      "capsule": "No capsule",
+      "growth": "Consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "28 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0132",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.561,
+     "size_mm": 22.0,
+     "features": {
+      "aphe": "uncertain",
+      "washout": "absent",
+      "capsule": "uncertain",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "Possible arterial phase hyperenhancement",
+      "washout": "No washout appearance",
+      "capsule": "A questionable thin capsule",
+      "growth": "Increased from 13 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "22 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0133",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.536,
+     "size_mm": 11.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "non-rim arterial phase hyperenhancement",
+      "washout": "No washout appearance",
+      "capsule": "enhancing capsule on the delayed phase",
+      "growth": "Stable compared with the prior study",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "11 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0134",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.86,
+     "size_mm": 28.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "nonrim arterial phase hyperenhancement",
+      "washout": "No washout",
+      "capsule": "an enhancing capsule",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "28 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0135",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.578,
+     "size_mm": 28.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "avid nonrim arterial enhancement",
+      "washout": "non-peripheral washout on the portal venous phase",
+      "capsule": "an enhancing capsule",
+      "growth": "Increased from 16 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "28 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0136",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.9619999999999997,
+     "size_mm": 13.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "avid nonrim arterial enhancement",
+      "washout": "No washout",
+      "capsule": "No enhancing capsule",
+      "growth": "Unchanged from the prior examination",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "13 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0137",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.2490000000000006,
+     "size_mm": 37.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "No arterial phase hyperenhancement",
+      "washout": "non-peripheral washout on the portal venous phase",
+      "capsule": "No capsule",
+      "growth": "Increased from 22 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "3.7 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0138",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.976,
+     "size_mm": 10.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "No arterial phase hyperenhancement.",
+      "washout": "No washout.",
+      "capsule": "enhancing capsule.",
+      "growth": "Unchanged from the prior examination.",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "1 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0139",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.4819999999999998,
+     "size_mm": 10.5,
+     "features": {
+      "aphe": "uncertain",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "uncertain",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "Possible arterial phase hyperenhancement",
+      "washout": "washout on the delayed phase",
+      "capsule": "No enhancing capsule",
+      "growth": "Possible interval growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "10.5 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0140",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.385,
+     "size_mm": 19.5,
+     "features": {
+      "aphe": "present",
+      "washout": "uncertain",
+      "capsule": "absent",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "nonrim arterial phase hyperenhancement",
+      "washout": "equivocal washout",
+      "capsule": "No capsule",
+      "growth": "No prior imaging is available for comparison",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "19.5 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0141",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.004,
+     "size_mm": 10.5,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "not_documented",
+      "growth": "uncertain",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "No arterial phase hyperenhancement.",
+      "washout": "washout on the delayed phase",
+      "capsule": "",
+      "growth": "Possible interval growth.",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "10.5 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0142",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.3779999999999997,
+     "size_mm": 8.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "avid nonrim arterial enhancement",
+      "washout": "nonperipheral washout",
+      "capsule": "No capsule",
+      "growth": "Unchanged from the prior examination",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "8 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0143",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.627,
+     "size_mm": 9.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "uncertain",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "hyperenhancement on late arterial phase images",
+      "washout": "contrast that washes out by the portal venous phase",
+      "capsule": "questionable thin capsule",
+      "growth": "Stable compared with the prior study",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "9 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0144",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.896,
+     "size_mm": 10.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "uncertain",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "nonrim arterial phase hyperenhancement",
+      "washout": "No washout",
+      "capsule": "No capsule",
+      "growth": "Possible interval growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "10 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0145",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.3979999999999997,
+     "size_mm": 26.0,
+     "features": {
+      "aphe": "uncertain",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "possible arterial phase hyperenhancement",
+      "washout": "No washout appearance",
+      "capsule": "enhancing capsule",
+      "growth": "consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "2.6 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0146",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.476,
+     "size_mm": 20.0,
+     "features": {
+      "aphe": "uncertain",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "Possible arterial phase hyperenhancement",
+      "washout": "washes out by the portal venous phase",
+      "capsule": "No capsule",
+      "growth": "consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "20 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0147",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.033,
+     "size_mm": 6.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "uncertain",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "nonrim arterial phase hyperenhancement",
+      "washout": "No washout",
+      "capsule": "questionable thin capsule",
+      "growth": "Stable compared with the prior study",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "6 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0148",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.021,
+     "size_mm": 9.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "No arterial phase hyperenhancement.",
+      "washout": "nonperipheral washout",
+      "capsule": "No capsule.",
+      "growth": "Unchanged from the prior examination.",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "9 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0149",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.098000000000001,
+     "size_mm": 6.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "not_documented",
+      "capsule": "present",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "No arterial phase hyperenhancement.",
+      "washout": "",
+      "capsule": "enhancing capsule on the delayed phase",
+      "growth": "No prior imaging is available for comparison.",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "0.6 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0150",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.237,
+     "size_mm": 19.5,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "uncertain",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "without arterial phase hyperenhancement",
+      "washout": "washes out by the portal venous phase",
+      "capsule": "questionable thin capsule",
+      "growth": "Stable compared with the prior study",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "19.5 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0151",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.067,
+     "size_mm": 36.0,
+     "features": {
+      "aphe": "not_documented",
+      "washout": "present",
+      "capsule": "not_documented",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "",
+      "washout": "washes out by the portal venous phase",
+      "capsule": "",
+      "growth": "Increased from 21 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "36 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0152",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.5749999999999997,
+     "size_mm": 44.0,
+     "features": {
+      "aphe": "uncertain",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "Possible arterial phase hyperenhancement",
+      "washout": "No washout",
+      "capsule": "enhancing capsule on the delayed phase",
+      "growth": "Increased from 26 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "44 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0153",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.963,
+     "size_mm": 20.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "",
+      "washout": "nonperipheral washout",
+      "capsule": "enhancing capsule",
+      "growth": "increased from 12 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "20 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0154",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.487,
+     "size_mm": 24.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "not_documented",
+      "growth": "uncertain",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "hyperenhancement on late arterial phase images",
+      "washout": "non-peripheral washout on the portal venous phase",
+      "capsule": "",
+      "growth": "possible interval growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "24 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0155",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.813,
+     "size_mm": 40.0,
+     "features": {
+      "aphe": "not_documented",
+      "washout": "uncertain",
+      "capsule": "absent",
+      "growth": "uncertain",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "",
+      "washout": "equivocal washout",
+      "capsule": "No capsule",
+      "growth": "Possible interval growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "4 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0156",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-3",
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.48,
+     "size_mm": 20.0,
+     "features": {
+      "aphe": "uncertain",
+      "washout": "absent",
+      "capsule": "not_documented",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "questionable arterial phase hyperenhancement",
+      "washout": "No washout",
+      "capsule": "",
+      "growth": "Increased from 12 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "20 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0157",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.064,
+     "size_mm": 19.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "uncertain",
+      "growth": "uncertain",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "without arterial phase hyperenhancement",
+      "washout": "washes out by the portal venous phase",
+      "capsule": "questionable thin capsule",
+      "growth": "possible interval growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "19 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0158",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.703,
+     "size_mm": 28.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "uncertain",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "non-rim arterial phase hyperenhancement",
+      "washout": "non-peripheral washout on the portal venous phase",
+      "capsule": "questionable thin capsule",
+      "growth": "Increased from 16 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "28 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0159",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.4029999999999996,
+     "size_mm": 9.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "uncertain",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "hyperenhancement on late arterial phase images",
+      "washout": "nonperipheral washout",
+      "capsule": "No enhancing capsule",
+      "growth": "Possible interval growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "9 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0160",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.138999999999999,
+     "size_mm": 19.0,
+     "features": {
+      "aphe": "present",
+      "washout": "uncertain",
+      "capsule": "absent",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "hyperenhancement on late arterial phase images",
+      "washout": "questionable washout on the delayed phase",
+      "capsule": "No enhancing capsule",
+      "growth": "Unchanged from the prior examination",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "19 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0161",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.2319999999999998,
+     "size_mm": 9.0,
+     "features": {
+      "aphe": "uncertain",
+      "washout": "present",
+      "capsule": "not_documented",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "questionable arterial phase hyperenhancement",
+      "washout": "washes out by the portal venous phase",
+      "capsule": "",
+      "growth": "consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "",
+     "disagreements": []
+    },
+    {
+     "id": "B0162",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.513,
+     "size_mm": 19.5,
+     "features": {
+      "aphe": "uncertain",
+      "washout": "absent",
+      "capsule": "not_documented",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "Possible arterial phase hyperenhancement",
+      "washout": "No washout appearance",
+      "capsule": "",
+      "growth": "Stable compared with the prior study",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "19.5 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0163",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.078,
+     "size_mm": 9.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "not_documented",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "nonrim arterial phase hyperenhancement",
+      "washout": "nonperipheral washout",
+      "capsule": "",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "",
+     "disagreements": []
+    },
+    {
+     "id": "B0164",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.4579999999999997,
+     "size_mm": 9.0,
+     "features": {
+      "aphe": "present",
+      "washout": "uncertain",
+      "capsule": "absent",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "nonrim arterial phase hyperenhancement",
+      "washout": "possible subtle washout",
+      "capsule": "No capsule",
+      "growth": "Unchanged from the prior examination",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "0.9 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0165",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.211,
+     "size_mm": 21.0,
+     "features": {
+      "aphe": "uncertain",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "Possible arterial phase hyperenhancement.",
+      "washout": "non-peripheral washout on the portal venous phase",
+      "capsule": "enhancing capsule",
+      "growth": "Increased from 12 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "21 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0166",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.296,
+     "size_mm": 19.5,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "Without arterial phase hyperenhancement.",
+      "washout": "nonperipheral washout and an enhancing capsule on the delayed phase",
+      "capsule": "nonperipheral washout and an enhancing capsule on the delayed phase",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "19.5 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0167",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.041,
+     "size_mm": 29.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "uncertain",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "No arterial phase hyperenhancement.",
+      "washout": "No washout.",
+      "capsule": "enhancing capsule on the delayed phase",
+      "growth": "Possible interval growth.",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "2.9 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0168",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.631,
+     "size_mm": 19.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "arterial phase hyperenhancement",
+      "washout": "contrast that washes out by the portal venous phase",
+      "capsule": "an enhancing capsule",
+      "growth": "Increased from 11 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "19 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0169",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4"
+     ],
+     "critical": true,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.06,
+     "size_mm": 19.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "Without arterial phase hyperenhancement",
+      "washout": "No washout",
+      "capsule": "enhancing capsule on the delayed phase",
+      "growth": "Stable compared with the prior study",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "19 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0170",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.827,
+     "size_mm": 20.0,
+     "features": {
+      "aphe": "not_documented",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "",
+      "washout": "nonperipheral washout",
+      "capsule": "enhancing capsule",
+      "growth": "consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "2 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0171",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.412,
+     "size_mm": 9.0,
+     "features": {
+      "aphe": "not_documented",
+      "washout": "present",
+      "capsule": "uncertain",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "",
+      "washout": "washout on the delayed phase",
+      "capsule": "questionable thin capsule",
+      "growth": "Increased from 5 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "9 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0172",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.921,
+     "size_mm": 10.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "non-rim arterial phase hyperenhancement",
+      "washout": "",
+      "capsule": "enhancing capsule",
+      "growth": "Stable compared with the prior study",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "10 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0173",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.435,
+     "size_mm": 10.0,
+     "features": {
+      "aphe": "uncertain",
+      "washout": "uncertain",
+      "capsule": "absent",
+      "growth": "uncertain",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "Possible arterial phase hyperenhancement",
+      "washout": "Questionable washout on the delayed phase",
+      "capsule": "No capsule",
+      "growth": "Possible interval growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "10 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0174",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.892,
+     "size_mm": 39.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "uncertain",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "with arterial phase hyperenhancement",
+      "washout": "No washout appearance",
+      "capsule": "No enhancing capsule",
+      "growth": "Possible interval growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "39 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0175",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.57,
+     "size_mm": 19.5,
+     "features": {
+      "aphe": "present",
+      "washout": "uncertain",
+      "capsule": "present",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "arterial phase hyperenhancement",
+      "washout": "questionable washout on the delayed phase",
+      "capsule": "an enhancing capsule",
+      "growth": "Unchanged from the prior examination",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "1.95 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0176",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.884,
+     "size_mm": 26.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "without arterial phase hyperenhancement",
+      "washout": "nonperipheral washout",
+      "capsule": "No capsule",
+      "growth": "consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "26 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0177",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.897,
+     "size_mm": 7.0,
+     "features": {
+      "aphe": "not_documented",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "",
+      "washout": "No washout",
+      "capsule": "No enhancing capsule",
+      "growth": "Stable compared with the prior study",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "0.7 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0178",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.293,
+     "size_mm": 10.5,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "uncertain",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "hyperenhancement on late arterial phase images",
+      "washout": "contrast that washes out by the portal venous phase",
+      "capsule": "questionable thin capsule",
+      "growth": "Increased from 6 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "1.05 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0179",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.924,
+     "size_mm": 21.0,
+     "features": {
+      "aphe": "present",
+      "washout": "uncertain",
+      "capsule": "absent",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "with arterial phase hyperenhancement",
+      "washout": "Possible subtle washout",
+      "capsule": "No enhancing capsule",
+      "growth": "Consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "21 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0180",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.467,
+     "size_mm": 21.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "uncertain",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "nonrim arterial phase hyperenhancement",
+      "washout": "contrast that washes out by the portal venous phase",
+      "capsule": "No capsule",
+      "growth": "Possible interval growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "21 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0181",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.527,
+     "size_mm": 19.5,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "uncertain",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "hyperenhancement on late arterial phase images",
+      "washout": "",
+      "capsule": "Possible enhancing capsule",
+      "growth": "Increased from 11 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "19.5 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0182",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-3",
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.875,
+     "size_mm": 21.0,
+     "features": {
+      "aphe": "uncertain",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "possible arterial phase hyperenhancement",
+      "washout": "washout on the delayed phase",
+      "capsule": "No enhancing capsule",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "21 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0183",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.546,
+     "size_mm": 20.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "nonrim arterial phase hyperenhancement",
+      "washout": "nonperipheral washout",
+      "capsule": "No enhancing capsule",
+      "growth": "Increased from 12 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "20 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0184",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.875,
+     "size_mm": 9.5,
+     "features": {
+      "aphe": "not_documented",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "uncertain",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "",
+      "washout": "No washout",
+      "capsule": "No capsule",
+      "growth": "Possible interval growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "0.95 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0185",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.5669999999999997,
+     "size_mm": 19.0,
+     "features": {
+      "aphe": "not_documented",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "",
+      "washout": "non-peripheral washout on the portal venous phase",
+      "capsule": "an enhancing capsule on the delayed phase",
+      "growth": "Stable compared with the prior study",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "1.9 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0186",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.087,
+     "size_mm": 9.5,
+     "features": {
+      "aphe": "absent",
+      "washout": "uncertain",
+      "capsule": "not_documented",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "Without arterial phase hyperenhancement",
+      "washout": "Questionable washout on the delayed phase",
+      "capsule": "",
+      "growth": "Stable compared with the prior study",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "9.5 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0187",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.929,
+     "size_mm": 45.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "without arterial phase hyperenhancement",
+      "washout": "nonperipheral washout",
+      "capsule": "No enhancing capsule",
+      "growth": "Unchanged from the prior examination",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "45 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0188",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.569,
+     "size_mm": 19.5,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "arterial phase hyperenhancement",
+      "washout": "No washout appearance",
+      "capsule": "enhancing capsule on the delayed phase",
+      "growth": "Unchanged from the prior examination",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "1.95 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0189",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.263,
+     "size_mm": 9.5,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "uncertain",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "avid nonrim arterial enhancement",
+      "washout": "",
+      "capsule": "an enhancing capsule",
+      "growth": "Possible interval growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "9.5 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0190",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.177,
+     "size_mm": 15.0,
+     "features": {
+      "aphe": "uncertain",
+      "washout": "present",
+      "capsule": "uncertain",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "questionable arterial phase hyperenhancement",
+      "washout": "non-peripheral washout on the portal venous phase",
+      "capsule": "questionable thin capsule",
+      "growth": "Unchanged from the prior examination",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "15 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0191",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.48,
+     "size_mm": 36.0,
+     "features": {
+      "aphe": "uncertain",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "Possible arterial phase hyperenhancement",
+      "washout": "No washout appearance",
+      "capsule": "No enhancing capsule",
+      "growth": "Stable compared with the prior study",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "3.6 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0192",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.521,
+     "size_mm": 15.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "arterial phase hyperenhancement",
+      "washout": "No washout",
+      "capsule": "enhancing capsule on the delayed phase",
+      "growth": "Increased from 9 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "15 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0193",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.705,
+     "size_mm": 44.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "No arterial phase hyperenhancement",
+      "washout": "washes out by the portal venous phase",
+      "capsule": "enhancing capsule on the delayed phase",
+      "growth": "Increased from 26 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "44 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0194",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.41,
+     "size_mm": 20.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "uncertain",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "2 cm observation with arterial phase hyperenhancement",
+      "washout": "No washout",
+      "capsule": "Possible enhancing capsule",
+      "growth": "Consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "2 cm",
+     "disagreements": []
+    },
+    {
+     "id": "B0195",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-3",
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.971,
+     "size_mm": 21.0,
+     "features": {
+      "aphe": "not_documented",
+      "washout": "uncertain",
+      "capsule": "not_documented",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "",
+      "washout": "equivocal washout",
+      "capsule": "",
+      "growth": "Increased from 12 mm five months ago, threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "2.1 cm",
+     "disagreements": [
+      "washout"
+     ]
+    },
+    {
+     "id": "B0196",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.923,
+     "size_mm": 44.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "No arterial phase hyperenhancement.",
+      "washout": "No washout.",
+      "capsule": "No enhancing capsule.",
+      "growth": "Consistent with threshold growth.",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "44 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0197",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.001,
+     "size_mm": 10.5,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "avid nonrim arterial enhancement",
+      "washout": "No washout appearance",
+      "capsule": "No capsule",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "",
+     "disagreements": []
+    },
+    {
+     "id": "B0198",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.012,
+     "size_mm": 19.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "Without arterial phase hyperenhancement.",
+      "washout": "washout on the delayed phase",
+      "capsule": "an enhancing capsule on the delayed phase",
+      "growth": "consistent with threshold growth",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "19 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0199",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.94,
+     "size_mm": 9.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "uncertain",
+      "capsule": "present",
+      "growth": "uncertain",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "No arterial phase hyperenhancement.",
+      "washout": "Equivocal washout.",
+      "capsule": "enhancing capsule.",
+      "growth": "Possible interval growth.",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "9 mm",
+     "disagreements": []
+    },
+    {
+     "id": "B0200",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.049,
+     "size_mm": 31.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "nonrim arterial phase hyperenhancement",
+      "washout": "nonperipheral washout",
+      "capsule": "No enhancing capsule",
+      "growth": "Stable compared with the prior study",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "31 mm",
+     "disagreements": []
+    }
+   ]
   }
+ },
+ "consensus_added": true,
+ "consensus_provenance": {
+  "generated_at": "2026-11-13T15:41:33",
+  "git": {
+   "commit": "872cb28773f2191b1d21a7d2a7c1044adced9628",
+   "dirty": true
+  },
+  "model": "qwen2.5:7b-instruct",
+  "prompt_hash": "7e69f08f6618d62e892b7522a57da7ee4cb05463b83f9b8fc3999267bd041111",
+  "b1_prompt_hash": "df9d166b2218575c589d84ab0249cdb296216d3afe8c9d69acfa35d6017ec076",
+  "method": "derived from the stored B3 and B2 extractions"
  }
 }

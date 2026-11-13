@@ -67,7 +67,7 @@ def b3_wrong(systems: dict, target: str = "Ours") -> str:
     """Among cases with a numeric reference where B3's single category is wrong: how often Ours raised a
     decision-critical alert, and how often the reference lay inside Ours' envelope."""
     b3 = {r["id"]: r for r in systems.get("B3", {}).get("rows", [])}
-    ours = {r["id"]: r for r in systems.get("Ours", {}).get("rows", [])}
+    ours = {r["id"]: r for r in systems.get(target, {}).get("rows", [])}
     graded = [i for i in ours if (ours[i]["gold"] or "")[-1:].isdigit()]
     wrong = [i for i in graded if b3.get(i, {}).get("pred") != ours[i]["gold"]]
     assigned = [i for i in wrong if (b3[i]["pred"] or "").startswith("LR-")]
@@ -153,7 +153,11 @@ def protocol() -> list[str]:
                  "that most misses were LLM feature misreads that the lexicon read correctly, we add the lexicon as a "
                  "second extractor in the existing consensus step. Decided before seeing its results: the primary system "
                  "becomes Ours-consensus; the previous LLM-only Ours is reported as an ablation regardless of which "
-                 "scores higher. No change to rules table, LLM prompt, or envelope logic.\"")
+                 "scores higher. No change to rules table, LLM prompt, or envelope logic.\" Committed before "
+                 "implementation (666ce64); Ours-consensus was then derived from the stored LLM and lexicon extractions, "
+                 "so no other arm was rerun. Freeze tag `eval-freeze-4` "
+                 f"{'at ' + git('rev-parse', '--verify', '--quiet', 'eval-freeze-4^{commit}')[:10] if git('rev-parse', '--verify', '--quiet', 'eval-freeze-4^{commit}') else '(not yet created)'}; "
+                 "the test-id list is unchanged.")
     lines.append("**Review of Europe PMC candidates.** Europe PMC candidate rows were pre-screened with AI assistance "
                  "against a fixed checklist (CT/MRI LI-RADS v2018; imaging findings present in the findings text; "
                  "reference category stated separately; at-risk liver; untreated observation; open licence), and every "
