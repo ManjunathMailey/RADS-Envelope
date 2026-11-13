@@ -82,17 +82,17 @@
         <div class="stat card">
           <span class="stat-who">Language model alone</span>
           <span class="stat-num" id="statB1">–</span>
-          <span class="stat-sub" id="problemNumber">of generated reports contradicted the model's own findings</span>
-          <span class="stat-sub2" id="statB1Real"></span>
+          <span class="stat-title">contradicted its own findings</span>
+          <span class="stat-ctx" id="problemNumber">Counts load from the evaluation results.</span>
         </div>
         <div class="stat card">
           <span class="stat-who accent">RADS-Envelope</span>
           <span class="stat-num" id="statOurs">–</span>
-          <span class="stat-sub">contradictions</span>
-          <span class="stat-sub2" id="statOursSub">By construction: the rule table computes the category.</span>
+          <span class="stat-title">contradictions</span>
+          <span class="stat-ctx" id="statOursCtx">By construction: the rule table computes the category.</span>
         </div>
+        <p class="source" id="problemSource">Contradiction = the model's category differs from the ACR table applied to the model's own features. Generated reports have rule-generated gold (robustness test); real cases are the development and held-out test cases. See the evaluation documentation.</p>
       </div>
-      <p class="source" id="problemSource"></p>
     </div>
   </section>
 

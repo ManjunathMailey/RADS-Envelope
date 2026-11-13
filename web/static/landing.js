@@ -27,20 +27,17 @@ function countUp(el, target, fmt) {
     const r = await fetch("/api/headline");
     if (!r.ok) return;
     const h = await r.json();
-    const rob = h.b1_contradiction.robustness, real = h.b1_contradiction.real_dev;
-    if (rob) {
-      countUp($("statB1"), rob.value, pct);
-      $("problemNumber").textContent = `of ${rob.n} generated reports contradicted the model's own findings (95% CI ${pct(rob.ci95[0])}–${pct(rob.ci95[1])})`;
+    const b1 = h.b1_contradiction || {}, rc = h.rule_contradiction || {};
+    const ctx = (p, ci) => `${p.k} of ${p.n} generated reports` + (ci && p.ci95 ? ` (95% CI ${pct(p.ci95[0])}–${pct(p.ci95[1])})` : "");
+    const real = (p) => `${p.k} of ${p.n} real published cases`;
+    if (b1.robustness) {
+      countUp($("statB1"), b1.robustness.value, pct);
+      $("problemNumber").textContent = [ctx(b1.robustness, true), b1.real_all && real(b1.real_all)].filter(Boolean).join(" · ");
     }
-    if (real) $("statB1Real").textContent = `and ${real.k} of ${real.n} real published cases`;
-    const ours = h.rule_contradiction && (h.rule_contradiction.robustness || h.rule_contradiction.real_dev);
-    if (ours) {
-      countUp($("statOurs"), ours.k, (v) => String(Math.round(v)));
-      $("statOursSub").textContent = `of ${ours.n} generated reports. By construction: the rule table computes the category.`;
+    if (rc.robustness) {
+      countUp($("statOurs"), rc.robustness.k, (v) => String(Math.round(v)));
+      $("statOursCtx").textContent = [ctx(rc.robustness, false), rc.real_all && real(rc.real_all), "by construction"].filter(Boolean).join(" · ");
     }
-    $("problemSource").textContent =
-      "Contradiction = the model's category differs from the ACR table applied to the model's own features. "
-      + "Generated reports have rule-generated gold (robustness test); real cases are development cases. See the evaluation documentation.";
   } catch (e) { /* keep the static text */ }
 })();
 

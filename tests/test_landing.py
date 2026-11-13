@@ -76,3 +76,14 @@ def test_brand_assets_are_served():
         assert client.get(path).status_code == 200
     html = client.get("/").text
     assert 'property="og:image"' in html and "favicon.svg" in html
+
+
+def test_headline_pools_real_cases_from_dev_and_test_files():
+    h = client.get("/api/headline").json()
+    for system, key in (("B1", "b1_contradiction"), ("OursC", "rule_contradiction")):
+        k = n = 0
+        for split in ("dev", "test"):
+            res = json.loads((ROOT / "data" / "real" / f"results.comparison.{split}.json").read_text(encoding="utf-8"))
+            rate = res["systems"][system]["summary"]["contradiction_rate"]
+            k, n = k + rate["k"], n + rate["n"]
+        assert (h[key]["real_all"]["k"], h[key]["real_all"]["n"]) == (k, n)

@@ -349,10 +349,21 @@ def headline():
     """Numbers for the landing page, read from the committed result files at request time."""
     rob = _read(ROOT / "data" / "benchmark" / "results_comparison.json")
     dev = _read(ROOT / "data" / "real" / "results.comparison.dev.json")
-    return {"b1_contradiction": {"robustness": _contradiction(rob), "real_dev": _contradiction(dev)},
-            # the primary system (rule-computed category): zero by construction, read from the same files
-            "rule_contradiction": {"robustness": _contradiction(rob, "OursC"), "real_dev": _contradiction(dev, "OursC")},
-        "sources": ["data/benchmark/results_comparison.json", "data/real/results.comparison.dev.json"]}
+    test = _read(ROOT / "data" / "real" / "results.comparison.test.json")
+
+    def block(system: str) -> dict:
+        parts = {"robustness": _contradiction(rob, system), "real_dev": _contradiction(dev, system),
+                 "real_test": _contradiction(test, system)}
+        real = [p for p in (parts["real_dev"], parts["real_test"]) if p]
+        if real:                                            # pooled real cases (development + held-out test)
+            k, n = sum(p["k"] for p in real), sum(p["n"] for p in real)
+            parts["real_all"] = {"k": k, "n": n, "value": round(k / n, 4) if n else None}
+        return parts
+
+    # B1 = language model alone; OursC = the primary system (rule-computed category, zero by construction)
+    return {"b1_contradiction": block("B1"), "rule_contradiction": block("OursC"),
+            "sources": ["data/benchmark/results_comparison.json", "data/real/results.comparison.dev.json",
+                        "data/real/results.comparison.test.json"]}
 
 
 @app.get("/api/example")
