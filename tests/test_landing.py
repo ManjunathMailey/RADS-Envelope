@@ -51,3 +51,28 @@ def test_example_is_a_development_case():
     if split_file.exists():
         split = {r["id"]: r["split"] for r in csv.DictReader(open(split_file, encoding="utf-8"))}
         assert split[x["id"]] == "dev"                                    # never a held-out test case
+
+
+def test_headline_reports_rule_contradictions_from_result_files():
+    h = client.get("/api/headline").json()["rule_contradiction"]
+    res = json.loads((ROOT / "data" / "benchmark" / "results_comparison.json").read_text(encoding="utf-8"))
+    rate = res["systems"]["OursC"]["summary"]["contradiction_rate"]
+    assert (h["robustness"]["k"], h["robustness"]["n"]) == (rate["k"], rate["n"])
+
+
+def test_landing_demo_is_computed_by_the_engine():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("landing_demo", ROOT / "data_tools" / "landing_demo.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    stored = json.loads((ROOT / "web" / "static" / "landing_demo.json").read_text(encoding="utf-8"))
+    assert stored == json.loads(json.dumps(mod.build(), ensure_ascii=False))       # regenerate with data_tools/landing_demo.py
+    assert len(stored["documented"]["envelope"]) > 1 and stored["documented"]["decision_critical"]
+    assert all(len(a["envelope"]) == 1 for a in stored["answers"].values())        # one answer settles it
+
+
+def test_brand_assets_are_served():
+    for path in ("/static/brand/favicon.svg", "/static/brand/favicon-32.png", "/static/brand/og.png", "/static/landing_demo.json"):
+        assert client.get(path).status_code == 200
+    html = client.get("/").text
+    assert 'property="og:image"' in html and "favicon.svg" in html

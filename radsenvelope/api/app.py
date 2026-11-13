@@ -337,19 +337,21 @@ def evaluation():
 EXAMPLE_CASE = "RP002"          # a development case (never a held-out test case) for the landing page
 
 
-def _contradiction(res: dict | None) -> dict | None:
-    if not res:
+def _contradiction(res: dict | None, system: str = "B1") -> dict | None:
+    if not res or system not in res.get("systems", {}):
         return None
-    rate = res["systems"]["B1"]["summary"].get("contradiction_rate")
+    rate = res["systems"][system]["summary"].get("contradiction_rate")
     return {**rate, "label": res.get("label") or res.get("split"), "generated_at": res.get("generated_at")} if rate else None
 
 
 @app.get("/api/headline")
 def headline():
     """Numbers for the landing page, read from the committed result files at request time."""
-    return {"b1_contradiction": {
-        "robustness": _contradiction(_read(ROOT / "data" / "benchmark" / "results_comparison.json")),
-        "real_dev": _contradiction(_read(ROOT / "data" / "real" / "results.comparison.dev.json"))},
+    rob = _read(ROOT / "data" / "benchmark" / "results_comparison.json")
+    dev = _read(ROOT / "data" / "real" / "results.comparison.dev.json")
+    return {"b1_contradiction": {"robustness": _contradiction(rob), "real_dev": _contradiction(dev)},
+            # the primary system (rule-computed category): zero by construction, read from the same files
+            "rule_contradiction": {"robustness": _contradiction(rob, "OursC"), "real_dev": _contradiction(dev, "OursC")},
         "sources": ["data/benchmark/results_comparison.json", "data/real/results.comparison.dev.json"]}
 
 
