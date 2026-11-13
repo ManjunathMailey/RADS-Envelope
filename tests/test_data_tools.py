@@ -4,6 +4,8 @@ import importlib.util
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
+import pytest
+
 TOOLS = Path(__file__).resolve().parents[1] / "data_tools"
 
 
@@ -109,6 +111,23 @@ def test_candidate_is_verbatim_without_figures_or_category():
                                   "An enhancing capsule was seen.")
     assert "LI-RADS 5" in r["category_sentence"] and "LI-RADS" not in r["findings_text"]
     assert r["review_status"] == "" and r["url"].endswith("/PMC1")
+
+
+def test_extractor_refuses_to_overwrite_reviewed_file(tmp_path, monkeypatch):
+    reviewed = tmp_path / "candidates.csv"
+    with open(reviewed, "w", newline="", encoding="utf-8") as fh:
+        w = csv.DictWriter(fh, fieldnames=extract.COLUMNS)
+        w.writeheader()
+        w.writerow({**{c: "" for c in extract.COLUMNS}, "id": "EPMC-CAND-0001", "review_status": "accept"})
+    before = reviewed.read_bytes()
+    monkeypatch.setattr(extract, "OUT", reviewed)
+    with pytest.raises(SystemExit, match="review decisions"):
+        extract.main([])
+    assert reviewed.read_bytes() == before                      # untouched
+    assert extract.has_review(reviewed)
+    unreviewed = tmp_path / "fresh.csv"
+    unreviewed.write_text(",".join(extract.COLUMNS) + "\nX" + "," * (len(extract.COLUMNS) - 1) + "\n", encoding="utf-8")
+    assert not extract.has_review(unreviewed) and not extract.has_review(tmp_path / "missing.csv")
 
 
 def test_merge_appends_accepted_rows_once(tmp_path):

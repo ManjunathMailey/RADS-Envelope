@@ -1,0 +1,28 @@
+id,source,category,split,forced_dev_reason
+EPMC001,europepmc,LR-5,dev,article text shown during harvester development
+EPMC002,europepmc,LR-3,test,
+EPMC003,europepmc,LR-M,test,
+EPMC004,europepmc,LR-5,test,
+EPMC005,europepmc,LR-5,test,
+EPMC006,europepmc,LR-5,test,
+EPMC007,europepmc,LR-5,test,
+EPMC008,europepmc,LR-TIV,dev,article text shown during harvester development
+EPMC009,europepmc,LR-M,dev,article text shown during harvester development
+EPMC010,europepmc,LR-4,test,
+EPMC011,europepmc,LR-4,test,
+EPMC012,europepmc,LR-5,dev,article text shown during harvester development
+EPMC013,europepmc,LR-5,dev,article text shown during harvester development
+EPMC014,europepmc,LR-5,dev,article text shown during harvester development
+EPMC015,europepmc,LR-5,dev,article text shown during harvester development
+EPMC016,europepmc,LR-5,dev,article text shown during harvester development
+EPMC017,europepmc,LR-5,dev,article text shown during harvester development
+EPMC018,europepmc,LR-5,dev,article text shown during harvester development
+EPMC019,europepmc,LR-4,dev,article text shown during harvester development
+EPMC020,europepmc,LR-5,dev,article text shown during harvester development
+EPMC021,europepmc,LR-5,dev,article text shown during harvester development
+EPMC022,europepmc,LR-5,dev,article text shown during harvester development
+PMC001,pmc,LR-5,dev,evaluated during development (APHE call depends on call order)
+PMC002,pmc,LR-3,dev,evaluated and error-analysed during development (ultrasound growth misread)
+RP001,radiopaedia,LR-3,dev,evaluated and error-analysed during development (washout misread)
+RP002,radiopaedia,LR-5,dev,evaluated and error-analysed during development (late-arterial APHE misread)
+RP003,radiopaedia,LR-M,dev,evaluated during development (scope-guard synonym fix)

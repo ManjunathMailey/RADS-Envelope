@@ -248,7 +248,22 @@ def candidates_for(article: dict, root) -> list[dict]:
     return rows + table_candidates(article, root)
 
 
-def main() -> None:
+def has_review(path: Path) -> bool:
+    """True if the file exists and any row already carries a review decision."""
+    if not path.exists():
+        return False
+    with open(path, encoding="utf-8-sig", newline="") as fh:
+        return any((r.get("review_status") or "").strip() for r in csv.DictReader(fh))
+
+
+def main(argv: list[str] | None = None) -> None:
+    import argparse
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--force", action="store_true", help="overwrite a candidates file that already has review decisions")
+    a = ap.parse_args(argv)
+    if has_review(OUT) and not a.force:
+        raise SystemExit(f"Refusing to overwrite {OUT}: it already contains review decisions "
+                         "(review_status). Re-run with --force only if you mean to discard them.")
     articles = json.loads((CACHE / "articles.json").read_text(encoding="utf-8"))
     rows, used, per_article, by_query = [], 0, {}, {}
     for a in articles:
