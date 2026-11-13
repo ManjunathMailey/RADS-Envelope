@@ -452,5 +452,15 @@ $("batchOut").addEventListener("click", async (e) => {
 });
 $("batchOut").addEventListener("keydown", (e) => { if (e.key === "Enter" && e.target.classList.contains("rowi")) e.target.click(); });
 
+/* "See an example" from the landing page: preload one attributed real development case */
+async function loadLandingExample() {
+  if (new URLSearchParams(location.search).get("example") !== "1") return;
+  try {
+    const x = await api("/api/example");
+    $("report").value = x.report; showPrior(false);
+    toast(`Real case ${x.id}: ${x.author}, ${x.license}. Press Analyse.`);
+  } catch (e) { /* the composer stays empty */ }
+}
+
 /* ---------------- boot ---------------- */
-route(); status(); loadExamples();
+route(); status(); loadExamples(); loadLandingExample();

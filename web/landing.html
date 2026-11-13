@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RADS-Envelope</title>
+<meta name="description" content="LI-RADS reports that never contradict the rules, and say exactly what is still uncertain.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/static/app.css">
+<link rel="stylesheet" href="/static/landing.css">
+</head>
+<body class="landing">
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav">
+  <div class="nav-in">
+    <a class="logo" href="/" aria-label="RADS-Envelope home">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="3.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="2.4" fill="currentColor"/></svg>
+      RADS-Envelope
+    </a>
+    <nav aria-label="Main"><a href="#how">How it works</a><a href="#who">Who it is for</a><a href="/app">Open the app</a></nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" aria-labelledby="hero-title">
+    <h1 id="hero-title">RADS-Envelope</h1>
+    <p class="hero-line">LI-RADS reports that never contradict the rules, and say exactly what is still uncertain.</p>
+    <div class="hero-cta">
+      <a class="go" href="/app">Try it</a>
+      <a class="ghost" href="/app?example=1">See an example</a>
+    </div>
+  </section>
+
+  <section class="band reveal" aria-labelledby="problem-title">
+    <h2 id="problem-title">The problem</h2>
+    <ul class="problem">
+      <li>A report can describe the findings of one LI-RADS category and state another.</li>
+      <li>Language models write the category as free text, and nothing checks it against the findings.</li>
+      <li id="problemNumber">Asked directly, the same local model contradicted its own findings in a measurable share of reports.</li>
+    </ul>
+    <p class="source" id="problemSource"></p>
+  </section>
+
+  <section class="band reveal" id="how" aria-labelledby="how-title">
+    <h2 id="how-title">How it works</h2>
+    <ol class="steps">
+      <li>
+        <svg viewBox="0 0 24 24" width="34" height="34" aria-hidden="true"><rect x="5" y="3.5" width="14" height="17" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8.5 8.5h7M8.5 12h7M8.5 15.5h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <b>Paste the report</b><span>Or drop a .txt or .docx file. Each liver observation is read separately, with the words behind every finding.</span>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" width="34" height="34" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3.5 9.5h17M9.5 9.5v10" stroke="currentColor" stroke-width="1.5"/></svg>
+        <b>Rules decide the category</b><span>The published ACR LI-RADS table computes the category. The impression is written from that result, so the two always agree.</span>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" width="34" height="34" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9.6 9.6a2.5 2.5 0 1 1 3.4 2.3c-.7.3-1 .8-1 1.5v.6M12 16.8v.1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <b>See what is certain, what is not</b><span>Every category the findings could still support, and the one question that would settle it.</span>
+      </li>
+    </ol>
+  </section>
+
+  <section class="band reveal" id="who" aria-labelledby="who-title">
+    <h2 id="who-title">Who it is for</h2>
+    <dl class="who">
+      <div><dt>Radiologists</dt><dd>Check a draft before signing: the category, its evidence and what could change it.</dd></div>
+      <div><dt>Residents</dt><dd>See how each finding moves the category, step by step through the table.</dd></div>
+      <div><dt>Quality leads</dt><dd>Audit a batch of reports for impressions that disagree with their own findings.</dd></div>
+      <div><dt>Tumour boards and hepatology</dt><dd>Know which observations are settled and which need one more answer.</dd></div>
+    </dl>
+  </section>
+
+  <section class="band reveal" aria-labelledby="diff-title">
+    <h2 id="diff-title">What makes it different</h2>
+    <div class="tiles">
+      <div class="tile"><b>Never contradicts the rules</b><span>The category is computed from the findings, not written by the model.</span></div>
+      <div class="tile"><b>Certainty Envelope</b><span>Hedged words, missing features and sizes near a cut-off become an explicit range of categories.</span></div>
+      <div class="tile"><b>Alerts only when management changes</b><span>Uncertainty that cannot change what happens to the patient is shown, not alarmed.</span></div>
+      <div class="tile"><b>Runs fully offline</b><span>One laptop GPU and a local model. Nothing is sent to an external service.</span></div>
+    </div>
+  </section>
+
+  <section class="trust reveal" aria-label="Privacy and intended use">
+    <p><b>Runs on one laptop. No report leaves the machine.</b></p>
+    <p>Research prototype for decision support. Not a medical device.</p>
+  </section>
+</main>
+
+<footer class="foot">Group 72 · Department of Computer Science and Engineering, M.S. Ramaiah University of Applied Sciences · Guide: Mr. Karthik D U</footer>
+<script src="/static/landing.js"></script>
+</body>
+</html>

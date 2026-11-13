@@ -334,9 +334,51 @@ def evaluation():
             "benchmark": {name: _read(bench / f"results_{name}.json") for name in ("llm", "lexicon")}}
 
 
+EXAMPLE_CASE = "RP002"          # a development case (never a held-out test case) for the landing page
+
+
+def _contradiction(res: dict | None) -> dict | None:
+    if not res:
+        return None
+    rate = res["systems"]["B1"]["summary"].get("contradiction_rate")
+    return {**rate, "label": res.get("label") or res.get("split"), "generated_at": res.get("generated_at")} if rate else None
+
+
+@app.get("/api/headline")
+def headline():
+    """Numbers for the landing page, read from the committed result files at request time."""
+    return {"b1_contradiction": {
+        "robustness": _contradiction(_read(ROOT / "data" / "benchmark" / "results_comparison.json")),
+        "real_dev": _contradiction(_read(ROOT / "data" / "real" / "results.comparison.dev.json"))},
+        "sources": ["data/benchmark/results_comparison.json", "data/real/results.comparison.dev.json"]}
+
+
+@app.get("/api/example")
+def example():
+    """One attributed real development case for 'See an example'."""
+    import csv as _csv
+    split = {}
+    split_file = ROOT / "data" / "real" / "split.csv"
+    if split_file.exists():
+        split = {r["id"]: r["split"] for r in _csv.DictReader(open(split_file, encoding="utf-8"))}
+    if split.get(EXAMPLE_CASE, "dev") != "dev":
+        raise HTTPException(404, "The example case is not a development case.")
+    with open(ROOT / "data" / "real" / "radiopaedia_cases.csv", encoding="utf-8-sig", newline="") as fh:
+        row = next((r for r in _csv.DictReader(fh) if r["id"] == EXAMPLE_CASE), None)
+    if row is None:
+        raise HTTPException(404, "Example case not found.")
+    return {"id": row["id"], "report": row["findings_text"], "url": row["url"], "author": row["author"],
+            "license": row["license"], "radiologist_category": row["radiologist_category"]}
+
+
 app.mount("/static", StaticFiles(directory=WEB / "static"), name="static")
 
 
 @app.get("/")
+def landing():
+    return FileResponse(WEB / "landing.html")
+
+
+@app.get("/app")
 def index():
     return FileResponse(WEB / "index.html")
