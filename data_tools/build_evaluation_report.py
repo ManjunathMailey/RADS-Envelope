@@ -55,7 +55,7 @@ def system_table(systems: dict, label_accuracy: str = "Accuracy [95% CI]") -> li
         kn = sum(r["gold"] in kappa_labels and r["pred"] in kappa_labels for r in rows)
         en = sum(bool(r.get("envelope")) and (r["gold"] or "")[-1:].isdigit() for r in rows)
         kappa = f"{m['weighted_kappa']} (n={kn})" if m["weighted_kappa"] is not None else f"– (n={kn})"
-        mean_env = f"{m['mean_envelope_size']} (n={en})" if m.get("mean_envelope_size") else "–"
+        mean_env = f"{m['mean_envelope_size']:.2f} (n={en})" if m.get("mean_envelope_size") else "–"
         lines.append(f"| {SYSTEM_NAMES[s]} | {p(m['accuracy'])} | {kappa} | "
                      f"{short(m['lr5_sensitivity'])} | {short(m['lr5_specificity'])} | {p(m.get('envelope_coverage'))} | "
                      f"{mean_env} | {short(m['pm1_band_coverage'])} | "
@@ -227,22 +227,28 @@ def side_by_side(dev: dict | None, test: dict | None) -> list[str]:
     prose_dev = subset(dev, lambda i: i not in tables)
     prose_test = subset(test, lambda i: i not in tables)
     sets += [("Dev, prose-only", prose_dev), ("Test, prose-only", prose_test)]
-    lines += ["| System | " + " | ".join(f"{n} accuracy [95% CI]" for n, _ in sets) + " | Dev / test envelope coverage | "
-              "Dev / test contradictions |", "| --- " * (len(sets) + 3) + "|"]
+    lines += ["| System | " + " | ".join(f"{n} accuracy [95% CI]" for n, _ in sets) + " | Dev envelope coverage | "
+              "Test envelope coverage | Dev contradictions | Test contradictions |", "| --- " * (len(sets) + 5) + "|"]
     for s in ORDER:
         if s not in dev["systems"] or s not in test["systems"]:
             continue
         accs = [p(sy[s]["summary"]["accuracy"]) if s in sy else "–" for _, sy in sets]
-        env = (f"{short(dev['systems'][s]['summary'].get('envelope_coverage'))} / "
-               f"{short(test['systems'][s]['summary'].get('envelope_coverage'))}")
-        con = (f"{short(dev['systems'][s]['summary']['contradiction_rate'])} / "
-               f"{short(test['systems'][s]['summary']['contradiction_rate'])}")
-        lines.append(f"| {SYSTEM_NAMES[s]} | " + " | ".join(accs) + f" | {env if 'Ours' in s else '–'} | {con} |")
+        env = [short(r["systems"][s]["summary"].get("envelope_coverage")) if "Ours" in s else "–" for r in (dev, test)]
+        con = [short(r["systems"][s]["summary"]["contradiction_rate"]) for r in (dev, test)]
+        lines.append(f"| {SYSTEM_NAMES[s]} | " + " | ".join(accs + env + con) + " |")
     n_test_tables = sum(r["id"] in tables for r in test["systems"]["Ours"]["rows"])
     lines += ["", f"Prose-only excludes the rows taken from one article's per-lesion table ({len(tables)} cases, all in "
               f"development); {n_test_tables} test cases are table rows, so the test prose-only figures equal the test "
-              "figures. The test split was scored once (`data/real/test_runs.log`).", ""]
+              "figures. The test split was scored once (`data/real/test_runs.log`).", "", b1_denominators(dev, test), ""]
     return lines
+
+
+def b1_denominators(dev: dict, test: dict) -> str:
+    """Why B1 and B4 contradictions have smaller denominators than the rule-computed arms."""
+    n = [r["systems"]["B1"]["summary"]["contradiction_rate"]["n"] for r in (dev, test)]
+    return ("B1 and B4 contradictions are counted only where B1's stated category and the rule category from B1's own "
+            f"features are both LR-1–LR-5 ({n[0]} of {dev['cases']} development and {n[1]} of {test['cases']} test "
+            "cases); the rule-computed arms are checked on every case.")
 
 
 def sensitivity_section() -> list[str]:
@@ -257,7 +263,7 @@ def sensitivity_section() -> list[str]:
             lines += ["", "| Tolerance | Alert rate | Envelope coverage | Mean envelope size | Near a cut-off |",
                       "| --- | --- | --- | --- | --- |"]
             lines += [f"| ±{t['tolerance_mm']:g} mm | {short(t['alert_rate'])} | {short(t['envelope_coverage'])} | "
-                      f"{t['mean_envelope_size']} | {short(t['near_cutoff_rate'])} |" for t in d["table"]]
+                      f"{t['mean_envelope_size']:.2f} | {short(t['near_cutoff_rate'])} |" for t in d["table"]]
         lines.append("")
     return lines
 
@@ -423,7 +429,7 @@ def headline_section(dev: dict, test: dict) -> list[str]:
     return ["## Headline numbers", "",
             f"- Language model alone (B1) contradicted the ACR table applied to its own features in {_pc(rb1['k'], rb1['n'])} "
             f"of the robustness-test reports (§9), {_pc(b1[0]['k'], b1[0]['n'])} of real development cases and "
-            f"{_pc(b1[1]['k'], b1[1]['n'])} of real test cases; pooled real cases {_pc(*pool(b1))}.",
+            f"{_pc(b1[1]['k'], b1[1]['n'])} of real test cases; pooled real cases {_pc(*pool(b1))}. " + b1_denominators(dev, test),
             f"- Ours-consensus (rule-computed category) contradictions: {c(rob, 'OursC')['k']}/{c(rob, 'OursC')['n']} robustness, "
             f"{pool(oc)[0]}/{pool(oc)[1]} real cases (development + test); zero by construction.",
             f"- Decision-critical alerts {_pc(m['alert_rate']['k'], m['alert_rate']['n'])} vs flagging any uncertainty "

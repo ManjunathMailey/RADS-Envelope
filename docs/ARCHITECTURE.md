@@ -23,7 +23,7 @@ Bhayana et al. 2025 for O-RADS) address the first problem. RADS-Envelope address
 | Extract four-state features with verbatim evidence | `extraction/llm.py`, `extraction/lexicon.py` | LLM: no |
 | Consensus: LLM samples plus the lexicon as a second extractor | `extraction/consensus.py` | yes, given samples |
 | Grounding and scope guard | `extraction/schema.py`, `extraction/scope.py` | yes |
-| Comparison with a prior study (optional) | `engine/longitudinal.py`, `pipeline.py` | yes, given sizes |
+| Comparison with a prior examination (optional) | `engine/longitudinal.py`, `pipeline.py` | yes, given sizes |
 | Category and decision trace | `engine/ruleset.py` | yes |
 | Certainty Envelope, witnesses, decisive questions | `engine/envelope.py` | yes |
 | Exam summary | `engine/exam.py` | yes |
@@ -41,7 +41,7 @@ flowchart LR
     X --> C
     C --> G["sizes.py / schema.py<br/>grounding and size guard"]
     G --> P["scope.py<br/>LR-M, LR-TIV, LR-TR, ultrasound defer"]
-    P --> LG["longitudinal.py<br/>optional prior study"]
+    P --> LG["longitudinal.py<br/>optional prior examination"]
     LG --> E["ruleset.py<br/>category + decision trace"]
     E --> V["envelope.py<br/>reachable set, witnesses, questions"]
     V --> I["impression.py<br/>generate + parse-back verify"]
@@ -71,8 +71,9 @@ Let `U` be the set of unresolved features and `I` the size interval. The envelop
 
 Because the rule table is piecewise constant in size, it is enough to evaluate the interval end
 points, the reported size, and the two sides of every cut-off inside the interval. With six binary
-features the enumeration is at most 2^6 x 5 = 320 rule evaluations, so `E` is computed exactly, in
-well under a millisecond.
+features and cut-offs at 10 and 20 mm the enumeration is at most 2^6 x 7 = 448 rule evaluations
+(2^6 x 5 = 320 when the interval holds at most one cut-off, as it always does at ±2 mm), so `E` is computed
+exactly, in well under a millisecond.
 
 For every category in `E` the engine also returns a **witness**: the completion with the fewest
 departures from the ACR point assumption (hedged features are cheaper assumptions than undocumented
