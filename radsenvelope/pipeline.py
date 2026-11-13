@@ -25,7 +25,7 @@ from radsenvelope.generation import impression
 
 @dataclass
 class Settings:
-    extractor: str = "auto"            # auto | llm | lexicon
+    extractor: str = "auto"            # auto | llm | lexicon | consensus (LLM + lexicon)
     samples: int = 1                   # >1 enables self-consistency
     size_tolerance_mm: float = 2.0
     high_risk: bool = True
@@ -50,6 +50,8 @@ def _guarded_merge(draws: list[Extraction], text: str) -> tuple[Extraction, dict
 
 
 def _extract(text: str, s: Settings) -> tuple[Extraction, dict, dict]:
+    if s.extractor == "consensus":
+        return _extract_consensus(text, s)
     info: dict = {"requested": s.extractor}
     if s.extractor in ("auto", "llm"):
         ok, msg = llm.available()
@@ -72,6 +74,19 @@ def _extract(text: str, s: Settings) -> tuple[Extraction, dict, dict]:
     t = time.time()
     ex, conf = _guarded_merge([lexicon.extract(text)], text)
     info.update(used="Lexicon (deterministic)", seconds=round(time.time() - t, 3))
+    return ex, conf, info
+
+
+def _extract_consensus(text: str, s: Settings) -> tuple[Extraction, dict, dict]:
+    """LLM sample(s) plus the lexicon as a second extractor (pre-registered method change)."""
+    ex, conf, info = _extract(text, replace(s, extractor="auto"))
+    info["requested"] = "consensus"
+    if not info.get("used", "").startswith("LLM"):
+        return ex, conf, info                                   # LLM unavailable: lexicon only, already used
+    lex, _ = _guarded_merge([lexicon.extract(text)], text)
+    ex, conf = consensus.combine_extractors(ex, conf, lex)
+    info["used"] = info["used"] + " + lexicon consensus"
+    info["disagreements"] = [k for k in FEATURES if (conf.get(k) or {}).get("source") == consensus.EXTRACTOR_DISAGREEMENT]
     return ex, conf, info
 
 

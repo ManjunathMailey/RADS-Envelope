@@ -23,8 +23,9 @@ if str(ROOT) not in sys.path:
 REAL, BENCH, DOCS = ROOT / "data" / "real", ROOT / "data" / "benchmark", ROOT / "docs"
 OUT = DOCS / "EVALUATION.md"
 SYSTEM_NAMES = {"B1": "B1 LLM-direct", "B2": "B2 lexicon + rules", "B3": "B3 LLM + rules",
-                "B4": "B4 hybrid (B1, corrected by rules)", "Ours": "Ours (LLM + rules + envelope)"}
-ORDER = ("B1", "B2", "B3", "B4", "Ours")
+                "B4": "B4 hybrid (B1, corrected by rules)", "Ours": "Ours, LLM-only (ablation)",
+                "OursC": "Ours-consensus (primary, pre-registered)"}
+ORDER = ("B1", "B2", "B3", "B4", "Ours", "OursC")
 
 
 def load(path: Path):
@@ -62,7 +63,7 @@ def system_table(systems: dict, label_accuracy: str = "Accuracy [95% CI]") -> li
     return lines
 
 
-def b3_wrong(systems: dict) -> str:
+def b3_wrong(systems: dict, target: str = "Ours") -> str:
     """Among cases with a numeric reference where B3's single category is wrong: how often Ours raised a
     decision-critical alert, and how often the reference lay inside Ours' envelope."""
     b3 = {r["id"]: r for r in systems.get("B3", {}).get("rows", [])}
@@ -72,8 +73,8 @@ def b3_wrong(systems: dict) -> str:
     assigned = [i for i in wrong if (b3[i]["pred"] or "").startswith("LR-")]
     flagged = sum(bool(ours[i].get("critical")) for i in assigned)
     covered = sum(ours[i]["gold"] in (ours[i].get("envelope") or []) for i in assigned)
-    return (f"Of {len(wrong)} cases B3 got wrong ({len(assigned)} with a wrong category, {len(wrong) - len(assigned)} "
-            f"without a category), Ours raised a decision-critical alert on {flagged} and had the reference inside its "
+    return (f"{SYSTEM_NAMES.get(target, target)}: of {len(wrong)} cases B3 got wrong ({len(assigned)} with a wrong category, {len(wrong) - len(assigned)} "
+            f"without a category), it raised a decision-critical alert on {flagged} and had the reference inside its "
             f"envelope on {covered} of the {len(assigned)} wrong categories.")
 
 
@@ -84,7 +85,7 @@ def subset(res: dict, keep) -> dict:
     for s in ORDER:
         if s in res["systems"]:
             rows = [r for r in res["systems"][s]["rows"] if keep(r["id"])]
-            out[s] = {"summary": system_summary(rows, envelope=(s == "Ours")), "rows": rows}
+            out[s] = {"summary": system_summary(rows, envelope=(s in ("Ours", "OursC"))), "rows": rows}
     return out
 
 
@@ -174,21 +175,21 @@ def comparison_section(res: dict | None, title: str) -> list[str]:
     lines.append("Accuracy is over cases with a numeric reference; a deferral or missing category counts as wrong. "
                  "Contradiction rate for the rule-based systems is zero by construction; the impression consistency "
                  "check verifies it on every case.")
-    lines += ["", f"**B3 wrong → Ours.** {b3_wrong(res['systems'])}"]
+    lines += ["", f"**B3 wrong → Ours.** {b3_wrong(res['systems'], 'OursC')} {b3_wrong(res['systems'], 'Ours')}"]
     if res.get("split") == "dev":
         tables = table_case_ids() & {r["id"] for r in res["systems"]["Ours"]["rows"]}
         if tables:
             prose = subset(res, lambda i: i not in tables)
             n = len(prose["Ours"]["rows"])
             lines += ["", f"**Prose-only subset** ({n} cases; excludes the {len(tables)} rows taken from one article's "
-                      "per-lesion table):", ""] + system_table(prose) + ["", f"**B3 wrong → Ours (prose-only).** {b3_wrong(prose)}"]
+                      "per-lesion table):", ""] + system_table(prose) + ["", f"**B3 wrong → Ours (prose-only).** {b3_wrong(prose, 'OursC')} {b3_wrong(prose, 'Ours')}"]
     lines += [""] + confusion(res["systems"]) + [""]
     ours = res["systems"].get("Ours", {}).get("summary", {})
     lines.append(f"**Deferrals (LR-M / LR-TIV / LR-TR).** Ours: precision {p(ours.get('deferral_precision'))}, recall "
                  f"{p(ours.get('deferral_recall'))}. B1: precision {p(res['systems'].get('B1', {}).get('summary', {}).get('deferral_precision'))}, "
                  f"recall {p(res['systems'].get('B1', {}).get('summary', {}).get('deferral_recall'))}.")
     lines += ["", "**Per reference category** (correct / cases; the set is category-imbalanced):", "",
-              "| Reference | Cases | B1 | B2 | B3 | B4 | Ours | Ours envelope covers |", "| --- | --- | --- | --- | --- | --- | --- | --- |"]
+              "| Reference | Cases | B1 | B2 | B3 | B4 | Ours (ablation) | Ours-consensus | Ours-consensus envelope covers |", "| --- | --- | --- | --- | --- | --- | --- | --- | --- |"]
     gold_cats = sorted({r["gold"] for r in res["systems"]["Ours"]["rows"] if r["gold"]})
     for cat in gold_cats:
         cells = []
@@ -202,13 +203,13 @@ def comparison_section(res: dict | None, title: str) -> list[str]:
     per = res["systems"].get("per_source")
     if per:
         lines += ["", "**Per source** (accuracy [95% CI], Ours envelope coverage):", "",
-                  "| Source | B1 | B2 | B3 | B4 | Ours | Ours envelope coverage |", "| --- | --- | --- | --- | --- | --- | --- |"]
+                  "| Source | B1 | B2 | B3 | B4 | Ours (ablation) | Ours-consensus | Ours-consensus envelope coverage |", "| --- | --- | --- | --- | --- | --- | --- | --- |"]
         for src, sy in sorted(per.items()):
             lines.append(f"| {src} | " + " | ".join(p(sy[s]["accuracy"]) if s in sy else "–" for s in ORDER)
-                         + f" | {p(sy.get('Ours', {}).get('envelope_coverage'))} |")
+                         + f" | {p(sy.get('OursC', sy.get('Ours', {})).get('envelope_coverage'))} |")
         pooled = res["systems"]
         lines.append("| pooled | " + " | ".join(p(pooled[s]["summary"]["accuracy"]) for s in ORDER
-                                                if s in pooled) + f" | {p(pooled['Ours']['summary'].get('envelope_coverage'))} |")
+                                                if s in pooled) + f" | {p(pooled.get('OursC', pooled['Ours'])['summary'].get('envelope_coverage'))} |")
     return lines + [""]
 
 
@@ -344,7 +345,7 @@ def robustness_section() -> list[str]:
     b4 = d["systems"].get("B4", {}).get("summary", {})
     if b4:
         lines.append(f"B4 corrected {b4.get('corrected')} of B1's {d['n']} categories.")
-    lines += ["", f"**B3 wrong → Ours.** {b3_wrong(d['systems'])}", ""]
+    lines += ["", f"**B3 wrong → Ours.** {b3_wrong(d['systems'], 'OursC')} {b3_wrong(d['systems'], 'Ours')}", ""]
     return lines
 
 

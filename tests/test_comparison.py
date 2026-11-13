@@ -130,14 +130,14 @@ def test_compare_runner_with_mocked_llm(monkeypatch):
              {"id": "c2", "text": "Segment II: 18 mm observation with arterial phase hyperenhancement. Possible washout.",
               "gold": "LR-3", "gold_features": {}, "gold_size_mm": None}]
     res = compare.run(cases)
-    assert set(res) == {"B1", "B2", "B3", "B4", "Ours"}
+    assert set(res) == {"B1", "B2", "B3", "B4", "Ours", "OursC"}
     assert res["B2"]["summary"]["accuracy"]["value"] == 1.0 and res["B3"]["summary"]["accuracy"]["value"] == 1.0
     assert res["B1"]["summary"]["accuracy"]["value"] == 0.5 and res["B1"]["summary"]["contradiction_rate"]["value"] == 0.0
     ours = res["Ours"]["summary"]
     assert ours["envelope_coverage"]["value"] == 1.0 and ours["alert_rate"]["value"] == 0.5
     assert ours["consistency_verified"]["value"] == 1.0 and ours["features_n"] == 1
     assert ours["size_accuracy"]["value"] == 1.0 and "envelope_coverage" not in res["B3"]["summary"]
-    assert [t["system"] for t in compare.table(res)] == ["B1", "B2", "B3", "B4", "Ours"]
+    assert [t["system"] for t in compare.table(res)] == ["B1", "B2", "B3", "B4", "Ours", "OursC"]
 
 
 def test_hybrid_b4_corrects_only_contradictions():

@@ -47,3 +47,39 @@ def merge(samples: list[Extraction]) -> tuple[Extraction, dict]:
     confidence["size"] = {"values": sizes, "spread_mm": round(spread, 2),
                           "agreement": round(len([x for x in sizes if x == size]) / n, 2) if sizes else 1.0}
     return Extraction(size_mm=size, size_evidence=size_evidence, **merged), confidence
+
+
+EXTRACTOR_DISAGREEMENT = "extractor disagreement"
+
+
+def combine_extractors(primary: Extraction, confidence: dict, second: Extraction) -> tuple[Extraction, dict]:
+    """Add a second extractor's vote (the lexicon) to the primary (LLM) consensus.
+
+    * second extractor "not_documented" = abstain: the primary value stands;
+    * same state: the value stands (the second extractor's evidence fills an empty one);
+    * different state: the feature becomes "uncertain" with source "extractor disagreement", so
+      the Certainty Envelope enumerates both readings;
+    * size: the primary size is kept (the second one fills a missing size); if both are grounded and
+      differ, the size spread grows so that the tolerance interval (base + spread / 2) reaches the
+      second size, the same mechanism as the spread between repeated samples.
+    Both inputs have already passed the size integrity guard."""
+    conf = {k: dict(v) if isinstance(v, dict) else v for k, v in confidence.items()}
+    merged = {}
+    for k in FEATURES:
+        p, q = getattr(primary, k), getattr(second, k)
+        c = dict(conf.get(k) or {})
+        c["second_extractor"] = q.state
+        if q.state == "not_documented" or q.state == p.state:
+            merged[k] = Feature(state=p.state, evidence=p.evidence or (q.evidence if q.state == p.state else ""))
+        else:
+            merged[k] = Feature(state="uncertain", evidence=p.evidence or q.evidence)
+            c.update(source=EXTRACTOR_DISAGREEMENT, disagreement={"llm": p.state, "lexicon": q.state})
+        conf[k] = c
+    size_conf = dict(conf.get("size") or {"values": [], "spread_mm": 0.0, "agreement": 1.0})
+    ps, qs = primary.size_mm, second.size_mm
+    size, evidence = (ps, primary.size_evidence) if ps is not None else (qs, second.size_evidence)
+    if ps is not None and qs is not None and abs(ps - qs) > 0.01:
+        size_conf["spread_mm"] = round(max(float(size_conf.get("spread_mm") or 0.0), 2 * abs(ps - qs)), 2)
+        size_conf["second_extractor_mm"] = qs
+    conf["size"] = size_conf
+    return Extraction(size_mm=size, size_evidence=evidence, **merged), conf

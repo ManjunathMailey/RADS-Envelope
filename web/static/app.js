@@ -134,7 +134,8 @@ async function analyse() {
   const btn = $("go"); btn.disabled = true;
   btn.innerHTML = `<span class="spin"></span>${S.samples > 1 ? "Reading 3×" : "Reading"}`;
   try {
-    S.a = await api("/api/analyse", { report, extractor: "auto", samples: S.samples, size_tolerance_mm: +$("tol").value, high_risk: $("risk").checked, prior });
+    // Thorough = three LLM readings plus the rule-based reader as a second vote (consensus)
+    S.a = await api("/api/analyse", { report, extractor: S.samples > 1 ? "consensus" : "auto", samples: S.samples, size_tolerance_mm: +$("tol").value, high_risk: $("risk").checked, prior });
     S.a.observations.forEach((o) => { o.spread = o.confidence.size.spread_mm || 0; });
     S.obs = 0; S.undo = null; S.addendum = null; S.prevEnv = null;
     await refreshReview();
@@ -183,7 +184,8 @@ function renderFindings() {
     if (lg && lg.reported_evidence && k in lg.reported_evidence) {
       ev = (k === "growth" && lg.applied) || (lg.ancillary_added || []).includes(k) ? FROM_PRIOR : lg.reported_evidence[k];
     }
-    const unsure = c.source === "extractor" ? `<span class="fu">The AI read this differently across runs (${Math.round(c.agreement * 100)}% agreement), so it is treated as possible.</span>` : "";
+    const unsure = c.source === "extractor" ? `<span class="fu">The AI read this differently across runs (${Math.round(c.agreement * 100)}% agreement), so it is treated as possible.</span>`
+      : c.source === "extractor disagreement" && c.disagreement ? `<span class="fu">The AI read “${esc(STATE_LABEL[c.disagreement.llm])}” and the rule-based reader “${esc(STATE_LABEL[c.disagreement.lexicon])}”, so it is treated as possible.</span>` : "";
     const evText = ev === FROM_PRIOR ? FROM_PRIOR : ev ? "“" + esc(ev) + "”" : "Not mentioned in the report";
     return `<li><span class="fn">${label}</span>
       <select data-k="${k}" class="${st}" aria-label="${label}">${Object.entries(STATE_LABEL).map(([v, t]) => `<option value="${v}" ${v === st ? "selected" : ""}>${t}</option>`).join("")}</select>
@@ -318,8 +320,10 @@ function renderDecision() {
         : `<div class="ask${qi ? " minor" : ""}"><div class="q">${esc(q.question)}</div><div class="qs">Present gives ${orList(q.if_yes)}. Absent gives ${orList(q.if_no)}.</div><div class="btns"><button type="button" data-k="${q.feature}" data-v="present">Present</button><button type="button" data-k="${q.feature}" data-v="absent">Absent</button></div></div>`).join("");
     }
     ask += addendumBlock();
-    const tie = r.tie_break_features.length && others.length
-      ? `<div class="note">${r.tie_break_features.map((k) => FEATURES.find((f) => f[0] === k)[1].toLowerCase()).join(" and ")} not confirmed, counted as absent (ACR rule)</div>` : "";
+    const disagree = FEATURES.filter(([k]) => (o.confidence[k] || {}).source === "extractor disagreement").map(([, l]) => l.toLowerCase());
+    const tie = (r.tie_break_features.length && others.length
+      ? `<div class="note">${r.tie_break_features.map((k) => FEATURES.find((f) => f[0] === k)[1].toLowerCase()).join(" and ")} not confirmed, counted as absent (ACR rule)</div>` : "")
+      + (disagree.length ? `<div class="note">The two readers disagree on ${disagree.join(" and ")}; both readings are kept in the possible categories.</div>` : "");
     html += `<div class="card">
       <div class="kicker">${esc(o.label)} · LI-RADS</div>
       <div class="cat" style="color:var(--lr${pc[3]})">${pc}</div>

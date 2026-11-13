@@ -91,7 +91,7 @@ class PriorIn(BaseModel):
 
 class AnalyseRequest(BaseModel):
     report: str = Field(min_length=10)
-    extractor: Literal["auto", "llm", "lexicon"] = "auto"
+    extractor: Literal["auto", "llm", "lexicon", "consensus"] = "auto"
     samples: int = Field(1, ge=1, le=7)
     size_tolerance_mm: float = Field(2.0, ge=0, le=10)
     high_risk: bool = True
