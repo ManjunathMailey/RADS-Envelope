@@ -226,7 +226,7 @@ Before the definition-grounded prompt changes: 3 disagreements {'extraction_erro
 
 **Not an accuracy measure.** The 200 reports are generated from known feature vectors and their gold category comes from the same rule table the systems use. Agreement here measures how robustly features are recovered under varied phrasing, hedges, omissions and near-cut-off sizes.
 
-n = 200, seed 7, prompt hash `7e69f08f6618`, commit `8a93901a4b` (uncommitted changes: True).
+n = 200, seed 7, prompt hash `7e69f08f6618`, commit `9d03eb4ee0` (uncommitted changes: False).
 
 | System | Agreement with rule-generated gold [95% CI] | Weighted κ (n) | LR-5 sens | LR-5 spec | Envelope coverage | Mean envelope size (n) | ±1-band coverage | Contradiction rate | Alert rate |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
