@@ -19,7 +19,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 REAL, BENCH, DOCS = ROOT / "data" / "real", ROOT / "data" / "benchmark", ROOT / "docs"
 OUT = DOCS / "EVALUATION.md"
-SYSTEM_NAMES = {"B1": "B1 LLM-direct", "B2": "B2 lexicon + rules", "B3": "B3 LLM + rules", "Ours": "Ours (LLM + rules + envelope)"}
+SYSTEM_NAMES = {"B1": "B1 LLM-direct", "B2": "B2 lexicon + rules", "B3": "B3 LLM + rules",
+                "B4": "B4 hybrid (B1, corrected by rules)", "Ours": "Ours (LLM + rules + envelope)"}
+ORDER = ("B1", "B2", "B3", "B4", "Ours")
 
 
 def load(path: Path):
@@ -41,7 +43,7 @@ def system_table(systems: dict, label_accuracy: str = "Accuracy [95% CI]") -> li
     head = (f"| System | {label_accuracy} | Weighted κ | LR-5 sens | LR-5 spec | Envelope coverage | Mean envelope size | "
             "±1-band coverage | Contradiction rate | Alert rate |")
     lines = [head, "| --- " * 10 + "|"]
-    for s in ("B1", "B2", "B3", "Ours"):
+    for s in ORDER:
         if s not in systems:
             continue
         m = systems[s]["summary"]
@@ -120,11 +122,11 @@ def comparison_section(res: dict | None, title: str) -> list[str]:
                  f"{p(ours.get('deferral_recall'))}. B1: precision {p(res['systems'].get('B1', {}).get('summary', {}).get('deferral_precision'))}, "
                  f"recall {p(res['systems'].get('B1', {}).get('summary', {}).get('deferral_recall'))}.")
     lines += ["", "**Per reference category** (correct / cases; the set is category-imbalanced):", "",
-              "| Reference | Cases | B1 | B2 | B3 | Ours | Ours envelope covers |", "| --- | --- | --- | --- | --- | --- | --- |"]
+              "| Reference | Cases | B1 | B2 | B3 | B4 | Ours | Ours envelope covers |", "| --- | --- | --- | --- | --- | --- | --- | --- |"]
     gold_cats = sorted({r["gold"] for r in res["systems"]["Ours"]["rows"] if r["gold"]})
     for cat in gold_cats:
         cells = []
-        for s in ("B1", "B2", "B3", "Ours"):
+        for s in ORDER:
             rows = [r for r in res["systems"].get(s, {}).get("rows", []) if r["gold"] == cat]
             ok = sum(r["pred"] == cat or (cat in ("LR-M", "LR-TIV", "LR-TR") and r["pred"] == "defer") for r in rows)
             cells.append(f"{ok}/{len(rows)}" if rows else "–")
@@ -134,12 +136,12 @@ def comparison_section(res: dict | None, title: str) -> list[str]:
     per = res["systems"].get("per_source")
     if per:
         lines += ["", "**Per source** (accuracy [95% CI], Ours envelope coverage):", "",
-                  "| Source | B1 | B2 | B3 | Ours | Ours envelope coverage |", "| --- | --- | --- | --- | --- | --- |"]
+                  "| Source | B1 | B2 | B3 | B4 | Ours | Ours envelope coverage |", "| --- | --- | --- | --- | --- | --- | --- |"]
         for src, sy in sorted(per.items()):
-            lines.append(f"| {src} | " + " | ".join(p(sy[s]["accuracy"]) if s in sy else "–" for s in ("B1", "B2", "B3", "Ours"))
+            lines.append(f"| {src} | " + " | ".join(p(sy[s]["accuracy"]) if s in sy else "–" for s in ORDER)
                          + f" | {p(sy.get('Ours', {}).get('envelope_coverage'))} |")
         pooled = res["systems"]
-        lines.append("| pooled | " + " | ".join(p(pooled[s]["summary"]["accuracy"]) for s in ("B1", "B2", "B3", "Ours")
+        lines.append("| pooled | " + " | ".join(p(pooled[s]["summary"]["accuracy"]) for s in ORDER
                                                 if s in pooled) + f" | {p(pooled['Ours']['summary'].get('envelope_coverage'))} |")
     return lines + [""]
 

@@ -4,6 +4,8 @@ Side-by-side comparison of four systems on the same cases.
   B1    LLM-direct: the LLM gives features and the category in one call (baselines.py)
   B2    lexicon + rules: deterministic extractor, engine point category
   B3    LLM + rules: LLM extractor, engine point category only
+  B4    hybrid: B1's category, replaced by the rule category from B1's own features when they
+        disagree (post-hoc correction; derived from the B1 run, no extra model call)
   Ours  LLM + rules + Certainty Envelope: same point category as B3, plus the envelope and
         management-aware alerts
 
@@ -21,7 +23,7 @@ from radsenvelope.pipeline import Settings, analyse_report
 from .baselines import llm_direct
 from .metrics import feature_scores, system_summary
 
-SYSTEMS = ("B1", "B2", "B3", "Ours")
+SYSTEMS = ("B1", "B2", "B3", "B4", "Ours")
 FEATURE_KEYS = ("aphe", "washout", "capsule", "growth")
 
 
@@ -43,6 +45,15 @@ def _pipeline_row(case: dict, settings: Settings) -> tuple[dict, dict]:
            "evidence": {k: v.get("evidence", "") for k, v in o["extraction"].items() if isinstance(v, dict)},
            "size_evidence": o["extraction"].get("size_evidence", "")}
     return row, o["features"]
+
+
+def hybrid_row(b1: dict) -> dict:
+    """B4 (hybrid, slide 11 arm C), no new model call: keep B1's free-form category unless it
+    contradicts the rule category computed from B1's own extracted features, in which case the
+    rule category replaces it (post-hoc correction)."""
+    corrected = b1.get("contradiction") is True
+    return {**b1, "pred": b1["engine_category"] if corrected else b1["pred"],
+            "contradiction": None if b1.get("contradiction") is None else False, "corrected": corrected}
 
 
 def run(cases: list[dict], systems: tuple[str, ...] = SYSTEMS, samples: int = 1) -> dict:
@@ -72,6 +83,10 @@ def run(cases: list[dict], systems: tuple[str, ...] = SYSTEMS, samples: int = 1)
                                "size_mm": d["size_mm"], "engine_category": d["engine_category"], "error": d["error"],
                                "features": d["features"]})
             feats["B1"].append(d["features"] or {})
+    if "B4" in systems:
+        if "B1" not in rows:
+            raise ValueError("B4 (hybrid) is derived from B1; include B1 in the systems")
+        rows["B4"], feats["B4"] = [hybrid_row(r) for r in rows["B1"]], list(feats["B1"])
     result = {}
     for s in systems:
         summary = system_summary(rows[s], envelope=(s == "Ours"))
@@ -88,6 +103,8 @@ def run(cases: list[dict], systems: tuple[str, ...] = SYSTEMS, samples: int = 1)
         result[s] = {"summary": summary, "rows": rows[s]}
     if "B1" in systems:
         result["B1"]["summary"]["unparsed"] = sum(r["error"] is not None for r in rows["B1"])
+    if "B4" in systems:
+        result["B4"]["summary"]["corrected"] = sum(r["corrected"] for r in rows["B4"])
     sources = sorted({c.get("source") for c in cases if c.get("source")})
     if sources:                                             # per-source breakdown plus pooled (= the summaries above)
         result["per_source"] = {

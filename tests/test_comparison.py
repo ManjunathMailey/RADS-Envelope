@@ -130,14 +130,26 @@ def test_compare_runner_with_mocked_llm(monkeypatch):
              {"id": "c2", "text": "Segment II: 18 mm observation with arterial phase hyperenhancement. Possible washout.",
               "gold": "LR-3", "gold_features": {}, "gold_size_mm": None}]
     res = compare.run(cases)
-    assert set(res) == {"B1", "B2", "B3", "Ours"}
+    assert set(res) == {"B1", "B2", "B3", "B4", "Ours"}
     assert res["B2"]["summary"]["accuracy"]["value"] == 1.0 and res["B3"]["summary"]["accuracy"]["value"] == 1.0
     assert res["B1"]["summary"]["accuracy"]["value"] == 0.5 and res["B1"]["summary"]["contradiction_rate"]["value"] == 0.0
     ours = res["Ours"]["summary"]
     assert ours["envelope_coverage"]["value"] == 1.0 and ours["alert_rate"]["value"] == 0.5
     assert ours["consistency_verified"]["value"] == 1.0 and ours["features_n"] == 1
     assert ours["size_accuracy"]["value"] == 1.0 and "envelope_coverage" not in res["B3"]["summary"]
-    assert [t["system"] for t in compare.table(res)] == ["B1", "B2", "B3", "Ours"]
+    assert [t["system"] for t in compare.table(res)] == ["B1", "B2", "B3", "B4", "Ours"]
+
+
+def test_hybrid_b4_corrects_only_contradictions():
+    contradicting = {"id": "a", "gold": "LR-3", "pred": "LR-5", "engine_category": "LR-3", "contradiction": True}
+    consistent = {"id": "b", "gold": "LR-5", "pred": "LR-5", "engine_category": "LR-5", "contradiction": False}
+    not_comparable = {"id": "c", "gold": "LR-M", "pred": "LR-M", "engine_category": "LR-4", "contradiction": None}
+    a, b, c = (compare.hybrid_row(r) for r in (contradicting, consistent, not_comparable))
+    assert (a["pred"], a["contradiction"], a["corrected"]) == ("LR-3", False, True)
+    assert (b["pred"], b["contradiction"], b["corrected"]) == ("LR-5", False, False)
+    assert (c["pred"], c["contradiction"], c["corrected"]) == ("LR-M", None, False)
+    with pytest.raises(ValueError, match="derived from B1"):
+        compare.run([], systems=("B2", "B4"))
 
 
 def test_real_case_gold_columns():
