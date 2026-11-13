@@ -15,6 +15,34 @@ def test_parse_sizes(text, mm):
     assert [s["mm"] for s in parse_sizes(text)] == [mm]
 
 
+@pytest.mark.parametrize("text,mm", [
+    ("Target-HCC No.: 3; HCC Size (mm): 11.6; APHE: Yes", 11.6),
+    ("Size (cm): 2.1", 21.0),
+    ("diameter, mm: 18", 18.0),
+    ("Lesion size [mm]: 12 x 9", 12.0),
+    ("Maximum diameter (cm) = 1,5", 15.0),
+])
+def test_parse_unit_from_label_or_column_header(text, mm):
+    assert [s["mm"] for s in parse_sizes(text)] == [mm]
+
+
+def test_label_units_do_not_double_count_or_invent_units():
+    assert [s["mm"] for s in parse_sizes("Size (mm): 18 mm")] == [18.0]         # unit after the number wins, once
+    for text in ("Size (in): 2", "Size (HU): 40", "Size: 12", "Patients No.: 1; Child-Pugh Grade: A",
+                 "Segment (mm) 8 and age 64"):
+        assert parse_sizes(text) == [], text
+    s = parse_sizes("HCC Size (mm): 11.6")[0]
+    assert "HCC Size (mm): 11.6"[s["span"][0]:s["span"][1]] == "11.6"              # the value is verbatim
+
+
+def test_guard_accepts_table_size_and_still_rejects_misreads():
+    row = "Patients No.: 1; HCC Size (mm): 11.6; APHE: Yes; Enhancing Capsule: No"
+    assert reconcile_size(11.6, "11.6", row) == (11.6, "11.6", False)
+    assert reconcile_size(116, "", row)[0] == 11.6                                   # dropped decimal still corrected
+    assert reconcile_size(None, "", row)[0] == 11.6                                  # filled from the labelled value
+    assert reconcile_size(95, "9.5 mm", "Segment II: 9.5 mm observation") == (9.5, "9.5 mm", True)
+
+
 def test_parse_ignores_numbers_without_unit_and_keeps_order():
     assert parse_sizes("Segment 4a: 3 nodules, T2 hyperintense, 2 phases.") == []
     assert [s["mm"] for s in parse_sizes("increased from 15 mm to 43 mm")] == [15.0, 43.0]
