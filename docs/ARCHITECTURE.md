@@ -21,7 +21,7 @@ Bhayana et al. 2025 for O-RADS) address the first problem. RADS-Envelope address
 | --- | --- | --- |
 | Segment findings and impression; one block per observation | `extraction/segment.py` | yes |
 | Extract four-state features with verbatim evidence | `extraction/llm.py`, `extraction/lexicon.py` | LLM: no |
-| Self-consistency consensus | `extraction/consensus.py` | yes, given samples |
+| Consensus: LLM samples plus the lexicon as a second extractor | `extraction/consensus.py` | yes, given samples |
 | Grounding and scope guard | `extraction/schema.py`, `extraction/scope.py` | yes |
 | Comparison with a prior study (optional) | `engine/longitudinal.py`, `pipeline.py` | yes, given sizes |
 | Category and decision trace | `engine/ruleset.py` | yes |
@@ -31,6 +31,22 @@ Bhayana et al. 2025 for O-RADS) address the first problem. RADS-Envelope address
 | FHIR R4 export | `export/fhir.py` | yes |
 
 The language model only fills a JSON schema. It never produces a category or the impression.
+
+```mermaid
+flowchart LR
+    R["Report text"] --> S["segment.py<br/>one block per observation"]
+    S --> L["llm.py<br/>JSON-schema constrained"]
+    S --> X["lexicon.py<br/>deterministic"]
+    L --> C["consensus.py<br/>disagreement → uncertain"]
+    X --> C
+    C --> G["sizes.py / schema.py<br/>grounding and size guard"]
+    G --> P["scope.py<br/>LR-M, LR-TIV, LR-TR, ultrasound defer"]
+    P --> LG["longitudinal.py<br/>optional prior study"]
+    LG --> E["ruleset.py<br/>category + decision trace"]
+    E --> V["envelope.py<br/>reachable set, witnesses, questions"]
+    V --> I["impression.py<br/>generate + parse-back verify"]
+    I --> F["fhir.py / API / UI"]
+```
 
 ## 3. Feature model
 
@@ -70,6 +86,19 @@ management is shown but does not raise an alert.
 fixed to present and to absent and ranks items by the expected reduction in management classes.
 Near a cut-off the question is "re-measure".
 
+```mermaid
+flowchart LR
+    F["Feature states<br/>present · absent · uncertain · not documented"] --> U["Unresolved set U"]
+    Z["Size interval I<br/>reported ± tolerance"] --> N
+    U --> N["Every completion of U<br/>× every size class in I"]
+    N --> T["Rule table per completion"]
+    T --> E["Envelope E + witnesses"]
+    E --> M["Management classes of E"]
+    M --> Q{"More than one class?"}
+    Q -- yes --> A["Decision-critical alert<br/>+ top-ranked question"]
+    Q -- no --> OK["No alert<br/>uncertainty shown"]
+```
+
 ## 5. Two sources of uncertainty
 
 * **Report uncertainty**: the radiologist hedged. The extractor returns `uncertain`.
@@ -77,8 +106,13 @@ Near a cut-off the question is "re-measure".
   (one greedy run plus seeded samples at temperature 0.7). A feature on which the samples
   contradict each other, or agree on fewer than two thirds, becomes `uncertain`.
 
-Both enter the envelope through the same state, so the envelope bounds the effect of the report's
-ambiguity and of the extractor's own instability. Each feature records which source applies.
+* **Extractor disagreement** (Ours-consensus, pre-registered): the deterministic lexicon votes as
+  a second extractor. A lexicon "not documented" abstains; any other disagreement with the LLM makes
+  the feature `uncertain` with source "extractor disagreement", and differing sizes widen the size
+  interval to cover both.
+
+All three enter the envelope through the same state, so the envelope bounds the effect of the
+report's ambiguity and of the extractors' instability. Each feature records which source applies.
 
 ## 6. Guarantees and how they are tested
 
@@ -115,7 +149,9 @@ ambiguity and of the extractor's own instability. Each feature records which sou
    B1 *LLM-direct* (the same local model returns features and a category in one schema-constrained
    call with a compact v2018 summary; `evaluation/baselines.py`), B2 lexicon + rules, B3 LLM + rules
    (point category only), B4 *hybrid* (B1's category, replaced by the rule category from B1's own
-   features when they disagree; derived from the B1 run) and Ours (LLM + rules + envelope). Reported per system: accuracy, LR-5
+   features when they disagree; derived from the B1 run), Ours (LLM + rules + envelope; the LLM-only
+   ablation) and Ours-consensus (the lexicon votes in the consensus step; the pre-registered primary
+   system, derived from the stored B3 and B2 extractions). Reported per system: accuracy, LR-5
    sensitivity and specificity, ±1-band coverage and envelope coverage, all with 95 % Wilson
    intervals; quadratic-weighted Cohen's kappa over LR-2..LR-5; a confusion matrix; mean envelope
    size; alert rate. B1's *internal contradiction rate* compares its category with the engine

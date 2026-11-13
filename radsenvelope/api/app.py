@@ -327,11 +327,21 @@ def _read(path: Path):
     return json.loads(path.read_text(encoding="utf-8")) if path.exists() else None
 
 
+EVAL_FILES = {"development": ROOT / "data" / "real" / "results.comparison.dev.json",
+              "test": ROOT / "data" / "real" / "results.comparison.test.json",
+              "robustness": ROOT / "data" / "benchmark" / "results_comparison.json"}
+
+
 @app.get("/api/evaluation")
 def evaluation():
-    bench = ROOT / "data" / "benchmark"
-    return {"real": _read(ROOT / "data" / "real" / "results.json"),
-            "benchmark": {name: _read(bench / f"results_{name}.json") for name in ("llm", "lexicon")}}
+    """Per-system summaries from the frozen result files (docs/EVALUATION.md is generated from the same files)."""
+    out = {}
+    for name, path in EVAL_FILES.items():
+        res = _read(path)
+        out[name] = None if res is None else {
+            "label": res.get("label") or res.get("split"), "generated_at": res.get("generated_at"), "git": res.get("git"),
+            "systems": {s: v["summary"] for s, v in res["systems"].items() if s != "per_source"}}
+    return out
 
 
 EXAMPLE_CASE = "RP002"          # a development case (never a held-out test case) for the landing page

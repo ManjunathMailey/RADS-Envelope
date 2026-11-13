@@ -8,3 +8,4 @@ data/raw/
 # reproduce.ps1 run copies (the canonical results live in data/)
 results/
 data/real/candidates_*.csv
+.ruff_cache/
