@@ -1,10 +1,10 @@
 {
  "cases": 19,
- "disagreements": 16,
+ "disagreements": 15,
  "by_class": {
   "extraction_error": 2,
   "out_of_scope": 12,
-  "scope_error": 2
+  "scope_error": 1
  },
  "errors": [
   {
@@ -70,16 +70,6 @@
    "envelope": null,
    "class": "out_of_scope",
    "detail": "the findings text states no size"
-  },
-  {
-   "id": "EPMC008",
-   "reference": "LR-TIV",
-   "ours": "LR-5",
-   "envelope": [
-    "LR-5"
-   ],
-   "class": "scope_error",
-   "detail": "reference LR-TIV not deferred (ours LR-5)"
   },
   {
    "id": "EPMC009",
@@ -179,5 +169,5 @@
   }
  ],
  "prompt_hash": "7e69f08f6618d62e892b7522a57da7ee4cb05463b83f9b8fc3999267bd041111",
- "generated_from": "2026-11-13T14:21:33"
+ "generated_from": "2026-11-13T14:40:42"
 }

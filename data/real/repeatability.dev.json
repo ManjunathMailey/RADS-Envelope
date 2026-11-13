@@ -1,0 +1,508 @@
+{
+ "generated_at": "2026-11-13T14:22:31",
+ "git": {
+  "commit": "f97cb9a38b4538a399dd2021028c382d510b20ad",
+  "dirty": true
+ },
+ "model": "qwen2.5:7b-instruct",
+ "prompt_hash": "7e69f08f6618d62e892b7522a57da7ee4cb05463b83f9b8fc3999267bd041111",
+ "b1_prompt_hash": "df9d166b2218575c589d84ab0249cdb296216d3afe8c9d69acfa35d6017ec076",
+ "split": "dev",
+ "runs": 3,
+ "standard": {
+  "cases": 19,
+  "identical": 19,
+  "share": 1.0
+ },
+ "interleaved": {
+  "cases": 19,
+  "identical": 19,
+  "share": 1.0
+ },
+ "all_runs": {
+  "cases": 19,
+  "identical": 19,
+  "share": 1.0
+ },
+ "per_case": [
+  {
+   "id": "RP001",
+   "standard": [
+    "LR-4",
+    "LR-4",
+    "LR-4"
+   ],
+   "interleaved": [
+    "LR-4",
+    "LR-4",
+    "LR-4"
+   ]
+  },
+  {
+   "id": "RP002",
+   "standard": [
+    "LR-5",
+    "LR-5",
+    "LR-5"
+   ],
+   "interleaved": [
+    "LR-5",
+    "LR-5",
+    "LR-5"
+   ]
+  },
+  {
+   "id": "RP003",
+   "standard": [
+    "defer",
+    "defer",
+    "defer"
+   ],
+   "interleaved": [
+    "defer",
+    "defer",
+    "defer"
+   ]
+  },
+  {
+   "id": "PMC001",
+   "standard": [
+    "LR-5",
+    "LR-5",
+    "LR-5"
+   ],
+   "interleaved": [
+    "LR-5",
+    "LR-5",
+    "LR-5"
+   ]
+  },
+  {
+   "id": "PMC002",
+   "standard": [
+    "LR-4",
+    "LR-4",
+    "LR-4"
+   ],
+   "interleaved": [
+    "LR-4",
+    "LR-4",
+    "LR-4"
+   ]
+  },
+  {
+   "id": "EPMC001",
+   "standard": [
+    "not_assignable",
+    "not_assignable",
+    "not_assignable"
+   ],
+   "interleaved": [
+    "not_assignable",
+    "not_assignable",
+    "not_assignable"
+   ]
+  },
+  {
+   "id": "EPMC008",
+   "standard": [
+    "LR-5",
+    "LR-5",
+    "LR-5"
+   ],
+   "interleaved": [
+    "LR-5",
+    "LR-5",
+    "LR-5"
+   ]
+  },
+  {
+   "id": "EPMC009",
+   "standard": [
+    "not_assignable",
+    "not_assignable",
+    "not_assignable"
+   ],
+   "interleaved": [
+    "not_assignable",
+    "not_assignable",
+    "not_assignable"
+   ]
+  },
+  {
+   "id": "EPMC012",
+   "standard": [
+    "not_assignable",
+    "not_assignable",
+    "not_assignable"
+   ],
+   "interleaved": [
+    "not_assignable",
+    "not_assignable",
+    "not_assignable"
+   ]
+  },
+  {
+   "id": "EPMC013",
+   "standard": [
+    "not_assignable",
+    "not_assignable",
+    "not_assignable"
+   ],
+   "interleaved": [
+    "not_assignable",
+    "not_assignable",
+    "not_assignable"
+   ]
+  },
+  {
+   "id": "EPMC014",
+   "standard": [
+    "not_assignable",
+    "not_assignable",
+    "not_assignable"
+   ],
+   "interleaved": [
+    "not_assignable",
+    "not_assignable",
+    "not_assignable"
+   ]
+  },
+  {
+   "id": "EPMC015",
+   "standard": [
+    "not_assignable",
+    "not_assignable",
+    "not_assignable"
+   ],
+   "interleaved": [
+    "not_assignable",
+    "not_assignable",
+    "not_assignable"
+   ]
+  },
+  {
+   "id": "EPMC016",
+   "standard": [
+    "not_assignable",
+    "not_assignable",
+    "not_assignable"
+   ],
+   "interleaved": [
+    "not_assignable",
+    "not_assignable",
+    "not_assignable"
+   ]
+  },
+  {
+   "id": "EPMC017",
+   "standard": [
+    "not_assignable",
+    "not_assignable",
+    "not_assignable"
+   ],
+   "interleaved": [
+    "not_assignable",
+    "not_assignable",
+    "not_assignable"
+   ]
+  },
+  {
+   "id": "EPMC018",
+   "standard": [
+    "not_assignable",
+    "not_assignable",
+    "not_assignable"
+   ],
+   "interleaved": [
+    "not_assignable",
+    "not_assignable",
+    "not_assignable"
+   ]
+  },
+  {
+   "id": "EPMC019",
+   "standard": [
+    "not_assignable",
+    "not_assignable",
+    "not_assignable"
+   ],
+   "interleaved": [
+    "not_assignable",
+    "not_assignable",
+    "not_assignable"
+   ]
+  },
+  {
+   "id": "EPMC020",
+   "standard": [
+    "not_assignable",
+    "not_assignable",
+    "not_assignable"
+   ],
+   "interleaved": [
+    "not_assignable",
+    "not_assignable",
+    "not_assignable"
+   ]
+  },
+  {
+   "id": "EPMC021",
+   "standard": [
+    "not_assignable",
+    "not_assignable",
+    "not_assignable"
+   ],
+   "interleaved": [
+    "not_assignable",
+    "not_assignable",
+    "not_assignable"
+   ]
+  },
+  {
+   "id": "EPMC022",
+   "standard": [
+    "not_assignable",
+    "not_assignable",
+    "not_assignable"
+   ],
+   "interleaved": [
+    "not_assignable",
+    "not_assignable",
+    "not_assignable"
+   ]
+  }
+ ],
+ "thorough": {
+  "cases": 19,
+  "widened": 0,
+  "widened_and_covers_reference": 0,
+  "rows": [
+   {
+    "id": "RP001",
+    "reference": "LR-3",
+    "standard_envelope": [
+     "LR-4",
+     "LR-5"
+    ],
+    "thorough_envelope": [
+     "LR-4",
+     "LR-5"
+    ],
+    "extractor_uncertain": [],
+    "widened": false,
+    "covers_reference": false,
+    "standard_covers_reference": false
+   },
+   {
+    "id": "RP002",
+    "reference": "LR-5",
+    "standard_envelope": [
+     "LR-5"
+    ],
+    "thorough_envelope": [
+     "LR-5"
+    ],
+    "extractor_uncertain": [],
+    "widened": false,
+    "covers_reference": true,
+    "standard_covers_reference": true
+   },
+   {
+    "id": "RP003",
+    "reference": "LR-M",
+    "standard_envelope": [],
+    "thorough_envelope": [],
+    "extractor_uncertain": [
+     "capsule"
+    ],
+    "widened": false,
+    "covers_reference": false,
+    "standard_covers_reference": false
+   },
+   {
+    "id": "PMC001",
+    "reference": "LR-5",
+    "standard_envelope": [
+     "LR-5"
+    ],
+    "thorough_envelope": [
+     "LR-5"
+    ],
+    "extractor_uncertain": [],
+    "widened": false,
+    "covers_reference": true,
+    "standard_covers_reference": true
+   },
+   {
+    "id": "PMC002",
+    "reference": "LR-3",
+    "standard_envelope": [
+     "LR-4",
+     "LR-5"
+    ],
+    "thorough_envelope": [
+     "LR-4",
+     "LR-5"
+    ],
+    "extractor_uncertain": [
+     "aphe",
+     "washout",
+     "capsule"
+    ],
+    "widened": false,
+    "covers_reference": false,
+    "standard_covers_reference": false
+   },
+   {
+    "id": "EPMC001",
+    "reference": "LR-5",
+    "standard_envelope": [],
+    "thorough_envelope": [],
+    "extractor_uncertain": [],
+    "widened": false,
+    "covers_reference": false,
+    "standard_covers_reference": false
+   },
+   {
+    "id": "EPMC008",
+    "reference": "LR-TIV",
+    "standard_envelope": [
+     "LR-5"
+    ],
+    "thorough_envelope": [
+     "LR-5"
+    ],
+    "extractor_uncertain": [],
+    "widened": false,
+    "covers_reference": false,
+    "standard_covers_reference": false
+   },
+   {
+    "id": "EPMC009",
+    "reference": "LR-M",
+    "standard_envelope": [],
+    "thorough_envelope": [],
+    "extractor_uncertain": [
+     "aphe",
+     "capsule",
+     "af_malignant",
+     "af_benign"
+    ],
+    "widened": false,
+    "covers_reference": false,
+    "standard_covers_reference": false
+   },
+   {
+    "id": "EPMC012",
+    "reference": "LR-5",
+    "standard_envelope": [],
+    "thorough_envelope": [],
+    "extractor_uncertain": [],
+    "widened": false,
+    "covers_reference": false,
+    "standard_covers_reference": false
+   },
+   {
+    "id": "EPMC013",
+    "reference": "LR-5",
+    "standard_envelope": [],
+    "thorough_envelope": [],
+    "extractor_uncertain": [],
+    "widened": false,
+    "covers_reference": false,
+    "standard_covers_reference": false
+   },
+   {
+    "id": "EPMC014",
+    "reference": "LR-5",
+    "standard_envelope": [],
+    "thorough_envelope": [],
+    "extractor_uncertain": [],
+    "widened": false,
+    "covers_reference": false,
+    "standard_covers_reference": false
+   },
+   {
+    "id": "EPMC015",
+    "reference": "LR-5",
+    "standard_envelope": [],
+    "thorough_envelope": [],
+    "extractor_uncertain": [],
+    "widened": false,
+    "covers_reference": false,
+    "standard_covers_reference": false
+   },
+   {
+    "id": "EPMC016",
+    "reference": "LR-5",
+    "standard_envelope": [],
+    "thorough_envelope": [],
+    "extractor_uncertain": [],
+    "widened": false,
+    "covers_reference": false,
+    "standard_covers_reference": false
+   },
+   {
+    "id": "EPMC017",
+    "reference": "LR-5",
+    "standard_envelope": [],
+    "thorough_envelope": [],
+    "extractor_uncertain": [],
+    "widened": false,
+    "covers_reference": false,
+    "standard_covers_reference": false
+   },
+   {
+    "id": "EPMC018",
+    "reference": "LR-5",
+    "standard_envelope": [],
+    "thorough_envelope": [],
+    "extractor_uncertain": [],
+    "widened": false,
+    "covers_reference": false,
+    "standard_covers_reference": false
+   },
+   {
+    "id": "EPMC019",
+    "reference": "LR-4",
+    "standard_envelope": [],
+    "thorough_envelope": [],
+    "extractor_uncertain": [],
+    "widened": false,
+    "covers_reference": false,
+    "standard_covers_reference": false
+   },
+   {
+    "id": "EPMC020",
+    "reference": "LR-5",
+    "standard_envelope": [],
+    "thorough_envelope": [],
+    "extractor_uncertain": [],
+    "widened": false,
+    "covers_reference": false,
+    "standard_covers_reference": false
+   },
+   {
+    "id": "EPMC021",
+    "reference": "LR-5",
+    "standard_envelope": [],
+    "thorough_envelope": [],
+    "extractor_uncertain": [],
+    "widened": false,
+    "covers_reference": false,
+    "standard_covers_reference": false
+   },
+   {
+    "id": "EPMC022",
+    "reference": "LR-5",
+    "standard_envelope": [],
+    "thorough_envelope": [],
+    "extractor_uncertain": [],
+    "widened": false,
+    "covers_reference": false,
+    "standard_covers_reference": false
+   }
+  ]
+ }
+}
