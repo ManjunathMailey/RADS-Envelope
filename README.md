@@ -24,7 +24,14 @@ Guide: Mr. Karthik D U
 - Longitudinal reasoning: threshold growth, subthreshold growth and size stability computed by the rules from a prior CT or MRI, with measurement-aware uncertainty
 - HL7 FHIR R4 export: a DiagnosticReport with one Observation per liver observation, ready for hospital integration
 - Paste a report or upload a .txt / .docx file; batch mode checks many reports at once
-- Audit: stated impression vs computed category
+- Report check: the category written in the report's own impression vs the rule-based category
+  (consistent / contradicts / inside the envelope but not the ACR tie-break), with a word-level
+  comparison of the stated and generated impressions
+- One-click resolution: answer each decisive question (present / absent, or confirm the measurement),
+  watch the envelope narrow, copy a suggested addendum sentence, undo the last answer
+- Documentation completeness per observation (APHE, washout, capsule, size, and threshold growth when a
+  prior study is given) with the missing items named; batch mean, most frequently missing item and
+  CSV export
 - Evaluation on real radiologist-written cases (frozen dev/test split) and a robustness test with rule-generated gold
 - Fully offline: one laptop GPU, no report leaves the machine
 

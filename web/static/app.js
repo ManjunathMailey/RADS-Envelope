@@ -21,7 +21,8 @@ const ICON = {
   info: '<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 11v6m0-9v.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
 };
 
-const S = { examples: [], a: null, obs: 0, samples: 1, mod: "MRI" };
+const S = { examples: [], a: null, obs: 0, samples: 1, mod: "MRI", review: null, undo: null, addendum: null, prevEnv: null };
+const CHECK_STATE = { consistent: ["safe", "ok"], contradicts: ["conflict", "warn"], inside_envelope: ["critical", "warn"], not_assessable: ["review", "info"] };
 const FROM_PRIOR = "From prior study";
 const GROWTH_OUTCOME = {
   threshold_growth: "Threshold growth",
@@ -135,7 +136,8 @@ async function analyse() {
   try {
     S.a = await api("/api/analyse", { report, extractor: "auto", samples: S.samples, size_tolerance_mm: +$("tol").value, high_risk: $("risk").checked, prior });
     S.a.observations.forEach((o) => { o.spread = o.confidence.size.spread_mm || 0; });
-    S.obs = 0;
+    S.obs = 0; S.undo = null; S.addendum = null; S.prevEnv = null;
+    await refreshReview();
     $("start").hidden = true; $("result").hidden = false; window.scrollTo({ top: 0 });
     renderAll();
   } catch (e) { toast(e.message); }
@@ -213,8 +215,47 @@ async function recompute() {
       if (obs[i].audit && x.result.status === "assigned") { obs[i].audit.computed = x.result.acr_category; obs[i].audit.contradiction = obs[i].audit.stated !== x.result.acr_category; }
     });
     Object.assign(S.a, { exam: r.exam, impression: r.impression, consistency: r.consistency });
+    await refreshReview();
     renderAll();
   } catch (e) { toast(e.message); }
+}
+
+/* report check, completeness and impression diff for the current analysis */
+async function refreshReview() {
+  try { S.review = await api("/api/review", S.a); } catch (e) { S.review = null; }
+}
+
+function meter(c) {
+  if (!c) return "";
+  const pct = Math.round(c.score * 100);
+  return `<div class="meter"><div class="meter-label"><span>Documentation</span><span>${c.documented}/${c.total}</span></div>
+    <div class="meter-bar"><span style="width:${pct}%"></span></div>
+    ${c.missing_labels.length ? `<div class="note">Missing: ${c.missing_labels.map(esc).join(", ")}</div>` : ""}</div>`;
+}
+
+function diffHtml(diff, side) {
+  return diff.filter((d) => d.op === "equal" || d.op === (side === "stated" ? "delete" : "insert"))
+    .map((d) => (d.op === "equal" ? esc(d.text) : `<mark class="${d.op === "delete" ? "del" : "ins"}">${esc(d.text)}</mark>`)).join(" ");
+}
+
+function reportCheckCard(rv) {
+  const chk = rv && rv.check;
+  if (!chk) return "";
+  const [cls, icon] = CHECK_STATE[chk.status] || ["review", "info"];
+  const diff = S.review && S.review.diff && S.review.diff.length
+    ? `<details class="diff"><summary>Compare impressions word by word</summary><div class="diff-cols">
+        <div><div class="kicker">Stated in the report</div><p>${diffHtml(S.review.diff, "stated")}</p></div>
+        <div><div class="kicker">Generated from the findings</div><p>${diffHtml(S.review.diff, "generated")}</p></div></div></details>` : "";
+  return `<div class="card flat check"><div class="kicker">Report check</div>
+    <div class="check-row"><span class="cc">Stated${pill(chk.stated)}</span><span class="arrow">→</span><span class="cc">Rules${pill(chk.computed)}</span></div>
+    ${stateBlock(cls, icon, esc(chk.label), chk.status === "inside_envelope" ? "The stated category is possible only if an uncertain finding is resolved." : chk.status === "contradicts" ? "No completion of the documented findings supports the stated category." : "")}
+    ${diff}</div>`;
+}
+
+function addendumBlock() {
+  if (!S.addendum || S.addendum.obs !== S.obs) return S.undo && S.undo.obs === S.obs ? `<div class="addendum"><button type="button" id="undo">Undo last answer</button></div>` : "";
+  return `<div class="addendum"><div class="kicker">Suggested addendum</div><p id="addText">${esc(S.addendum.text)}</p>
+    <div class="btns"><button type="button" id="copyAdd">Copy</button>${S.undo ? '<button type="button" id="undo">Undo</button>' : ""}</div></div>`;
 }
 
 function stateBlock(cls, icon, title, body) { return `<div class="state ${cls}">${ICON[icon]}<div><b>${title}</b>${body}</div></div>`; }
@@ -242,6 +283,7 @@ function priorCard(lg) {
 
 function renderDecision() {
   const a = S.a, o = a.observations[S.obs], r = o.result;
+  const rv = S.review && S.review.observations ? S.review.observations[S.obs] : null;
   let html = "";
   if (a.observations.length > 1) {
     html += `<div class="card flat exam"><span>${a.exam.observations} observations · highest</span><b>${pill(a.exam.highest_category)}</b></div>`;
@@ -249,7 +291,7 @@ function renderDecision() {
   if (r.status !== "assigned") {
     const title = r.status === "defer" ? "Needs radiologist review" : r.status === "not_applicable" ? "LI-RADS does not apply" : "Category cannot be assigned";
     html += `<div class="card"><div class="kicker">${esc(o.label)}</div><div class="cat" style="color:var(--faint)">—</div><div class="meaning">${title}</div>
-      ${stateBlock("review", "info", "Why", r.reasons.map(esc).join("<br>"))}</div>`;
+      ${stateBlock("review", "info", "Why", r.reasons.map(esc).join("<br>"))}${meter(rv && rv.completeness)}</div>`;
   } else {
     const pc = r.acr_category, env = new Set(r.envelope);
     const others = r.envelope.filter((c) => c !== pc);
@@ -263,15 +305,19 @@ function renderDecision() {
     }
     const conflict = o.audit && o.audit.contradiction
       ? stateBlock("conflict", "warn", "The impression disagrees", `The report says ${esc(o.audit.stated)}, but its findings support ${esc(pc)}.`) : "";
-    const track = CATS.map((c) => `<div class="${c === pc ? "point" : env.has(c) ? "reach" : ""}" style="${hue(c)}">${c.slice(3)}</div>`).join("");
+    const prev = S.prevEnv && S.prevEnv.obs === S.obs ? S.prevEnv.cats : null;
+    const track = CATS.map((c) => {
+      const cls = c === pc ? "point" : env.has(c) ? "reach" : prev && prev.has(c) ? "leaving" : "";
+      return `<div class="${cls}" style="${hue(c)}">${c.slice(3)}</div>`;
+    }).join("");
     const notes = CATS.map((c) => `<span>${c === pc ? "ACR" : env.has(c) ? esc("if " + r.witnesses[c].if.join(", ").replace(">=", "≥")) : ""}</span>`).join("");
     let ask = "";
     if (r.decision_critical && r.decisive_questions.length) {
-      const q = r.decisive_questions[0];
-      ask = q.feature === "size"
-        ? `<div class="ask"><div class="q">Re-measure the observation.</div><div class="qs">The size sits near a cut-off. Measured exactly, it is ${orList(q.if_exact)}.</div><div class="btns"><button type="button" data-exact="1">Measurement is exact</button></div></div>`
-        : `<div class="ask"><div class="q">${esc(q.question)}</div><div class="qs">Yes gives ${orList(q.if_yes)}. No gives ${orList(q.if_no)}.</div><div class="btns"><button type="button" data-k="${q.feature}" data-v="present">Yes</button><button type="button" data-k="${q.feature}" data-v="absent">No</button></div></div>`;
+      ask = r.decisive_questions.map((q, qi) => q.feature === "size"
+        ? `<div class="ask${qi ? " minor" : ""}"><div class="q">Re-measure the observation.</div><div class="qs">The size sits near a cut-off. Measured exactly, it is ${orList(q.if_exact)}.</div><div class="btns"><button type="button" data-exact="1">Measurement is exact</button></div></div>`
+        : `<div class="ask${qi ? " minor" : ""}"><div class="q">${esc(q.question)}</div><div class="qs">Present gives ${orList(q.if_yes)}. Absent gives ${orList(q.if_no)}.</div><div class="btns"><button type="button" data-k="${q.feature}" data-v="present">Present</button><button type="button" data-k="${q.feature}" data-v="absent">Absent</button></div></div>`).join("");
     }
+    ask += addendumBlock();
     const tie = r.tie_break_features.length && others.length
       ? `<div class="note">${r.tie_break_features.map((k) => FEATURES.find((f) => f[0] === k)[1].toLowerCase()).join(" and ")} not confirmed, counted as absent (ACR rule)</div>` : "";
     html += `<div class="card">
@@ -281,7 +327,7 @@ function renderDecision() {
       ${banner}${conflict}
       <div class="range"><div class="range-label"><span>Possible categories</span><span>${r.envelope.length === 1 ? "one" : r.envelope.length}</span></div>
         <div class="track">${track}</div><div class="track-notes">${notes}</div></div>
-      ${ask}
+      ${ask}${meter(rv && rv.completeness)}
       <div class="rec"><div class="kicker">Recommendation</div><p>${esc(r.management.find((m) => m.category === pc).action)}</p></div>
       <details><summary>Why ${pc}</summary>
         <ol class="path">${r.trace.map((s) => `<li><span>${esc(s.step)}</span><span>${esc(s.value.replace("->", "→"))}</span></li>`).join("")}</ol>
@@ -289,22 +335,45 @@ function renderDecision() {
       </details>
     </div>`;
   }
+  html += reportCheckCard(rv);
   if (o.longitudinal) html += priorCard(o.longitudinal);
   html += `<div class="card flat impression"><div class="kicker"><span>Draft impression</span><span class="actions"><button type="button" id="copy">Copy</button><button type="button" id="download">Download</button><button type="button" id="fhir">Export FHIR</button></span></div>
     <pre>${esc(a.impression)}</pre>
     ${a.consistency.consistent ? `<div class="verified">${ICON.ok}Matches the rule-based category</div>` : ""}</div>`;
   $("decision").innerHTML = html;
+  if (S.prevEnv) setTimeout(() => { S.prevEnv = null; }, 0);       // the narrowing animates once
 }
 $("decision").addEventListener("click", async (e) => {
   if (e.target.id === "copy") { try { await navigator.clipboard.writeText(S.a.impression); toast("Impression copied"); } catch (err) { toast("Copy is not available here"); } return; }
   if (e.target.id === "download") { downloadReport(); return; }
   if (e.target.id === "fhir") { exportFhir(); return; }
+  if (e.target.id === "copyAdd") { try { await navigator.clipboard.writeText(S.addendum.text); toast("Addendum copied"); } catch (err) { toast("Copy is not available here"); } return; }
+  if (e.target.id === "undo") { undoAnswer(); return; }
   const b = e.target.closest(".ask button"); if (!b) return;
   const o = S.a.observations[S.obs];
-  if (b.dataset.exact) { $("tol").value = 0; $("tolVal").textContent = "±0 mm"; S.a.observations.forEach((x) => (x.spread = 0)); }
-  else o.features[b.dataset.k] = b.dataset.v;
+  S.undo = { obs: S.obs, features: { ...o.features }, size_mm: o.size_mm, tol: $("tol").value,
+             spreads: S.a.observations.map((x) => x.spread), addendum: S.addendum };
+  S.prevEnv = { obs: S.obs, cats: new Set(o.result.envelope || []) };
+  let req;
+  if (b.dataset.exact) {
+    $("tol").value = 0; $("tolVal").textContent = "±0 mm"; S.a.observations.forEach((x) => (x.spread = 0));
+    req = { feature: "size", size_mm: o.size_mm, label: o.label };
+  } else {
+    o.features[b.dataset.k] = b.dataset.v;
+    req = { feature: b.dataset.k, state: b.dataset.v, label: o.label };
+  }
+  try { S.addendum = { obs: S.obs, text: (await api("/api/addendum", req)).sentence }; } catch (err) { S.addendum = null; }
   o.edited = true; recompute();
 });
+function undoAnswer() {
+  const u = S.undo; if (!u) return;
+  const o = S.a.observations[u.obs];
+  o.features = u.features; o.size_mm = u.size_mm;
+  $("tol").value = u.tol; $("tolVal").textContent = `±${u.tol} mm`;
+  S.a.observations.forEach((x, i) => (x.spread = u.spreads[i]));
+  S.addendum = u.addendum; S.undo = null; S.prevEnv = null;
+  recompute(); toast("Last answer undone");
+}
 function saveFile(name, text, type) {
   const blob = new Blob([text], { type });
   const url = URL.createObjectURL(blob), link = document.createElement("a");
@@ -342,23 +411,42 @@ $("batchGo").addEventListener("click", async () => {
   const b = $("batchGo"); b.disabled = true; b.innerHTML = `<span class="spin"></span>Checking ${reports.length}`;
   try {
     const out = await api("/api/audit", { reports, extractor: "auto" });
-    S.batch = reports;
+    S.batch = reports; S.batchRows = out.rows;
     const s = out.summary;
+    const flagFor = (r) => {
+      const st = r.check && r.check.status;
+      if (st === "contradicts") return '<span class="flag conflict">Contradicts the rules</span>';
+      if (st === "inside_envelope") return '<span class="flag critical">Inside envelope, not ACR</span>';
+      if (r.status !== "assigned") return '<span class="flag review">Needs review</span>';
+      if (r.critical) return '<span class="flag critical">Could change management</span>';
+      return '<span class="flag ok">Consistent</span>';
+    };
     $("batchOut").innerHTML = `<div class="summary">
         <div><b>${s.observations}</b><span>observations</span></div>
-        <div><b style="color:var(--lr5)">${s.contradictions}</b><span>impression disagrees</span></div>
+        <div><b style="color:var(--lr5)">${s.reports_contradicting_rules}</b><span>contradict the rules</span></div>
         <div><b style="color:var(--warn)">${s.decision_critical}</b><span>could change management</span></div>
-        <div><b>${s.needs_review}</b><span>need review</span></div></div>
+        <div><b>${s.needs_review}</b><span>need review</span></div>
+        <div><b>${s.mean_completeness == null ? "—" : Math.round(s.mean_completeness * 100) + "%"}</b><span>documentation</span></div></div>
+      <div class="batch-bar"><span>${s.reports_contradicting_rules} of ${s.reports} reports contradict the rules${s.most_missing ? ` · most often missing: ${esc(s.most_missing.toLowerCase())} (${s.most_missing_count})` : ""}</span>
+        <button type="button" class="opt-btn" id="batchCsv">Export CSV</button></div>
       <div class="rows">${out.rows.map((r) => {
-        const flag = r.contradiction ? '<span class="flag conflict">Impression disagrees</span>' : r.critical ? '<span class="flag critical">Could change management</span>'
-          : r.status !== "assigned" ? '<span class="flag review">Needs review</span>' : '<span class="flag ok">Consistent</span>';
-        return `<div class="rowi" data-r="${r.report - 1}" role="button" tabindex="0"><span class="n">${r.report}</span><span class="tx"><b>${esc(r.label)}</b><span>${esc(r.excerpt)}</span></span>
-          <span class="cc">Stated${pill(r.stated)}</span><span class="cc">Findings${pill(r.computed)}</span>${flag}</div>`;
+        const c = r.completeness;
+        const doc = c ? `Documentation ${c.documented}/${c.total}${c.missing_labels.length ? " · missing " + c.missing_labels.map((x) => x.toLowerCase()).join(", ") : ""}` : "";
+        return `<div class="rowi" data-r="${r.report - 1}" role="button" tabindex="0"><span class="n">${r.report}</span><span class="tx"><b>${esc(r.label)}</b><span>${esc(r.excerpt)}</span><span class="doc">${esc(doc)}</span></span>
+          <span class="cc">Stated${pill(r.stated)}</span><span class="cc">Computed${pill(r.computed)}</span>${flagFor(r)}</div>`;
       }).join("")}</div>`;
   } catch (e) { toast(e.message); }
   b.disabled = false; b.textContent = "Check reports";
 });
-$("batchOut").addEventListener("click", (e) => {
+$("batchOut").addEventListener("click", async (e) => {
+  if (e.target.id === "batchCsv") {
+    try {
+      const r = await fetch("/api/audit/csv", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ rows: S.batchRows || [] }) });
+      if (!r.ok) throw new Error(r.statusText);
+      saveFile("lirads-batch.csv", await r.text(), "text/csv"); toast("CSV downloaded");
+    } catch (err) { toast(err.message); }
+    return;
+  }
   const row = e.target.closest(".rowi"); if (!row) return;
   $("report").value = S.batch[+row.dataset.r]; location.hash = "#analyse"; analyse();
 });

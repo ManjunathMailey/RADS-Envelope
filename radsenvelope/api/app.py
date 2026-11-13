@@ -11,21 +11,24 @@ import json
 import re
 import threading
 import zipfile
+from collections import Counter
 from contextlib import asynccontextmanager
 from datetime import date
 from pathlib import Path
 from typing import Literal, Optional
 
 from fastapi import Body, FastAPI, HTTPException
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, Response
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field, field_validator
 
 from radsenvelope import __version__
+from radsenvelope.api.product import addendum, audit_csv, completeness, impression_diff, management_text, report_check
 from radsenvelope.engine.longitudinal import normalise_modality
 from radsenvelope.engine.ruleset import FEATURE_LABELS, FEATURES, get_ruleset
 from radsenvelope.export.fhir import to_fhir_bundle
 from radsenvelope.extraction import llm
+from radsenvelope.extraction.segment import stated_categories
 from radsenvelope.pipeline import Settings, analyse_report, finalize, recompare, run_observation
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -190,24 +193,86 @@ def recompute(req: RecomputeRequest):
     return {"observations": out, **finalize(obs)}
 
 
+def _stated_per_observation(stated_impression: str, n: int) -> list[str | None]:
+    """The category written in the report's own impression for each observation (same rule as the pipeline)."""
+    stated = stated_categories(stated_impression or "")
+    if len(stated) == n:
+        return stated
+    return [stated[0] if n == 1 and stated else None] * n
+
+
+def _review_observation(o: dict, stated: str | None) -> dict:
+    return {"label": o.get("label"), "check": report_check(stated, o.get("result") or {}),
+            "completeness": completeness(o.get("features") or {}, o.get("size_mm"), bool(o.get("longitudinal")))}
+
+
+@app.post("/api/review")
+def review(analysis: dict = Body(...)):
+    """Report check, completeness and impression diff for an analysis from /api/analyse (after any edits)."""
+    observations = analysis.get("observations")
+    if not isinstance(observations, list) or not observations:
+        raise HTTPException(422, "Send the analysis returned by /api/analyse: 'observations' must be a non-empty list.")
+    stated_text = analysis.get("stated_impression") or ""
+    stated = _stated_per_observation(stated_text, len(observations))
+    return {"observations": [_review_observation(o, s) for o, s in zip(observations, stated)],
+            "has_stated_impression": bool(stated_text.strip()),
+            "diff": impression_diff(stated_text, analysis.get("impression") or "") if stated_text.strip() else []}
+
+
+class AddendumRequest(BaseModel):
+    feature: Literal["aphe", "washout", "capsule", "growth", "af_malignant", "af_benign", "size"]
+    state: Optional[Literal["present", "absent"]] = None
+    size_mm: Optional[float] = None
+    label: Optional[str] = None
+
+
+@app.post("/api/addendum")
+def addendum_sentence(req: AddendumRequest):
+    try:
+        return {"sentence": addendum(req.feature, req.state, req.size_mm, req.label)}
+    except ValueError as e:
+        raise HTTPException(422, str(e))
+
+
 @app.post("/api/audit")
 def audit(req: AuditRequest):
     rows = []
     for i, rep in enumerate(r for r in req.reports if r.strip()):
         out = analyse_report(rep, Settings(extractor=req.extractor))
-        for o in out["observations"]:
+        stated_all = _stated_per_observation(out["stated_impression"], len(out["observations"]))
+        for o, stated in zip(out["observations"], stated_all):
             res = o["result"]
+            rv = _review_observation(o, stated)
             rows.append({"report": i + 1, "label": o["label"], "excerpt": o["text"][:160],
                          "status": res["status"], "computed": res.get("acr_category"),
                          "envelope": res.get("envelope"), "critical": bool(res.get("decision_critical")),
-                         "stated": o["audit"]["stated"] if o["audit"] else None,
+                         "stated": o["audit"]["stated"] if o["audit"] else stated,
                          "contradiction": bool(o["audit"] and o["audit"]["contradiction"]),
-                         "reasons": res.get("reasons")})
-    return {"summary": {"reports": len({r["report"] for r in rows}), "observations": len(rows),
+                         "reasons": res.get("reasons"), "check": rv["check"], "completeness": rv["completeness"],
+                         "management": management_text(res)})
+    missing = Counter(m for r in rows for m in r["completeness"]["missing_labels"])
+    reports = {r["report"] for r in rows}
+    contradicting = {r["report"] for r in rows if r["check"] and r["check"]["status"] == "contradicts"}
+    return {"summary": {"reports": len(reports), "observations": len(rows),
                         "contradictions": sum(r["contradiction"] for r in rows),
                         "decision_critical": sum(r["critical"] for r in rows),
-                        "needs_review": sum(r["status"] != "assigned" for r in rows)},
+                        "needs_review": sum(r["status"] != "assigned" for r in rows),
+                        "reports_contradicting_rules": len(contradicting),
+                        "mean_completeness": round(sum(r["completeness"]["score"] for r in rows) / len(rows), 3) if rows else None,
+                        "most_missing": missing.most_common(1)[0][0] if missing else None,
+                        "most_missing_count": missing.most_common(1)[0][1] if missing else 0},
             "rows": rows, "extractor": req.extractor}
+
+
+class AuditCsvRequest(BaseModel):
+    rows: list[dict]
+
+
+@app.post("/api/audit/csv")
+def audit_export(req: AuditCsvRequest):
+    """CSV of batch results: id, stated, computed, envelope, management, decision_critical, completeness, missing."""
+    return Response(audit_csv(req.rows), media_type="text/csv",
+                    headers={"Content-Disposition": 'attachment; filename="lirads-batch.csv"'})
 
 
 @app.post("/api/export/fhir")
