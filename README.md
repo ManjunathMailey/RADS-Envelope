@@ -25,7 +25,7 @@ Guide: Mr. Karthik D U
 - HL7 FHIR R4 export: a DiagnosticReport with one Observation per liver observation, ready for hospital integration
 - Paste a report or upload a .txt / .docx file; batch mode checks many reports at once
 - Audit: stated impression vs computed category
-- Evaluation on real radiologist-written cases and a controlled-ambiguity stress test
+- Evaluation on real radiologist-written cases (frozen dev/test split) and a robustness test with rule-generated gold
 - Fully offline: one laptop GPU, no report leaves the machine
 
 ## Quick start (Windows)
@@ -42,10 +42,10 @@ Requires Python 3.10+ and [Ollama](https://ollama.com). Default model: `qwen2.5:
 
 ```powershell
 .\.venv\Scripts\python.exe -m radsenvelope.evaluation.real_cases                  # real cases
-.\.venv\Scripts\python.exe -m radsenvelope.evaluation.benchmark --extractor llm     # stress test, LLM
-.\.venv\Scripts\python.exe -m radsenvelope.evaluation.benchmark --extractor lexicon # stress test, baseline
+.\.venv\Scripts\python.exe -m radsenvelope.evaluation.benchmark --extractor llm     # robustness test (rule-generated gold), LLM
+.\.venv\Scripts\python.exe -m radsenvelope.evaluation.benchmark --extractor lexicon # robustness test, lexicon
 .\.venv\Scripts\python.exe -m radsenvelope.evaluation.real_cases --compare        # B1 LLM-direct / B2 / B3 / Ours
-.\.venv\Scripts\python.exe -m radsenvelope.evaluation.benchmark --compare         # same, on the stress test
+.\.venv\Scripts\python.exe -m radsenvelope.evaluation.benchmark --compare         # same, on the robustness test
 .\.venv\Scripts\python.exe -m pytest                                               # tests
 ```
 
@@ -74,7 +74,7 @@ radsenvelope/
   engine/                          ruleset (category + trace), envelope, longitudinal growth, exam summary
   extraction/                      segmentation, LLM, lexicon, consensus, grounding, scope
   generation/impression.py         rule-consistent impression + verification
-  evaluation/                      real cases, stress-test generator, metrics, benchmark
+  evaluation/                      real cases, robustness-test generator, metrics, baselines, protocol
   export/fhir.py                   HL7 FHIR R4 Bundle export
   api/app.py                       FastAPI service
   pipeline.py                      end-to-end pipeline shared by API, CLI and evaluation

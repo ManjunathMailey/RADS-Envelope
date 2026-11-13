@@ -57,12 +57,53 @@ def agreement(a: dict[str, dict], b: dict[str, dict]) -> dict:
     return out
 
 
+def filled(rows: dict[str, dict]) -> int:
+    """Number of rows with at least one feature label."""
+    return sum(any(_state(r.get(f"gold_{k}")) in STATES for k in FEATURES) for r in rows.values())
+
+
+def adjudicate(a: dict[str, dict], b: dict[str, dict]) -> dict[str, dict]:
+    """Adjudicated gold: a feature label is kept only where both annotators agree."""
+    gold = {}
+    for i in sorted(set(a) & set(b)):
+        g = {k: _state(a[i].get(f"gold_{k}")) for k in FEATURES
+             if _state(a[i].get(f"gold_{k}")) in STATES and _state(a[i].get(f"gold_{k}")) == _state(b[i].get(f"gold_{k}"))}
+        if g:
+            gold[i] = g
+    return gold
+
+
+def report(a: dict[str, dict], b: dict[str, dict], results: dict | None = None) -> dict:
+    """Inter-annotator agreement and extractor F1 against adjudicated gold, or the status if not collected."""
+    na, nb = filled(a), filled(b)
+    if not na or not nb:
+        return {"status": "not yet collected (single reviewer)", "annotator_a_filled": na,
+                "annotator_b_filled": nb, "matched_ids": len(set(a) & set(b))}
+    out = {"status": "collected", **agreement(a, b)}
+    gold = adjudicate(a, b)
+    out["adjudicated_cases"] = len(gold)
+    if results and gold:
+        from radsenvelope.evaluation.metrics import feature_scores
+        for system in ("B1", "B2", "Ours"):
+            rows = {r["id"]: r.get("features") or {} for r in results["systems"].get(system, {}).get("rows", [])}
+            pairs = [(g, rows[i]) for i, g in gold.items() if i in rows]
+            if pairs:
+                out.setdefault("extractor_f1_vs_adjudicated", {})[system] = feature_scores(pairs, FEATURES)
+    return out
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("annotator_a", type=Path)
     ap.add_argument("annotator_b", type=Path)
+    ap.add_argument("--results", type=Path, help="comparison results JSON for extractor F1 against adjudicated gold")
+    ap.add_argument("--out", type=Path)
     a = ap.parse_args()
-    print(json.dumps(agreement(_read(a.annotator_a), _read(a.annotator_b)), indent=1))
+    results = json.loads(a.results.read_text(encoding="utf-8")) if a.results else None
+    res = report(_read(a.annotator_a), _read(a.annotator_b), results)
+    if a.out:
+        a.out.write_text(json.dumps(res, indent=1), encoding="utf-8")
+    print(json.dumps(res, indent=1))
 
 
 if __name__ == "__main__":

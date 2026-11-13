@@ -120,9 +120,20 @@ def gold_size(row: dict) -> float | None:
         return None
 
 
+def source_of(case_id: str) -> str:
+    if (case_id or "").startswith("EPMC"):
+        return "europepmc"
+    if (case_id or "").startswith("PMC"):
+        return "pmc"
+    if (case_id or "").startswith("RP"):
+        return "radiopaedia"
+    return "other"
+
+
 def compare_cases(rows: list[dict]) -> list[dict]:
     return [{"id": r.get("id"), "text": r["findings_text"], "gold": normalise(r.get("radiologist_category", "")),
-             "gold_features": gold_features(r), "gold_size_mm": gold_size(r)} for r in rows]
+             "gold_features": gold_features(r), "gold_size_mm": gold_size(r), "source": source_of(r.get("id"))}
+            for r in rows]
 
 
 SPLIT = ROOT / "data" / "real" / "split.csv"

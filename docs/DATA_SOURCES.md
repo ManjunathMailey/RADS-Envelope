@@ -18,7 +18,7 @@ LI-RADS *category* and diameter. No LI-RADS label is ever derived by us where a 
 | HCC-TACE-Seg (TCIA via IDC) | Multiphase CT of 105 HCC patients with expert segmentations (liver, mass, portal vein, aorta) | real | clinical table (105 x 59); pre-treatment CT + SEG for **10 patients** (33 series, 1.07 GB) | CC BY 4.0 | `idc-index` | CT previews, measured sizes; image pipeline roadmap |
 | TCGA-LIHC (TCIA via IDC) | Imaging and pathology of 377 liver cancer cases | real | series list and clinical table only (no images; 681.8 GB in IDC) | CC BY 3.0 / 4.0 | `idc-index` | roadmap |
 | PLC-CECT (Science Data Bank) | CECT of primary liver cancer subtypes | real | **skipped: requires login** (2 files, 42.05 GB) | CC BY 4.0 | DataCite metadata only | roadmap |
-| Stress-test generator, demo samples S1-S10 | Reports generated from known feature vectors; demo reports | **synthetic** | 200 / 10 | project | generated | controlled-ambiguity benchmark, demo |
+| Robustness-test generator, demo samples S1-S10 | Reports generated from known feature vectors; demo reports | **synthetic** | 200 / 10 | project | generated | robustness test (rule-generated gold; not accuracy), demo |
 | AMPLIFAI | Multiphase CT with LI-RADS feature labels | real | none | gated | **requested / pending** | planned feature-level evaluation |
 | MIMIC-IV-Note | Radiology reports | real | none | PhysioNet credentialed | **requested / pending** | planned text evaluation |
 | Ramaiah hospital reports | De-identified institutional reports | real | none | ethics approval | **requested / pending** (via guide) | planned text evaluation |

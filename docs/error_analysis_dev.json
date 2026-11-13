@@ -1,8 +1,10 @@
 {
- "cases": 5,
- "disagreements": 2,
+ "cases": 19,
+ "disagreements": 16,
  "by_class": {
-  "extraction_error": 2
+  "extraction_error": 2,
+  "out_of_scope": 12,
+  "scope_error": 2
  },
  "errors": [
   {
@@ -60,8 +62,122 @@
     }
    ],
    "detail": "growth: present -> absent; af_benign: not_documented -> present"
+  },
+  {
+   "id": "EPMC001",
+   "reference": "LR-5",
+   "ours": "not_assignable",
+   "envelope": null,
+   "class": "out_of_scope",
+   "detail": "the findings text states no size"
+  },
+  {
+   "id": "EPMC008",
+   "reference": "LR-TIV",
+   "ours": "LR-5",
+   "envelope": [
+    "LR-5"
+   ],
+   "class": "scope_error",
+   "detail": "reference LR-TIV not deferred (ours LR-5)"
+  },
+  {
+   "id": "EPMC009",
+   "reference": "LR-M",
+   "ours": "not_assignable",
+   "envelope": null,
+   "class": "scope_error",
+   "detail": "reference LR-M not deferred (ours not_assignable)"
+  },
+  {
+   "id": "EPMC012",
+   "reference": "LR-5",
+   "ours": "not_assignable",
+   "envelope": null,
+   "class": "out_of_scope",
+   "detail": "the findings text states no size"
+  },
+  {
+   "id": "EPMC013",
+   "reference": "LR-5",
+   "ours": "not_assignable",
+   "envelope": null,
+   "class": "out_of_scope",
+   "detail": "the findings text states no size"
+  },
+  {
+   "id": "EPMC014",
+   "reference": "LR-5",
+   "ours": "not_assignable",
+   "envelope": null,
+   "class": "out_of_scope",
+   "detail": "the findings text states no size"
+  },
+  {
+   "id": "EPMC015",
+   "reference": "LR-5",
+   "ours": "not_assignable",
+   "envelope": null,
+   "class": "out_of_scope",
+   "detail": "the findings text states no size"
+  },
+  {
+   "id": "EPMC016",
+   "reference": "LR-5",
+   "ours": "not_assignable",
+   "envelope": null,
+   "class": "out_of_scope",
+   "detail": "the findings text states no size"
+  },
+  {
+   "id": "EPMC017",
+   "reference": "LR-5",
+   "ours": "not_assignable",
+   "envelope": null,
+   "class": "out_of_scope",
+   "detail": "the findings text states no size"
+  },
+  {
+   "id": "EPMC018",
+   "reference": "LR-5",
+   "ours": "not_assignable",
+   "envelope": null,
+   "class": "out_of_scope",
+   "detail": "the findings text states no size"
+  },
+  {
+   "id": "EPMC019",
+   "reference": "LR-4",
+   "ours": "not_assignable",
+   "envelope": null,
+   "class": "out_of_scope",
+   "detail": "the findings text states no size"
+  },
+  {
+   "id": "EPMC020",
+   "reference": "LR-5",
+   "ours": "not_assignable",
+   "envelope": null,
+   "class": "out_of_scope",
+   "detail": "the findings text states no size"
+  },
+  {
+   "id": "EPMC021",
+   "reference": "LR-5",
+   "ours": "not_assignable",
+   "envelope": null,
+   "class": "out_of_scope",
+   "detail": "the findings text states no size"
+  },
+  {
+   "id": "EPMC022",
+   "reference": "LR-5",
+   "ours": "not_assignable",
+   "envelope": null,
+   "class": "out_of_scope",
+   "detail": "the findings text states no size"
   }
  ],
  "prompt_hash": "7e69f08f6618d62e892b7522a57da7ee4cb05463b83f9b8fc3999267bd041111",
- "generated_from": "2026-11-13T04:47:25"
+ "generated_from": "2026-11-13T14:21:33"
 }

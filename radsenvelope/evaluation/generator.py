@@ -1,10 +1,10 @@
 """
-Controlled-ambiguity stress-test generator.
+Report generator for the robustness test (rule-generated gold).
 
 Builds reports from a gold feature vector using varied clinical phrasings, with deliberate
-hedges, omissions, unit changes and near-threshold sizes. Because the gold vector is known,
-the gold category and the gold envelope are known exactly. This set stress-tests extractors;
-it is not a substitute for real reports (see real_cases.py).
+hedges, omissions, unit changes and near-threshold sizes. The gold category and envelope are
+computed by the engine's own rule table, so this set measures the robustness of extraction,
+not clinical accuracy; it is not a substitute for real reports (see real_cases.py).
 """
 from __future__ import annotations
 

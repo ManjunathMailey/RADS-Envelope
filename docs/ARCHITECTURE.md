@@ -101,11 +101,12 @@ ambiguity and of the extractor's own instability. Each feature records which sou
 1. **Real cases (primary).** Radiologist-written LI-RADS cases (Radiopaedia, CC BY-NC-SA, attributed
    per case). Metrics: exact and within-one agreement with the radiologist's category, share of
    radiologist categories inside the envelope, correct deferrals for LR-M / LR-TIV.
-2. **Controlled-ambiguity stress test.** Reports generated from known feature vectors with varied
-   phrasing, hedges, omissions and near-threshold sizes. Because the gold vector is known, the gold
-   envelope is known. Metrics: per-feature macro-F1, category accuracy, envelope exact match,
-   decision-critical precision and recall, and alert burden (management-aware alerts vs flagging
-   every uncertainty). Run for the lexicon baseline and the LLM extractor.
+2. **Robustness test (rule-generated gold).** Reports generated from known feature vectors with varied
+   phrasing, hedges, omissions and near-threshold sizes. The gold category comes from the same rule
+   table the systems use, so agreement here is **not clinical accuracy**: it measures how robustly the
+   features are recovered. Metrics: per-feature macro-F1, agreement with the rule-generated gold,
+   envelope exact match, decision-critical precision and recall, and alert burden
+   (management-aware alerts vs flagging every uncertainty).
 3. **Baselines: "why not just ask the LLM?"** Every case is run through four systems:
    B1 *LLM-direct* (the same local model returns features and a category in one schema-constrained
    call with a compact v2018 summary; `evaluation/baselines.py`), B2 lexicon + rules, B3 LLM + rules

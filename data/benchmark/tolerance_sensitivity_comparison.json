@@ -1,0 +1,136 @@
+{
+ "source_results": "results_comparison.json",
+ "split": null,
+ "label": "robustness test (rule-generated gold)",
+ "prompt_hash": "7e69f08f6618d62e892b7522a57da7ee4cb05463b83f9b8fc3999267bd041111",
+ "table": [
+  {
+   "tolerance_mm": 0.0,
+   "cases": 200,
+   "alert_rate": {
+    "k": 70,
+    "n": 200,
+    "value": 0.35,
+    "ci95": [
+     0.2873,
+     0.4184
+    ]
+   },
+   "envelope_coverage": {
+    "k": 200,
+    "n": 200,
+    "value": 1.0,
+    "ci95": [
+     0.9812,
+     1.0
+    ]
+   },
+   "mean_envelope_size": 1.39,
+   "near_cutoff_rate": {
+    "k": 0,
+    "n": 200,
+    "value": 0.0,
+    "ci95": [
+     0.0,
+     0.0188
+    ]
+   }
+  },
+  {
+   "tolerance_mm": 1.0,
+   "cases": 200,
+   "alert_rate": {
+    "k": 95,
+    "n": 200,
+    "value": 0.475,
+    "ci95": [
+     0.4069,
+     0.544
+    ]
+   },
+   "envelope_coverage": {
+    "k": 200,
+    "n": 200,
+    "value": 1.0,
+    "ci95": [
+     0.9812,
+     1.0
+    ]
+   },
+   "mean_envelope_size": 1.575,
+   "near_cutoff_rate": {
+    "k": 92,
+    "n": 200,
+    "value": 0.46,
+    "ci95": [
+     0.3923,
+     0.5292
+    ]
+   }
+  },
+  {
+   "tolerance_mm": 2.0,
+   "cases": 200,
+   "alert_rate": {
+    "k": 101,
+    "n": 200,
+    "value": 0.505,
+    "ci95": [
+     0.4363,
+     0.5735
+    ]
+   },
+   "envelope_coverage": {
+    "k": 200,
+    "n": 200,
+    "value": 1.0,
+    "ci95": [
+     0.9812,
+     1.0
+    ]
+   },
+   "mean_envelope_size": 1.62,
+   "near_cutoff_rate": {
+    "k": 111,
+    "n": 200,
+    "value": 0.555,
+    "ci95": [
+     0.4857,
+     0.6222
+    ]
+   }
+  },
+  {
+   "tolerance_mm": 3.0,
+   "cases": 200,
+   "alert_rate": {
+    "k": 104,
+    "n": 200,
+    "value": 0.52,
+    "ci95": [
+     0.451,
+     0.5882
+    ]
+   },
+   "envelope_coverage": {
+    "k": 200,
+    "n": 200,
+    "value": 1.0,
+    "ci95": [
+     0.9812,
+     1.0
+    ]
+   },
+   "mean_envelope_size": 1.64,
+   "near_cutoff_rate": {
+    "k": 120,
+    "n": 200,
+    "value": 0.6,
+    "ci95": [
+     0.5308,
+     0.6654
+    ]
+   }
+  }
+ ]
+}

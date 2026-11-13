@@ -15,6 +15,7 @@ STATES = ("present", "absent", "uncertain", "not_documented")
 KAPPA_LABELS = ("LR-2", "LR-3", "LR-4", "LR-5")
 NUMERIC = ("LR-1", "LR-2", "LR-3", "LR-4", "LR-5")
 Z95 = 1.959963984540054
+DEFER_REFS = ("LR-M", "LR-TIV", "LR-TR")
 
 
 def wilson(k: int, n: int, z: float = Z95) -> list[float] | None:
@@ -87,7 +88,10 @@ def system_summary(rows: list[dict], envelope: bool = False) -> dict:
     neg = [r for r in graded if r["gold"] != "LR-5"]
     contra = [r["contradiction"] for r in rows if r.get("contradiction") is not None]
     consistent = [r["consistent"] for r in rows if r.get("consistent") is not None]
-    deferral_cases = [r for r in rows if r["gold"] in ("LR-M", "LR-TIV", "LR-TR")]
+    deferral_cases = [r for r in rows if r["gold"] in DEFER_REFS]
+    # a system "defers" when it routes the case away from the core table: status defer, or (B1) LR-M/LR-TIV/LR-TR
+    deferred = [r for r in rows if r["pred"] == "defer" or r["pred"] in DEFER_REFS]
+    defer_tp = sum(r["gold"] in DEFER_REFS for r in deferred)
     out = {
         "cases": len(rows), "graded": n,
         "accuracy": proportion(exact, n),
@@ -102,6 +106,8 @@ def system_summary(rows: list[dict], envelope: bool = False) -> dict:
         "consistency_verified": proportion(sum(consistent), len(consistent)) if consistent else None,
         "correct_deferrals": proportion(sum(r["pred"] in (r["gold"], "defer") for r in deferral_cases),
                                         len(deferral_cases)),
+        "deferral_precision": proportion(defer_tp, len(deferred)),
+        "deferral_recall": proportion(defer_tp, len(deferral_cases)),
         "mean_seconds": round(sum(r.get("seconds") or 0 for r in rows) / len(rows), 3) if rows else None,
     }
     if envelope:

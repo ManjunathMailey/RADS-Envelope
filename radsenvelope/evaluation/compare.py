@@ -88,6 +88,11 @@ def run(cases: list[dict], systems: tuple[str, ...] = SYSTEMS, samples: int = 1)
         result[s] = {"summary": summary, "rows": rows[s]}
     if "B1" in systems:
         result["B1"]["summary"]["unparsed"] = sum(r["error"] is not None for r in rows["B1"])
+    sources = sorted({c.get("source") for c in cases if c.get("source")})
+    if sources:                                             # per-source breakdown plus pooled (= the summaries above)
+        result["per_source"] = {
+            src: {s: system_summary([r for c, r in zip(cases, rows[s]) if c.get("source") == src], envelope=(s == "Ours"))
+                  for s in systems} for src in sources}
     return result
 
 
@@ -100,6 +105,8 @@ def table(result: dict) -> list[dict]:
         return f"{p['value']:.3f} [{lo:.3f}-{hi:.3f}]"
     out = []
     for s, r in result.items():
+        if s == "per_source":
+            continue
         m = r["summary"]
         contra = m["contradiction_rate"]
         out.append({

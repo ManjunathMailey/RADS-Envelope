@@ -39,13 +39,8 @@ FORCED_DEV_PMCIDS = {p: "article text shown during harvester development" for p 
 
 
 def source_of(case_id: str) -> str:
-    if case_id.startswith("EPMC"):
-        return "europepmc"
-    if case_id.startswith("PMC"):
-        return "pmc"
-    if case_id.startswith("RP"):
-        return "radiopaedia"
-    return "other"
+    from radsenvelope.evaluation.real_cases import source_of as _source_of
+    return _source_of(case_id)
 
 
 def forced_reason(row: dict) -> str:
