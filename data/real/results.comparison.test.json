@@ -1,0 +1,3133 @@
+{
+ "generated_at": "2026-11-13T15:43:41",
+ "git": {
+  "commit": "f455a0123ca60702a8231a9b58ed31d0a99acb83",
+  "dirty": false
+ },
+ "model": "qwen2.5:7b-instruct",
+ "prompt_hash": "7e69f08f6618d62e892b7522a57da7ee4cb05463b83f9b8fc3999267bd041111",
+ "b1_prompt_hash": "df9d166b2218575c589d84ab0249cdb296216d3afe8c9d69acfa35d6017ec076",
+ "split": "test",
+ "split_file": "split.csv",
+ "cases": 8,
+ "case_ids": [
+  "EPMC002",
+  "EPMC003",
+  "EPMC004",
+  "EPMC005",
+  "EPMC006",
+  "EPMC007",
+  "EPMC010",
+  "EPMC011"
+ ],
+ "systems": {
+  "B1": {
+   "summary": {
+    "cases": 8,
+    "graded": 7,
+    "accuracy": {
+     "k": 2,
+     "n": 7,
+     "value": 0.2857,
+     "ci95": [
+      0.0822,
+      0.6411
+     ]
+    },
+    "weighted_kappa": 0.2105,
+    "confusion": {
+     "labels": [
+      "LR-2",
+      "LR-3",
+      "LR-4",
+      "LR-5",
+      "other"
+     ],
+     "matrix": [
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       1,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       1,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       2,
+       0,
+       1
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     ]
+    },
+    "lr5_sensitivity": {
+     "k": 0,
+     "n": 4,
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.4899
+     ]
+    },
+    "lr5_specificity": {
+     "k": 3,
+     "n": 3,
+     "value": 1.0,
+     "ci95": [
+      0.4385,
+      1.0
+     ]
+    },
+    "pm1_band_coverage": {
+     "k": 4,
+     "n": 7,
+     "value": 0.5714,
+     "ci95": [
+      0.2505,
+      0.8418
+     ]
+    },
+    "mean_pm1_band_size": 3.0,
+    "contradiction_rate": {
+     "k": 3,
+     "n": 5,
+     "value": 0.6,
+     "ci95": [
+      0.2307,
+      0.8824
+     ]
+    },
+    "consistency_verified": null,
+    "correct_deferrals": {
+     "k": 0,
+     "n": 1,
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.7935
+     ]
+    },
+    "deferral_precision": {
+     "k": 0,
+     "n": 0,
+     "value": null,
+     "ci95": null
+    },
+    "deferral_recall": {
+     "k": 0,
+     "n": 1,
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.7935
+     ]
+    },
+    "mean_seconds": 3.7,
+    "unparsed": 0
+   },
+   "rows": [
+    {
+     "id": "EPMC002",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": false,
+     "seconds": 3.741,
+     "size_mm": 11.0,
+     "engine_category": "LR-3",
+     "error": null,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     }
+    },
+    {
+     "id": "EPMC003",
+     "gold": "LR-M",
+     "pred": "not_assignable",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": null,
+     "seconds": 3.542,
+     "size_mm": null,
+     "engine_category": null,
+     "error": null,
+     "features": {
+      "aphe": "not_documented",
+      "washout": "not_documented",
+      "capsule": "not_documented",
+      "growth": "not_documented",
+      "af_malignant": "present",
+      "af_benign": "not_documented"
+     }
+    },
+    {
+     "id": "EPMC004",
+     "gold": "LR-5",
+     "pred": "LR-3",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": false,
+     "seconds": 3.501,
+     "size_mm": 2.0,
+     "engine_category": "LR-3",
+     "error": null,
+     "features": {
+      "aphe": "not_documented",
+      "washout": "present",
+      "capsule": "not_documented",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     }
+    },
+    {
+     "id": "EPMC005",
+     "gold": "LR-5",
+     "pred": "not_assignable",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": null,
+     "seconds": 3.847,
+     "size_mm": 53.0,
+     "engine_category": "LR-5",
+     "error": null,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     }
+    },
+    {
+     "id": "EPMC006",
+     "gold": "LR-5",
+     "pred": "LR-4",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": true,
+     "seconds": 3.776,
+     "size_mm": 65.0,
+     "engine_category": "LR-5",
+     "error": null,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     }
+    },
+    {
+     "id": "EPMC007",
+     "gold": "LR-5",
+     "pred": "LR-4",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": true,
+     "seconds": 3.644,
+     "size_mm": 60.0,
+     "engine_category": "LR-5",
+     "error": null,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     }
+    },
+    {
+     "id": "EPMC010",
+     "gold": "LR-4",
+     "pred": "not_assignable",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": null,
+     "seconds": 3.719,
+     "size_mm": null,
+     "engine_category": null,
+     "error": null,
+     "features": {
+      "aphe": "not_documented",
+      "washout": "present",
+      "capsule": "not_documented",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     }
+    },
+    {
+     "id": "EPMC011",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": true,
+     "seconds": 3.828,
+     "size_mm": 13.0,
+     "engine_category": "LR-5",
+     "error": null,
+     "features": {
+      "aphe": "present",
+      "washout": "not_documented",
+      "capsule": "not_documented",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     }
+    }
+   ]
+  },
+  "B2": {
+   "summary": {
+    "cases": 8,
+    "graded": 7,
+    "accuracy": {
+     "k": 4,
+     "n": 7,
+     "value": 0.5714,
+     "ci95": [
+      0.2505,
+      0.8418
+     ]
+    },
+    "weighted_kappa": 0.7273,
+    "confusion": {
+     "labels": [
+      "LR-2",
+      "LR-3",
+      "LR-4",
+      "LR-5",
+      "other"
+     ],
+     "matrix": [
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       1,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       2,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       1,
+       3,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     ]
+    },
+    "lr5_sensitivity": {
+     "k": 3,
+     "n": 4,
+     "value": 0.75,
+     "ci95": [
+      0.3006,
+      0.9544
+     ]
+    },
+    "lr5_specificity": {
+     "k": 3,
+     "n": 3,
+     "value": 1.0,
+     "ci95": [
+      0.4385,
+      1.0
+     ]
+    },
+    "pm1_band_coverage": {
+     "k": 7,
+     "n": 7,
+     "value": 1.0,
+     "ci95": [
+      0.6457,
+      1.0
+     ]
+    },
+    "mean_pm1_band_size": 2.571,
+    "contradiction_rate": {
+     "k": 0,
+     "n": 8,
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.3244
+     ]
+    },
+    "consistency_verified": {
+     "k": 8,
+     "n": 8,
+     "value": 1.0,
+     "ci95": [
+      0.6756,
+      1.0
+     ]
+    },
+    "correct_deferrals": {
+     "k": 0,
+     "n": 1,
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.7935
+     ]
+    },
+    "deferral_precision": {
+     "k": 0,
+     "n": 0,
+     "value": null,
+     "ci95": null
+    },
+    "deferral_recall": {
+     "k": 0,
+     "n": 1,
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.7935
+     ]
+    },
+    "mean_seconds": 0.001
+   },
+   "rows": [
+    {
+     "id": "EPMC002",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 0.006,
+     "size_mm": 12.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "which revealed a non-rim arterial phase hyperenhancing nodule in segment VI of the liver",
+      "washout": "without portal venous phase washout or capsular enhancement",
+      "capsule": "without portal venous phase washout or capsular enhancement",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "10\u00d712\u00d710 mm"
+    },
+    {
+     "id": "EPMC003",
+     "gold": "LR-M",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 0.001,
+     "size_mm": 53.0,
+     "features": {
+      "aphe": "not_documented",
+      "washout": "not_documented",
+      "capsule": "not_documented",
+      "growth": "not_documented",
+      "af_malignant": "present",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "",
+      "washout": "",
+      "capsule": "",
+      "growth": "",
+      "af_malignant": "restricted diffusion",
+      "af_benign": ""
+     },
+     "size_evidence": "5.3 \u00d7 5.0 \u00d7 4.9 cm"
+    },
+    {
+     "id": "EPMC004",
+     "gold": "LR-5",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 0.001,
+     "size_mm": 20.0,
+     "features": {
+      "aphe": "not_documented",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "",
+      "washout": "wash-out\u201d dynamic enhancement pattern",
+      "capsule": "The tumor was subcapsular in segment VI",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "2.0 \u00d7 1.6 cm"
+    },
+    {
+     "id": "EPMC005",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 0.0,
+     "size_mm": 53.0,
+     "features": {
+      "aphe": "present",
+      "washout": "not_documented",
+      "capsule": "present",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "arterial phase enhancement",
+      "washout": "",
+      "capsule": "pseudocapsule formation",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "53 \u00d7 44 mm"
+    },
+    {
+     "id": "EPMC006",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 0.0,
+     "size_mm": 65.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "The mass showed well defined delineate intense arterial phase enhancement",
+      "washout": "subsequent washout in the portal venous",
+      "capsule": "delayed phases within the peripheral capsule",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "6.5 cm"
+    },
+    {
+     "id": "EPMC007",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 0.0,
+     "size_mm": 60.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "not_documented",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "It showed intense arterial phase enhancement",
+      "washout": "subsequent washout in the portal venous",
+      "capsule": "",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "6 cm"
+    },
+    {
+     "id": "EPMC010",
+     "gold": "LR-4",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 0.001,
+     "size_mm": 57.0,
+     "features": {
+      "aphe": "not_documented",
+      "washout": "not_documented",
+      "capsule": "not_documented",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "",
+      "washout": "",
+      "capsule": "",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "5.7\u00d73.7cm"
+    },
+    {
+     "id": "EPMC011",
+     "gold": "LR-4",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 0.001,
+     "size_mm": 17.0,
+     "features": {
+      "aphe": "not_documented",
+      "washout": "not_documented",
+      "capsule": "not_documented",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "",
+      "washout": "",
+      "capsule": "",
+      "growth": "Follow-up magnetic resonance imaging performed 4 months post-TIPS placement showed stable lesion",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "1.7 cm"
+    }
+   ]
+  },
+  "B3": {
+   "summary": {
+    "cases": 8,
+    "graded": 7,
+    "accuracy": {
+     "k": 5,
+     "n": 7,
+     "value": 0.7143,
+     "ci95": [
+      0.3589,
+      0.9178
+     ]
+    },
+    "weighted_kappa": 0.7308,
+    "confusion": {
+     "labels": [
+      "LR-2",
+      "LR-3",
+      "LR-4",
+      "LR-5",
+      "other"
+     ],
+     "matrix": [
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       1,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       1,
+       1,
+       0
+      ],
+      [
+       0,
+       0,
+       1,
+       3,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     ]
+    },
+    "lr5_sensitivity": {
+     "k": 3,
+     "n": 4,
+     "value": 0.75,
+     "ci95": [
+      0.3006,
+      0.9544
+     ]
+    },
+    "lr5_specificity": {
+     "k": 2,
+     "n": 3,
+     "value": 0.6667,
+     "ci95": [
+      0.2077,
+      0.9385
+     ]
+    },
+    "pm1_band_coverage": {
+     "k": 7,
+     "n": 7,
+     "value": 1.0,
+     "ci95": [
+      0.6457,
+      1.0
+     ]
+    },
+    "mean_pm1_band_size": 2.429,
+    "contradiction_rate": {
+     "k": 0,
+     "n": 8,
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.3244
+     ]
+    },
+    "consistency_verified": {
+     "k": 8,
+     "n": 8,
+     "value": 1.0,
+     "ci95": [
+      0.6756,
+      1.0
+     ]
+    },
+    "correct_deferrals": {
+     "k": 0,
+     "n": 1,
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.7935
+     ]
+    },
+    "deferral_precision": {
+     "k": 0,
+     "n": 0,
+     "value": null,
+     "ci95": null
+    },
+    "deferral_recall": {
+     "k": 0,
+     "n": 1,
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.7935
+     ]
+    },
+    "mean_seconds": 4.188
+   },
+   "rows": [
+    {
+     "id": "EPMC002",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.79,
+     "size_mm": 12.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "non-rim arterial phase hyperenhancing",
+      "washout": "without portal venous phase washout",
+      "capsule": "without capsular enhancement",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "10\u00d712\u00d710 mm"
+    },
+    {
+     "id": "EPMC003",
+     "gold": "LR-M",
+     "pred": "LR-4",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.456,
+     "size_mm": 53.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "not_documented",
+      "af_malignant": "present",
+      "af_benign": "absent"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "predominantly peripheral, irregular enhancement",
+      "washout": "",
+      "capsule": "",
+      "growth": "",
+      "af_malignant": "restricted diffusion, T2 hyperintensity, microcystic degeneration",
+      "af_benign": ""
+     },
+     "size_evidence": "5.3 \u00d7 5.0 \u00d7 4.9 cm"
+    },
+    {
+     "id": "EPMC004",
+     "gold": "LR-5",
+     "pred": "LR-4",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.362,
+     "size_mm": 20.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "hypointensity on T1-weighted images, hyperintensity on T2-weighted images",
+      "washout": "typical \u201cwash-in and wash-out\u201d dynamic enhancement pattern",
+      "capsule": "",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "2.0 \u00d7 1.6 cm"
+    },
+    {
+     "id": "EPMC005",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.588,
+     "size_mm": 53.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "not_documented",
+      "af_malignant": "present",
+      "af_benign": "absent"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "hypervascular liver lesion",
+      "washout": "",
+      "capsule": "pseudocapsule formation",
+      "growth": "",
+      "af_malignant": "hypervascular liver lesion, suggestive of HCC",
+      "af_benign": ""
+     },
+     "size_evidence": "53 \u00d7 44 mm"
+    },
+    {
+     "id": "EPMC006",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.172,
+     "size_mm": 65.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "well defined delineate intense arterial phase enhancement",
+      "washout": "subsequent washout in the portal venous and delayed phases",
+      "capsule": "within the peripheral capsule",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "6.5 cm"
+    },
+    {
+     "id": "EPMC007",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.986,
+     "size_mm": 60.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "not_documented",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "intense arterial phase enhancement",
+      "washout": "subsequent washout in the portal venous and delayed phases",
+      "capsule": "",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "6 cm"
+    },
+    {
+     "id": "EPMC010",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.859,
+     "size_mm": 57.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "",
+      "washout": "enhancement in the venous phase and the delayed phase decreased, showing relatively low density",
+      "capsule": "",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "5.7\u00d73.7cm"
+    },
+    {
+     "id": "EPMC011",
+     "gold": "LR-4",
+     "pred": "LR-5",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.292,
+     "size_mm": 17.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "not_documented",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "7-mm hypervascular nodular focus",
+      "washout": "",
+      "capsule": "",
+      "growth": "increase in nodule size to 1.7 cm \u00d7 1.3 cm",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "1.7 cm \u00d7 1.3 cm"
+    }
+   ]
+  },
+  "B4": {
+   "summary": {
+    "cases": 8,
+    "graded": 7,
+    "accuracy": {
+     "k": 3,
+     "n": 7,
+     "value": 0.4286,
+     "ci95": [
+      0.1582,
+      0.7495
+     ]
+    },
+    "weighted_kappa": 0.3902,
+    "confusion": {
+     "labels": [
+      "LR-2",
+      "LR-3",
+      "LR-4",
+      "LR-5",
+      "other"
+     ],
+     "matrix": [
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       1,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       1,
+       1
+      ],
+      [
+       0,
+       1,
+       0,
+       2,
+       1
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     ]
+    },
+    "lr5_sensitivity": {
+     "k": 2,
+     "n": 4,
+     "value": 0.5,
+     "ci95": [
+      0.15,
+      0.85
+     ]
+    },
+    "lr5_specificity": {
+     "k": 2,
+     "n": 3,
+     "value": 0.6667,
+     "ci95": [
+      0.2077,
+      0.9385
+     ]
+    },
+    "pm1_band_coverage": {
+     "k": 4,
+     "n": 7,
+     "value": 0.5714,
+     "ci95": [
+      0.2505,
+      0.8418
+     ]
+    },
+    "mean_pm1_band_size": 2.4,
+    "contradiction_rate": {
+     "k": 0,
+     "n": 5,
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.4345
+     ]
+    },
+    "consistency_verified": null,
+    "correct_deferrals": {
+     "k": 0,
+     "n": 1,
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.7935
+     ]
+    },
+    "deferral_precision": {
+     "k": 0,
+     "n": 0,
+     "value": null,
+     "ci95": null
+    },
+    "deferral_recall": {
+     "k": 0,
+     "n": 1,
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.7935
+     ]
+    },
+    "mean_seconds": 3.7,
+    "corrected": 3
+   },
+   "rows": [
+    {
+     "id": "EPMC002",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": false,
+     "seconds": 3.741,
+     "size_mm": 11.0,
+     "engine_category": "LR-3",
+     "error": null,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "corrected": false
+    },
+    {
+     "id": "EPMC003",
+     "gold": "LR-M",
+     "pred": "not_assignable",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": null,
+     "seconds": 3.542,
+     "size_mm": null,
+     "engine_category": null,
+     "error": null,
+     "features": {
+      "aphe": "not_documented",
+      "washout": "not_documented",
+      "capsule": "not_documented",
+      "growth": "not_documented",
+      "af_malignant": "present",
+      "af_benign": "not_documented"
+     },
+     "corrected": false
+    },
+    {
+     "id": "EPMC004",
+     "gold": "LR-5",
+     "pred": "LR-3",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": false,
+     "seconds": 3.501,
+     "size_mm": 2.0,
+     "engine_category": "LR-3",
+     "error": null,
+     "features": {
+      "aphe": "not_documented",
+      "washout": "present",
+      "capsule": "not_documented",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "corrected": false
+    },
+    {
+     "id": "EPMC005",
+     "gold": "LR-5",
+     "pred": "not_assignable",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": null,
+     "seconds": 3.847,
+     "size_mm": 53.0,
+     "engine_category": "LR-5",
+     "error": null,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "corrected": false
+    },
+    {
+     "id": "EPMC006",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": false,
+     "seconds": 3.776,
+     "size_mm": 65.0,
+     "engine_category": "LR-5",
+     "error": null,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "corrected": true
+    },
+    {
+     "id": "EPMC007",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": false,
+     "seconds": 3.644,
+     "size_mm": 60.0,
+     "engine_category": "LR-5",
+     "error": null,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "corrected": true
+    },
+    {
+     "id": "EPMC010",
+     "gold": "LR-4",
+     "pred": "not_assignable",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": null,
+     "seconds": 3.719,
+     "size_mm": null,
+     "engine_category": null,
+     "error": null,
+     "features": {
+      "aphe": "not_documented",
+      "washout": "present",
+      "capsule": "not_documented",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "corrected": false
+    },
+    {
+     "id": "EPMC011",
+     "gold": "LR-4",
+     "pred": "LR-5",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": false,
+     "seconds": 3.828,
+     "size_mm": 13.0,
+     "engine_category": "LR-5",
+     "error": null,
+     "features": {
+      "aphe": "present",
+      "washout": "not_documented",
+      "capsule": "not_documented",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "corrected": true
+    }
+   ]
+  },
+  "Ours": {
+   "summary": {
+    "cases": 8,
+    "graded": 7,
+    "accuracy": {
+     "k": 5,
+     "n": 7,
+     "value": 0.7143,
+     "ci95": [
+      0.3589,
+      0.9178
+     ]
+    },
+    "weighted_kappa": 0.7308,
+    "confusion": {
+     "labels": [
+      "LR-2",
+      "LR-3",
+      "LR-4",
+      "LR-5",
+      "other"
+     ],
+     "matrix": [
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       1,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       1,
+       1,
+       0
+      ],
+      [
+       0,
+       0,
+       1,
+       3,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     ]
+    },
+    "lr5_sensitivity": {
+     "k": 3,
+     "n": 4,
+     "value": 0.75,
+     "ci95": [
+      0.3006,
+      0.9544
+     ]
+    },
+    "lr5_specificity": {
+     "k": 2,
+     "n": 3,
+     "value": 0.6667,
+     "ci95": [
+      0.2077,
+      0.9385
+     ]
+    },
+    "pm1_band_coverage": {
+     "k": 7,
+     "n": 7,
+     "value": 1.0,
+     "ci95": [
+      0.6457,
+      1.0
+     ]
+    },
+    "mean_pm1_band_size": 2.429,
+    "contradiction_rate": {
+     "k": 0,
+     "n": 8,
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.3244
+     ]
+    },
+    "consistency_verified": {
+     "k": 8,
+     "n": 8,
+     "value": 1.0,
+     "ci95": [
+      0.6756,
+      1.0
+     ]
+    },
+    "correct_deferrals": {
+     "k": 0,
+     "n": 1,
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.7935
+     ]
+    },
+    "deferral_precision": {
+     "k": 0,
+     "n": 0,
+     "value": null,
+     "ci95": null
+    },
+    "deferral_recall": {
+     "k": 0,
+     "n": 1,
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.7935
+     ]
+    },
+    "mean_seconds": 4.188,
+    "envelope_coverage": {
+     "k": 5,
+     "n": 7,
+     "value": 0.7143,
+     "ci95": [
+      0.3589,
+      0.9178
+     ]
+    },
+    "mean_envelope_size": 1.286,
+    "alert_rate": {
+     "k": 2,
+     "n": 8,
+     "value": 0.25,
+     "ci95": [
+      0.0715,
+      0.5907
+     ]
+    },
+    "any_uncertainty_rate": {
+     "k": 8,
+     "n": 8,
+     "value": 1.0,
+     "ci95": [
+      0.6756,
+      1.0
+     ]
+    }
+   },
+   "rows": [
+    {
+     "id": "EPMC002",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.79,
+     "size_mm": 12.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "non-rim arterial phase hyperenhancing",
+      "washout": "without portal venous phase washout",
+      "capsule": "without capsular enhancement",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "10\u00d712\u00d710 mm"
+    },
+    {
+     "id": "EPMC003",
+     "gold": "LR-M",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.456,
+     "size_mm": 53.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "not_documented",
+      "af_malignant": "present",
+      "af_benign": "absent"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "predominantly peripheral, irregular enhancement",
+      "washout": "",
+      "capsule": "",
+      "growth": "",
+      "af_malignant": "restricted diffusion, T2 hyperintensity, microcystic degeneration",
+      "af_benign": ""
+     },
+     "size_evidence": "5.3 \u00d7 5.0 \u00d7 4.9 cm"
+    },
+    {
+     "id": "EPMC004",
+     "gold": "LR-5",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-3",
+      "LR-4"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.362,
+     "size_mm": 20.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "hypointensity on T1-weighted images, hyperintensity on T2-weighted images",
+      "washout": "typical \u201cwash-in and wash-out\u201d dynamic enhancement pattern",
+      "capsule": "",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "2.0 \u00d7 1.6 cm"
+    },
+    {
+     "id": "EPMC005",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.588,
+     "size_mm": 53.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "not_documented",
+      "af_malignant": "present",
+      "af_benign": "absent"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "hypervascular liver lesion",
+      "washout": "",
+      "capsule": "pseudocapsule formation",
+      "growth": "",
+      "af_malignant": "hypervascular liver lesion, suggestive of HCC",
+      "af_benign": ""
+     },
+     "size_evidence": "53 \u00d7 44 mm"
+    },
+    {
+     "id": "EPMC006",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.172,
+     "size_mm": 65.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "well defined delineate intense arterial phase enhancement",
+      "washout": "subsequent washout in the portal venous and delayed phases",
+      "capsule": "within the peripheral capsule",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "6.5 cm"
+    },
+    {
+     "id": "EPMC007",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.986,
+     "size_mm": 60.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "not_documented",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "intense arterial phase enhancement",
+      "washout": "subsequent washout in the portal venous and delayed phases",
+      "capsule": "",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "6 cm"
+    },
+    {
+     "id": "EPMC010",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.859,
+     "size_mm": 57.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "",
+      "washout": "enhancement in the venous phase and the delayed phase decreased, showing relatively low density",
+      "capsule": "",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "5.7\u00d73.7cm"
+    },
+    {
+     "id": "EPMC011",
+     "gold": "LR-4",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.292,
+     "size_mm": 17.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "not_documented",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "7-mm hypervascular nodular focus",
+      "washout": "",
+      "capsule": "",
+      "growth": "increase in nodule size to 1.7 cm \u00d7 1.3 cm",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "1.7 cm \u00d7 1.3 cm"
+    }
+   ]
+  },
+  "OursC": {
+   "summary": {
+    "cases": 8,
+    "graded": 7,
+    "accuracy": {
+     "k": 5,
+     "n": 7,
+     "value": 0.7143,
+     "ci95": [
+      0.3589,
+      0.9178
+     ]
+    },
+    "weighted_kappa": 0.7812,
+    "confusion": {
+     "labels": [
+      "LR-2",
+      "LR-3",
+      "LR-4",
+      "LR-5",
+      "other"
+     ],
+     "matrix": [
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       1,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       1,
+       1,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       1,
+       3,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     ]
+    },
+    "lr5_sensitivity": {
+     "k": 3,
+     "n": 4,
+     "value": 0.75,
+     "ci95": [
+      0.3006,
+      0.9544
+     ]
+    },
+    "lr5_specificity": {
+     "k": 3,
+     "n": 3,
+     "value": 1.0,
+     "ci95": [
+      0.4385,
+      1.0
+     ]
+    },
+    "pm1_band_coverage": {
+     "k": 7,
+     "n": 7,
+     "value": 1.0,
+     "ci95": [
+      0.6457,
+      1.0
+     ]
+    },
+    "mean_pm1_band_size": 2.571,
+    "contradiction_rate": {
+     "k": 0,
+     "n": 8,
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.3244
+     ]
+    },
+    "consistency_verified": {
+     "k": 8,
+     "n": 8,
+     "value": 1.0,
+     "ci95": [
+      0.6756,
+      1.0
+     ]
+    },
+    "correct_deferrals": {
+     "k": 0,
+     "n": 1,
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.7935
+     ]
+    },
+    "deferral_precision": {
+     "k": 0,
+     "n": 0,
+     "value": null,
+     "ci95": null
+    },
+    "deferral_recall": {
+     "k": 0,
+     "n": 1,
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.7935
+     ]
+    },
+    "mean_seconds": 4.189,
+    "envelope_coverage": {
+     "k": 6,
+     "n": 7,
+     "value": 0.8571,
+     "ci95": [
+      0.4869,
+      0.9743
+     ]
+    },
+    "mean_envelope_size": 1.571,
+    "alert_rate": {
+     "k": 3,
+     "n": 8,
+     "value": 0.375,
+     "ci95": [
+      0.1368,
+      0.6943
+     ]
+    },
+    "any_uncertainty_rate": {
+     "k": 8,
+     "n": 8,
+     "value": 1.0,
+     "ci95": [
+      0.6756,
+      1.0
+     ]
+    },
+    "disagreement_cases": 2
+   },
+   "rows": [
+    {
+     "id": "EPMC002",
+     "gold": "LR-3",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.796,
+     "size_mm": 12.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "non-rim arterial phase hyperenhancing",
+      "washout": "without portal venous phase washout",
+      "capsule": "without capsular enhancement",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "10\u00d712\u00d710 mm",
+     "disagreements": []
+    },
+    {
+     "id": "EPMC003",
+     "gold": "LR-M",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.457000000000001,
+     "size_mm": 53.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "not_documented",
+      "af_malignant": "present",
+      "af_benign": "absent"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "predominantly peripheral, irregular enhancement",
+      "washout": "",
+      "capsule": "",
+      "growth": "",
+      "af_malignant": "restricted diffusion, T2 hyperintensity, microcystic degeneration",
+      "af_benign": ""
+     },
+     "size_evidence": "5.3 \u00d7 5.0 \u00d7 4.9 cm",
+     "disagreements": []
+    },
+    {
+     "id": "EPMC004",
+     "gold": "LR-5",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-3",
+      "LR-4"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.363,
+     "size_mm": 20.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "uncertain",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "hypointensity on T1-weighted images, hyperintensity on T2-weighted images",
+      "washout": "typical \u201cwash-in and wash-out\u201d dynamic enhancement pattern",
+      "capsule": "The tumor was subcapsular in segment VI",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "2.0 \u00d7 1.6 cm",
+     "disagreements": [
+      "capsule"
+     ]
+    },
+    {
+     "id": "EPMC005",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.588,
+     "size_mm": 53.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "not_documented",
+      "af_malignant": "present",
+      "af_benign": "absent"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "hypervascular liver lesion",
+      "washout": "",
+      "capsule": "pseudocapsule formation",
+      "growth": "",
+      "af_malignant": "hypervascular liver lesion, suggestive of HCC",
+      "af_benign": ""
+     },
+     "size_evidence": "53 \u00d7 44 mm",
+     "disagreements": []
+    },
+    {
+     "id": "EPMC006",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.172,
+     "size_mm": 65.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "well defined delineate intense arterial phase enhancement",
+      "washout": "subsequent washout in the portal venous and delayed phases",
+      "capsule": "within the peripheral capsule",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "6.5 cm",
+     "disagreements": []
+    },
+    {
+     "id": "EPMC007",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.986,
+     "size_mm": 60.0,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "not_documented",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "intense arterial phase enhancement",
+      "washout": "subsequent washout in the portal venous and delayed phases",
+      "capsule": "",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "6 cm",
+     "disagreements": []
+    },
+    {
+     "id": "EPMC010",
+     "gold": "LR-4",
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
+     "critical": false,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 3.86,
+     "size_mm": 57.0,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "",
+      "washout": "enhancement in the venous phase and the delayed phase decreased, showing relatively low density",
+      "capsule": "",
+      "growth": "",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "5.7\u00d73.7cm",
+     "disagreements": []
+    },
+    {
+     "id": "EPMC011",
+     "gold": "LR-4",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 4.293,
+     "size_mm": 17.0,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "not_documented",
+      "growth": "uncertain",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "7-mm hypervascular nodular focus",
+      "washout": "",
+      "capsule": "",
+      "growth": "increase in nodule size to 1.7 cm \u00d7 1.3 cm",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "1.7 cm \u00d7 1.3 cm",
+     "disagreements": [
+      "growth"
+     ]
+    }
+   ]
+  },
+  "per_source": {
+   "europepmc": {
+    "B1": {
+     "cases": 8,
+     "graded": 7,
+     "accuracy": {
+      "k": 2,
+      "n": 7,
+      "value": 0.2857,
+      "ci95": [
+       0.0822,
+       0.6411
+      ]
+     },
+     "weighted_kappa": 0.2105,
+     "confusion": {
+      "labels": [
+       "LR-2",
+       "LR-3",
+       "LR-4",
+       "LR-5",
+       "other"
+      ],
+      "matrix": [
+       [
+        0,
+        0,
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1,
+        0,
+        1
+       ],
+       [
+        0,
+        1,
+        2,
+        0,
+        1
+       ],
+       [
+        0,
+        0,
+        0,
+        0,
+        0
+       ]
+      ]
+     },
+     "lr5_sensitivity": {
+      "k": 0,
+      "n": 4,
+      "value": 0.0,
+      "ci95": [
+       0.0,
+       0.4899
+      ]
+     },
+     "lr5_specificity": {
+      "k": 3,
+      "n": 3,
+      "value": 1.0,
+      "ci95": [
+       0.4385,
+       1.0
+      ]
+     },
+     "pm1_band_coverage": {
+      "k": 4,
+      "n": 7,
+      "value": 0.5714,
+      "ci95": [
+       0.2505,
+       0.8418
+      ]
+     },
+     "mean_pm1_band_size": 3.0,
+     "contradiction_rate": {
+      "k": 3,
+      "n": 5,
+      "value": 0.6,
+      "ci95": [
+       0.2307,
+       0.8824
+      ]
+     },
+     "consistency_verified": null,
+     "correct_deferrals": {
+      "k": 0,
+      "n": 1,
+      "value": 0.0,
+      "ci95": [
+       0.0,
+       0.7935
+      ]
+     },
+     "deferral_precision": {
+      "k": 0,
+      "n": 0,
+      "value": null,
+      "ci95": null
+     },
+     "deferral_recall": {
+      "k": 0,
+      "n": 1,
+      "value": 0.0,
+      "ci95": [
+       0.0,
+       0.7935
+      ]
+     },
+     "mean_seconds": 3.7
+    },
+    "B2": {
+     "cases": 8,
+     "graded": 7,
+     "accuracy": {
+      "k": 4,
+      "n": 7,
+      "value": 0.5714,
+      "ci95": [
+       0.2505,
+       0.8418
+      ]
+     },
+     "weighted_kappa": 0.7273,
+     "confusion": {
+      "labels": [
+       "LR-2",
+       "LR-3",
+       "LR-4",
+       "LR-5",
+       "other"
+      ],
+      "matrix": [
+       [
+        0,
+        0,
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        2,
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1,
+        3,
+        0
+       ],
+       [
+        0,
+        0,
+        0,
+        0,
+        0
+       ]
+      ]
+     },
+     "lr5_sensitivity": {
+      "k": 3,
+      "n": 4,
+      "value": 0.75,
+      "ci95": [
+       0.3006,
+       0.9544
+      ]
+     },
+     "lr5_specificity": {
+      "k": 3,
+      "n": 3,
+      "value": 1.0,
+      "ci95": [
+       0.4385,
+       1.0
+      ]
+     },
+     "pm1_band_coverage": {
+      "k": 7,
+      "n": 7,
+      "value": 1.0,
+      "ci95": [
+       0.6457,
+       1.0
+      ]
+     },
+     "mean_pm1_band_size": 2.571,
+     "contradiction_rate": {
+      "k": 0,
+      "n": 8,
+      "value": 0.0,
+      "ci95": [
+       0.0,
+       0.3244
+      ]
+     },
+     "consistency_verified": {
+      "k": 8,
+      "n": 8,
+      "value": 1.0,
+      "ci95": [
+       0.6756,
+       1.0
+      ]
+     },
+     "correct_deferrals": {
+      "k": 0,
+      "n": 1,
+      "value": 0.0,
+      "ci95": [
+       0.0,
+       0.7935
+      ]
+     },
+     "deferral_precision": {
+      "k": 0,
+      "n": 0,
+      "value": null,
+      "ci95": null
+     },
+     "deferral_recall": {
+      "k": 0,
+      "n": 1,
+      "value": 0.0,
+      "ci95": [
+       0.0,
+       0.7935
+      ]
+     },
+     "mean_seconds": 0.001
+    },
+    "B3": {
+     "cases": 8,
+     "graded": 7,
+     "accuracy": {
+      "k": 5,
+      "n": 7,
+      "value": 0.7143,
+      "ci95": [
+       0.3589,
+       0.9178
+      ]
+     },
+     "weighted_kappa": 0.7308,
+     "confusion": {
+      "labels": [
+       "LR-2",
+       "LR-3",
+       "LR-4",
+       "LR-5",
+       "other"
+      ],
+      "matrix": [
+       [
+        0,
+        0,
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1,
+        3,
+        0
+       ],
+       [
+        0,
+        0,
+        0,
+        0,
+        0
+       ]
+      ]
+     },
+     "lr5_sensitivity": {
+      "k": 3,
+      "n": 4,
+      "value": 0.75,
+      "ci95": [
+       0.3006,
+       0.9544
+      ]
+     },
+     "lr5_specificity": {
+      "k": 2,
+      "n": 3,
+      "value": 0.6667,
+      "ci95": [
+       0.2077,
+       0.9385
+      ]
+     },
+     "pm1_band_coverage": {
+      "k": 7,
+      "n": 7,
+      "value": 1.0,
+      "ci95": [
+       0.6457,
+       1.0
+      ]
+     },
+     "mean_pm1_band_size": 2.429,
+     "contradiction_rate": {
+      "k": 0,
+      "n": 8,
+      "value": 0.0,
+      "ci95": [
+       0.0,
+       0.3244
+      ]
+     },
+     "consistency_verified": {
+      "k": 8,
+      "n": 8,
+      "value": 1.0,
+      "ci95": [
+       0.6756,
+       1.0
+      ]
+     },
+     "correct_deferrals": {
+      "k": 0,
+      "n": 1,
+      "value": 0.0,
+      "ci95": [
+       0.0,
+       0.7935
+      ]
+     },
+     "deferral_precision": {
+      "k": 0,
+      "n": 0,
+      "value": null,
+      "ci95": null
+     },
+     "deferral_recall": {
+      "k": 0,
+      "n": 1,
+      "value": 0.0,
+      "ci95": [
+       0.0,
+       0.7935
+      ]
+     },
+     "mean_seconds": 4.188
+    },
+    "B4": {
+     "cases": 8,
+     "graded": 7,
+     "accuracy": {
+      "k": 3,
+      "n": 7,
+      "value": 0.4286,
+      "ci95": [
+       0.1582,
+       0.7495
+      ]
+     },
+     "weighted_kappa": 0.3902,
+     "confusion": {
+      "labels": [
+       "LR-2",
+       "LR-3",
+       "LR-4",
+       "LR-5",
+       "other"
+      ],
+      "matrix": [
+       [
+        0,
+        0,
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        0,
+        1,
+        1
+       ],
+       [
+        0,
+        1,
+        0,
+        2,
+        1
+       ],
+       [
+        0,
+        0,
+        0,
+        0,
+        0
+       ]
+      ]
+     },
+     "lr5_sensitivity": {
+      "k": 2,
+      "n": 4,
+      "value": 0.5,
+      "ci95": [
+       0.15,
+       0.85
+      ]
+     },
+     "lr5_specificity": {
+      "k": 2,
+      "n": 3,
+      "value": 0.6667,
+      "ci95": [
+       0.2077,
+       0.9385
+      ]
+     },
+     "pm1_band_coverage": {
+      "k": 4,
+      "n": 7,
+      "value": 0.5714,
+      "ci95": [
+       0.2505,
+       0.8418
+      ]
+     },
+     "mean_pm1_band_size": 2.4,
+     "contradiction_rate": {
+      "k": 0,
+      "n": 5,
+      "value": 0.0,
+      "ci95": [
+       0.0,
+       0.4345
+      ]
+     },
+     "consistency_verified": null,
+     "correct_deferrals": {
+      "k": 0,
+      "n": 1,
+      "value": 0.0,
+      "ci95": [
+       0.0,
+       0.7935
+      ]
+     },
+     "deferral_precision": {
+      "k": 0,
+      "n": 0,
+      "value": null,
+      "ci95": null
+     },
+     "deferral_recall": {
+      "k": 0,
+      "n": 1,
+      "value": 0.0,
+      "ci95": [
+       0.0,
+       0.7935
+      ]
+     },
+     "mean_seconds": 3.7
+    },
+    "Ours": {
+     "cases": 8,
+     "graded": 7,
+     "accuracy": {
+      "k": 5,
+      "n": 7,
+      "value": 0.7143,
+      "ci95": [
+       0.3589,
+       0.9178
+      ]
+     },
+     "weighted_kappa": 0.7308,
+     "confusion": {
+      "labels": [
+       "LR-2",
+       "LR-3",
+       "LR-4",
+       "LR-5",
+       "other"
+      ],
+      "matrix": [
+       [
+        0,
+        0,
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        1,
+        3,
+        0
+       ],
+       [
+        0,
+        0,
+        0,
+        0,
+        0
+       ]
+      ]
+     },
+     "lr5_sensitivity": {
+      "k": 3,
+      "n": 4,
+      "value": 0.75,
+      "ci95": [
+       0.3006,
+       0.9544
+      ]
+     },
+     "lr5_specificity": {
+      "k": 2,
+      "n": 3,
+      "value": 0.6667,
+      "ci95": [
+       0.2077,
+       0.9385
+      ]
+     },
+     "pm1_band_coverage": {
+      "k": 7,
+      "n": 7,
+      "value": 1.0,
+      "ci95": [
+       0.6457,
+       1.0
+      ]
+     },
+     "mean_pm1_band_size": 2.429,
+     "contradiction_rate": {
+      "k": 0,
+      "n": 8,
+      "value": 0.0,
+      "ci95": [
+       0.0,
+       0.3244
+      ]
+     },
+     "consistency_verified": {
+      "k": 8,
+      "n": 8,
+      "value": 1.0,
+      "ci95": [
+       0.6756,
+       1.0
+      ]
+     },
+     "correct_deferrals": {
+      "k": 0,
+      "n": 1,
+      "value": 0.0,
+      "ci95": [
+       0.0,
+       0.7935
+      ]
+     },
+     "deferral_precision": {
+      "k": 0,
+      "n": 0,
+      "value": null,
+      "ci95": null
+     },
+     "deferral_recall": {
+      "k": 0,
+      "n": 1,
+      "value": 0.0,
+      "ci95": [
+       0.0,
+       0.7935
+      ]
+     },
+     "mean_seconds": 4.188,
+     "envelope_coverage": {
+      "k": 5,
+      "n": 7,
+      "value": 0.7143,
+      "ci95": [
+       0.3589,
+       0.9178
+      ]
+     },
+     "mean_envelope_size": 1.286,
+     "alert_rate": {
+      "k": 2,
+      "n": 8,
+      "value": 0.25,
+      "ci95": [
+       0.0715,
+       0.5907
+      ]
+     },
+     "any_uncertainty_rate": {
+      "k": 8,
+      "n": 8,
+      "value": 1.0,
+      "ci95": [
+       0.6756,
+       1.0
+      ]
+     }
+    },
+    "OursC": {
+     "cases": 8,
+     "graded": 7,
+     "accuracy": {
+      "k": 5,
+      "n": 7,
+      "value": 0.7143,
+      "ci95": [
+       0.3589,
+       0.9178
+      ]
+     },
+     "weighted_kappa": 0.7812,
+     "confusion": {
+      "labels": [
+       "LR-2",
+       "LR-3",
+       "LR-4",
+       "LR-5",
+       "other"
+      ],
+      "matrix": [
+       [
+        0,
+        0,
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1,
+        3,
+        0
+       ],
+       [
+        0,
+        0,
+        0,
+        0,
+        0
+       ]
+      ]
+     },
+     "lr5_sensitivity": {
+      "k": 3,
+      "n": 4,
+      "value": 0.75,
+      "ci95": [
+       0.3006,
+       0.9544
+      ]
+     },
+     "lr5_specificity": {
+      "k": 3,
+      "n": 3,
+      "value": 1.0,
+      "ci95": [
+       0.4385,
+       1.0
+      ]
+     },
+     "pm1_band_coverage": {
+      "k": 7,
+      "n": 7,
+      "value": 1.0,
+      "ci95": [
+       0.6457,
+       1.0
+      ]
+     },
+     "mean_pm1_band_size": 2.571,
+     "contradiction_rate": {
+      "k": 0,
+      "n": 8,
+      "value": 0.0,
+      "ci95": [
+       0.0,
+       0.3244
+      ]
+     },
+     "consistency_verified": {
+      "k": 8,
+      "n": 8,
+      "value": 1.0,
+      "ci95": [
+       0.6756,
+       1.0
+      ]
+     },
+     "correct_deferrals": {
+      "k": 0,
+      "n": 1,
+      "value": 0.0,
+      "ci95": [
+       0.0,
+       0.7935
+      ]
+     },
+     "deferral_precision": {
+      "k": 0,
+      "n": 0,
+      "value": null,
+      "ci95": null
+     },
+     "deferral_recall": {
+      "k": 0,
+      "n": 1,
+      "value": 0.0,
+      "ci95": [
+       0.0,
+       0.7935
+      ]
+     },
+     "mean_seconds": 4.189,
+     "envelope_coverage": {
+      "k": 6,
+      "n": 7,
+      "value": 0.8571,
+      "ci95": [
+       0.4869,
+       0.9743
+      ]
+     },
+     "mean_envelope_size": 1.571,
+     "alert_rate": {
+      "k": 3,
+      "n": 8,
+      "value": 0.375,
+      "ci95": [
+       0.1368,
+       0.6943
+      ]
+     },
+     "any_uncertainty_rate": {
+      "k": 8,
+      "n": 8,
+      "value": 1.0,
+      "ci95": [
+       0.6756,
+       1.0
+      ]
+     }
+    }
+   }
+  }
+ }
+}
