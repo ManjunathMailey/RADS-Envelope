@@ -5,6 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>RADS-Envelope</title>
 <meta name="description" content="LI-RADS reports that never contradict the rules, and say exactly what is still uncertain.">
+<meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<meta property="og:title" content="RADS-Envelope">
+<meta property="og:description" content="LI-RADS reports that never contradict the rules, and say exactly what is still uncertain.">
+<meta property="og:image" content="/static/brand/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/static/brand/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/static/brand/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="preload" href="/static/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/static/app.css">
 <link rel="stylesheet" href="/static/landing.css">
 </head>
@@ -13,78 +24,159 @@
 <header class="nav">
   <div class="nav-in">
     <a class="logo" href="/" aria-label="RADS-Envelope home">
-      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="3.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="2.4" fill="currentColor"/></svg>
+      <svg class="mark" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8.5 4.5H5.5v15h3M15.5 4.5h3v15h-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="2.6" fill="var(--blue)"/></svg>
       RADS-Envelope
     </a>
-    <nav aria-label="Main"><a href="#how">How it works</a><a href="#who">Who it is for</a><a href="/app">Open the app</a></nav>
+    <nav aria-label="Main"><a href="#how">How it works</a><a href="#envelope">Envelope</a><a href="#who">Who it is for</a></nav>
+    <a class="pill" href="/app">Open the app</a>
   </div>
 </header>
 
 <main id="main">
-  <section class="hero" aria-labelledby="hero-title">
-    <h1 id="hero-title">RADS-Envelope</h1>
-    <p class="hero-line">LI-RADS reports that never contradict the rules, and say exactly what is still uncertain.</p>
-    <div class="hero-cta">
-      <a class="go" href="/app">Try it</a>
-      <a class="ghost" href="/app?example=1">See an example</a>
+  <!-- 1 Hero: the product itself -->
+  <section class="sec hero" aria-labelledby="hero-title">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="kicker">LI-RADS decision support</p>
+        <h1 id="hero-title">RADS-Envelope</h1>
+        <p class="hero-line">LI-RADS reports that never contradict the rules, and say exactly what is still uncertain.</p>
+        <div class="cta">
+          <a class="btn primary" href="/app">Try it</a>
+          <a class="btn secondary" href="/app?example=1">See a real case</a>
+        </div>
+      </div>
+
+      <figure class="demo card" id="demo" aria-labelledby="demo-cap">
+        <figcaption id="demo-cap" class="demo-head"><span>Example report</span><span class="faint" id="demoRules">LI-RADS CT/MRI v2018</span></figcaption>
+        <p class="demo-report" id="demoReport">Segment VII: 22 mm observation with nonrim arterial phase hyperenhancement. Possible washout on the portal venous phase. No enhancing capsule. Stable compared with the prior MRI.</p>
+        <div class="demo-result">
+          <div>
+            <span class="faint small" id="demoLabel">Segment VII</span>
+            <div class="cat" id="demoCat" data-cat="LR-4">LR-4</div>
+            <span class="small muted" id="demoMeaning">probably HCC</span>
+          </div>
+          <p class="state warn" id="demoState" role="status" aria-live="polite">Could change management</p>
+        </div>
+        <div class="env" id="demoTrack" aria-label="Possible categories">
+          <div data-c="LR-2">2</div><div data-c="LR-3">3</div><div data-c="LR-4">4</div><div data-c="LR-5">5</div>
+        </div>
+        <div class="ask" id="demoAsk">
+          <p class="ask-q" id="demoQ">Is the washout real and nonperipheral?</p>
+          <div class="ask-b">
+            <button type="button" class="btn small-btn primary" data-answer="present" aria-pressed="false">Present</button>
+            <button type="button" class="btn small-btn secondary" data-answer="absent" aria-pressed="false">Absent</button>
+            <button type="button" class="link" id="demoReset" hidden>Reset</button>
+          </div>
+        </div>
+        <p class="demo-foot faint">Illustrative report. Every result shown is computed by the rule engine.</p>
+      </figure>
     </div>
   </section>
 
-  <section class="band reveal" aria-labelledby="problem-title">
-    <h2 id="problem-title">The problem</h2>
-    <ul class="problem">
-      <li>A report can describe the findings of one LI-RADS category and state another.</li>
-      <li>Language models write the category as free text, and nothing checks it against the findings.</li>
-      <li id="problemNumber">Asked directly, the same local model contradicted its own findings in a measurable share of reports.</li>
-    </ul>
-    <p class="source" id="problemSource"></p>
-  </section>
-
-  <section class="band reveal" id="how" aria-labelledby="how-title">
-    <h2 id="how-title">How it works</h2>
-    <ol class="steps">
-      <li>
-        <svg viewBox="0 0 24 24" width="34" height="34" aria-hidden="true"><rect x="5" y="3.5" width="14" height="17" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8.5 8.5h7M8.5 12h7M8.5 15.5h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        <b>Paste the report</b><span>Or drop a .txt or .docx file. Each liver observation is read separately, with the words behind every finding.</span>
-      </li>
-      <li>
-        <svg viewBox="0 0 24 24" width="34" height="34" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3.5 9.5h17M9.5 9.5v10" stroke="currentColor" stroke-width="1.5"/></svg>
-        <b>Rules decide the category</b><span>The published ACR LI-RADS table computes the category. The impression is written from that result, so the two always agree.</span>
-      </li>
-      <li>
-        <svg viewBox="0 0 24 24" width="34" height="34" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9.6 9.6a2.5 2.5 0 1 1 3.4 2.3c-.7.3-1 .8-1 1.5v.6M12 16.8v.1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        <b>See what is certain, what is not</b><span>Every category the findings could still support, and the one question that would settle it.</span>
-      </li>
-    </ol>
-  </section>
-
-  <section class="band reveal" id="who" aria-labelledby="who-title">
-    <h2 id="who-title">Who it is for</h2>
-    <dl class="who">
-      <div><dt>Radiologists</dt><dd>Check a draft before signing: the category, its evidence and what could change it.</dd></div>
-      <div><dt>Residents</dt><dd>See how each finding moves the category, step by step through the table.</dd></div>
-      <div><dt>Quality leads</dt><dd>Audit a batch of reports for impressions that disagree with their own findings.</dd></div>
-      <div><dt>Tumour boards and hepatology</dt><dd>Know which observations are settled and which need one more answer.</dd></div>
-    </dl>
-  </section>
-
-  <section class="band reveal" aria-labelledby="diff-title">
-    <h2 id="diff-title">What makes it different</h2>
-    <div class="tiles">
-      <div class="tile"><b>Never contradicts the rules</b><span>The category is computed from the findings, not written by the model.</span></div>
-      <div class="tile"><b>Certainty Envelope</b><span>Hedged words, missing features and sizes near a cut-off become an explicit range of categories.</span></div>
-      <div class="tile"><b>Alerts only when management changes</b><span>Uncertainty that cannot change what happens to the patient is shown, not alarmed.</span></div>
-      <div class="tile"><b>Runs fully offline</b><span>One laptop GPU and a local model. Nothing is sent to an external service.</span></div>
+  <!-- 2 Problem as a stat comparison -->
+  <section class="sec white" aria-labelledby="problem-title">
+    <div class="wrap">
+      <h2 id="problem-title">Free text can contradict itself</h2>
+      <p class="lede">A report can describe the findings of one category and state another. Nothing checks it.</p>
+      <div class="stats">
+        <div class="stat card">
+          <span class="stat-who">Language model alone</span>
+          <span class="stat-num" id="statB1">–</span>
+          <span class="stat-sub" id="problemNumber">of generated reports contradicted the model's own findings</span>
+          <span class="stat-sub2" id="statB1Real"></span>
+        </div>
+        <div class="stat card">
+          <span class="stat-who accent">RADS-Envelope</span>
+          <span class="stat-num" id="statOurs">–</span>
+          <span class="stat-sub">contradictions</span>
+          <span class="stat-sub2" id="statOursSub">By construction: the rule table computes the category.</span>
+        </div>
+      </div>
+      <p class="source" id="problemSource"></p>
     </div>
   </section>
 
-  <section class="trust reveal" aria-label="Privacy and intended use">
-    <p><b>Runs on one laptop. No report leaves the machine.</b></p>
-    <p>Research prototype for decision support. Not a medical device.</p>
+  <!-- 3 How it works: one report flows through -->
+  <section class="sec" id="how" aria-labelledby="how-title">
+    <div class="wrap">
+      <h2 id="how-title">How it works</h2>
+      <ol class="steps story">
+        <li class="step card">
+          <span class="step-n">1</span>
+          <b>Read the report</b>
+          <span class="muted small">Each finding is linked to the words it came from.</span>
+          <p class="frag frag-report">22 mm observation with <mark class="ev">nonrim arterial phase hyperenhancement</mark>. <mark class="ev hedge">Possible washout</mark>. <mark class="ev">No enhancing capsule</mark>.</p>
+        </li>
+        <li class="step card">
+          <span class="step-n">2</span>
+          <b>Rules decide the category</b>
+          <span class="muted small">The published ACR table computes it. The model never does.</span>
+          <p class="frag frag-trace"><span>22 mm · APHE · washout?</span><span class="trace-line" aria-hidden="true"></span><span class="trace-out">LR-4</span></p>
+        </li>
+        <li class="step card">
+          <span class="step-n">3</span>
+          <b>Show what is uncertain</b>
+          <span class="muted small">Every category still possible, and the one question that settles it.</span>
+          <div class="frag frag-env">
+            <div class="env mini" aria-hidden="true"><div>2</div><div>3</div><div class="reach r4">4</div><div class="reach r5">5</div></div>
+            <span class="frag-q">Washout real? <b>Present</b> → LR-5</span>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 4 Signature: Certainty Envelope -->
+  <section class="sec dark" id="envelope" aria-labelledby="env-title">
+    <div class="wrap">
+      <h2 id="env-title">Certainty Envelope</h2>
+      <p class="lede">Alerts only when the possible categories lead to different care.</p>
+      <div class="big-env" role="img" aria-label="Envelope spanning LR-4 and LR-5, two different management classes">
+        <div class="big-row big-bracket-row" aria-hidden="true"><span></span><span></span><span class="br br-l">Possible</span><span class="br br-r"></span></div>
+        <div class="big-row big-track"><span>LR-2</span><span>LR-3</span><span class="in">LR-4</span><span class="in">LR-5</span></div>
+        <div class="big-row big-mgmt" id="bigMgmt">
+          <span>Return to routine surveillance in about 6 months</span>
+          <span>Repeat or alternative diagnostic imaging in 3-6 months</span>
+          <span class="in">Multidisciplinary discussion; individualised work-up (may include biopsy)</span>
+          <span class="in">Multidisciplinary discussion; treatment without biopsy for diagnosis</span>
+        </div>
+      </div>
+      <p class="env-note">Hedged words, missing features and sizes near a cut-off become an explicit range. One range, one question.</p>
+    </div>
+  </section>
+
+  <!-- 5 Who it is for -->
+  <section class="sec white" id="who" aria-labelledby="who-title">
+    <div class="wrap">
+      <h2 id="who-title">Who it is for</h2>
+      <div class="who">
+        <div class="card role"><span class="view">Analyse</span><b>Radiologists</b><span class="muted small">Check a draft before signing: the category, its evidence and what could change it.</span></div>
+        <div class="card role"><span class="view">Why trace</span><b>Residents</b><span class="muted small">See how each finding moves the category, step by step through the table.</span></div>
+        <div class="card role"><span class="view">Batch audit</span><b>Quality leads</b><span class="muted small">Audit reports for impressions that disagree with their own findings.</span></div>
+        <div class="card role"><span class="view">Decision card</span><b>Tumour boards</b><span class="muted small">Know which observations are settled and which need one more answer.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 Trust -->
+  <section class="sec trust" aria-label="Privacy and intended use">
+    <div class="wrap trust-in">
+      <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+      <div><p class="trust-main">Runs on one laptop. No report leaves the machine.</p>
+      <p class="muted small">Research prototype for decision support. Not a medical device.</p></div>
+    </div>
+  </section>
+
+  <!-- 7 Closing CTA -->
+  <section class="sec white closing" aria-labelledby="cta-title">
+    <div class="wrap center">
+      <h2 id="cta-title">Try it with a real report</h2>
+      <a class="btn primary" href="/app">Try it</a>
+    </div>
   </section>
 </main>
 
 <footer class="foot">Group 72 · Department of Computer Science and Engineering, M.S. Ramaiah University of Applied Sciences · Guide: Mr. Karthik D U</footer>
-<script src="/static/landing.js"></script>
+<script src="/static/landing.js" defer></script>
 </body>
 </html>

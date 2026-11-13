@@ -1,0 +1,96 @@
+{
+ "note": "Illustrative report, not a study case. Results computed by the rule engine (data_tools/landing_demo.py).",
+ "report": "Segment VII: 22 mm observation with nonrim arterial phase hyperenhancement. Possible washout on the portal venous phase. No enhancing capsule. Stable compared with the prior MRI.",
+ "label": "Segment VII",
+ "size_mm": 22.0,
+ "features": {
+  "aphe": "present",
+  "washout": "uncertain",
+  "capsule": "absent",
+  "growth": "absent",
+  "af_malignant": "not_documented",
+  "af_benign": "not_documented"
+ },
+ "evidence": {
+  "aphe": "nonrim arterial phase hyperenhancement",
+  "washout": "Possible washout on the portal venous phase",
+  "capsule": "No enhancing capsule",
+  "growth": "Stable compared with the prior MRI"
+ },
+ "question": {
+  "feature": "washout",
+  "text": "Is the washout real and nonperipheral?"
+ },
+ "documented": {
+  "acr_category": "LR-4",
+  "meaning": "probably HCC",
+  "envelope": [
+   "LR-4",
+   "LR-5"
+  ],
+  "decision_critical": true,
+  "management": [
+   {
+    "category": "LR-4",
+    "action": "Multidisciplinary discussion; individualised work-up (may include biopsy)"
+   },
+   {
+    "category": "LR-5",
+    "action": "Multidisciplinary discussion; treatment without biopsy for diagnosis"
+   }
+  ]
+ },
+ "answers": {
+  "present": {
+   "acr_category": "LR-5",
+   "meaning": "definitely HCC",
+   "envelope": [
+    "LR-5"
+   ],
+   "decision_critical": false,
+   "management": [
+    {
+     "category": "LR-5",
+     "action": "Multidisciplinary discussion; treatment without biopsy for diagnosis"
+    }
+   ]
+  },
+  "absent": {
+   "acr_category": "LR-4",
+   "meaning": "probably HCC",
+   "envelope": [
+    "LR-4"
+   ],
+   "decision_critical": false,
+   "management": [
+    {
+     "category": "LR-4",
+     "action": "Multidisciplinary discussion; individualised work-up (may include biopsy)"
+    }
+   ]
+  }
+ },
+ "rules": "LI-RADS CT/MRI v2018",
+ "categories": [
+  {
+   "category": "LR-2",
+   "meaning": "probably benign",
+   "management": "Return to routine surveillance in about 6 months"
+  },
+  {
+   "category": "LR-3",
+   "meaning": "intermediate probability of malignancy",
+   "management": "Repeat or alternative diagnostic imaging in 3-6 months"
+  },
+  {
+   "category": "LR-4",
+   "meaning": "probably HCC",
+   "management": "Multidisciplinary discussion; individualised work-up (may include biopsy)"
+  },
+  {
+   "category": "LR-5",
+   "meaning": "definitely HCC",
+   "management": "Multidisciplinary discussion; treatment without biopsy for diagnosis"
+  }
+ ]
+}
