@@ -98,7 +98,11 @@ ambiguity and of the extractor's own instability. Each feature records which sou
 
 ## 7. Evaluation protocol
 
-1. **Real cases (primary).** Radiologist-written LI-RADS cases (Radiopaedia, CC BY-NC-SA, attributed
+1. **Real cases (primary).** 27 radiologist-reported LI-RADS cases (Radiopaedia and PMC entered by hand;
+   22 reviewed Europe PMC case reports), frozen into a stratified split (seed 2026) of 19 development and
+   8 held-out test cases; cases inspected during development are forced into the development split, the
+   test split runs only with `RADS_RUN_TEST=1` and is logged (`docs/EVALUATION.md`). Licences are recorded per
+   case (Radiopaedia CC BY-NC-SA, attributed
    per case). Metrics: exact and within-one agreement with the radiologist's category, share of
    radiologist categories inside the envelope, correct deferrals for LR-M / LR-TIV.
 2. **Robustness test (rule-generated gold).** Reports generated from known feature vectors with varied
@@ -107,10 +111,11 @@ ambiguity and of the extractor's own instability. Each feature records which sou
    features are recovered. Metrics: per-feature macro-F1, agreement with the rule-generated gold,
    envelope exact match, decision-critical precision and recall, and alert burden
    (management-aware alerts vs flagging every uncertainty).
-3. **Baselines: "why not just ask the LLM?"** Every case is run through four systems:
+3. **Baselines: "why not just ask the LLM?"** Every case is run through five systems:
    B1 *LLM-direct* (the same local model returns features and a category in one schema-constrained
    call with a compact v2018 summary; `evaluation/baselines.py`), B2 lexicon + rules, B3 LLM + rules
-   (point category only) and Ours (LLM + rules + envelope). Reported per system: accuracy, LR-5
+   (point category only), B4 *hybrid* (B1's category, replaced by the rule category from B1's own
+   features when they disagree; derived from the B1 run) and Ours (LLM + rules + envelope). Reported per system: accuracy, LR-5
    sensitivity and specificity, ±1-band coverage and envelope coverage, all with 95 % Wilson
    intervals; quadratic-weighted Cohen's kappa over LR-2..LR-5; a confusion matrix; mean envelope
    size; alert rate. B1's *internal contradiction rate* compares its category with the engine

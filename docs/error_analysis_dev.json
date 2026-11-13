@@ -1,9 +1,9 @@
 {
  "cases": 19,
- "disagreements": 15,
+ "disagreements": 7,
  "by_class": {
-  "extraction_error": 2,
-  "out_of_scope": 12,
+  "extraction_error": 5,
+  "out_of_scope": 1,
   "scope_error": 1
  },
  "errors": [
@@ -80,94 +80,67 @@
    "detail": "reference LR-M not deferred (ours not_assignable)"
   },
   {
-   "id": "EPMC012",
-   "reference": "LR-5",
-   "ours": "not_assignable",
-   "envelope": null,
-   "class": "out_of_scope",
-   "detail": "the findings text states no size"
-  },
-  {
-   "id": "EPMC013",
-   "reference": "LR-5",
-   "ours": "not_assignable",
-   "envelope": null,
-   "class": "out_of_scope",
-   "detail": "the findings text states no size"
-  },
-  {
    "id": "EPMC014",
    "reference": "LR-5",
-   "ours": "not_assignable",
-   "envelope": null,
-   "class": "out_of_scope",
-   "detail": "the findings text states no size"
-  },
-  {
-   "id": "EPMC015",
-   "reference": "LR-5",
-   "ours": "not_assignable",
-   "envelope": null,
-   "class": "out_of_scope",
-   "detail": "the findings text states no size"
-  },
-  {
-   "id": "EPMC016",
-   "reference": "LR-5",
-   "ours": "not_assignable",
-   "envelope": null,
-   "class": "out_of_scope",
-   "detail": "the findings text states no size"
-  },
-  {
-   "id": "EPMC017",
-   "reference": "LR-5",
-   "ours": "not_assignable",
-   "envelope": null,
-   "class": "out_of_scope",
-   "detail": "the findings text states no size"
+   "ours": "LR-4",
+   "envelope": [
+    "LR-4"
+   ],
+   "class": "extraction_error",
+   "features": [
+    {
+     "feature": "aphe",
+     "extracted": "absent",
+     "needed": "present",
+     "evidence": ""
+    }
+   ],
+   "detail": "aphe: absent -> present"
   },
   {
    "id": "EPMC018",
    "reference": "LR-5",
-   "ours": "not_assignable",
-   "envelope": null,
-   "class": "out_of_scope",
-   "detail": "the findings text states no size"
+   "ours": "LR-4",
+   "envelope": [
+    "LR-4"
+   ],
+   "class": "extraction_error",
+   "features": [
+    {
+     "feature": "aphe",
+     "extracted": "absent",
+     "needed": "present",
+     "evidence": ""
+    }
+   ],
+   "detail": "aphe: absent -> present"
   },
   {
    "id": "EPMC019",
    "reference": "LR-4",
-   "ours": "not_assignable",
-   "envelope": null,
-   "class": "out_of_scope",
-   "detail": "the findings text states no size"
-  },
-  {
-   "id": "EPMC020",
-   "reference": "LR-5",
-   "ours": "not_assignable",
-   "envelope": null,
-   "class": "out_of_scope",
-   "detail": "the findings text states no size"
-  },
-  {
-   "id": "EPMC021",
-   "reference": "LR-5",
-   "ours": "not_assignable",
-   "envelope": null,
-   "class": "out_of_scope",
-   "detail": "the findings text states no size"
-  },
-  {
-   "id": "EPMC022",
-   "reference": "LR-5",
-   "ours": "not_assignable",
-   "envelope": null,
-   "class": "out_of_scope",
-   "detail": "the findings text states no size"
+   "ours": "LR-3",
+   "envelope": [
+    "LR-3",
+    "LR-4"
+   ],
+   "class": "extraction_error",
+   "features": [
+    {
+     "feature": "capsule",
+     "extracted": "absent",
+     "needed": "present",
+     "evidence": "Enhancing \u201cCapsule\u201d: No"
+    },
+    {
+     "feature": "af_malignant",
+     "extracted": "not_documented",
+     "needed": "present",
+     "evidence": ""
+    }
+   ],
+   "detail": "capsule: absent -> present; af_malignant: not_documented -> present"
   }
  ],
  "prompt_hash": "7e69f08f6618d62e892b7522a57da7ee4cb05463b83f9b8fc3999267bd041111",
- "generated_from": "2026-11-13T14:40:42"
+ "generated_from": "2026-11-13T15:01:50"
 }

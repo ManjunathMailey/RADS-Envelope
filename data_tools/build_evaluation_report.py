@@ -14,9 +14,12 @@ import csv
 import hashlib
 import json
 import subprocess
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 REAL, BENCH, DOCS = ROOT / "data" / "real", ROOT / "data" / "benchmark", ROOT / "docs"
 OUT = DOCS / "EVALUATION.md"
 SYSTEM_NAMES = {"B1": "B1 LLM-direct", "B2": "B2 lexicon + rules", "B3": "B3 LLM + rules",
@@ -40,18 +43,56 @@ def short(prop) -> str:
 
 
 def system_table(systems: dict, label_accuracy: str = "Accuracy [95% CI]") -> list[str]:
-    head = (f"| System | {label_accuracy} | Weighted κ | LR-5 sens | LR-5 spec | Envelope coverage | Mean envelope size | "
-            "±1-band coverage | Contradiction rate | Alert rate |")
+    head = (f"| System | {label_accuracy} | Weighted κ (n) | LR-5 sens | LR-5 spec | Envelope coverage | "
+            "Mean envelope size (n) | ±1-band coverage | Contradiction rate | Alert rate |")
     lines = [head, "| --- " * 10 + "|"]
+    kappa_labels = ("LR-2", "LR-3", "LR-4", "LR-5")
     for s in ORDER:
         if s not in systems:
             continue
-        m = systems[s]["summary"]
-        lines.append(f"| {SYSTEM_NAMES[s]} | {p(m['accuracy'])} | {m['weighted_kappa'] if m['weighted_kappa'] is not None else '–'} | "
+        m, rows = systems[s]["summary"], systems[s].get("rows", [])
+        kn = sum(r["gold"] in kappa_labels and r["pred"] in kappa_labels for r in rows)
+        en = sum(bool(r.get("envelope")) and (r["gold"] or "")[-1:].isdigit() for r in rows)
+        kappa = f"{m['weighted_kappa']} (n={kn})" if m["weighted_kappa"] is not None else f"– (n={kn})"
+        mean_env = f"{m['mean_envelope_size']} (n={en})" if m.get("mean_envelope_size") else "–"
+        lines.append(f"| {SYSTEM_NAMES[s]} | {p(m['accuracy'])} | {kappa} | "
                      f"{short(m['lr5_sensitivity'])} | {short(m['lr5_specificity'])} | {p(m.get('envelope_coverage'))} | "
-                     f"{m.get('mean_envelope_size') or '–'} | {short(m['pm1_band_coverage'])} | "
+                     f"{mean_env} | {short(m['pm1_band_coverage'])} | "
                      f"{short(m['contradiction_rate'])} | {short(m.get('alert_rate'))} |")
     return lines
+
+
+def b3_wrong(systems: dict) -> str:
+    """Among cases with a numeric reference where B3's single category is wrong: how often Ours raised a
+    decision-critical alert, and how often the reference lay inside Ours' envelope."""
+    b3 = {r["id"]: r for r in systems.get("B3", {}).get("rows", [])}
+    ours = {r["id"]: r for r in systems.get("Ours", {}).get("rows", [])}
+    graded = [i for i in ours if (ours[i]["gold"] or "")[-1:].isdigit()]
+    wrong = [i for i in graded if b3.get(i, {}).get("pred") != ours[i]["gold"]]
+    assigned = [i for i in wrong if (b3[i]["pred"] or "").startswith("LR-")]
+    flagged = sum(bool(ours[i].get("critical")) for i in assigned)
+    covered = sum(ours[i]["gold"] in (ours[i].get("envelope") or []) for i in assigned)
+    return (f"Of {len(wrong)} cases B3 got wrong ({len(assigned)} with a wrong category, {len(wrong) - len(assigned)} "
+            f"without a category), Ours raised a decision-critical alert on {flagged} and had the reference inside its "
+            f"envelope on {covered} of the {len(assigned)} wrong categories.")
+
+
+def subset(res: dict, keep) -> dict:
+    """Recompute every system summary on a subset of case ids."""
+    from radsenvelope.evaluation.metrics import system_summary
+    out = {}
+    for s in ORDER:
+        if s in res["systems"]:
+            rows = [r for r in res["systems"][s]["rows"] if keep(r["id"])]
+            out[s] = {"summary": system_summary(rows, envelope=(s == "Ours")), "rows": rows}
+    return out
+
+
+def table_case_ids() -> set:
+    cases_csv = REAL / "radiopaedia_cases.csv"
+    if not cases_csv.exists():
+        return set()
+    return {r["id"] for r in csv.DictReader(open(cases_csv, encoding="utf-8-sig")) if "table cells" in r.get("notes", "")}
 
 
 def confusion(systems: dict, system: str = "Ours") -> list[str]:
@@ -99,6 +140,18 @@ def protocol() -> list[str]:
                  "changes. The test-id list is unchanged; freeze tag `eval-freeze-2` "
                  f"{'at ' + tag2[:10] if tag2 else '(not yet created)'}. Repeatability numbers measured before this revision "
                  "remain valid for cases whose deferral did not change.")
+    tag3 = git("rev-parse", "--verify", "--quiet", "eval-freeze-3^{commit}")
+    lines.append("(2) Size guard reads units given in a label or table column header (\"HCC Size (mm): 11.6\"); the number "
+                 "must still appear verbatim. Trigger: the development error analysis, where 11 of 16 misses were table "
+                 "rows whose size was written this way. (3) A hybrid arm B4 (slide 11, arm C) is added: B1's category, "
+                 "replaced by the rule category from B1's own features when they disagree; it is derived from the B1 run "
+                 "without new model calls. No prompt, rule-table or engine change. Development and robustness results "
+                 "were rerun from a committed tree; freeze tag `eval-freeze-3` "
+                 f"{'at ' + tag3[:10] if tag3 else '(not yet created)'}; the test-id list is unchanged.")
+    lines.append("**Review of Europe PMC candidates.** Europe PMC candidate rows were pre-screened with AI assistance "
+                 "against a fixed checklist (CT/MRI LI-RADS v2018; imaging findings present in the findings text; "
+                 "reference category stated separately; at-risk liver; untreated observation; open licence), and every "
+                 "decision was confirmed by a team member.")
     lines.append("**Rules.** Held-out cases are scored only with `RADS_RUN_TEST=1`; every test run is logged with its git "
                  "commit and prompt hash (`data/real/test_runs.log`). A prompt change must come from a development error "
                  "and cite the LI-RADS v2018 definition it implements; every results file stores the prompt hash.")
@@ -116,6 +169,14 @@ def comparison_section(res: dict | None, title: str) -> list[str]:
     lines.append("Accuracy is over cases with a numeric reference; a deferral or missing category counts as wrong. "
                  "Contradiction rate for the rule-based systems is zero by construction; the impression consistency "
                  "check verifies it on every case.")
+    lines += ["", f"**B3 wrong → Ours.** {b3_wrong(res['systems'])}"]
+    if res.get("split") == "dev":
+        tables = table_case_ids() & {r["id"] for r in res["systems"]["Ours"]["rows"]}
+        if tables:
+            prose = subset(res, lambda i: i not in tables)
+            n = len(prose["Ours"]["rows"])
+            lines += ["", f"**Prose-only subset** ({n} cases; excludes the {len(tables)} rows taken from one article's "
+                      "per-lesion table):", ""] + system_table(prose) + ["", f"**B3 wrong → Ours (prose-only).** {b3_wrong(prose)}"]
     lines += [""] + confusion(res["systems"]) + [""]
     ours = res["systems"].get("Ours", {}).get("summary", {})
     lines.append(f"**Deferrals (LR-M / LR-TIV / LR-TR).** Ours: precision {p(ours.get('deferral_precision'))}, recall "
@@ -210,8 +271,14 @@ def error_section() -> list[str]:
         lines.append(f"Before the definition-grounded prompt changes: {before['disagreements']} disagreements "
                      f"{before['by_class']}; after: {after['disagreements']} {after['by_class']}. "
                      "Details: `docs/error_analysis_dev_before.md`, `docs/error_analysis_dev.md`.")
-    lines += ["", "| Case | Reference | Ours | Class | Minimal change that reproduces the reference |", "| --- | --- | --- | --- | --- |"]
-    lines += [f"| {e['id']} | {e['reference']} | {e['ours']} | {e['class']} | {e['detail']} |" for e in after["errors"]]
+    fixable = {"extraction_error": "yes: a definition-grounded extraction fix, checked on dev only",
+               "size_error": "yes: size parsing, checked on dev only", "scope_error": "yes: a documented scope keyword",
+               "out_of_scope": "no: the findings text lacks the information",
+               "reference_ambiguous": "no: depends on the reference", "other": "unclear"}
+    lines += ["", "| Case | Reference | Ours | Class | Minimal change that reproduces the reference | Fixable without the test set |",
+              "| --- | --- | --- | --- | --- | --- |"]
+    lines += [f"| {e['id']} | {e['reference']} | {e['ours']} | {e['class']} | {e['detail']} | {fixable.get(e['class'], 'unclear')} |"
+              for e in after["errors"]]
     import re as _re
     texts = {}
     cases_csv = REAL / "radiopaedia_cases.csv"
@@ -266,8 +333,14 @@ def robustness_section() -> list[str]:
              "are recovered under varied phrasing, hedges, omissions and near-cut-off sizes.", ""]
     if not d:
         return lines + ["Pending.", ""]
-    lines.append(f"n = {d['n']}, seed {d['seed']}, prompt hash `{d.get('prompt_hash', '')[:12]}`.")
-    return lines + [""] + system_table(d["systems"], "Agreement with rule-generated gold [95% CI]") + [""]
+    lines.append(f"n = {d['n']}, seed {d['seed']}, prompt hash `{d.get('prompt_hash', '')[:12]}`, commit "
+                 f"`{(d.get('git') or {}).get('commit', '')[:10]}` (uncommitted changes: {(d.get('git') or {}).get('dirty')}).")
+    lines += [""] + system_table(d["systems"], "Agreement with rule-generated gold [95% CI]") + [""]
+    b4 = d["systems"].get("B4", {}).get("summary", {})
+    if b4:
+        lines.append(f"B4 corrected {b4.get('corrected')} of B1's {d['n']} categories.")
+    lines += ["", f"**B3 wrong → Ours.** {b3_wrong(d['systems'])}", ""]
+    return lines
 
 
 LIMITATIONS = [
@@ -275,8 +348,9 @@ LIMITATIONS = [
     "Selection bias: published and teaching cases over-represent clear-cut LR-5 and LR-M; they are not a consecutive clinical series.",
     "Category imbalance: published case reports over-represent definite HCC (LR-5), so the real-case set is category-imbalanced; "
     "results are reported per category, and LR-3 / LR-4 numbers rest on very few cases and must not be over-interpreted.",
-    "No radiologist co-author has yet confirmed the references, the error attribution or the reviewed Europe PMC cases.",
-    "Inter-annotator agreement: not yet collected (single reviewer).",
+    "No radiologist validation and no second annotator yet: no radiologist has confirmed the references, the error "
+    "attribution or the reviewed Europe PMC cases, and inter-annotator agreement is not yet collected (single reviewer).",
+    "LI-RADS only: Lung-RADS, BI-RADS and an external RXL-RADSet evaluation were planned and are not done.",
     "The open CT datasets have no LI-RADS feature labels (APHE, washout, capsule); those exist only in AMPLIFAI (access pending).",
     "WAW-TACE phase codes are unverified against the dataset paper.",
     "Determinism: before a fixed seed and context size were set, LLM output at temperature 0 depended on the order of "
@@ -288,8 +362,6 @@ LIMITATIONS = [
     "Clustered cases: one article (PMC8122342) contributes 11 of the 27 real cases (rows of one per-lesion table), all in dev; "
     "the 27 cases come from 16 independent sources.",
     "Small test set: forcing every inspected case into dev leaves 8 test cases (dev 19 / test 8), so test intervals are wide.",
-    "Table-format cases write the unit in the column header (\"HCC Size (mm): 11.6\"); the size guard accepts only sizes "
-    "written with a unit, so these cases are currently not assignable.",
 ]
 
 

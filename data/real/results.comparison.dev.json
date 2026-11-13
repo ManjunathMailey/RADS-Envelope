@@ -1,8 +1,8 @@
 {
- "generated_at": "2026-11-13T14:40:42",
+ "generated_at": "2026-11-13T15:01:50",
  "git": {
-  "commit": "41e5f0b49f2079a68df869fc836bf794db3bed76",
-  "dirty": true
+  "commit": "8a93901a4b471b28dc0a852d441be58e666862af",
+  "dirty": false
  },
  "model": "qwen2.5:7b-instruct",
  "prompt_hash": "7e69f08f6618d62e892b7522a57da7ee4cb05463b83f9b8fc3999267bd041111",
@@ -157,7 +157,7 @@
       0.7923
      ]
     },
-    "mean_seconds": 3.79,
+    "mean_seconds": 3.786,
     "unparsed": 0
    },
    "rows": [
@@ -170,7 +170,7 @@
      "any_unresolved": null,
      "consistent": null,
      "contradiction": false,
-     "seconds": 4.105,
+     "seconds": 4.091,
      "size_mm": 8.0,
      "engine_category": "LR-4",
      "error": null,
@@ -192,7 +192,7 @@
      "any_unresolved": null,
      "consistent": null,
      "contradiction": true,
-     "seconds": 4.309,
+     "seconds": 4.298,
      "size_mm": 26.0,
      "engine_category": "LR-5",
      "error": null,
@@ -214,7 +214,7 @@
      "any_unresolved": null,
      "consistent": null,
      "contradiction": null,
-     "seconds": 3.654,
+     "seconds": 3.677,
      "size_mm": null,
      "engine_category": null,
      "error": null,
@@ -236,7 +236,7 @@
      "any_unresolved": null,
      "consistent": null,
      "contradiction": false,
-     "seconds": 4.671,
+     "seconds": 4.683,
      "size_mm": 43.0,
      "engine_category": "LR-5",
      "error": null,
@@ -258,7 +258,7 @@
      "any_unresolved": null,
      "consistent": null,
      "contradiction": false,
-     "seconds": 3.055,
+     "seconds": 3.064,
      "size_mm": 29.0,
      "engine_category": "LR-4",
      "error": null,
@@ -280,7 +280,7 @@
      "any_unresolved": null,
      "consistent": null,
      "contradiction": null,
-     "seconds": 3.044,
+     "seconds": 3.053,
      "size_mm": null,
      "engine_category": null,
      "error": null,
@@ -302,7 +302,7 @@
      "any_unresolved": null,
      "consistent": null,
      "contradiction": null,
-     "seconds": 3.797,
+     "seconds": 3.801,
      "size_mm": 120.0,
      "engine_category": "LR-5",
      "error": null,
@@ -324,7 +324,7 @@
      "any_unresolved": null,
      "consistent": null,
      "contradiction": null,
-     "seconds": 3.377,
+     "seconds": 3.351,
      "size_mm": null,
      "engine_category": null,
      "error": null,
@@ -346,7 +346,7 @@
      "any_unresolved": null,
      "consistent": null,
      "contradiction": true,
-     "seconds": 3.994,
+     "seconds": 4.018,
      "size_mm": 15.5,
      "engine_category": "LR-5",
      "error": null,
@@ -368,7 +368,7 @@
      "any_unresolved": null,
      "consistent": null,
      "contradiction": true,
-     "seconds": 3.935,
+     "seconds": 3.967,
      "size_mm": 13.5,
      "engine_category": "LR-3",
      "error": null,
@@ -390,7 +390,7 @@
      "any_unresolved": null,
      "consistent": null,
      "contradiction": false,
-     "seconds": 4.015,
+     "seconds": 3.999,
      "size_mm": 11.6,
      "engine_category": "LR-4",
      "error": null,
@@ -412,7 +412,7 @@
      "any_unresolved": null,
      "consistent": null,
      "contradiction": true,
-     "seconds": 3.965,
+     "seconds": 3.922,
      "size_mm": 11.2,
      "engine_category": "LR-4",
      "error": null,
@@ -434,7 +434,7 @@
      "any_unresolved": null,
      "consistent": null,
      "contradiction": false,
-     "seconds": 3.933,
+     "seconds": 3.951,
      "size_mm": 15.4,
      "engine_category": "LR-4",
      "error": null,
@@ -456,7 +456,7 @@
      "any_unresolved": null,
      "consistent": null,
      "contradiction": false,
-     "seconds": 3.947,
+     "seconds": 3.918,
      "size_mm": 15.7,
      "engine_category": "LR-4",
      "error": null,
@@ -478,7 +478,7 @@
      "any_unresolved": null,
      "consistent": null,
      "contradiction": false,
-     "seconds": 3.998,
+     "seconds": 4.0,
      "size_mm": 18.7,
      "engine_category": "LR-4",
      "error": null,
@@ -500,7 +500,7 @@
      "any_unresolved": null,
      "consistent": null,
      "contradiction": false,
-     "seconds": 2.968,
+     "seconds": 2.957,
      "size_mm": 18.8,
      "engine_category": "LR-3",
      "error": null,
@@ -522,7 +522,7 @@
      "any_unresolved": null,
      "consistent": null,
      "contradiction": false,
-     "seconds": 3.954,
+     "seconds": 3.931,
      "size_mm": 11.5,
      "engine_category": "LR-4",
      "error": null,
@@ -544,7 +544,7 @@
      "any_unresolved": null,
      "consistent": null,
      "contradiction": true,
-     "seconds": 3.999,
+     "seconds": 4.002,
      "size_mm": 17.8,
      "engine_category": "LR-5",
      "error": null,
@@ -566,7 +566,7 @@
      "any_unresolved": null,
      "consistent": null,
      "contradiction": null,
-     "seconds": 3.29,
+     "seconds": 3.245,
      "size_mm": null,
      "engine_category": null,
      "error": null,
@@ -586,15 +586,15 @@
     "cases": 19,
     "graded": 16,
     "accuracy": {
-     "k": 3,
+     "k": 13,
      "n": 16,
-     "value": 0.1875,
+     "value": 0.8125,
      "ci95": [
-      0.0659,
-      0.4301
+      0.5699,
+      0.9341
      ]
     },
-    "weighted_kappa": 0.5,
+    "weighted_kappa": 0.7458,
     "confusion": {
      "labels": [
       "LR-2",
@@ -620,17 +620,17 @@
       ],
       [
        0,
+       1,
        0,
        0,
-       0,
-       1
+       0
       ],
       [
        0,
        1,
        0,
-       1,
-       11
+       11,
+       1
       ],
       [
        0,
@@ -642,12 +642,12 @@
      ]
     },
     "lr5_sensitivity": {
-     "k": 1,
+     "k": 11,
      "n": 13,
-     "value": 0.0769,
+     "value": 0.8462,
      "ci95": [
-      0.0137,
-      0.3331
+      0.5777,
+      0.9567
      ]
     },
     "lr5_specificity": {
@@ -660,15 +660,15 @@
      ]
     },
     "pm1_band_coverage": {
-     "k": 3,
+     "k": 14,
      "n": 16,
-     "value": 0.1875,
+     "value": 0.875,
      "ci95": [
-      0.0659,
-      0.4301
+      0.6398,
+      0.965
      ]
     },
-    "mean_pm1_band_size": 2.75,
+    "mean_pm1_band_size": 2.267,
     "contradiction_rate": {
      "k": 0,
      "n": 19,
@@ -714,7 +714,7 @@
       0.9385
      ]
     },
-    "mean_seconds": 0.002
+    "mean_seconds": 0.001
    },
    "rows": [
     {
@@ -765,7 +765,7 @@
      "any_unresolved": true,
      "consistent": true,
      "contradiction": false,
-     "seconds": 0.002,
+     "seconds": 0.001,
      "size_mm": 26.0,
      "features": {
       "aphe": "not_documented",
@@ -796,7 +796,7 @@
      "any_unresolved": false,
      "consistent": true,
      "contradiction": false,
-     "seconds": 0.001,
+     "seconds": 0.0,
      "size_mm": null,
      "features": {
       "aphe": "not_documented",
@@ -866,7 +866,7 @@
      "any_unresolved": true,
      "consistent": true,
      "contradiction": false,
-     "seconds": 0.002,
+     "seconds": 0.001,
      "size_mm": 29.0,
      "features": {
       "aphe": "not_documented",
@@ -897,7 +897,7 @@
      "any_unresolved": false,
      "consistent": true,
      "contradiction": false,
-     "seconds": 0.001,
+     "seconds": 0.0,
      "size_mm": null,
      "features": {
       "aphe": "present",
@@ -986,14 +986,16 @@
     {
      "id": "EPMC012",
      "gold": "LR-5",
-     "pred": "not_assignable",
-     "envelope": null,
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
      "critical": false,
      "any_unresolved": false,
      "consistent": true,
      "contradiction": false,
-     "seconds": 0.002,
-     "size_mm": null,
+     "seconds": 0.001,
+     "size_mm": 15.5,
      "features": {
       "aphe": "present",
       "washout": "absent",
@@ -1012,19 +1014,21 @@
       "af_malignant": "",
       "af_benign": ""
      },
-     "size_evidence": ""
+     "size_evidence": "Size (mm): 15.5"
     },
     {
      "id": "EPMC013",
      "gold": "LR-5",
-     "pred": "not_assignable",
-     "envelope": null,
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
      "critical": false,
      "any_unresolved": false,
      "consistent": true,
      "contradiction": false,
-     "seconds": 0.003,
-     "size_mm": null,
+     "seconds": 0.001,
+     "size_mm": 13.5,
      "features": {
       "aphe": "present",
       "washout": "present",
@@ -1043,19 +1047,22 @@
       "af_malignant": "",
       "af_benign": ""
      },
-     "size_evidence": ""
+     "size_evidence": "Size (mm): 13.5"
     },
     {
      "id": "EPMC014",
      "gold": "LR-5",
-     "pred": "not_assignable",
-     "envelope": null,
-     "critical": false,
+     "pred": "LR-5",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
      "any_unresolved": false,
      "consistent": true,
      "contradiction": false,
-     "seconds": 0.001,
-     "size_mm": null,
+     "seconds": 0.0,
+     "size_mm": 11.6,
      "features": {
       "aphe": "present",
       "washout": "present",
@@ -1074,19 +1081,22 @@
       "af_malignant": "",
       "af_benign": ""
      },
-     "size_evidence": ""
+     "size_evidence": "Size (mm): 11.6"
     },
     {
      "id": "EPMC015",
      "gold": "LR-5",
-     "pred": "not_assignable",
-     "envelope": null,
-     "critical": false,
+     "pred": "LR-5",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
      "any_unresolved": false,
      "consistent": true,
      "contradiction": false,
-     "seconds": 0.002,
-     "size_mm": null,
+     "seconds": 0.001,
+     "size_mm": 11.2,
      "features": {
       "aphe": "present",
       "washout": "present",
@@ -1105,19 +1115,21 @@
       "af_malignant": "",
       "af_benign": ""
      },
-     "size_evidence": ""
+     "size_evidence": "Size (mm): 11.2"
     },
     {
      "id": "EPMC016",
      "gold": "LR-5",
-     "pred": "not_assignable",
-     "envelope": null,
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
      "critical": false,
      "any_unresolved": false,
      "consistent": true,
      "contradiction": false,
      "seconds": 0.001,
-     "size_mm": null,
+     "size_mm": 15.4,
      "features": {
       "aphe": "present",
       "washout": "present",
@@ -1136,50 +1148,21 @@
       "af_malignant": "",
       "af_benign": ""
      },
-     "size_evidence": ""
+     "size_evidence": "Size (mm): 15.4"
     },
     {
      "id": "EPMC017",
      "gold": "LR-5",
-     "pred": "not_assignable",
-     "envelope": null,
-     "critical": false,
-     "any_unresolved": false,
-     "consistent": true,
-     "contradiction": false,
-     "seconds": 0.002,
-     "size_mm": null,
-     "features": {
-      "aphe": "present",
-      "washout": "present",
-      "capsule": "absent",
-      "growth": "present",
-      "af_malignant": "not_documented",
-      "af_benign": "not_documented"
-     },
-     "size_tolerance_mm": 2.0,
-     "defer_reasons": [],
-     "evidence": {
-      "aphe": "APHE: Yes",
-      "washout": "Non-Peripheral \u201cWashout\u201d in Portal Phase: Yes",
-      "capsule": "Enhancing \u201cCapsule\u201d: No",
-      "growth": "Threshold Growth *: Yes",
-      "af_malignant": "",
-      "af_benign": ""
-     },
-     "size_evidence": ""
-    },
-    {
-     "id": "EPMC018",
-     "gold": "LR-5",
-     "pred": "not_assignable",
-     "envelope": null,
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
      "critical": false,
      "any_unresolved": false,
      "consistent": true,
      "contradiction": false,
      "seconds": 0.001,
-     "size_mm": null,
+     "size_mm": 15.7,
      "features": {
       "aphe": "present",
       "washout": "present",
@@ -1198,19 +1181,55 @@
       "af_malignant": "",
       "af_benign": ""
      },
-     "size_evidence": ""
+     "size_evidence": "Size (mm): 15.7"
     },
     {
-     "id": "EPMC019",
-     "gold": "LR-4",
-     "pred": "not_assignable",
-     "envelope": null,
+     "id": "EPMC018",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
      "critical": false,
      "any_unresolved": false,
      "consistent": true,
      "contradiction": false,
-     "seconds": 0.002,
-     "size_mm": null,
+     "seconds": 0.0,
+     "size_mm": 18.7,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "size_tolerance_mm": 2.0,
+     "defer_reasons": [],
+     "evidence": {
+      "aphe": "APHE: Yes",
+      "washout": "Non-Peripheral \u201cWashout\u201d in Portal Phase: Yes",
+      "capsule": "Enhancing \u201cCapsule\u201d: No",
+      "growth": "Threshold Growth *: Yes",
+      "af_malignant": "",
+      "af_benign": ""
+     },
+     "size_evidence": "Size (mm): 18.7"
+    },
+    {
+     "id": "EPMC019",
+     "gold": "LR-4",
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4"
+     ],
+     "critical": true,
+     "any_unresolved": false,
+     "consistent": true,
+     "contradiction": false,
+     "seconds": 0.001,
+     "size_mm": 18.8,
      "features": {
       "aphe": "present",
       "washout": "absent",
@@ -1229,19 +1248,22 @@
       "af_malignant": "",
       "af_benign": ""
      },
-     "size_evidence": ""
+     "size_evidence": "Size (mm): 18.8"
     },
     {
      "id": "EPMC020",
      "gold": "LR-5",
-     "pred": "not_assignable",
-     "envelope": null,
-     "critical": false,
+     "pred": "LR-5",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
      "any_unresolved": false,
      "consistent": true,
      "contradiction": false,
-     "seconds": 0.002,
-     "size_mm": null,
+     "seconds": 0.001,
+     "size_mm": 11.5,
      "features": {
       "aphe": "present",
       "washout": "present",
@@ -1260,19 +1282,21 @@
       "af_malignant": "",
       "af_benign": ""
      },
-     "size_evidence": ""
+     "size_evidence": "Size (mm): 11.5"
     },
     {
      "id": "EPMC021",
      "gold": "LR-5",
-     "pred": "not_assignable",
-     "envelope": null,
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
      "critical": false,
      "any_unresolved": false,
      "consistent": true,
      "contradiction": false,
      "seconds": 0.001,
-     "size_mm": null,
+     "size_mm": 17.8,
      "features": {
       "aphe": "present",
       "washout": "absent",
@@ -1291,19 +1315,22 @@
       "af_malignant": "",
       "af_benign": ""
      },
-     "size_evidence": ""
+     "size_evidence": "Size (mm): 17.8"
     },
     {
      "id": "EPMC022",
      "gold": "LR-5",
-     "pred": "not_assignable",
-     "envelope": null,
-     "critical": false,
-     "any_unresolved": false,
+     "pred": "LR-5",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
      "consistent": true,
      "contradiction": false,
      "seconds": 0.001,
-     "size_mm": null,
+     "size_mm": 11.1,
      "features": {
       "aphe": "present",
       "washout": "present",
@@ -1322,7 +1349,7 @@
       "af_malignant": "",
       "af_benign": ""
      },
-     "size_evidence": ""
+     "size_evidence": "Size (mm): 11.1"
     }
    ]
   },
@@ -1331,15 +1358,15 @@
     "cases": 19,
     "graded": 16,
     "accuracy": {
-     "k": 2,
+     "k": 10,
      "n": 16,
-     "value": 0.125,
+     "value": 0.625,
      "ci95": [
-      0.035,
-      0.3602
+      0.3864,
+      0.8152
      ]
     },
-    "weighted_kappa": 0.6667,
+    "weighted_kappa": 0.6154,
     "confusion": {
      "labels": [
       "LR-2",
@@ -1365,17 +1392,17 @@
       ],
       [
        0,
+       1,
        0,
        0,
-       0,
-       1
+       0
       ],
       [
        0,
        0,
-       0,
        2,
-       11
+       10,
+       1
       ],
       [
        0,
@@ -1387,12 +1414,12 @@
      ]
     },
     "lr5_sensitivity": {
-     "k": 2,
+     "k": 10,
      "n": 13,
-     "value": 0.1538,
+     "value": 0.7692,
      "ci95": [
-      0.0433,
-      0.4223
+      0.4974,
+      0.9182
      ]
     },
     "lr5_specificity": {
@@ -1405,15 +1432,15 @@
      ]
     },
     "pm1_band_coverage": {
-     "k": 4,
+     "k": 15,
      "n": 16,
-     "value": 0.25,
+     "value": 0.9375,
      "ci95": [
-      0.1018,
-      0.495
+      0.7167,
+      0.9889
      ]
     },
-    "mean_pm1_band_size": 2.5,
+    "mean_pm1_band_size": 2.333,
     "contradiction_rate": {
      "k": 0,
      "n": 19,
@@ -1459,7 +1486,7 @@
       0.9385
      ]
     },
-    "mean_seconds": 4.163
+    "mean_seconds": 4.207
    },
    "rows": [
     {
@@ -1471,7 +1498,7 @@
      "any_unresolved": null,
      "consistent": true,
      "contradiction": false,
-     "seconds": 5.021,
+     "seconds": 4.922,
      "size_mm": 8.0,
      "features": {
       "aphe": "present",
@@ -1502,7 +1529,7 @@
      "any_unresolved": null,
      "consistent": true,
      "contradiction": false,
-     "seconds": 5.26,
+     "seconds": 5.302,
      "size_mm": 26.0,
      "features": {
       "aphe": "present",
@@ -1533,7 +1560,7 @@
      "any_unresolved": null,
      "consistent": true,
      "contradiction": false,
-     "seconds": 3.798,
+     "seconds": 3.812,
      "size_mm": null,
      "features": {
       "aphe": "present",
@@ -1566,7 +1593,7 @@
      "any_unresolved": null,
      "consistent": true,
      "contradiction": false,
-     "seconds": 5.568,
+     "seconds": 5.602,
      "size_mm": 43.0,
      "features": {
       "aphe": "present",
@@ -1597,7 +1624,7 @@
      "any_unresolved": null,
      "consistent": true,
      "contradiction": false,
-     "seconds": 3.282,
+     "seconds": 3.565,
      "size_mm": 29.0,
      "features": {
       "aphe": "not_documented",
@@ -1628,7 +1655,7 @@
      "any_unresolved": null,
      "consistent": true,
      "contradiction": false,
-     "seconds": 3.761,
+     "seconds": 3.826,
      "size_mm": null,
      "features": {
       "aphe": "absent",
@@ -1659,7 +1686,7 @@
      "any_unresolved": null,
      "consistent": true,
      "contradiction": false,
-     "seconds": 4.007,
+     "seconds": 4.072,
      "size_mm": 120.0,
      "features": {
       "aphe": "present",
@@ -1692,7 +1719,7 @@
      "any_unresolved": null,
      "consistent": true,
      "contradiction": false,
-     "seconds": 3.374,
+     "seconds": 3.448,
      "size_mm": null,
      "features": {
       "aphe": "absent",
@@ -1717,14 +1744,14 @@
     {
      "id": "EPMC012",
      "gold": "LR-5",
-     "pred": "not_assignable",
+     "pred": "LR-5",
      "envelope": null,
      "critical": null,
      "any_unresolved": null,
      "consistent": true,
      "contradiction": false,
-     "seconds": 4.299,
-     "size_mm": null,
+     "seconds": 4.298,
+     "size_mm": 15.5,
      "features": {
       "aphe": "present",
       "washout": "absent",
@@ -1743,19 +1770,19 @@
       "af_malignant": "",
       "af_benign": ""
      },
-     "size_evidence": ""
+     "size_evidence": "15.5"
     },
     {
      "id": "EPMC013",
      "gold": "LR-5",
-     "pred": "not_assignable",
+     "pred": "LR-5",
      "envelope": null,
      "critical": null,
      "any_unresolved": null,
      "consistent": true,
      "contradiction": false,
-     "seconds": 4.277,
-     "size_mm": null,
+     "seconds": 4.291,
+     "size_mm": 13.5,
      "features": {
       "aphe": "present",
       "washout": "present",
@@ -1774,19 +1801,19 @@
       "af_malignant": "",
       "af_benign": ""
      },
-     "size_evidence": ""
+     "size_evidence": "13.5"
     },
     {
      "id": "EPMC014",
      "gold": "LR-5",
-     "pred": "not_assignable",
+     "pred": "LR-4",
      "envelope": null,
      "critical": null,
      "any_unresolved": null,
      "consistent": true,
      "contradiction": false,
-     "seconds": 3.276,
-     "size_mm": null,
+     "seconds": 3.351,
+     "size_mm": 11.6,
      "features": {
       "aphe": "absent",
       "washout": "present",
@@ -1810,14 +1837,14 @@
     {
      "id": "EPMC015",
      "gold": "LR-5",
-     "pred": "not_assignable",
+     "pred": "LR-5",
      "envelope": null,
      "critical": null,
      "any_unresolved": null,
      "consistent": true,
      "contradiction": false,
-     "seconds": 4.221,
-     "size_mm": null,
+     "seconds": 4.291,
+     "size_mm": 11.2,
      "features": {
       "aphe": "present",
       "washout": "present",
@@ -1836,19 +1863,19 @@
       "af_malignant": "",
       "af_benign": ""
      },
-     "size_evidence": ""
+     "size_evidence": "11.2"
     },
     {
      "id": "EPMC016",
      "gold": "LR-5",
-     "pred": "not_assignable",
+     "pred": "LR-5",
      "envelope": null,
      "critical": null,
      "any_unresolved": null,
      "consistent": true,
      "contradiction": false,
-     "seconds": 4.231,
-     "size_mm": null,
+     "seconds": 4.296,
+     "size_mm": 15.4,
      "features": {
       "aphe": "present",
       "washout": "present",
@@ -1867,19 +1894,19 @@
       "af_malignant": "",
       "af_benign": ""
      },
-     "size_evidence": ""
+     "size_evidence": "15.4"
     },
     {
      "id": "EPMC017",
      "gold": "LR-5",
-     "pred": "not_assignable",
+     "pred": "LR-5",
      "envelope": null,
      "critical": null,
      "any_unresolved": null,
      "consistent": true,
      "contradiction": false,
-     "seconds": 4.265,
-     "size_mm": null,
+     "seconds": 4.258,
+     "size_mm": 15.7,
      "features": {
       "aphe": "present",
       "washout": "present",
@@ -1898,19 +1925,19 @@
       "af_malignant": "",
       "af_benign": ""
      },
-     "size_evidence": ""
+     "size_evidence": "15.7"
     },
     {
      "id": "EPMC018",
      "gold": "LR-5",
-     "pred": "not_assignable",
+     "pred": "LR-4",
      "envelope": null,
      "critical": null,
      "any_unresolved": null,
      "consistent": true,
      "contradiction": false,
-     "seconds": 3.535,
-     "size_mm": null,
+     "seconds": 3.568,
+     "size_mm": 18.7,
      "features": {
       "aphe": "absent",
       "washout": "present",
@@ -1929,19 +1956,19 @@
       "af_malignant": "",
       "af_benign": ""
      },
-     "size_evidence": ""
+     "size_evidence": "18.7"
     },
     {
      "id": "EPMC019",
      "gold": "LR-4",
-     "pred": "not_assignable",
+     "pred": "LR-3",
      "envelope": null,
      "critical": null,
      "any_unresolved": null,
      "consistent": true,
      "contradiction": false,
-     "seconds": 4.278,
-     "size_mm": null,
+     "seconds": 4.304,
+     "size_mm": 18.8,
      "features": {
       "aphe": "present",
       "washout": "absent",
@@ -1960,19 +1987,19 @@
       "af_malignant": "",
       "af_benign": ""
      },
-     "size_evidence": ""
+     "size_evidence": "18.8"
     },
     {
      "id": "EPMC020",
      "gold": "LR-5",
-     "pred": "not_assignable",
+     "pred": "LR-5",
      "envelope": null,
      "critical": null,
      "any_unresolved": null,
      "consistent": true,
      "contradiction": false,
-     "seconds": 4.274,
-     "size_mm": null,
+     "seconds": 4.261,
+     "size_mm": 11.5,
      "features": {
       "aphe": "present",
       "washout": "present",
@@ -1991,19 +2018,19 @@
       "af_malignant": "",
       "af_benign": ""
      },
-     "size_evidence": ""
+     "size_evidence": "11.5"
     },
     {
      "id": "EPMC021",
      "gold": "LR-5",
-     "pred": "not_assignable",
+     "pred": "LR-5",
      "envelope": null,
      "critical": null,
      "any_unresolved": null,
      "consistent": true,
      "contradiction": false,
-     "seconds": 4.24,
-     "size_mm": null,
+     "seconds": 4.298,
+     "size_mm": 17.8,
      "features": {
       "aphe": "present",
       "washout": "absent",
@@ -2022,19 +2049,19 @@
       "af_malignant": "",
       "af_benign": ""
      },
-     "size_evidence": ""
+     "size_evidence": "17.8"
     },
     {
      "id": "EPMC022",
      "gold": "LR-5",
-     "pred": "not_assignable",
+     "pred": "LR-5",
      "envelope": null,
      "critical": null,
      "any_unresolved": null,
      "consistent": true,
      "contradiction": false,
-     "seconds": 4.137,
-     "size_mm": null,
+     "seconds": 4.174,
+     "size_mm": 11.1,
      "features": {
       "aphe": "present",
       "washout": "present",
@@ -2053,7 +2080,575 @@
       "af_malignant": "",
       "af_benign": ""
      },
-     "size_evidence": ""
+     "size_evidence": "11.1"
+    }
+   ]
+  },
+  "B4": {
+   "summary": {
+    "cases": 19,
+    "graded": 16,
+    "accuracy": {
+     "k": 4,
+     "n": 16,
+     "value": 0.25,
+     "ci95": [
+      0.1018,
+      0.495
+     ]
+    },
+    "weighted_kappa": 0.1923,
+    "confusion": {
+     "labels": [
+      "LR-2",
+      "LR-3",
+      "LR-4",
+      "LR-5",
+      "other"
+     ],
+     "matrix": [
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       2,
+       0,
+       0
+      ],
+      [
+       0,
+       1,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       1,
+       7,
+       4,
+       1
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     ]
+    },
+    "lr5_sensitivity": {
+     "k": 4,
+     "n": 13,
+     "value": 0.3077,
+     "ci95": [
+      0.1268,
+      0.5763
+     ]
+    },
+    "lr5_specificity": {
+     "k": 3,
+     "n": 3,
+     "value": 1.0,
+     "ci95": [
+      0.4385,
+      1.0
+     ]
+    },
+    "pm1_band_coverage": {
+     "k": 14,
+     "n": 16,
+     "value": 0.875,
+     "ci95": [
+      0.6398,
+      0.965
+     ]
+    },
+    "mean_pm1_band_size": 2.733,
+    "contradiction_rate": {
+     "k": 0,
+     "n": 14,
+     "value": 0.0,
+     "ci95": [
+      0.0,
+      0.2153
+     ]
+    },
+    "consistency_verified": null,
+    "correct_deferrals": {
+     "k": 1,
+     "n": 3,
+     "value": 0.3333,
+     "ci95": [
+      0.0615,
+      0.7923
+     ]
+    },
+    "deferral_precision": {
+     "k": 1,
+     "n": 1,
+     "value": 1.0,
+     "ci95": [
+      0.2065,
+      1.0
+     ]
+    },
+    "deferral_recall": {
+     "k": 1,
+     "n": 3,
+     "value": 0.3333,
+     "ci95": [
+      0.0615,
+      0.7923
+     ]
+    },
+    "mean_seconds": 3.786,
+    "corrected": 5
+   },
+   "rows": [
+    {
+     "id": "RP001",
+     "gold": "LR-3",
+     "pred": "LR-4",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": false,
+     "seconds": 4.091,
+     "size_mm": 8.0,
+     "engine_category": "LR-4",
+     "error": null,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "corrected": false
+    },
+    {
+     "id": "RP002",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": false,
+     "seconds": 4.298,
+     "size_mm": 26.0,
+     "engine_category": "LR-5",
+     "error": null,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "not_documented",
+      "af_malignant": "absent",
+      "af_benign": "absent"
+     },
+     "corrected": true
+    },
+    {
+     "id": "RP003",
+     "gold": "LR-M",
+     "pred": "not_assignable",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": null,
+     "seconds": 3.677,
+     "size_mm": null,
+     "engine_category": null,
+     "error": null,
+     "features": {
+      "aphe": "absent",
+      "washout": "absent",
+      "capsule": "present",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "corrected": false
+    },
+    {
+     "id": "PMC001",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": false,
+     "seconds": 4.683,
+     "size_mm": 43.0,
+     "engine_category": "LR-5",
+     "error": null,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "present",
+      "af_malignant": "present",
+      "af_benign": "absent"
+     },
+     "corrected": false
+    },
+    {
+     "id": "PMC002",
+     "gold": "LR-3",
+     "pred": "LR-4",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": false,
+     "seconds": 3.064,
+     "size_mm": 29.0,
+     "engine_category": "LR-4",
+     "error": null,
+     "features": {
+      "aphe": "not_documented",
+      "washout": "not_documented",
+      "capsule": "not_documented",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "corrected": false
+    },
+    {
+     "id": "EPMC001",
+     "gold": "LR-5",
+     "pred": "LR-4",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": null,
+     "seconds": 3.053,
+     "size_mm": null,
+     "engine_category": null,
+     "error": null,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "corrected": false
+    },
+    {
+     "id": "EPMC008",
+     "gold": "LR-TIV",
+     "pred": "LR-TIV",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": null,
+     "seconds": 3.801,
+     "size_mm": 120.0,
+     "engine_category": "LR-5",
+     "error": null,
+     "features": {
+      "aphe": "present",
+      "washout": "present",
+      "capsule": "present",
+      "growth": "not_documented",
+      "af_malignant": "present",
+      "af_benign": "not_documented"
+     },
+     "corrected": false
+    },
+    {
+     "id": "EPMC009",
+     "gold": "LR-M",
+     "pred": "not_assignable",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": null,
+     "seconds": 3.351,
+     "size_mm": null,
+     "engine_category": null,
+     "error": null,
+     "features": {
+      "aphe": "not_documented",
+      "washout": "not_documented",
+      "capsule": "not_documented",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "corrected": false
+    },
+    {
+     "id": "EPMC012",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": false,
+     "seconds": 4.018,
+     "size_mm": 15.5,
+     "engine_category": "LR-5",
+     "error": null,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "corrected": true
+    },
+    {
+     "id": "EPMC013",
+     "gold": "LR-5",
+     "pred": "LR-3",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": false,
+     "seconds": 3.967,
+     "size_mm": 13.5,
+     "engine_category": "LR-3",
+     "error": null,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "corrected": true
+    },
+    {
+     "id": "EPMC014",
+     "gold": "LR-5",
+     "pred": "LR-4",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": false,
+     "seconds": 3.999,
+     "size_mm": 11.6,
+     "engine_category": "LR-4",
+     "error": null,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "present",
+      "af_malignant": "present",
+      "af_benign": "absent"
+     },
+     "corrected": false
+    },
+    {
+     "id": "EPMC015",
+     "gold": "LR-5",
+     "pred": "LR-4",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": false,
+     "seconds": 3.922,
+     "size_mm": 11.2,
+     "engine_category": "LR-4",
+     "error": null,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "corrected": true
+    },
+    {
+     "id": "EPMC016",
+     "gold": "LR-5",
+     "pred": "LR-4",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": false,
+     "seconds": 3.951,
+     "size_mm": 15.4,
+     "engine_category": "LR-4",
+     "error": null,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "corrected": false
+    },
+    {
+     "id": "EPMC017",
+     "gold": "LR-5",
+     "pred": "LR-4",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": false,
+     "seconds": 3.918,
+     "size_mm": 15.7,
+     "engine_category": "LR-4",
+     "error": null,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "corrected": false
+    },
+    {
+     "id": "EPMC018",
+     "gold": "LR-5",
+     "pred": "LR-4",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": false,
+     "seconds": 4.0,
+     "size_mm": 18.7,
+     "engine_category": "LR-4",
+     "error": null,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "present",
+      "af_malignant": "present",
+      "af_benign": "absent"
+     },
+     "corrected": false
+    },
+    {
+     "id": "EPMC019",
+     "gold": "LR-4",
+     "pred": "LR-3",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": false,
+     "seconds": 2.957,
+     "size_mm": 18.8,
+     "engine_category": "LR-3",
+     "error": null,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "absent",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "corrected": false
+    },
+    {
+     "id": "EPMC020",
+     "gold": "LR-5",
+     "pred": "LR-4",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": false,
+     "seconds": 3.931,
+     "size_mm": 11.5,
+     "engine_category": "LR-4",
+     "error": null,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "corrected": false
+    },
+    {
+     "id": "EPMC021",
+     "gold": "LR-5",
+     "pred": "LR-5",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": false,
+     "seconds": 4.002,
+     "size_mm": 17.8,
+     "engine_category": "LR-5",
+     "error": null,
+     "features": {
+      "aphe": "present",
+      "washout": "absent",
+      "capsule": "absent",
+      "growth": "present",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "corrected": true
+    },
+    {
+     "id": "EPMC022",
+     "gold": "LR-5",
+     "pred": "not_assignable",
+     "envelope": null,
+     "critical": null,
+     "any_unresolved": null,
+     "consistent": null,
+     "contradiction": null,
+     "seconds": 3.245,
+     "size_mm": null,
+     "engine_category": null,
+     "error": null,
+     "features": {
+      "aphe": "absent",
+      "washout": "present",
+      "capsule": "absent",
+      "growth": "not_documented",
+      "af_malignant": "not_documented",
+      "af_benign": "not_documented"
+     },
+     "corrected": false
     }
    ]
   },
@@ -2062,15 +2657,15 @@
     "cases": 19,
     "graded": 16,
     "accuracy": {
-     "k": 2,
+     "k": 10,
      "n": 16,
-     "value": 0.125,
+     "value": 0.625,
      "ci95": [
-      0.035,
-      0.3602
+      0.3864,
+      0.8152
      ]
     },
-    "weighted_kappa": 0.6667,
+    "weighted_kappa": 0.6154,
     "confusion": {
      "labels": [
       "LR-2",
@@ -2096,17 +2691,17 @@
       ],
       [
        0,
+       1,
        0,
        0,
-       0,
-       1
+       0
       ],
       [
        0,
        0,
-       0,
        2,
-       11
+       10,
+       1
       ],
       [
        0,
@@ -2118,12 +2713,12 @@
      ]
     },
     "lr5_sensitivity": {
-     "k": 2,
+     "k": 10,
      "n": 13,
-     "value": 0.1538,
+     "value": 0.7692,
      "ci95": [
-      0.0433,
-      0.4223
+      0.4974,
+      0.9182
      ]
     },
     "lr5_specificity": {
@@ -2136,15 +2731,15 @@
      ]
     },
     "pm1_band_coverage": {
-     "k": 4,
+     "k": 15,
      "n": 16,
-     "value": 0.25,
+     "value": 0.9375,
      "ci95": [
-      0.1018,
-      0.495
+      0.7167,
+      0.9889
      ]
     },
-    "mean_pm1_band_size": 2.5,
+    "mean_pm1_band_size": 2.333,
     "contradiction_rate": {
      "k": 0,
      "n": 19,
@@ -2190,33 +2785,33 @@
       0.9385
      ]
     },
-    "mean_seconds": 4.163,
+    "mean_seconds": 4.207,
     "envelope_coverage": {
-     "k": 2,
+     "k": 11,
      "n": 16,
-     "value": 0.125,
+     "value": 0.6875,
      "ci95": [
-      0.035,
-      0.3602
+      0.444,
+      0.8584
      ]
     },
-    "mean_envelope_size": 1.5,
+    "mean_envelope_size": 1.4,
     "alert_rate": {
-     "k": 2,
+     "k": 6,
      "n": 19,
-     "value": 0.1053,
+     "value": 0.3158,
      "ci95": [
-      0.0294,
-      0.3139
+      0.1536,
+      0.5399
      ]
     },
     "any_uncertainty_rate": {
-     "k": 3,
+     "k": 7,
      "n": 19,
-     "value": 0.1579,
+     "value": 0.3684,
      "ci95": [
-      0.0552,
-      0.3757
+      0.1915,
+      0.5896
      ]
     }
    },
@@ -2233,7 +2828,7 @@
      "any_unresolved": true,
      "consistent": true,
      "contradiction": false,
-     "seconds": 5.021,
+     "seconds": 4.922,
      "size_mm": 8.0,
      "features": {
       "aphe": "present",
@@ -2266,7 +2861,7 @@
      "any_unresolved": false,
      "consistent": true,
      "contradiction": false,
-     "seconds": 5.26,
+     "seconds": 5.302,
      "size_mm": 26.0,
      "features": {
       "aphe": "present",
@@ -2297,7 +2892,7 @@
      "any_unresolved": false,
      "consistent": true,
      "contradiction": false,
-     "seconds": 3.798,
+     "seconds": 3.812,
      "size_mm": null,
      "features": {
       "aphe": "present",
@@ -2332,7 +2927,7 @@
      "any_unresolved": true,
      "consistent": true,
      "contradiction": false,
-     "seconds": 5.568,
+     "seconds": 5.602,
      "size_mm": 43.0,
      "features": {
       "aphe": "present",
@@ -2366,7 +2961,7 @@
      "any_unresolved": true,
      "consistent": true,
      "contradiction": false,
-     "seconds": 3.282,
+     "seconds": 3.565,
      "size_mm": 29.0,
      "features": {
       "aphe": "not_documented",
@@ -2397,7 +2992,7 @@
      "any_unresolved": false,
      "consistent": true,
      "contradiction": false,
-     "seconds": 3.761,
+     "seconds": 3.826,
      "size_mm": null,
      "features": {
       "aphe": "absent",
@@ -2428,7 +3023,7 @@
      "any_unresolved": false,
      "consistent": true,
      "contradiction": false,
-     "seconds": 4.007,
+     "seconds": 4.072,
      "size_mm": 120.0,
      "features": {
       "aphe": "present",
@@ -2461,7 +3056,7 @@
      "any_unresolved": false,
      "consistent": true,
      "contradiction": false,
-     "seconds": 3.374,
+     "seconds": 3.448,
      "size_mm": null,
      "features": {
       "aphe": "absent",
@@ -2486,14 +3081,16 @@
     {
      "id": "EPMC012",
      "gold": "LR-5",
-     "pred": "not_assignable",
-     "envelope": null,
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
      "critical": false,
      "any_unresolved": false,
      "consistent": true,
      "contradiction": false,
-     "seconds": 4.299,
-     "size_mm": null,
+     "seconds": 4.298,
+     "size_mm": 15.5,
      "features": {
       "aphe": "present",
       "washout": "absent",
@@ -2512,19 +3109,21 @@
       "af_malignant": "",
       "af_benign": ""
      },
-     "size_evidence": ""
+     "size_evidence": "15.5"
     },
     {
      "id": "EPMC013",
      "gold": "LR-5",
-     "pred": "not_assignable",
-     "envelope": null,
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
      "critical": false,
      "any_unresolved": false,
      "consistent": true,
      "contradiction": false,
-     "seconds": 4.277,
-     "size_mm": null,
+     "seconds": 4.291,
+     "size_mm": 13.5,
      "features": {
       "aphe": "present",
       "washout": "present",
@@ -2543,19 +3142,21 @@
       "af_malignant": "",
       "af_benign": ""
      },
-     "size_evidence": ""
+     "size_evidence": "13.5"
     },
     {
      "id": "EPMC014",
      "gold": "LR-5",
-     "pred": "not_assignable",
-     "envelope": null,
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
      "critical": false,
      "any_unresolved": false,
      "consistent": true,
      "contradiction": false,
-     "seconds": 3.276,
-     "size_mm": null,
+     "seconds": 3.351,
+     "size_mm": 11.6,
      "features": {
       "aphe": "absent",
       "washout": "present",
@@ -2579,14 +3180,17 @@
     {
      "id": "EPMC015",
      "gold": "LR-5",
-     "pred": "not_assignable",
-     "envelope": null,
-     "critical": false,
+     "pred": "LR-5",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
      "any_unresolved": false,
      "consistent": true,
      "contradiction": false,
-     "seconds": 4.221,
-     "size_mm": null,
+     "seconds": 4.291,
+     "size_mm": 11.2,
      "features": {
       "aphe": "present",
       "washout": "present",
@@ -2605,19 +3209,21 @@
       "af_malignant": "",
       "af_benign": ""
      },
-     "size_evidence": ""
+     "size_evidence": "11.2"
     },
     {
      "id": "EPMC016",
      "gold": "LR-5",
-     "pred": "not_assignable",
-     "envelope": null,
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
      "critical": false,
      "any_unresolved": false,
      "consistent": true,
      "contradiction": false,
-     "seconds": 4.231,
-     "size_mm": null,
+     "seconds": 4.296,
+     "size_mm": 15.4,
      "features": {
       "aphe": "present",
       "washout": "present",
@@ -2636,19 +3242,21 @@
       "af_malignant": "",
       "af_benign": ""
      },
-     "size_evidence": ""
+     "size_evidence": "15.4"
     },
     {
      "id": "EPMC017",
      "gold": "LR-5",
-     "pred": "not_assignable",
-     "envelope": null,
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
      "critical": false,
      "any_unresolved": false,
      "consistent": true,
      "contradiction": false,
-     "seconds": 4.265,
-     "size_mm": null,
+     "seconds": 4.258,
+     "size_mm": 15.7,
      "features": {
       "aphe": "present",
       "washout": "present",
@@ -2667,19 +3275,21 @@
       "af_malignant": "",
       "af_benign": ""
      },
-     "size_evidence": ""
+     "size_evidence": "15.7"
     },
     {
      "id": "EPMC018",
      "gold": "LR-5",
-     "pred": "not_assignable",
-     "envelope": null,
+     "pred": "LR-4",
+     "envelope": [
+      "LR-4"
+     ],
      "critical": false,
      "any_unresolved": false,
      "consistent": true,
      "contradiction": false,
-     "seconds": 3.535,
-     "size_mm": null,
+     "seconds": 3.568,
+     "size_mm": 18.7,
      "features": {
       "aphe": "absent",
       "washout": "present",
@@ -2698,19 +3308,22 @@
       "af_malignant": "",
       "af_benign": ""
      },
-     "size_evidence": ""
+     "size_evidence": "18.7"
     },
     {
      "id": "EPMC019",
      "gold": "LR-4",
-     "pred": "not_assignable",
-     "envelope": null,
-     "critical": false,
+     "pred": "LR-3",
+     "envelope": [
+      "LR-3",
+      "LR-4"
+     ],
+     "critical": true,
      "any_unresolved": false,
      "consistent": true,
      "contradiction": false,
-     "seconds": 4.278,
-     "size_mm": null,
+     "seconds": 4.304,
+     "size_mm": 18.8,
      "features": {
       "aphe": "present",
       "washout": "absent",
@@ -2729,19 +3342,22 @@
       "af_malignant": "",
       "af_benign": ""
      },
-     "size_evidence": ""
+     "size_evidence": "18.8"
     },
     {
      "id": "EPMC020",
      "gold": "LR-5",
-     "pred": "not_assignable",
-     "envelope": null,
-     "critical": false,
+     "pred": "LR-5",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
      "any_unresolved": false,
      "consistent": true,
      "contradiction": false,
-     "seconds": 4.274,
-     "size_mm": null,
+     "seconds": 4.261,
+     "size_mm": 11.5,
      "features": {
       "aphe": "present",
       "washout": "present",
@@ -2760,19 +3376,21 @@
       "af_malignant": "",
       "af_benign": ""
      },
-     "size_evidence": ""
+     "size_evidence": "11.5"
     },
     {
      "id": "EPMC021",
      "gold": "LR-5",
-     "pred": "not_assignable",
-     "envelope": null,
+     "pred": "LR-5",
+     "envelope": [
+      "LR-5"
+     ],
      "critical": false,
      "any_unresolved": false,
      "consistent": true,
      "contradiction": false,
-     "seconds": 4.24,
-     "size_mm": null,
+     "seconds": 4.298,
+     "size_mm": 17.8,
      "features": {
       "aphe": "present",
       "washout": "absent",
@@ -2791,19 +3409,22 @@
       "af_malignant": "",
       "af_benign": ""
      },
-     "size_evidence": ""
+     "size_evidence": "17.8"
     },
     {
      "id": "EPMC022",
      "gold": "LR-5",
-     "pred": "not_assignable",
-     "envelope": null,
-     "critical": false,
-     "any_unresolved": false,
+     "pred": "LR-5",
+     "envelope": [
+      "LR-4",
+      "LR-5"
+     ],
+     "critical": true,
+     "any_unresolved": true,
      "consistent": true,
      "contradiction": false,
-     "seconds": 4.137,
-     "size_mm": null,
+     "seconds": 4.174,
+     "size_mm": 11.1,
      "features": {
       "aphe": "present",
       "washout": "present",
@@ -2822,7 +3443,7 @@
       "af_malignant": "",
       "af_benign": ""
      },
-     "size_evidence": ""
+     "size_evidence": "11.1"
     }
    ]
   },
@@ -2952,21 +3573,21 @@
        0.9055
       ]
      },
-     "mean_seconds": 3.73
+     "mean_seconds": 3.723
     },
     "B2": {
      "cases": 14,
      "graded": 12,
      "accuracy": {
-      "k": 0,
+      "k": 10,
       "n": 12,
-      "value": 0.0,
+      "value": 0.8333,
       "ci95": [
-       0.0,
-       0.2425
+       0.552,
+       0.953
       ]
      },
-     "weighted_kappa": null,
+     "weighted_kappa": 0.7843,
      "confusion": {
       "labels": [
        "LR-2",
@@ -2992,17 +3613,17 @@
        ],
        [
         0,
+        1,
         0,
         0,
-        0,
-        1
+        0
        ],
        [
         0,
         0,
         0,
-        0,
-        11
+        10,
+        1
        ],
        [
         0,
@@ -3014,12 +3635,12 @@
       ]
      },
      "lr5_sensitivity": {
-      "k": 0,
+      "k": 10,
       "n": 11,
-      "value": 0.0,
+      "value": 0.9091,
       "ci95": [
-       0.0,
-       0.2588
+       0.6226,
+       0.9838
       ]
      },
      "lr5_specificity": {
@@ -3032,15 +3653,15 @@
       ]
      },
      "pm1_band_coverage": {
-      "k": 0,
+      "k": 11,
       "n": 12,
-      "value": 0.0,
+      "value": 0.9167,
       "ci95": [
-       0.0,
-       0.2425
+       0.6461,
+       0.9851
       ]
      },
-     "mean_pm1_band_size": null,
+     "mean_pm1_band_size": 2.091,
      "contradiction_rate": {
       "k": 0,
       "n": 14,
@@ -3092,15 +3713,15 @@
      "cases": 14,
      "graded": 12,
      "accuracy": {
-      "k": 0,
+      "k": 8,
       "n": 12,
-      "value": 0.0,
+      "value": 0.6667,
       "ci95": [
-       0.0,
-       0.2425
+       0.3906,
+       0.8619
       ]
      },
-     "weighted_kappa": null,
+     "weighted_kappa": 0.5217,
      "confusion": {
       "labels": [
        "LR-2",
@@ -3126,17 +3747,17 @@
        ],
        [
         0,
+        1,
         0,
         0,
-        0,
-        1
+        0
        ],
        [
         0,
         0,
-        0,
-        0,
-        11
+        2,
+        8,
+        1
        ],
        [
         0,
@@ -3148,12 +3769,12 @@
       ]
      },
      "lr5_sensitivity": {
-      "k": 0,
+      "k": 8,
       "n": 11,
-      "value": 0.0,
+      "value": 0.7273,
       "ci95": [
-       0.0,
-       0.2588
+       0.4344,
+       0.9025
       ]
      },
      "lr5_specificity": {
@@ -3166,15 +3787,15 @@
       ]
      },
      "pm1_band_coverage": {
-      "k": 0,
+      "k": 11,
       "n": 12,
-      "value": 0.0,
+      "value": 0.9167,
       "ci95": [
-       0.0,
-       0.2425
+       0.6461,
+       0.9851
       ]
      },
-     "mean_pm1_band_size": null,
+     "mean_pm1_band_size": 2.273,
      "contradiction_rate": {
       "k": 0,
       "n": 14,
@@ -3220,21 +3841,147 @@
        0.9055
       ]
      },
-     "mean_seconds": 4.013
+     "mean_seconds": 4.053
+    },
+    "B4": {
+     "cases": 14,
+     "graded": 12,
+     "accuracy": {
+      "k": 2,
+      "n": 12,
+      "value": 0.1667,
+      "ci95": [
+       0.047,
+       0.448
+      ]
+     },
+     "weighted_kappa": 0.1429,
+     "confusion": {
+      "labels": [
+       "LR-2",
+       "LR-3",
+       "LR-4",
+       "LR-5",
+       "other"
+      ],
+      "matrix": [
+       [
+        0,
+        0,
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        7,
+        2,
+        1
+       ],
+       [
+        0,
+        0,
+        0,
+        0,
+        0
+       ]
+      ]
+     },
+     "lr5_sensitivity": {
+      "k": 2,
+      "n": 11,
+      "value": 0.1818,
+      "ci95": [
+       0.0514,
+       0.477
+      ]
+     },
+     "lr5_specificity": {
+      "k": 1,
+      "n": 1,
+      "value": 1.0,
+      "ci95": [
+       0.2065,
+       1.0
+      ]
+     },
+     "pm1_band_coverage": {
+      "k": 10,
+      "n": 12,
+      "value": 0.8333,
+      "ci95": [
+       0.552,
+       0.953
+      ]
+     },
+     "mean_pm1_band_size": 2.818,
+     "contradiction_rate": {
+      "k": 0,
+      "n": 10,
+      "value": 0.0,
+      "ci95": [
+       0.0,
+       0.2775
+      ]
+     },
+     "consistency_verified": null,
+     "correct_deferrals": {
+      "k": 1,
+      "n": 2,
+      "value": 0.5,
+      "ci95": [
+       0.0945,
+       0.9055
+      ]
+     },
+     "deferral_precision": {
+      "k": 1,
+      "n": 1,
+      "value": 1.0,
+      "ci95": [
+       0.2065,
+       1.0
+      ]
+     },
+     "deferral_recall": {
+      "k": 1,
+      "n": 2,
+      "value": 0.5,
+      "ci95": [
+       0.0945,
+       0.9055
+      ]
+     },
+     "mean_seconds": 3.723
     },
     "Ours": {
      "cases": 14,
      "graded": 12,
      "accuracy": {
-      "k": 0,
+      "k": 8,
       "n": 12,
-      "value": 0.0,
+      "value": 0.6667,
       "ci95": [
-       0.0,
-       0.2425
+       0.3906,
+       0.8619
       ]
      },
-     "weighted_kappa": null,
+     "weighted_kappa": 0.5217,
      "confusion": {
       "labels": [
        "LR-2",
@@ -3260,17 +4007,17 @@
        ],
        [
         0,
+        1,
         0,
         0,
-        0,
-        1
+        0
        ],
        [
         0,
         0,
-        0,
-        0,
-        11
+        2,
+        8,
+        1
        ],
        [
         0,
@@ -3282,12 +4029,12 @@
       ]
      },
      "lr5_sensitivity": {
-      "k": 0,
+      "k": 8,
       "n": 11,
-      "value": 0.0,
+      "value": 0.7273,
       "ci95": [
-       0.0,
-       0.2588
+       0.4344,
+       0.9025
       ]
      },
      "lr5_specificity": {
@@ -3300,15 +4047,15 @@
       ]
      },
      "pm1_band_coverage": {
-      "k": 0,
+      "k": 11,
       "n": 12,
-      "value": 0.0,
+      "value": 0.9167,
       "ci95": [
-       0.0,
-       0.2425
+       0.6461,
+       0.9851
       ]
      },
-     "mean_pm1_band_size": null,
+     "mean_pm1_band_size": 2.273,
      "contradiction_rate": {
       "k": 0,
       "n": 14,
@@ -3354,33 +4101,33 @@
        0.9055
       ]
      },
-     "mean_seconds": 4.013,
+     "mean_seconds": 4.053,
      "envelope_coverage": {
-      "k": 0,
+      "k": 9,
       "n": 12,
-      "value": 0.0,
+      "value": 0.75,
       "ci95": [
-       0.0,
-       0.2425
+       0.4677,
+       0.9111
       ]
      },
-     "mean_envelope_size": null,
+     "mean_envelope_size": 1.364,
      "alert_rate": {
-      "k": 0,
+      "k": 4,
       "n": 14,
-      "value": 0.0,
+      "value": 0.2857,
       "ci95": [
-       0.0,
-       0.2153
+       0.1172,
+       0.5465
       ]
      },
      "any_uncertainty_rate": {
-      "k": 0,
+      "k": 4,
       "n": 14,
-      "value": 0.0,
+      "value": 0.2857,
       "ci95": [
-       0.0,
-       0.2153
+       0.1172,
+       0.5465
       ]
      }
     }
@@ -3501,7 +4248,7 @@
       "value": null,
       "ci95": null
      },
-     "mean_seconds": 3.863
+     "mean_seconds": 3.873
     },
     "B2": {
      "cases": 2,
@@ -3626,7 +4373,7 @@
       "value": null,
       "ci95": null
      },
-     "mean_seconds": 0.002
+     "mean_seconds": 0.001
     },
     "B3": {
      "cases": 2,
@@ -3751,7 +4498,124 @@
       "value": null,
       "ci95": null
      },
-     "mean_seconds": 4.425
+     "mean_seconds": 4.583
+    },
+    "B4": {
+     "cases": 2,
+     "graded": 2,
+     "accuracy": {
+      "k": 1,
+      "n": 2,
+      "value": 0.5,
+      "ci95": [
+       0.0945,
+       0.9055
+      ]
+     },
+     "weighted_kappa": 0.6667,
+     "confusion": {
+      "labels": [
+       "LR-2",
+       "LR-3",
+       "LR-4",
+       "LR-5",
+       "other"
+      ],
+      "matrix": [
+       [
+        0,
+        0,
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        0,
+        0,
+        0
+       ]
+      ]
+     },
+     "lr5_sensitivity": {
+      "k": 1,
+      "n": 1,
+      "value": 1.0,
+      "ci95": [
+       0.2065,
+       1.0
+      ]
+     },
+     "lr5_specificity": {
+      "k": 1,
+      "n": 1,
+      "value": 1.0,
+      "ci95": [
+       0.2065,
+       1.0
+      ]
+     },
+     "pm1_band_coverage": {
+      "k": 2,
+      "n": 2,
+      "value": 1.0,
+      "ci95": [
+       0.3424,
+       1.0
+      ]
+     },
+     "mean_pm1_band_size": 2.5,
+     "contradiction_rate": {
+      "k": 0,
+      "n": 2,
+      "value": 0.0,
+      "ci95": [
+       0.0,
+       0.6576
+      ]
+     },
+     "consistency_verified": null,
+     "correct_deferrals": {
+      "k": 0,
+      "n": 0,
+      "value": null,
+      "ci95": null
+     },
+     "deferral_precision": {
+      "k": 0,
+      "n": 0,
+      "value": null,
+      "ci95": null
+     },
+     "deferral_recall": {
+      "k": 0,
+      "n": 0,
+      "value": null,
+      "ci95": null
+     },
+     "mean_seconds": 3.873
     },
     "Ours": {
      "cases": 2,
@@ -3876,7 +4740,7 @@
       "value": null,
       "ci95": null
      },
-     "mean_seconds": 4.425,
+     "mean_seconds": 4.583,
      "envelope_coverage": {
       "k": 1,
       "n": 2,
@@ -4029,7 +4893,7 @@
        0.7935
       ]
      },
-     "mean_seconds": 4.023
+     "mean_seconds": 4.022
     },
     "B2": {
      "cases": 3,
@@ -4163,7 +5027,7 @@
        1.0
       ]
      },
-     "mean_seconds": 0.003
+     "mean_seconds": 0.002
     },
     "B3": {
      "cases": 3,
@@ -4297,7 +5161,130 @@
        1.0
       ]
      },
-     "mean_seconds": 4.693
+     "mean_seconds": 4.679
+    },
+    "B4": {
+     "cases": 3,
+     "graded": 2,
+     "accuracy": {
+      "k": 1,
+      "n": 2,
+      "value": 0.5,
+      "ci95": [
+       0.0945,
+       0.9055
+      ]
+     },
+     "weighted_kappa": 0.6667,
+     "confusion": {
+      "labels": [
+       "LR-2",
+       "LR-3",
+       "LR-4",
+       "LR-5",
+       "other"
+      ],
+      "matrix": [
+       [
+        0,
+        0,
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        0,
+        0,
+        0
+       ]
+      ]
+     },
+     "lr5_sensitivity": {
+      "k": 1,
+      "n": 1,
+      "value": 1.0,
+      "ci95": [
+       0.2065,
+       1.0
+      ]
+     },
+     "lr5_specificity": {
+      "k": 1,
+      "n": 1,
+      "value": 1.0,
+      "ci95": [
+       0.2065,
+       1.0
+      ]
+     },
+     "pm1_band_coverage": {
+      "k": 2,
+      "n": 2,
+      "value": 1.0,
+      "ci95": [
+       0.3424,
+       1.0
+      ]
+     },
+     "mean_pm1_band_size": 2.5,
+     "contradiction_rate": {
+      "k": 0,
+      "n": 2,
+      "value": 0.0,
+      "ci95": [
+       0.0,
+       0.6576
+      ]
+     },
+     "consistency_verified": null,
+     "correct_deferrals": {
+      "k": 0,
+      "n": 1,
+      "value": 0.0,
+      "ci95": [
+       0.0,
+       0.7935
+      ]
+     },
+     "deferral_precision": {
+      "k": 0,
+      "n": 0,
+      "value": null,
+      "ci95": null
+     },
+     "deferral_recall": {
+      "k": 0,
+      "n": 1,
+      "value": 0.0,
+      "ci95": [
+       0.0,
+       0.7935
+      ]
+     },
+     "mean_seconds": 4.022
     },
     "Ours": {
      "cases": 3,
@@ -4431,7 +5418,7 @@
        1.0
       ]
      },
-     "mean_seconds": 4.693,
+     "mean_seconds": 4.679,
      "envelope_coverage": {
       "k": 1,
       "n": 2,

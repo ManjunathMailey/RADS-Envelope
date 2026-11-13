@@ -1,6 +1,7 @@
 # Data sources
 
-Every item below is real data from an official open-access source unless marked synthetic. Raw
+No hospital or private patient data is used. Every item below is real data from an official
+open-access source unless marked synthetic. Raw
 downloads stay in the git-ignored `data/raw/<source>/`; `data/manifest.csv` records source, URL or
 DOI, license, retrieval time, sha256, size and record count for every file
 (`data_tools/build_manifest.py`; re-check with `data_tools/verify_manifest.py`). Only licenses that
@@ -13,7 +14,7 @@ LI-RADS *category* and diameter. No LI-RADS label is ever derived by us where a 
 | Source | What it is | Real? | Size used | License | How obtained | Use |
 | --- | --- | --- | --- | --- | --- | --- |
 | Radiopaedia, PMC (manual) | Radiologist-written LI-RADS cases entered by hand | real | 5 cases | CC BY-NC-SA 3.0 / CC BY 4.0 | manual entry (no scraping) | text evaluation |
-| Europe PMC | Open-access LI-RADS articles; candidate cases with the stated category | real | 1,184 articles found, 941 license-compatible, 936 full texts, **59 candidates** (42 articles; 11 from per-lesion tables) | CC BY, CC BY-NC, CC0, CC BY-NC-SA | REST API, 3 queries, cached | text evaluation after human review |
+| Europe PMC | Open-access LI-RADS articles; candidate cases with the stated category | real | 1,184 articles found, 941 licence-compatible, 936 full texts, 59 candidates (42 articles), **22 accepted** after review (37 rejected) | CC BY, CC BY-NC, CC0, CC BY-NC-SA | REST API, 3 queries, cached | text evaluation (merged as EPMC001-EPMC022) |
 | WAW-TACE (Zenodo 12741586) | Multiphase CT of 233 HCC patients before TACE; tumour masks; clinical data | real | clinical table, CT metadata, 378 tumour masks (2.3 MB); CT zips (4 x 9.9-12.9 GB) **not downloaded (decision)** | CC BY 4.0 | Zenodo API, md5-verified | size measurement; label analysis |
 | HCC-TACE-Seg (TCIA via IDC) | Multiphase CT of 105 HCC patients with expert segmentations (liver, mass, portal vein, aorta) | real | clinical table (105 x 59); pre-treatment CT + SEG for **10 patients** (33 series, 1.07 GB) | CC BY 4.0 | `idc-index` | CT previews, measured sizes; image pipeline roadmap |
 | TCGA-LIHC (TCIA via IDC) | Imaging and pathology of 377 liver cancer cases | real | series list and clinical table only (no images; 681.8 GB in IDC) | CC BY 3.0 / 4.0 | `idc-index` | roadmap |
