@@ -34,6 +34,16 @@ def test_landing_page_has_no_hard_coded_result_numbers():
     assert "%" not in html.split('id="problemNumber"')[1].split("</li>")[0]
 
 
+def test_font_is_self_hosted_and_pages_make_no_external_requests():
+    font = client.get("/static/fonts/InterVariable.woff2")
+    assert font.status_code == 200 and font.content[:4] == b"wOF2"
+    assert "InterVariable.woff2" in client.get("/static/app.css").text
+    for page in ("/", "/app"):
+        html = client.get(page).text
+        assert "googleapis" not in html and "gstatic" not in html
+    assert (ROOT / "web" / "static" / "fonts" / "OFL-Inter.txt").exists()
+
+
 def test_example_is_a_development_case():
     x = client.get("/api/example").json()
     assert x["id"] == appmod.EXAMPLE_CASE and x["report"] and x["license"]

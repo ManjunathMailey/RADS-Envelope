@@ -5,6 +5,9 @@
     spacing     5 · 8 · 13 · 21 · 34 · 55 · 89 px (Fibonacci)
     layout      result split 1.618 : 1, content width 1165 px, composer 720 px (1165 / phi)
 */
+/* Inter, self-hosted (SIL Open Font License, see fonts/OFL-Inter.txt): no request leaves the machine. */
+@font-face{font-family:"Inter";src:url("/static/fonts/InterVariable.woff2") format("woff2");
+  font-weight:100 900;font-style:normal;font-display:swap}
 :root{
   --bg:#f5f5f7; --surface:#ffffff; --fill:#f2f2f4; --fill-2:#e8e8ed;
   --ink:#1d1d1f; --ink-2:#424245; --muted:#6e6e73; --faint:#a1a1a6; --line:#e3e3e8;
