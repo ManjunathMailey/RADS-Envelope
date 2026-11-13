@@ -1,4 +1,4 @@
-r"""
+﻿r"""
 Generate docs\EVALUATION.md from the committed results JSONs (no numbers are typed by hand).
 
     .\.venv\Scripts\python.exe data_tools\build_evaluation_report.py
@@ -414,7 +414,35 @@ def build() -> str:
     lines += sensitivity_section() + repeatability_section() + annotation_section() + error_section()
     lines += wawtace_section() + robustness_section()
     lines += ["## 10. Limitations", ""] + [f"- {x}" for x in LIMITATIONS] + [""]
+    lines += plan_coverage_section()
     return "\n".join(lines)
+
+
+# Hand-audited against the pre-project deck and synopsis (not a measured result): one row per concrete promise.
+PLAN = {"done": 21, "changed": 4, "partial": 8, "missing": 11, "end_of_plan_missing": 4}
+
+
+def _pct(x: float) -> str:
+    return f"{int(x * 100 + 0.5)}%"                         # round half up: 29/40 = 72.5% -> 73%
+
+
+def plan_coverage_section() -> list[str]:
+    p = PLAN
+    total = p["done"] + p["changed"] + p["partial"] + p["missing"]
+    score = p["done"] + p["changed"] + 0.5 * p["partial"]
+    rest = total - p["end_of_plan_missing"]
+    return ["## 11. Implementation against the pre-project plan", "",
+            f"Method: every concrete promise in the pre-project deck and synopsis was listed ({total} promises) and marked "
+            "done, changed into a working equivalent, partial, or missing. Score = (done + changed + ½ × partial) / promises.", "",
+            "| Done | Changed | Partial | Missing | Promises | Strict coverage | Excluding end-of-plan items |",
+            "| --- | --- | --- | --- | --- | --- | --- |",
+            f"| {p['done']} | {p['changed']} | {p['partial']} | {p['missing']} | {total} | "
+            f"{_pct(score / total)} ({score:g}/{total}) | {_pct(score / rest)} ({score:g}/{rest}) |", "",
+            f"End-of-plan items (all missing, excluded in the last column): paper, provisional patent, prior-art search, "
+            f"radiologist review. Missing otherwise: Lung-RADS, BI-RADS, the RXL-RADSet external test, the risk-coverage curve, "
+            f"token and retry cost, radiologist agreement. Changed: Ollama JSON-schema decoding instead of vLLM with Outlines; "
+            f"27 real cases plus 200 generated reports instead of ~1,000 synthetic reports; the hybrid arm as post-hoc "
+            f"correction (B4); confidence-based abstention as the Certainty Envelope.", ""]
 
 
 def main() -> None:

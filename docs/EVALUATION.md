@@ -254,3 +254,13 @@ B4 corrected 73 of B1's 200 categories.
 - The robustness test uses rule-generated gold and is reported as robustness, never as accuracy. It is not held out: its error list informed the APHE definition, which quotes one of the generator's phrasings, so part of its last gain reflects the generator's vocabulary.
 - Clustered cases: one article (PMC8122342) contributes 11 of the 27 real cases (rows of one per-lesion table), all in dev; the 27 cases come from 16 independent sources.
 - Small test set: forcing every inspected case into dev leaves 8 test cases (dev 19 / test 8), so test intervals are wide.
+
+## 11. Implementation against the pre-project plan
+
+Method: every concrete promise in the pre-project deck and synopsis was listed (44 promises) and marked done, changed into a working equivalent, partial, or missing. Score = (done + changed + ½ × partial) / promises.
+
+| Done | Changed | Partial | Missing | Promises | Strict coverage | Excluding end-of-plan items |
+| --- | --- | --- | --- | --- | --- | --- |
+| 21 | 4 | 8 | 11 | 44 | 66% (29/44) | 73% (29/40) |
+
+End-of-plan items (all missing, excluded in the last column): paper, provisional patent, prior-art search, radiologist review. Missing otherwise: Lung-RADS, BI-RADS, the RXL-RADSet external test, the risk-coverage curve, token and retry cost, radiologist agreement. Changed: Ollama JSON-schema decoding instead of vLLM with Outlines; 27 real cases plus 200 generated reports instead of ~1,000 synthetic reports; the hybrid arm as post-hoc correction (B4); confidence-based abstention as the Certainty Envelope.
