@@ -40,15 +40,23 @@ Guide: Mr. Karthik D U
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\setup.ps1     # once: venv, packages, model, tests
 powershell -ExecutionPolicy Bypass -File .\run.ps1       # starts http://localhost:8000
+powershell -ExecutionPolicy Bypass -File .\reproduce.ps1 # tests + robustness test + development real cases
 ```
+
+`http://localhost:8000/` is the landing page and `http://localhost:8000/app` the analyser
+(`/app#batch` for batch mode, `/app?example=1` preloads a real development case).
 
 Requires Python 3.10+ and [Ollama](https://ollama.com). Default model: `qwen2.5:7b-instruct`
 (override with `$env:RADS_MODEL`). Without Ollama the app runs with the deterministic lexicon extractor.
 
 ## Evaluation
 
+The real-case set is frozen into a development and a held-out test split (tag `eval-freeze`);
+`--split test` runs only with `RADS_RUN_TEST=1` and is logged. `reproduce.ps1` never runs it.
+Full protocol and results: [docs/EVALUATION.md](docs/EVALUATION.md).
+
 ```powershell
-.\.venv\Scripts\python.exe -m radsenvelope.evaluation.real_cases                  # real cases
+.\.venv\Scripts\python.exe -m radsenvelope.evaluation.real_cases                  # real cases (development split)
 .\.venv\Scripts\python.exe -m radsenvelope.evaluation.benchmark --extractor llm     # robustness test (rule-generated gold), LLM
 .\.venv\Scripts\python.exe -m radsenvelope.evaluation.benchmark --extractor lexicon # robustness test, lexicon
 .\.venv\Scripts\python.exe -m radsenvelope.evaluation.real_cases --compare        # B1 LLM-direct / B2 / B3 / Ours
@@ -95,3 +103,7 @@ docs/ARCHITECTURE.md               design, algorithm, guarantees, evaluation pro
 Research prototype for decision support. Not a medical device. Covers the LI-RADS CT/MRI v2018 core
 table for untreated observations; LR-1, LR-M, LR-TIV, treated lesions and ultrasound LI-RADS are
 deferred to the radiologist. Demo reports in `data/samples` are synthetic.
+
+## License
+
+Source code: MIT (see LICENSE). Data files keep the license of their source, recorded per case and in `data/manifest.csv`.

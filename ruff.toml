@@ -1,0 +1,9 @@
+# Minimal lint configuration: pyflakes (F) and pycodestyle errors/warnings (E, W).
+line-length = 120
+target-version = "py310"
+extend-exclude = [".venv", ".venv-data", "data"]
+
+[lint]
+select = ["E", "F", "W"]
+# The codebase uses long lines and short named lambdas by convention; reflowing them would be churn.
+ignore = ["E501", "E731"]
