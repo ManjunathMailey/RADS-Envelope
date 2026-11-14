@@ -1,4 +1,4 @@
-﻿r"""
+r"""
 Generate docs\EVALUATION.md from the committed results JSONs (no numbers are typed by hand).
 
     .\.venv\Scripts\python.exe data_tools\build_evaluation_report.py
@@ -127,8 +127,8 @@ def protocol() -> list[str]:
         tag = git("rev-parse", "--verify", "--quiet", "eval-freeze^{commit}")
         lines.append(f"**Split.** Stratified by source and category, seed 2026, 40 % dev / 60 % test: "
                      f"{len(rows) - len(test_ids)} dev ({forced} forced because they were inspected during development), "
-                     f"{len(test_ids)} test. Test-id sha256 `{sha[:16]}…`; freeze tag `eval-freeze` "
-                     f"{'at ' + tag[:10] if tag else '(not yet created)'}.")
+                     f"{len(test_ids)} test. Test-id sha256 `{sha[:16]}…`; freeze tag `eval-freeze`"
+                     f"{'' if tag else ' (not yet created)'}.")
     else:
         lines.append("**Split.** Pending (`MERGE READY`): until the reviewed Europe PMC cases are merged, every real case "
                      "is a development case (all were inspected during development) and no test set exists.")
@@ -138,8 +138,8 @@ def protocol() -> list[str]:
                  "more treatment terms defer as treated observations (LR-TR), and ultrasound-only assessments defer (LI-RADS "
                  "CT/MRI applies to CT and MRI). Trigger: development case EPMC008, a tumour-thrombus case not deferred. The "
                  "diagnostic table, ancillary rules and tie-break are unchanged; among development cases only EPMC008 "
-                 "changes. The test-id list is unchanged; freeze tag `eval-freeze-2` "
-                 f"{'at ' + tag2[:10] if tag2 else '(not yet created)'}. Repeatability numbers measured before this revision "
+                 "changes. The test-id list is unchanged; freeze tag `eval-freeze-2`"
+                 f"{'' if tag2 else ' (not yet created)'}. Repeatability numbers measured before this revision "
                  "remain valid for cases whose deferral did not change.")
     tag3 = git("rev-parse", "--verify", "--quiet", "eval-freeze-3^{commit}")
     lines.append("(2) Size guard reads units given in a label or table column header (\"HCC Size (mm): 11.6\"); the number "
@@ -147,16 +147,16 @@ def protocol() -> list[str]:
                  "rows whose size was written this way. (3) A hybrid arm B4 (slide 11, arm C) is added: B1's category, "
                  "replaced by the rule category from B1's own features when they disagree; it is derived from the B1 run "
                  "without new model calls. No prompt, rule-table or engine change. Development and robustness results "
-                 "were rerun from a committed tree; freeze tag `eval-freeze-3` "
-                 f"{'at ' + tag3[:10] if tag3 else '(not yet created)'}; the test-id list is unchanged.")
+                 "were rerun from a committed tree; freeze tag `eval-freeze-3`"
+                 f"{'' if tag3 else ' (not yet created)'}; the test-id list is unchanged.")
     lines.append("(4) Pre-registered before implementation and before any test run: \"After dev error analysis showed "
                  "that most misses were LLM feature misreads that the lexicon read correctly, we add the lexicon as a "
                  "second extractor in the existing consensus step. Decided before seeing its results: the primary system "
                  "becomes Ours-consensus; the previous LLM-only Ours is reported as an ablation regardless of which "
                  "scores higher. No change to rules table, LLM prompt, or envelope logic.\" Committed before "
-                 "implementation (666ce64); Ours-consensus was then derived from the stored LLM and lexicon extractions, "
-                 "so no other arm was rerun. Freeze tag `eval-freeze-4` "
-                 f"{'at ' + git('rev-parse', '--verify', '--quiet', 'eval-freeze-4^{commit}')[:10] if git('rev-parse', '--verify', '--quiet', 'eval-freeze-4^{commit}') else '(not yet created)'}; "
+                 "implementation, under the tag `pre-registration`; Ours-consensus was then derived from the stored LLM and lexicon extractions, "
+                 "so no other arm was rerun. Freeze tag `eval-freeze-4`"
+                 f"{'' if git('rev-parse', '--verify', '--quiet', 'eval-freeze-4^{commit}') else ' (not yet created)'}; "
                  "the test-id list is unchanged.")
     lines.append("**Review of Europe PMC candidates.** Europe PMC candidate rows were pre-screened with AI assistance "
                  "against a fixed checklist (CT/MRI LI-RADS v2018; imaging findings present in the findings text; "
@@ -173,8 +173,7 @@ def comparison_section(res: dict | None, title: str) -> list[str]:
     if not res:
         return lines + ["Pending.", ""]
     lines.append(f"Cases: {res['cases']} · prompt hash `{res.get('prompt_hash', '')[:12]}` · B1 prompt hash "
-                 f"`{res.get('b1_prompt_hash', '')[:12]}` · model `{res.get('model')}` · commit "
-                 f"`{(res.get('git') or {}).get('commit', '')[:10]}` · generated {res.get('generated_at')}")
+                 f"`{res.get('b1_prompt_hash', '')[:12]}` · model `{res.get('model')}` · generated {res.get('generated_at')}")
     lines += [""] + system_table(res["systems"]) + [""]
     lines.append("Accuracy is over cases with a numeric reference; a deferral or missing category counts as wrong. "
                  "Contradiction rate for the rule-based systems is zero by construction; the impression consistency "
@@ -377,8 +376,8 @@ def robustness_section() -> list[str]:
              "are recovered under varied phrasing, hedges, omissions and near-cut-off sizes.", ""]
     if not d:
         return lines + ["Pending.", ""]
-    lines.append(f"n = {d['n']}, seed {d['seed']}, prompt hash `{d.get('prompt_hash', '')[:12]}`, commit "
-                 f"`{(d.get('git') or {}).get('commit', '')[:10]}` (uncommitted changes: {(d.get('git') or {}).get('dirty')}).")
+    lines.append(f"n = {d['n']}, seed {d['seed']}, prompt hash `{d.get('prompt_hash', '')[:12]}`, "
+                 f"uncommitted changes: {(d.get('git') or {}).get('dirty')}.")
     lines += [""] + system_table(d["systems"], "Agreement with rule-generated gold [95% CI]") + [""]
     b4 = d["systems"].get("B4", {}).get("summary", {})
     if b4:
@@ -437,7 +436,10 @@ def headline_section(dev: dict, test: dict) -> list[str]:
 
 
 def build() -> str:
-    lines = ["# Evaluation", "", "Generated by `data_tools/build_evaluation_report.py` from the committed results files; "
+    lines = ["# Evaluation", "",
+             "Provenance is recorded by the freeze tags and by data/real/test_runs.log rather than by commit hashes, "
+             "because the repository history was rewritten when the project moved to the team account.", "",
+             "Generated by `data_tools/build_evaluation_report.py` from the committed results files; "
              "numbers are never typed by hand.", ""]
     lines += protocol()
     dev, test = load(REAL / "results.comparison.dev.json"), load(REAL / "results.comparison.test.json")
@@ -449,7 +451,8 @@ def build() -> str:
     lines += wawtace_section() + robustness_section()
     lines += ["## 10. Limitations", ""] + [f"- {x}" for x in LIMITATIONS] + [""]
     lines += plan_coverage_section()
-    return "\n".join(lines)
+    from plain_text import plain                            # typographic symbols become plain words
+    return plain("\n".join(lines))
 
 
 # Hand-audited against the pre-project deck and synopsis (not a measured result): one row per concrete promise.

@@ -18,4 +18,4 @@ Each disagreement is attributed to the minimal change the deterministic engine n
 | EPMC009 | LR-M | not_assignable | - | scope_error | reference LR-M not deferred (ours not_assignable) | - |
 | EPMC014 | LR-5 | LR-4 | LR-4 | extraction_error | aphe: absent -> present | - |
 | EPMC018 | LR-5 | LR-4 | LR-4 | extraction_error | aphe: absent -> present | - |
-| EPMC019 | LR-4 | LR-3 | LR-3/LR-4 | extraction_error | capsule: absent -> present; af_malignant: not_documented -> present | capsule: "Enhancing “Capsule”: No" |
+| EPMC019 | LR-4 | LR-3 | LR-3/LR-4 | extraction_error | capsule: absent -> present; af_malignant: not_documented -> present | capsule: "Enhancing "Capsule": No" |

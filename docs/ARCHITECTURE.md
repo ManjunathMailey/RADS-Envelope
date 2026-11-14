@@ -37,7 +37,7 @@ flowchart LR
     R["Report text"] --> S["segment.py<br/>one block per observation"]
     S --> L["llm.py<br/>JSON-schema constrained"]
     S --> X["lexicon.py<br/>deterministic"]
-    L --> C["consensus.py<br/>disagreement → uncertain"]
+    L --> C["consensus.py<br/>disagreement becomes uncertain"]
     X --> C
     C --> G["sizes.py / schema.py<br/>grounding and size guard"]
     G --> P["scope.py<br/>LR-M, LR-TIV, LR-TR, ultrasound defer"]
@@ -72,7 +72,7 @@ Let `U` be the set of unresolved features and `I` the size interval. The envelop
 Because the rule table is piecewise constant in size, it is enough to evaluate the interval end
 points, the reported size, and the two sides of every cut-off inside the interval. With six binary
 features and cut-offs at 10 and 20 mm the enumeration is at most 2^6 x 7 = 448 rule evaluations
-(2^6 x 5 = 320 when the interval holds at most one cut-off, as it always does at ±2 mm), so `E` is computed
+(2^6 x 5 = 320 when the interval holds at most one cut-off, as it always does at plus or minus 2 mm), so `E` is computed
 exactly, in well under a millisecond.
 
 For every category in `E` the engine also returns a **witness**: the completion with the fewest
@@ -89,9 +89,9 @@ Near a cut-off the question is "re-measure".
 
 ```mermaid
 flowchart LR
-    F["Feature states<br/>present · absent · uncertain · not documented"] --> U["Unresolved set U"]
-    Z["Size interval I<br/>reported ± tolerance"] --> N
-    U --> N["Every completion of U<br/>× every size class in I"]
+    F["Feature states<br/>present, absent, uncertain, not documented"] --> U["Unresolved set U"]
+    Z["Size interval I<br/>reported plus or minus tolerance"] --> N
+    U --> N["Every completion of U<br/> by  every size class in I"]
     N --> T["Rule table per completion"]
     T --> E["Envelope E + witnesses"]
     E --> M["Management classes of E"]
@@ -153,7 +153,7 @@ report's ambiguity and of the extractors' instability. Each feature records whic
    features when they disagree; derived from the B1 run), Ours (LLM + rules + envelope; the LLM-only
    ablation) and Ours-consensus (the lexicon votes in the consensus step; the pre-registered primary
    system, derived from the stored B3 and B2 extractions). Reported per system: accuracy, LR-5
-   sensitivity and specificity, ±1-band coverage and envelope coverage, all with 95 % Wilson
+   sensitivity and specificity, plus or minus 1-band coverage and envelope coverage, all with 95 % Wilson
    intervals; quadratic-weighted Cohen's kappa over LR-2..LR-5; a confusion matrix; mean envelope
    size; alert rate. B1's *internal contradiction rate* compares its category with the engine
    applied to its own features; for the rule-based systems it is zero by construction, and the

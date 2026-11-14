@@ -33,14 +33,14 @@ contradicted the ACR table applied to **its own** extracted features in
 
 | Set | Contradictions | 95% CI |
 | --- | --- | --- |
-| Robustness test, 200 generated reports | **73/200 = 36.5%** | 30.1–43.4% |
-| Real development cases | 5/14 = 35.7% | 16.3–61.2% |
-| Real held-out test cases | 3/5 = 60.0% | 23.1–88.2% |
-| Real cases pooled | 8/19 = 42.1% | 23.1–63.7% |
-| **RADS-Envelope** (rule-computed category, zero by construction) | **0/200 and 0/27** | – |
+| Robustness test, 200 generated reports | **73/200 = 36.5%** | 30.1 to 43.4% |
+| Real development cases | 5/14 = 35.7% | 16.3 to 61.2% |
+| Real held-out test cases | 3/5 = 60.0% | 23.1 to 88.2% |
+| Real cases pooled | 8/19 = 42.1% | 23.1 to 63.7% |
+| **RADS-Envelope** (rule-computed category, zero by construction) | **0/200 and 0/27** |, |
 
 B1 can only be checked where its stated category and the rule category from its own features are both
-LR-1–LR-5 (14 of 19 development cases, 5 of 8 test cases); the rule-computed category is checked on all 27.
+LR-1-LR-5 (14 of 19 development cases, 5 of 8 test cases); the rule-computed category is checked on all 27.
 
 ## What it does
 
@@ -58,7 +58,7 @@ flowchart LR
     R["Report text<br/>(paste, .txt or .docx)"] --> S["Segmentation<br/>one block per observation"]
     S --> L["LLM extractor<br/>JSON-schema constrained"]
     S --> X["Lexicon extractor<br/>deterministic"]
-    L --> C["Consensus<br/>disagreement → uncertain"]
+    L --> C["Consensus<br/>disagreement becomes uncertain"]
     X --> C
     C --> G["Grounding + size guard<br/>evidence and sizes must appear in the text"]
     G --> P["Scope gate<br/>defers LR-M, LR-TIV, LR-TR, ultrasound"]
@@ -78,17 +78,17 @@ the allowed values are masked during decoding. Design notes, algorithms and the 
 
 The ACR tie-break (an uncertain feature counts as absent) always yields a valid category, but it hides
 that a clinically different category may be one finding away. The engine evaluates every completion of
-the unresolved features over the size interval: an exact enumeration of at most 2^6 × 7 = 448 rule
+the unresolved features over the size interval: an exact enumeration of at most 2^6 by 7 = 448 rule
 evaluations (six binary features; the reported size, both interval ends and both sides of each cut-off
-inside the interval). At ±2 mm the interval holds at most one cut-off, so the bound there is
-2^6 × 5 = 320. It keeps the set of reachable categories and, for each, the completion with the fewest
+inside the interval). At plus or minus 2 mm the interval holds at most one cut-off, so the bound there is
+2^6 by 5 = 320. It keeps the set of reachable categories and, for each, the completion with the fewest
 assumptions.
 
 ```mermaid
 flowchart LR
-    F["Feature states<br/>present · absent · uncertain · not documented"] --> U["Unresolved features<br/>uncertain or not documented"]
-    Z["Size interval<br/>reported size ± 2 mm"] --> N
-    U --> N["Enumerate every completion<br/>× every size class in the interval"]
+    F["Feature states<br/>present, absent, uncertain, not documented"] --> U["Unresolved features<br/>uncertain or not documented"]
+    Z["Size interval<br/>reported size plus or minus 2 mm"] --> N
+    U --> N["Enumerate every completion<br/> by  every size class in the interval"]
     N --> T["Rule engine<br/>on each completion"]
     T --> RC["Reachable categories<br/>+ witness for each"]
     RC --> M["Management class<br/>per category"]
@@ -106,7 +106,7 @@ flowchart LR
 | Category | LR-3 (ACR tie-break) | LR-5 |
 | Envelope | LR-3, LR-4, LR-5 | LR-5 |
 | Status | Could change management: "Is the washout real and nonperipheral?" | Safe to sign |
-| Addendum | – | "Segment VI: Nonperipheral washout is present on the portal venous phase." |
+| Addendum |, | "Segment VI: Nonperipheral washout is present on the portal venous phase." |
 
 <p align="center"><img src="docs/figures/app_04_s1_after_present_addendum.png" alt="After answering Present: LR-5, safe to sign, suggested addendum" width="760"></p>
 
@@ -117,10 +117,12 @@ flowchart LR
     D1["Radiopaedia + PMC<br/>5 cases, entered by hand"] --> RV["Review against a<br/>fixed checklist"]
     D2["Europe PMC case reports<br/>59 candidates"] --> RV
     RV --> C27["27 real cases<br/>(22 Europe PMC accepted)"]
-    C27 --> SP["Stratified split, seed 2026<br/>19 development · 8 test"]
-    SP --> FZ["Freeze tags<br/>eval-freeze → eval-freeze-4"]
-    FZ --> AR["Six arms<br/>B1 LLM-direct · B2 lexicon + rules · B3 LLM + rules<br/>B4 hybrid · Ours (ablation) · Ours-consensus (primary)"]
-    AR --> PR["Pre-registration committed<br/>before implementation"]
+    C27 --> SP["Stratified split, seed 2026<br/>19 development, 8 test"]
+    SP --> FZ["Freeze tags<br/>eval-freeze to eval-freeze-4"]
+    FZ --> BA["Baselines<br/>B1 LLM-direct<br/>B2 lexicon + rules<br/>B3 LLM + rules<br/>B4 hybrid"]
+    FZ --> OA["Our systems<br/>Ours (LLM-only ablation)<br/>Ours-consensus (primary)"]
+    BA --> PR["Pre-registration committed<br/>before implementation"]
+    OA --> PR
     PR --> TS["Test split scored once<br/>logged with commit and prompt hash"]
 ```
 
@@ -128,32 +130,32 @@ Every number below is copied from [docs/EVALUATION.md](docs/EVALUATION.md), whic
 committed result files. Accuracy is shown with 95% Wilson intervals. A deferral or missing category
 counts as wrong.
 
-**Real cases** ([EVALUATION.md, Results at a glance, §2, §3](docs/EVALUATION.md#results-at-a-glance-development-vs-test-real-cases))
+**Real cases** ([EVALUATION.md, Results at a glance, sections 2 and 3](docs/EVALUATION.md#results-at-a-glance-development-vs-test-real-cases))
 
 | System | Development accuracy | Test accuracy (scored once) | Envelope coverage, dev | Envelope coverage, test | Contradictions, dev | Contradictions, test |
 | --- | --- | --- | --- | --- | --- | --- |
-| B1 LLM-direct | 0.06 [0.01–0.28] (1/16) | 0.29 [0.08–0.64] (2/7) | – | – | 5/14 | 3/5 |
-| B2 lexicon + rules | **0.81** [0.57–0.93] (13/16) | 0.57 [0.25–0.84] (4/7) | – | – | 0/19 | 0/8 |
-| B3 LLM + rules | 0.62 [0.39–0.82] (10/16) | 0.71 [0.36–0.92] (5/7) | – | – | 0/19 | 0/8 |
-| B4 hybrid (B1 corrected by rules) | 0.25 [0.10–0.49] (4/16) | 0.43 [0.16–0.75] (3/7) | – | – | 0/14 | 0/5 |
-| Ours, LLM-only (ablation) | 0.62 [0.39–0.82] (10/16) | 0.71 [0.36–0.92] (5/7) | 11/16 | 5/7 | 0/19 | 0/8 |
-| **Ours-consensus (primary, pre-registered)** | 0.62 [0.39–0.82] (10/16) | **0.71** [0.36–0.92] (5/7) | **13/16** | **6/7** | **0/19** | **0/8** |
+| B1 LLM-direct | 0.06 [0.01 to 0.28] (1/16) | 0.29 [0.08 to 0.64] (2/7) |, |, | 5/14 | 3/5 |
+| B2 lexicon + rules | **0.81** [0.57 to 0.93] (13/16) | 0.57 [0.25 to 0.84] (4/7) |, |, | 0/19 | 0/8 |
+| B3 LLM + rules | 0.62 [0.39 to 0.82] (10/16) | 0.71 [0.36 to 0.92] (5/7) |, |, | 0/19 | 0/8 |
+| B4 hybrid (B1 corrected by rules) | 0.25 [0.10 to 0.49] (4/16) | 0.43 [0.16 to 0.75] (3/7) |, |, | 0/14 | 0/5 |
+| Ours, LLM-only (ablation) | 0.62 [0.39 to 0.82] (10/16) | 0.71 [0.36 to 0.92] (5/7) | 11/16 | 5/7 | 0/19 | 0/8 |
+| **Ours-consensus (primary, pre-registered)** | 0.62 [0.39 to 0.82] (10/16) | **0.71** [0.36 to 0.92] (5/7) | **13/16** | **6/7** | **0/19** | **0/8** |
 
 Contradictions for B1 and B4 are checked only where B1's stated category and the rule category from its
-own features are both LR-1–LR-5 (14 development, 5 test cases); the rule-computed arms are checked on all 27.
+own features are both LR-1-LR-5 (14 development, 5 test cases); the rule-computed arms are checked on all 27.
 
-On test, Ours-consensus has weighted κ 0.78 (n = 7) and envelope coverage 0.86 [0.49–0.97] with 1.57
-categories on average (§3).
+On test, Ours-consensus has weighted kappa 0.78 (n = 7) and envelope coverage 0.86 [0.49 to 0.97] with 1.57
+categories on average (section 3).
 
-**Robustness test** (200 generated reports, rule-generated gold; measures robustness of feature recovery, not clinical accuracy; [§9](docs/EVALUATION.md#9-robustness-test-rule-generated-gold))
+**Robustness test** (200 generated reports, rule-generated gold; measures robustness of feature recovery, not clinical accuracy; [section 9](docs/EVALUATION.md#9-robustness-test-rule-generated-gold))
 
 | System | Agreement with gold | Contradictions | Envelope coverage | Alert rate |
 | --- | --- | --- | --- | --- |
-| B1 LLM-direct | 0.64 [0.57–0.70] (127/200) | 73/200 | – | – |
-| B2 lexicon + rules | 0.91 [0.86–0.94] (182/200) | 0/200 | – | – |
-| B3 LLM + rules | 1.00 [0.98–1.00] (200/200) | 0/200 | – | – |
-| B4 hybrid | 0.97 [0.94–0.99] (195/200) | 0/200 | – | – |
-| Ours-consensus | 1.00 [0.98–1.00] (200/200) | 0/200 | 1.00 (200/200), mean 1.62 categories | 101/200 |
+| B1 LLM-direct | 0.64 [0.57 to 0.70] (127/200) | 73/200 |, |, |
+| B2 lexicon + rules | 0.91 [0.86 to 0.94] (182/200) | 0/200 |, |, |
+| B3 LLM + rules | 1.00 [0.98 to 1.00] (200/200) | 0/200 |, |, |
+| B4 hybrid | 0.97 [0.94 to 0.99] (195/200) | 0/200 |, |, |
+| Ours-consensus | 1.00 [0.98 to 1.00] (200/200) | 0/200 | 1.00 (200/200), mean 1.62 categories | 101/200 |
 
 Decision-critical alerts fire on 101/200 reports, against 136/200 if every uncertainty were flagged
 (Headline numbers).
@@ -171,12 +173,12 @@ Decision-critical alerts fire on 101/200 reports, against 136/200 if every uncer
 
 **Read these results honestly**
 
-- **The lexicon beat the LLM on development** (13/16 vs 10/16). The order reversed on test (4/7 vs 5/7). With samples this small, neither difference is meaningful (§2, §3).
-- **Envelope vs a fixed ±1 band.** The band covers more (dev 15/16, test 7/7), but it always spans up to three categories and never asks a question. The envelope averages 1.57 categories on test and names the deciding finding (§2, §3).
-- **Small n.** The test set has 7 cases with a numeric reference, and every interval overlaps. What doesn't depend on n is the zero contradiction rate of the rule-computed arms (§10).
-- **Clustering.** One article supplies 11 of the 27 cases (one per-lesion table), all in development; the 27 cases come from 16 independent sources (§10).
-- **Rule-generated gold.** The robustness test measures feature recovery under varied phrasing, not clinical accuracy. Its error list informed one prompt definition (§9, §10).
-- **Pre-registration.** The consensus change and its decision rule were committed before implementation (commit `666ce64`), and the LLM-only system is reported as an ablation regardless of which scored higher (§1).
+- **The lexicon beat the LLM on development** (13/16 vs 10/16). The order reversed on test (4/7 vs 5/7). With samples this small, neither difference is meaningful (sections 2 and 3).
+- **Envelope vs a fixed plus or minus 1 band.** The band covers more (dev 15/16, test 7/7), but it always spans up to three categories and never asks a question. The envelope averages 1.57 categories on test and names the deciding finding (sections 2 and 3).
+- **Small n.** The test set has 7 cases with a numeric reference, and every interval overlaps. What doesn't depend on n is the zero contradiction rate of the rule-computed arms (section 10).
+- **Clustering.** One article supplies 11 of the 27 cases (one per-lesion table), all in development; the 27 cases come from 16 independent sources (section 10).
+- **Rule-generated gold.** The robustness test measures feature recovery under varied phrasing, not clinical accuracy. Its error list informed one prompt definition (sections 9 and 10).
+- **Pre-registration.** The consensus change and its decision rule were committed before implementation, under the tag `pre-registration`, and the LLM-only system is reported as an ablation regardless of which scored higher (section 1).
 
 ## Data
 
@@ -187,13 +189,13 @@ No hospital or private patient data is used. Raw downloads stay in the git-ignor
 | Source | Used for | Count | Licence |
 | --- | --- | --- | --- |
 | Radiopaedia, PMC (entered by hand) | real-case text evaluation | 5 cases | CC BY-NC-SA 3.0 / CC BY 4.0 |
-| Europe PMC open-access case reports | real-case text evaluation | 1,184 articles found → 941 licence-compatible → 59 candidates → **22 accepted** after review | CC BY, CC BY-NC, CC0, CC BY-NC-SA |
+| Europe PMC open-access case reports | real-case text evaluation | 1,184 articles found to 941 licence-compatible to 59 candidates to **22 accepted** after review | CC BY, CC BY-NC, CC0, CC BY-NC-SA |
 | WAW-TACE (Zenodo 12741586) | size-measurement variability, label analysis | 233 patients, 343 lesions | CC BY 4.0 |
 | HCC-TACE-Seg (TCIA via IDC) | CT previews, measured sizes | 10 patients | CC BY 4.0 |
-| Generated reports and demo samples | robustness test, demo | 200 · 10 (synthetic) | MIT (this project) |
+| Generated reports and demo samples | robustness test, demo | 200, 10 (synthetic) | MIT (this project) |
 
 WAW-TACE shows why the envelope has a size tolerance: the median discrepancy between mask and clinical
-diameters is 4.3 mm, and 20% of lesions lie within ±2 mm of a cut-off (EVALUATION.md §8).
+diameters is 4.3 mm, and 20% of lesions lie within plus or minus 2 mm of a cut-off (EVALUATION.md section 8).
 
 ## Who it is for
 
@@ -236,25 +238,25 @@ radsenvelope/
   engine/                          rule set and decision trace, Certainty Envelope, longitudinal growth, exam summary
   generation/impression.py         rule-consistent impression and parse-back verification
   export/fhir.py                   HL7 FHIR R4 Bundle
-  evaluation/                      baselines B1–B4, comparison, metrics, real cases, robustness generator, provenance
+  evaluation/                      baselines B1-B4, comparison, metrics, real cases, robustness generator, provenance
   api/                             FastAPI service (app.py) and product features (report check, addendum, CSV)
   pipeline.py                      end-to-end pipeline shared by the API, CLI and evaluation
 web/                               landing page (landing.html) and analyser (index.html), self-hosted Inter font
 data/
   real/                            27 real cases, frozen split, dev/test results, test-run log, WAW-TACE analysis
   benchmark/                       robustness-test results
-  samples/                         synthetic demo reports S1–S10
+  samples/                         synthetic demo reports S1-S10
   manifest.csv                     provenance of every downloaded file
 data_tools/                        harvesting, review merge, split, figures, evaluation report (separate .venv-data)
 docs/                              ARCHITECTURE.md, EVALUATION.md, DATA_SOURCES.md, error analyses, figures/
 tests/                             property, protocol and integration tests
-setup.ps1 · run.ps1 · reproduce.ps1
+setup.ps1, run.ps1, reproduce.ps1
 ```
 
 ## Limitations and scope
 
 - **Scope.** The LI-RADS CT/MRI v2018 core diagnostic table for untreated observations, with one-step ancillary adjustment. LR-1, LR-M, LR-TIV, treated observations (LR-TR) and ultrasound/CEUS LI-RADS are deferred to the radiologist with the reason shown.
-- **Evidence base.** A small, published, LR-5-heavy real-case set; no radiologist validation and a single annotator so far (EVALUATION.md §10).
+- **Evidence base.** A small, published, LR-5-heavy real-case set; no radiologist validation and a single annotator so far (EVALUATION.md section 10).
 - **Text only.** No images are read; sizes come from the report.
 - **Not a medical device.** This is a research prototype for decision support, and a radiologist must confirm every category.
 
@@ -269,7 +271,7 @@ setup.ps1 · run.ps1 · reproduce.ps1
 
 ## Team
 
-**Batch No. 72** · Department of Computer Science and Engineering, M.S. Ramaiah University of Applied Sciences
+**Batch No. 72**, Department of Computer Science and Engineering, M.S. Ramaiah University of Applied Sciences
 
 - Mailey Manjunath
 - Pranav Vishwanath Kashyap
